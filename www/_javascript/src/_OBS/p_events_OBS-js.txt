@@ -1,0 +1,108 @@
+NB.Events = Class.create({
+		initialize: function() {
+/*
+  			document.on('keyup','form.validate input[type="text"]',function(event){
+            var element = Event.element(event);
+  	    	  NB.User.check_input_valid(element,6);
+  			});
+
+  			document.on('blur','form.validate input[type="text"]',function(event){
+            var element = Event.element(event);
+  	    	  NB.User.check_input_valid(element,6);
+  			});
+
+
+  			document.on('keyup','form.validate input[type="password"]',function(event){
+            var element = Event.element(event);
+  	    	  NB.User.check_input_valid(element,8);
+  			});
+
+  			document.on('blur','form.validate input[type="password"]',function(event){
+            var element = Event.element(event);
+  	    	  NB.User.check_input_valid(element,8);
+  			});
+*/
+        // Navigator ***********************************************************
+        
+        //Should these be retained or should they be subsumed by NB.Refresh
+        //i.e. rather than interpreting these clicks, we interpret the url, etc
+/*
+  			document.on('click','.navigator a.previous',function(event){
+  	    	  NB.page.previous(event);
+  			});
+
+  			document.on('click','.navigator a.first',function(event){
+  	    	  NB.page.first(event);
+  			});
+
+  			document.on('click','.navigator a.next',function(event){
+  	    	  NB.page.next(event);
+  			});
+
+  			document.on('click','.navigator a.last',function(event){
+  	    	  NB.page.last(event);
+  			});
+  			document.on('click','.navigator a.goto',function(event){
+            var element = Event.element(event);
+  	    	  NB.page.goto(element.rel,event);
+  			});
+
+  			document.on('change','.navigator input.goto',function(event){
+            var element = Event.element(event);
+              var goto_p = element.getValue();
+              if (isNaN(goto_p)||goto_p<1||goto_p>NB.p.count) {
+                //element.setValue(NB.p.current);
+              } else {
+  	    	      NB.page.goto(parseInt(goto_p)*1);
+  	    	      //Need to stop return being pressed
+                return false;
+  	    	    }
+          });
+*/
+
+        // to Nav.Links
+        // Links ***************************************************************
+        
+  			document.on('click','.bm',function(event){
+  				  var share_number = parseInt($('share_count').down('span').innerHTML.replace(/\D/g,''));
+            var share_content = $('share_count').innerHTML.replace(share_number,share_number+1).replace(share_number,share_number+1);
+  				  $('share_count').update(share_content);
+  	    	  NB.Ajax.html('get','hidden','../_cgi/_common/_popularity.cgi','type=1&section='+NB.crumb.section+'&page_id='+item.attr('rel')+'&external='+item.attr('title')+'&url='+item.up('#n_share').attr('rel'),false);
+            return true;
+        });
+
+  			document.on('mousedown','a',function(event){
+         var element = Event.element(event);
+		     var href = element.href;
+         if (NB.Url.isExt(href)) {
+	          var href_domain = href.replace(/http\:\/\/|www\.|\/.*/g,'');
+				    NB.Cookie.write_session('session_exit',href);
+  	    	  _gaq.push(['_trackEvent','Exit', encodeURIComponent(href_domain), encodeURIComponent(href)]);
+				    if(!event.isLeftClick()){
+  	    	    _gaq.push(['_trackEvent','Right-click', encodeURIComponent(element.href), element.className]);
+            }
+         } else if (NB.Url.isDoc(href)) {
+  	    	  if(event.isLeftClick() && NB.Url.isDocUnzipped(href)){
+    	    	  _gaq.push(['_trackEvent','File', 'View', element.href]);
+            } else {
+    	    	  _gaq.push(['_trackEvent','File', 'Download', element.href]);
+            }
+         }
+    	   return true;
+        });
+
+  			document.on('click','a',function(event){
+          var element = Event.element(event);
+ 		      var href = element.href;
+          if (NB.Url.isLocal(href)) {
+				    if(!event.isLeftClick()){
+  	    	    _gaq.push(['_trackEvent','Right-click', encodeURIComponent(element.href), element.className]);
+            }
+            event.stop();
+            NB.Nav.fetch(href);
+          }
+        });
+
+  	}
+  	    
+});

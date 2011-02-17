@@ -1,0 +1,238 @@
+jQuery(function(){
+   NB.page = new NB.Page();
+});
+
+/******************************************************************************/
+
+NB.Page = Class.create({
+		initialize: function() {
+    NB.Nav.Track('Initializing: NB.Page');
+//    NB.loaded = true;
+//		  this.check_height();
+//   		new NB.Mods();
+//      this = new this();
+//      new NB.Events();
+
+//      setInterval(this.check_hash, 250);
+// Prime cache array with all currently loaded items
+// (Cycle through all divs with a rel)
+
+/*
+      document.body.on('keyup', function(event){     
+          if(NB.debug && event.keyCode==121) {
+              var body = document.body;
+              body.toggleClassName('debug');
+  					  NB.Cookie.write('debug',body.hasClassName('debug'),'/');
+          }
+          if(event.keyCode==Event.KEY_ESC) {
+          //Find key code
+          //Create two classes - onescape-close and onescape-fade
+              NB.Ui.screencover.dismiss();
+              $J('signupin_panel').addClass('closed');
+              NB.Enface.Paragraphs.focus_current();
+            }
+            return false;
+      });
+*/
+/*      document.body.on('click', function(event){
+            if(!Event.element(event).descendantOf('signupin_container') && !$('signupin').hasClassName('alert') && !$('signupin_panel').hasClassName('closed')) {
+              $('signupin_panel').addClassName('closed');
+              NB.Enface.Paragraphs.focus_current();
+            }
+            return true;
+       });
+*/       
+       //this.loaded(NB.UrlPath(location.href));
+       //HACK - NEEDS TO BE UPDATED in v-pages
+       //var browserButtons = setInterval("NB.page.browser_buttons()",500);
+    },
+
+// *****************************************************************************
+    /*
+    loaded: function(url){
+alert('EHE!!!');
+//        new NB.Nav(p);
+
+    },
+
+		browser_buttons: function(){
+        //HACK - NEEDS TO BE UPDATED in v-pages
+        if(location.hash.include('wutz')){
+          var goto = location.hash.substr(location.hash.lastIndexOf('/')+1);
+        } else if(location.hash==''||location.hash=='#') {
+          var goto = location.href.substr(location.href.replace('#','').lastIndexOf('/')+1);
+        }
+        if(goto!=NB.p.current){
+          NB.App.content(goto);
+        }
+    },
+    */
+	
+/*
+    crumb: function(p) {
+//         var path = (NB.crumb.section=='home'?'':'/'+NB.crumb.section) + (p>1?'/'+p:'');
+         var path = (NB.crumb.section=='home'?'':'/'+NB.crumb.section) + (p>1?'/'+p:'/');
+				 $('last_crumb').removeClassName('hidden');
+				 $('last_crumb').innerHTML = 'paragraph ' + p;
+				 $('last_crumb').href = path;
+         document.title = 'Jean Paul: Schulmeisterlein Wutz - paragraph ' + p;
+				 NB.path = (NB.crumb.section=='home'?'/':path);
+				 NB.canonical = 'http://joegatt.net'+ (NB.crumb.section=='home'?'/':path);
+
+         if (location.pathname==path&&location.hash!='') {
+           location.hash = '';
+         } else if (!(location.hash==''&&location.pathname==path)) {
+           location.hash = path;
+         }
+
+// causes undefined - also, not the right place for it         
+//         if(typeof(pageTracker)!=undefined){
+//          pageTracker._trackPageview(NB.canonical);
+//         }
+         
+//         NB.refresh.bookmarks(NB.canonical);
+
+		},
+*/		
+/*		showScreenCover:function(){
+		    //window.scroll(0,0);
+        //Effect.Appear('screen_cover',{duration:0.2,from:0,to:0.85});
+        $J("#screen_cover").fadeTo('fast',0.8);
+        $J('embed').invoke('hide');
+    },
+    
+		hideScreenCover:function(){
+        //Effect.Fade('screen_cover',{duration:0.2});
+        $J("#screen_cover").fadeOut('slow');
+        $J('embed').invoke('show');
+        //window.scroll(0,0);
+    },
+    
+		dismissScreenCover:function(){
+        $('signupin').removeClassName('alert');
+        NB.page.hideScreenCover();
+    },
+   
+		submit: function(element,destination,indicateDiv) {
+ 				 var form = element.up('form');
+				 if(form.getInputs('text').any(function(item){return item.getValue()==''}) || form.getInputs('password').any(function(item){return item.getValue()==''})){
+            alert(NB.TEXT.prompt.user_error_fill);
+ 				    NB.Nav.Track('User Error','Fill required');
+            return false;
+         } else if(form.select('.warning').any(function(item){return item.innerHTML!=''})){
+            alert(NB.TEXT.prompt.user_error_fix);
+ 				    NB.Nav.Track('User Error','Fix errors');
+            return false;
+			 	 } else {
+  			 	 NB.Ajax.html(
+              (form.down('textarea')?'post':'get'),
+              destination,
+              form.action,
+              form.serialize(),
+              false,
+              null,
+              indicateDiv
+            );
+         }
+		},
+
+    add_comment:function(){
+        var form = $('comments').down('form');
+        var comment = form.down('textarea').getValue();
+        form.p.setValue(NB.p.top);
+				 if(comment==''||comment==NB.TEXT.prompt.add_comment){
+            alert(NB.TEXT.prompt.user_error_add_comment);
+ 				    NB.Nav.Track('User Error','Add comment');
+         } else {
+      		 var pending = "var form = $('comments').down('form');NB.Ajax.html('post',$('comments_list'),form.action,form.serialize(),false,'top','comments');$J('comments_form').hide('blind');";
+      		 if (this.id==0&&NB.Cookie.read('status')=='confirmed'){
+      		 	 NB.pending_signedin_action = pending;
+      		   this.signin(NB.TEXT.prompt.sign_in_comment);
+      		 } else if (this.id==0){
+      		 	 NB.pending_signedin_action = pending;
+      		   this.signup(NB.TEXT.prompt.sign_in_comment);
+      		 } else {
+       		 	 eval(pending);
+      		 }
+         }
+    },
+    
+    increment_commas: function(element){
+       element.update(NB.Number.commas((NB.String.uncomma(element.innerHTML)+1)));
+       return element;
+    },
+        
+    console: function(message) {
+//      if(Prototype.Browser.Gecko && location.host.include('joegatt-net')) {
+//        NB.Nav.Track(message);
+//      }
+    return true;
+    },
+*/
+    
+/*    track_event: function(category, action, optional_label, optional_value){
+//      if (location.host.include('joegatt-net')){
+//        NB.Nav.Track('Tracking event: '+category+' | '+action+' | '+optional_label+' | '+optional_value);
+//      }
+      _gaq.push(['_trackEvent',category, action, optional_label, optional_value]);
+    },
+    
+    check_height:function(){
+      if ($J(window).height()<700){
+        $('container').addClassName('short-screen');
+        NB.Cookie.write('short-screen','true');
+        _gaq.push(['_trackEvent','Window','short']);
+      } else {
+        $('container').removeClassName('short-screen');
+        NB.Cookie.write('short-screen','false');
+      }
+    },
+    
+    update_version_number: function(version){
+			$J('.version').each(function(item){
+        item.update('&nbsp;0.'+version);
+      });
+    },
+
+    
+    url_rand: function(amp){
+      return (amp?'?':'&') + 'r=' + Math.random();
+    },
+    check_hash: function(){
+        var newUrl = location.hash.substring(1);
+        if (location.hash=='#'|| location.hash==''){
+          var newUrl = location.pathname;
+        } else if (newUrl!=NB.crumb.path) {
+          NB.Nav.fetch(newUrl);
+        }
+      },
+    
+    
+    refresh:function(variable){
+      $J('_refresh-'+variable).each(function(i){
+           i.refresh();
+           //NEED TO AVOID DUPLICATES [IF FIRST U THEN P]
+           //WE CAN ALSO SIMPLY CHECK WHICH VARIABLES ARE COMMON BETWEEN page & others
+      });
+    },
+*/
+		toggle: function(q) {
+				 var panel = q.id.toString().replace('_handle','');
+				 $(panel).toggleClassName('closed');
+				 NB.Cookie.write(panel,$(panel).hasClassName('closed'),NB.crumb.path);
+				 if (q.id == 'signupin_panel' && $('signupinform') && !$(panel).hasClassName('closed')){
+            $('signupinform').focusFirstElement();
+         }
+		},
+
+/*    
+    first: function() {},
+    previous_page: function() {},
+    previous: function() {},
+    next: function(e) {},
+    next_page: function() {},
+    last: function() {},
+*/
+    goto: function() {}
+    
+});

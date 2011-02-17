@@ -1,0 +1,38 @@
+<!--#include virtual="../_includes/settings.shtml" -->
+<!--#include virtual="../_includes/errors/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$page" -->
+
+<!--#set var="page_type" value="index" -->
+<!--#set var="chunk" value="index" -->
+
+<!--#set var="title" value="$REDIRECT_STATUS error" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="request" value="$SERVER_NAME$REQUEST_URI" -->
+<!--#set var="p" value="$REDIRECT_STATUS" -->
+
+<!--#if expr="$p=403" -->
+  <!--#set var="message" value="Access to $url is forbidden." -->
+  <!--#set var="title.sub" value="Access forbidden" -->
+<!--#elif expr="$p=404" -->
+  <!--#set var="message" value="The page you were looking for - $request - was not found on this server." -->
+  <!--#set var="title.sub" value="Page not found" -->
+<!--#elif expr="$p=500" -->
+  <!--#set var="message" value="A server error has occurred." -->
+  <!--#set var="title.sub" value="Server error" -->
+<!--#else -->
+  <!--#set var="message" value="An error has occurred." -->
+  <!--#set var="title.sub" value="The page you were looking for - $url - caused a $p error." -->
+<!--#endif -->
+
+<!--#set var="comments" value="false" -->
+<!--#set var="notes" value="false" -->
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+
+<!--#set var="yield" value="yield_1024_12.shtml" -->
+<!--#set var="content" value="../_content/${section}/page.shtml" -->
+
+<!--#include virtual="../_layouts/render.shtml" -->

@@ -1,0 +1,38 @@
+NB.Ajax.Indicate = {}
+
+/******************************************************************************/
+
+NB.Ajax.Indicate.pause = function(){
+  return false;
+}
+
+/******************************************************************************/
+
+NB.Ajax.Indicate.active = $J.Class.create({
+  initialize: function(element){
+				$J(element).addClass('ajax_loading');
+        NB.Nav.Track('Indicating',element.id);
+        $(element).bind('click keydown', NB.Ajax.Indicate.pause);
+  }
+});
+
+/******************************************************************************/
+
+NB.Ajax.Indicate.done = $J.Class.create({
+  initialize: function(element){
+        $(element).unbind('click keydown', NB.Ajax.Indicate.pause);
+				$(element).removeClass('ajax_loading');
+				$(element).addClass('ajax_done');
+			  var off = setTimeout("$J('"+element.id+"').removeClass('ajax_done');",1000);
+  }
+});
+
+/******************************************************************************/
+
+NB.Ajax.Indicate.error = $J.Class.create({
+  initialize: function(element){
+				$(element).removeClass('ajax_loading');
+				$(element).addClass('ajax_error');
+			  var off = setTimeout("$J('"+element.id+"').removeClass('ajax_error');",5000);
+  }
+});

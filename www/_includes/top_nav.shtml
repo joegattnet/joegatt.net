@@ -1,0 +1,28 @@
+<div id="nav_top" class="grid_8 alpha">
+  <ul id="crumbs" class="nav_h a_arrows">
+  		<li><a href="<!--#echo var="root" -->">home</a></li>
+  		<li id="crumbs_section"<!--#if expr="$chunk=index" --> style="display:none;"<!--#endif -->><a href="<!--#echo var="root" --><!--#echo var="section" -->/"><!--#echo var="section" --></a></li>
+      <!--#if expr="1=0" -->
+        <li><a href="<!--#echo var="root" --><!--#echo var="category" -->/"><!--#echo var="category" --></a></li>
+      <!--#endif -->
+  		<li>
+        <!--#if expr="$section!=home" -->
+          <span class="a"><!--#echo var="title" --></span>
+        <!--#endif -->
+        <span class="version">
+          <!--#if expr="$version_file" -->
+            <!--#include virtual="${version_file}"-->
+          <!--#endif -->
+        </span>
+      </li>
+  		<li><span id="crumbs_chunk" style="display:none;" class="a"></span></li>
+  		<li><span id="crumbs_chunk_version" style="display:none;" class="a"></span></li>
+  </ul>
+</div>
+<div id="nav_top_right" class="grid_2 suffix_2 omega">
+  <!--#if expr="$follow!=false" -->
+    <ul id="follow" class="nav_h">
+      <li><a href="<!--#echo var="follow_twitter" -->" id="twitter-follow" title="Follow joegatt.net on Twitter">Follow joegatt.net on Twitter</a></li>  
+    </ul>
+  <!--#endif -->
+</div>

@@ -7,13 +7,13 @@
 /**
  * Compress Javascript/CSS using the YUI Compressor
  * 
- * You must set $jarFile and $tempDir before calling the minify functions.
+ * You must set $arFile and $tempDir before calling the minify functions.
  * Also, depending on your shell's environment, you may need to specify
- * the full path to java in $javaExecutable or use putenv() to setup the
+ * the full path to java in $avaExecutable or use putenv() to setup the
  * Java environment.
  * 
  * <code>
- * Minify_YUICompressor::$jarFile = '/path/to/yuicompressor-2.3.5.jar';
+ * Minify_YUICompressor::$arFile = '/path/to/yuicompressor-2.3.5.jar';
  * Minify_YUICompressor::$tempDir = '/tmp';
  * $code = Minify_YUICompressor::minifyJs(
  *   $code
@@ -34,7 +34,7 @@ class Minify_YUICompressor {
      *
      * @var string
      */
-    public static $jarFile = null;
+    public static $arFile = null;
     
     /**
      * Writable temp directory. This must be set before calling minifyJs()
@@ -49,12 +49,12 @@ class Minify_YUICompressor {
      *
      * @var string
      */
-    public static $javaExecutable = 'java';
+    public static $avaExecutable = 'java';
     
     /**
      * Minify a Javascript string
      * 
-     * @param string $js
+     * @param string $s
      * 
      * @param array $options (verbose is ignored)
      * 
@@ -62,9 +62,9 @@ class Minify_YUICompressor {
      * 
      * @return string 
      */
-    public static function minifyJs($js, $options = array())
+    public static function minifyJs($s, $options = array())
     {
-        return self::_minify('js', $js, $options);
+        return self::_minify('js', $s, $options);
     }
     
     /**
@@ -108,7 +108,7 @@ class Minify_YUICompressor {
             )
             ,$userOptions
         );
-        $cmd = self::$javaExecutable . ' -jar ' . escapeshellarg(self::$jarFile)
+        $cmd = self::$avaExecutable . ' -jar ' . escapeshellarg(self::$arFile)
              . " --type {$type}"
              . (preg_match('/^[a-zA-Z\\-]+$/', $o['charset']) 
                 ? " --charset {$o['charset']}" 
@@ -128,11 +128,11 @@ class Minify_YUICompressor {
     
     private static function _prepare()
     {
-        if (! is_file(self::$jarFile) 
+        if (! is_file(self::$arFile) 
             || ! is_dir(self::$tempDir)
             || ! is_writable(self::$tempDir)
         ) {
-            throw new Exception('Minify_YUICompressor : $jarFile and $tempDir must be set.');
+            throw new Exception('Minify_YUICompressor : $arFile and $tempDir must be set.');
         }
     }
 }

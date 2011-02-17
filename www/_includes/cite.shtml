@@ -1,0 +1,39 @@
+<h4>Cite <span id="cite_count"></span></h4>
+<ul id="n_cite" class="nav_h" rel="<!--#echo var="canonical" -->">
+	<li>
+    <a href="#">Harvard System</a>
+    <p>
+      Collini, S., 2010. Browne’s Gamble. 
+      Review of Securing a Sustainable Future for Higher Education: An Independent Review of Higher Education Funding and Student Finance by Browne, Lord et al. London Review of Books [Online] vol. 32 no. 21 pp. 23-25. 
+      Available from http://www.lrb.co.uk/v32/n21/stefan-collini/brownes-gamble [Accessed 5 November 2010].
+    </p>
+  </li>
+	<li>
+    <a href="#">MLA</a>
+  </li>
+	<li>
+    <a href="#">Chicago/Turabian</a>
+  </li>
+	<li>
+    <a href="#">APA</a>
+  </li>
+</ul>
+
+<!--
+
+Harvard System:
+
+
+MLA:
+
+Collini, Stefan. "Browne’s Gamble." Rev. of Securing a Sustainable Future for Higher Education: An Independent Review of Higher Education Funding and Student Finance, by Lord Browne et al. London Review of Books 32.21 (2010): 23-25. 5 Nov. 2010 <http://www.lrb.co.uk/v32/n21/stefan-collini/brownes-gamble>.
+
+Chicago/Turabian:
+
+Collini, Stefan. "Browne’s Gamble." Review of Securing a Sustainable Future for Higher Education: An Independent Review of Higher Education Funding and Student Finance, by Lord Browne et al. London Review of Books 32 no. 21 (2010): 23-25, http://www.lrb.co.uk/v32/n21/stefan-collini/brownes-gamble.
+
+APA:
+
+Collini, S. (2010). Browne’s Gamble. [Review of Securing a Sustainable Future for Higher Education: An Independent Review of Higher Education Funding and Student Finance.] London Review of Books, 32(21), 23-25. Retrieved from http://www.lrb.co.uk/v32/n21/stefan-collini/brownes-gamble.
+
+ -->

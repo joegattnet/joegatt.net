@@ -1,0 +1,17 @@
+#home_index h1 {
+  display:none;
+}
+
+.wall li {
+  display:inline-block;
+  float:left;
+  margin-right:20px;
+}
+
+.wall li a{
+  display:inline-block;
+}
+
+.wall li.omega {
+  margin-right:0;
+}

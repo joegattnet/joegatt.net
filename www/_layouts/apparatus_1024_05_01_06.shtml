@@ -1,0 +1,16 @@
+<!--#include virtual="apparatus_page.shtml" -->
+
+<div id="apparatus_outer" class="grid_12">
+  <div class="fade_trans-white"><!-- --></div>
+  <div id="apparatus" class="clearfix">
+    <div class="grid_5 alpha">
+      <!--#include virtual="apparatus_left.shtml" -->
+    </div>
+    <div class="grid_5 prefix_1 suffix_1 omega">
+      <!--#include virtual="apparatus_right.shtml" -->
+    </div>
+
+    <!--#include virtual="../_includes/footer.shtml" -->           
+
+  </div>
+</div>

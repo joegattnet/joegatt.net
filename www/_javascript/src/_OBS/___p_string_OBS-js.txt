@@ -1,0 +1,113 @@
+// See http://www.jslab.dk/library/String.levenshtein
+String.prototype.NB_levenshtein = function(t) {
+    var si; 
+    var c;
+    var n = this.length;
+    var m = t.length;
+    if (!n)
+      return m;
+    if (!m)
+      return n;
+    var mx = [];
+    for (var i=0; i<=n; i++) {
+      mx[i] = [];
+      mx[i][0] = i;
+    }
+    for (var j=0; j<=m; j++)
+      mx[0][j] = j;
+    for (var i=1; i<=n; i++) {
+      si = this.charAt(i - 1);
+      for (var j=1; j<=m; j++)
+        mx[i][j] = Math.min(mx[i - 1][j] + 1, mx[i][j - 1] + 1, mx[i - 1][j - 1] + (si == t.charAt(j - 1) ? 0 : 1));
+    }
+    return mx[n][m];
+  }
+  
+String.prototype.NB_removeCommas = function(){
+  return parseFloat(this.replace(/\,/g,''));
+}
+
+// URL *************************************************************************
+/*
+String.prototype.NB_urlIsDoc = function(){
+  return this.match(/\.pdf$|\.doc$|\.zip$|\.odt$/);
+}
+
+String.prototype.NB_urlIsDocUnzipped = function(){
+  return this.match(/\.pdf$|\.doc$|\.odt$/);
+}
+
+String.prototype.NB_urlIsValid = function(){
+  return (this.startsWith('http') && !this.NB_urlIsDoc);
+}
+
+String.prototype.NB_urlIsLocal = function(){
+  return (this.startsWith(location.protocol+'//'+location.host) && !this.NB_urlIsDoc());
+}
+
+String.prototype.NB_urlIsExt = function(){
+  return (this.NB_urlIsValid() && !this.NB_urlIsLocal());
+}
+*/
+//String.prototype.NB_urlDomain = function(){
+//   return this.gsub(/http\:\/\/|www\.|\/.*/,'');
+//}
+/*
+String.prototype.NB_urlPath = function(){
+   return this.replace('http://'+location.host,'');
+}
+
+String.prototype.NB_urlParams = function(){
+   return this.replace(this.NB_urlPath(),'');
+   return this.replace('?','');
+}
+
+String.prototype.NB_urlSection = function(){
+    var url = this.NB_urlPath();
+    if (url==''||url=='/'){
+      return 'home';
+    } else {
+      return url.NB_urlPath().match(/[a-z]+/).first();
+    }
+}
+
+String.prototype.NB_urlPage = function(){
+    var url = this.NB_urlPath();
+    if (url==''||url=='/'){
+        return 'index';
+    } else {
+        var page = url.NB_urlPath().match(/[a-z]+/g)[1];
+        return page===undefined?'index':page;
+    }
+}
+
+String.prototype.NB_urlP = function(){
+    var url = this.NB_urlPath();
+    if (url==''||url=='/'){
+        return 0;
+    } else {
+        var p = url.NB_urlPath().match(/[0-9]+/);
+        return p===null?1:p.first();
+    }
+}
+
+String.prototype.NB_urlEncode = function(){
+    var url = this.NB_urlPath();
+    return encodeURIComponent(url.replace(/\'/g,"’"));
+}
+
+String.prototype.NB_urlParamsSimplify = function(){
+    var url = this.NB_urlPath();
+    return url.gsub(/startup=true&?a?m?p?;?|&a?m?p?;?r=[0-9]+.?[0-9]*|\?$|&a?m?p?;?$/,'');
+}
+
+String.prototype.NB_urlParamsUpdate = function(){
+    var url = this.NB_urlPath();
+    return url.NB_urlParamsSimplify().replace(/\bb=[0-9]+/,'b='+NB.book.id).replace(/\bp=[0-9]+/,'p='+NB.p.current).replace(/u=[0-9]+/,'\bu='+NB.User.id);
+}
+
+String.prototype.NB_urlParamsComplete = function(){
+    var url = this.NB_urlPath();
+    return url.NB_urlParamsSimplify().replace(/\b[bpu]=[0-9]+|&a?m?p?;?$/,'')+(url.include('?')?'&':'?')+'b='+NB.book.id+'&p='+NB.p.current+'&u='+NB.User.id;
+}
+*/

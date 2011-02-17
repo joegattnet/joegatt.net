@@ -110,7 +110,7 @@ class JSMinPlus
 		$this->parser = new JSParser();
 	}
 
-	public static function minify($js, $filename='')
+	public static function minify($s, $filename='')
 	{
 		static $instance;
 
@@ -118,14 +118,14 @@ class JSMinPlus
 		if(!$instance)
 			$instance = new JSMinPlus();
 
-		return $instance->min($js, $filename);
+		return $instance->min($s, $filename);
 	}
 
-	private function min($js, $filename)
+	private function min($s, $filename)
 	{
 		try
 		{
-			$n = $this->parser->parse($js, $filename, 1);
+			$n = $this->parser->parse($s, $filename, 1);
 			return $this->parseTree($n);
 		}
 		catch(Exception $e)
@@ -145,7 +145,7 @@ class JSMinPlus
 			case KEYWORD_FUNCTION:
 				$s .= 'function' . ($n->name ? ' ' . $n->name : '') . '(';
 				$params = $n->params;
-				for ($i = 0, $j = count($params); $i < $j; $i++)
+				for ($i = 0, $ = count($params); $i < $; $i++)
 					$s .= ($i ? ',' : '') . $params[$i];
 				$s .= '){' . $this->parseTree($n->body, true) . '}';
 			break;
@@ -156,7 +156,7 @@ class JSMinPlus
 			// fall through
 			case JS_BLOCK:
 				$childs = $n->treeNodes;
-				for ($c = 0, $i = 0, $j = count($childs); $i < $j; $i++)
+				for ($c = 0, $i = 0, $ = count($childs); $i < $; $i++)
 				{
 					$t = $this->parseTree($childs[$i]);
 					if (strlen($t))
@@ -211,7 +211,7 @@ class JSMinPlus
 			case KEYWORD_SWITCH:
 				$s = 'switch(' . $this->parseTree($n->discriminant) . '){';
 				$cases = $n->cases;
-				for ($i = 0, $j = count($cases); $i < $j; $i++)
+				for ($i = 0, $ = count($cases); $i < $; $i++)
 				{
 					$case = $cases[$i];
 					if ($case->type == KEYWORD_CASE)
@@ -253,7 +253,7 @@ class JSMinPlus
 			case KEYWORD_TRY:
 				$s = 'try{' . $this->parseTree($n->tryBlock, true) . '}';
 				$catchClauses = $n->catchClauses;
-				for ($i = 0, $j = count($catchClauses); $i < $j; $i++)
+				for ($i = 0, $ = count($catchClauses); $i < $; $i++)
 				{
 					$t = $catchClauses[$i];
 					$s .= 'catch(' . $t->varName . ($t->guard ? ' if ' . $this->parseTree($t->guard) : '') . '){' . $this->parseTree($t->block, true) . '}';
@@ -278,7 +278,7 @@ class JSMinPlus
 			case KEYWORD_CONST:
 				$s = $n->value . ' ';
 				$childs = $n->treeNodes;
-				for ($i = 0, $j = count($childs); $i < $j; $i++)
+				for ($i = 0, $ = count($childs); $i < $; $i++)
 				{
 					$t = $childs[$i];
 					$s .= ($i ? ',' : '') . $t->name;
@@ -295,7 +295,7 @@ class JSMinPlus
 			case TOKEN_CONDCOMMENT_MULTILINE:
 				$s = $n->value . ' ';
 				$childs = $n->treeNodes;
-				for ($i = 0, $j = count($childs); $i < $j; $i++)
+				for ($i = 0, $ = count($childs); $i < $; $i++)
 					$s .= $this->parseTree($childs[$i]);
 			break;
 
@@ -310,7 +310,7 @@ class JSMinPlus
 
 			case OP_COMMA:
 				$childs = $n->treeNodes;
-				for ($i = 0, $j = count($childs); $i < $j; $i++)
+				for ($i = 0, $ = count($childs); $i < $; $i++)
 					$s .= ($i ? ',' : '') . $this->parseTree($childs[$i]);
 			break;
 
@@ -396,7 +396,7 @@ class JSMinPlus
 
 			case JS_LIST:
 				$childs = $n->treeNodes;
-				for ($i = 0, $j = count($childs); $i < $j; $i++)
+				for ($i = 0, $ = count($childs); $i < $; $i++)
 					$s .= ($i ? ',' : '') . $this->parseTree($childs[$i]);
 			break;
 
@@ -412,7 +412,7 @@ class JSMinPlus
 			case JS_ARRAY_INIT:
 				$s = '[';
 				$childs = $n->treeNodes;
-				for ($i = 0, $j = count($childs); $i < $j; $i++)
+				for ($i = 0, $ = count($childs); $i < $; $i++)
 				{
 					$s .= ($i ? ',' : '') . $this->parseTree($childs[$i]);
 				}
@@ -422,7 +422,7 @@ class JSMinPlus
 			case JS_OBJECT_INIT:
 				$s = '{';
 				$childs = $n->treeNodes;
-				for ($i = 0, $j = count($childs); $i < $j; $i++)
+				for ($i = 0, $ = count($childs); $i < $; $i++)
 				{
 					$t = $childs[$i];
 					if ($i)
@@ -444,7 +444,7 @@ class JSMinPlus
 						$s .= $t->type == JS_GETTER ? 'get' : 'set';
 						$s .= ' ' . $t->name . '(';
 						$params = $t->params;
-						for ($i = 0, $j = count($params); $i < $j; $i++)
+						for ($i = 0, $ = count($params); $i < $; $i++)
 							$s .= ($i ? ',' : '') . $params[$i];
 						$s .= '){' . $this->parseTree($t->body, true) . '}';
 					}
@@ -1813,7 +1813,7 @@ class JSTokenizer
 				break;
 
 				default:
-					// FIXME: add support for unicode and unicode escape sequence \uHHHH
+					// FIXME: add support for unicode and unicode escape p \uHHHH
 					if (preg_match('/^[$\w]+/', $input, $match))
 					{
 						$tt = in_array($match[0], $this->keywords) ? $match[0] : TOKEN_IDENTIFIER;

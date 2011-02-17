@@ -1,0 +1,31 @@
+NB.Methods = {
+    ajax_active:function(e){
+				$J(e).addClass('ajax_loading');
+        NB.Nav.Track('Indicating',e.id);
+        e.on('click', function() {
+          return false;
+        });
+        e.on('keydown', function() {
+          return false;
+        });
+    },
+    ajax_done:function(e){
+	      e.stopObserving('click');
+  	    e.stopObserving('keydown');
+				e.removeClassName('ajax_loading');
+				e.addClassName('ajax_done');
+			  var off = setTimeout("$('"+e.id+"').removeClassName('ajax_done');",3000);
+    },
+  	ajax_error:function(e){
+				e.removeClassName('ajax_loading');
+				e.addClassName('ajax_error');
+			  var off = setTimeout("$('"+e.id+"').removeClassName('ajax_error');",5000);
+    },
+    refresh:function(e){
+NB.Nav.Track('REFRESHING!!!');
+        var url = e.getAttribute('rel').NB_urlParamsUpdate();
+        NB.Ajax.html('get',url.NB_urlPath(),url.NB_urlParams());
+    }
+};
+
+Element.addMethods(NB.Methods);

@@ -1,0 +1,7 @@
+<div id="content" class="grid_8 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" href="<!--#echo var="content" -->">
+  <!--#include virtual="$content" -->
+</div>
+<div id="toolbar" class="grid_4 omega">
+  <!--#include virtual="$toolbar" -->
+</div>
+<!--#include virtual="$apparatus" -->

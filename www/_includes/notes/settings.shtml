@@ -1,0 +1,10 @@
+<!--#set var="category" value="apparatus" -->
+<!--#set var="section" value="notes" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="http://$server$location" -->
+
+<!--#set var="shareicon" value="${root}_images/$section/logo.png" -->
+
+<!--#set var="notes" value="true" -->

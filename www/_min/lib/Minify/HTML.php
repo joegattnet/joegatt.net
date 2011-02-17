@@ -207,27 +207,27 @@ class Minify_HTML {
     protected function _removeScriptCB($m)
     {
         $openScript = $m[2];
-        $js = $m[3];
+        $s = $m[3];
         
         // whitespace surrounding? preserve at least one space
         $ws1 = ($m[1] === '') ? '' : ' ';
         $ws2 = ($m[4] === '') ? '' : ' ';
  
         // remove HTML comments (and ending "//" if present)
-        $js = preg_replace('/(?:^\\s*<!--\\s*|\\s*(?:\\/\\/)?\\s*-->\\s*$)/', '', $js);
+        $s = preg_replace('/(?:^\\s*<!--\\s*|\\s*(?:\\/\\/)?\\s*-->\\s*$)/', '', $s);
             
         // remove CDATA section markers
-        $js = $this->_removeCdata($js);
+        $s = $this->_removeCdata($s);
         
         // minify
         $minifier = $this->_jsMinifier
             ? $this->_jsMinifier
             : 'trim'; 
-        $js = call_user_func($minifier, $js);
+        $s = call_user_func($minifier, $s);
         
-        return $this->_reservePlace($this->_needsCdata($js)
-            ? "{$ws1}{$openScript}/*<![CDATA[*/{$js}/*]]>*/</script>{$ws2}"
-            : "{$ws1}{$openScript}{$js}</script>{$ws2}"
+        return $this->_reservePlace($this->_needsCdata($s)
+            ? "{$ws1}{$openScript}/*<![CDATA[*/{$s}/*]]>*/</script>{$ws2}"
+            : "{$ws1}{$openScript}{$s}</script>{$ws2}"
         );
     }
 

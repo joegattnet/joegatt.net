@@ -1,0 +1,24 @@
+<!--#include virtual="../_includes/settings.shtml" -->
+<!--#include virtual="../_includes/tags/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$section" -->
+<!--#set var="comments" value="false" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path$p" -->
+<!--#set var="canonical" value="http://$server$location" -->
+
+<!--#set var="page_type" value="tag" -->
+<!--#set var="chunk" value="index" -->
+
+<!--#set var="title" value="Tags" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+
+<!--#set var="yield" value="yield_1024_12.shtml" -->
+<!--#set var="content" value="../_cache/tags--list-template=cloud&min=2.shtml" -->
+
+<!--#include virtual="../_layouts/render.shtml" -->

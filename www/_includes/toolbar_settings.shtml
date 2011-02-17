@@ -1,0 +1,43 @@
+<!--#if expr="($tool_help_default=false || $HTTP_COOKIE=/v_${page}/) && $HTTP_COOKIE!=/tool_help_on=true/" -->
+  <!--#set var="tool_help_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_help_on" value="true" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE=/tool_colorize_on=true/" -->
+  <!--#set var="tool_colorize_on" value="true" -->
+<!--#elif expr="$HTTP_COOKIE=/tool_colorize_on=false/" -->
+  <!--#set var="tool_colorize_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_colorize_on" value="$tool_colorize_default" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE=/tool_interlinear_on=true/" -->
+  <!--#set var="tool_interlinear_on" value="true" -->
+<!--#elif expr="$HTTP_COOKIE=/tool_interlinear_on=false/" -->
+  <!--#set var="tool_interlinear_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_interlinear_on" value="$tool_interlinear_default" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE=/tool_blackletter_on=true/" -->
+  <!--#set var="tool_blackletter_on" value="true" -->
+<!--#elif expr="$HTTP_COOKIE=/tool_blackletter_on=false/" -->
+  <!--#set var="tool_blackletter_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_blackletter_on" value="$tool_blackletter_default" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE=/tool_diffversions_on=true/" -->
+  <!--#set var="tool_diffversions_on" value="true" -->
+<!--#elif expr="$HTTP_COOKIE=/tool_diffversions_on=false/" -->
+  <!--#set var="tool_diffversions_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_diffversions_on" value="$tool_diffversions_default" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE =/paragraphs_slider_left=([^%]*)/" -->
+  <!--#set var="paragraphs_slider_left" value="$1" -->
+<!--#else -->
+  <!--#set var="paragraphs_slider_left" value="0" -->
+<!--#endif -->

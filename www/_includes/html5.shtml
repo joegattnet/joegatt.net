@@ -1,0 +1,28 @@
+<!--#if expr="1=0" -->
+
+  <!--#set var="doctype" value="<!DOCTYPE HTML>" -->
+  <!--#set var="articleTag" value="article" -->
+  <!--#set var="asideTag" value="aside" --> 
+  <!--#set var="figureTag" value="figure" -->
+  <!--#set var="figcaptionTag" value="figcaption" -->
+  <!--#set var="detailsTag" value="details" -->
+  <!--#set var="headerTag" value="header" -->
+  <!--#set var="navTag" value="nav" -->
+  <!--#set var="summaryTag" value="summary" -->
+  <!--#set var="timeTag" value="time" -->
+
+  <!-- also use contenteditable instead of Nicedit?; use CSS3 -->
+<!--#else -->
+
+  <!--#set var="doctype" value="" -->
+  <!--#set var="articleTag" value="dev" -->
+  <!--#set var="asideTag" value="dev" --> 
+  <!--#set var="figureTag" value="dev" -->
+  <!--#set var="figcaptionTag" value="dev" -->
+  <!--#set var="detailsTag" value="dev" -->
+  <!--#set var="headerTag" value="dev" -->
+  <!--#set var="navTag" value="dev" -->
+  <!--#set var="summaryTag" value="dev" -->
+  <!--#set var="timeTag" value="span" -->
+
+<!--#endif -->

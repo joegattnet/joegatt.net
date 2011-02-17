@@ -137,7 +137,7 @@ var MUB = {
             }
             base = base.substr(0, base.length - 1);
             var bUri = MUB._minRoot + 'b=' + base + '&f=' + basedSources.join(',');
-            //window.console && console.log([uri, bUri]);
+            //window.console && NB.Nav.track([uri, bUri]);
             uri = uri.length < bUri.length
                 ? uri
                 : bUri;

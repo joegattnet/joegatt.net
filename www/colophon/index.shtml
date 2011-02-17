@@ -1,0 +1,21 @@
+<!--#include virtual="../_includes/settings.shtml" -->
+<!--#include virtual="../_includes/colophon/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$page" -->
+
+<!--#set var="page_type" value="index" -->
+<!--#set var="chunk" value="index" -->
+
+<!--#set var="title" value="Colophon" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="comments" value="false" -->
+<!--#set var="notes" value="false" -->
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+
+<!--#set var="yield" value="yield_1024_12.shtml" -->
+<!--#set var="content" value="../_content/colophon/index.html" -->
+
+<!--#include virtual="../_layouts/render.shtml" -->

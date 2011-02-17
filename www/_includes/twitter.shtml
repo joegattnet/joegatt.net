@@ -1,0 +1,4 @@
+<script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=026ussCKYOuzzcZjSV7UQ"></script>
+<script type="text/javascript">
+  twttr.anywhere.config({callbackURL: 'http://'+location.host+'/twitter-signedin.html'});
+</script>

@@ -1,0 +1,23 @@
+<!--#if expr="${title.window}" -->
+  <!--#set var="title.show" value="${title.window}" -->
+<!--#else -->
+  <!--#if expr="${title.super}" -->
+    <!--#set var="title.show" value="${title.super}: $title" --> 
+  <!--#else -->
+    <!--#set var="title.show" value="$title" --> 
+  <!--#endif -->
+<!--#endif -->
+<!--#if expr="${title.sub}" -->
+  <!--#set var="title.show" value="${title.show} - ${title.sub}" -->
+<!--#endif -->
+
+<title><!--#echo var="title.show" --></title>
+
+<meta property="og:title" content="<!--#echo var="title.show" -->" />
+<meta property="og:type" content="<!--#echo var="type" -->" />
+<meta property="og:url" content="<!--#echo var="canonical" -->" />
+<meta property="og:image" content="<!--#echo var="shareicon" -->" />
+
+<meta name="author" content="<!--#echo var="author" -->" />
+<meta name="description" content="<!--#echo var="summary" -->" /> 
+<meta name="keywords" content="<!--#echo var="keywords" -->" /> 

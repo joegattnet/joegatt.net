@@ -1,0 +1,6 @@
+<!--#set var="category" value="info" -->
+<!--#set var="section" value="colophon" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="http://$server$location" -->

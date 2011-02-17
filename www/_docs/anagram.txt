@@ -4,4 +4,4 @@ How the Wutz anagram is calculated/updated.
 
 2. 
 
-NB.W.anagram.flush recalculates anagram, recounting all letters in paragraph. This is used when text is pasted in, etc. 
+NB.Enface.anagram.flush recalculates anagram, recounting all letters in paragraph. This is used when text is pasted in, etc. 

@@ -1,0 +1,33 @@
+<script type="text/javascript">
+//<![CDATA[
+  var docBody = document.getElementsByTagName('body')[0];
+  docBody.setAttribute('id', '<!--#echo var="section" -->_<!--#echo var="page" -->');
+  NB.crumb = {
+    canonical: "<!--#echo var="canonical" -->",
+    category: "<!--#echo var="category" -->",
+    section: "<!--#echo var="section" -->",
+    page: "<!--#echo var="page" -->",
+    page_id: "<!--#echo var="section" -->_<!--#echo var="page" -->",
+    page_type: "<!--#echo var="page_type" -->",
+    path: "<!--#echo var="path" -->"
+  };
+
+  NB.tags = "<!--#echo var="tags" -->";
+
+  NB.title = "<!--#echo var="title" -->";
+  NB.title_window = "<!--#echo var="title.window" -->";
+  NB.chunk = "<!--#echo var="chunk" -->";
+  NB.book = {
+    id: <!--#echo var="b" -->
+  }
+  <!--#if expr="$p=/^[0-9]+$/" -->
+    NB.p.current = <!--#echo var="p" -->;
+    NB.p.top = <!--#echo var="p" -->;
+    NB.p.max = <!--#echo var="p_max" -->;
+  <!--#else -->
+    NB.p.current = "<!--#echo var="p" -->";
+    NB.p.top = "<!--#echo var="p" -->";
+    NB.p.max = "<!--#echo var="p_max" -->";
+  <!--#endif -->
+//]]>
+</script>

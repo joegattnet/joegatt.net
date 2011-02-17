@@ -1,0 +1,9 @@
+<p><!--#echo var="message" --></p>
+
+<p>If you continue to have problems please email <a href="mailto:webmaster@joegatt.net">webmaster@joegatt.net</a>.
+
+<script type="text/javascript">
+  //<![CDATA[
+    NB.Nav.track(2,"Error","<!--#echo var="message" -->");
+  //]]>
+</script>

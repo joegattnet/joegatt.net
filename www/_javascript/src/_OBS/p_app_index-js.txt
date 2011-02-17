@@ -1,0 +1,38 @@
+NB.Enface.index = $J.Class.create({
+		initialize: function(){
+		  NB.Enface.lengthTolerance = 7;
+		  NB.Enface.lengthThreshold = 50;
+		  NB.Enface.changesTolerancePercentage = 10;
+		  NB.Enface.changesToleranceMin = 5;
+		  NB.Enface.changesToleranceMax = 100;
+      NB.Anagram = new NB.Anagram();
+    	NB.Enface.versions = new NB.Enface.Versions();
+      NB.Enface.editor = new nicEditor();
+      NB.Enface.selectFlag = false;
+		}
+});
+/*
+      NB.page.first = NB.Enface.Paragraphs.first;
+      NB.page.previous = NB.Enface.Paragraphs.previous;
+      NB.page.next = NB.Enface.Paragraphs.next;
+      NB.page.last = NB.Enface.Paragraphs.last;
+*/
+//      NB.page.goto = NB.Enface.Paragraphs.goto;
+
+    /*,
+/*		content: function(p) {
+			if (p != NB.p.current) {
+        $('last_crumb').update('[loading...]');
+        NB.p.current = p;
+		 	  NB.Ajax.html('get','content',NB.yield,'b='+NB.book.id+'&p='+p,true);
+//WHEN WE CACHE
+//		 	  NB.Ajax.html('get','content','/_cache/wutz/_get_page_index-'+'b='+NB.book.id+'&p='+p+'.html','',true);
+//		 	} else {
+//			 		return;
+//			 } else if ($('paragraph_'+p) != null) {
+//			 	 NB.Enface.Paragraphs.focus(p);
+//				 return;
+      }
+    }
+});
+*/

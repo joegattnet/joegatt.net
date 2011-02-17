@@ -1,0 +1,6 @@
+<h4>Clip <span id="clip_count"><!--#include virtual="../_cache/common--clip_count-id=${clip_id}.html" --></span></h4>
+<ul id="n_clip" class="nav_h" rel="<!--#echo var="canonical" -->">
+	 <li>
+      <a href="http://www.evernote.com/" class="evernote">Clip to Evernote</a>
+   </li>
+</ul>

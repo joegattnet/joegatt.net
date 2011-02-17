@@ -1,0 +1,91 @@
+a:link, a:visited {
+color:#369;
+text-decoration:none;
+}
+a:active, a:hover {
+color:#00c;
+}
+.header a:active, .header a:hover, .tool a:active, .tool a:hover, 
+#signupin_header a:hover, a.panel_handle:hover {
+color:#f60;
+}
+#n_share a:hover, #n_clip a:hover, #n_cite a:hover, #follow a:hover, a.external:hover {
+  color:#2200d5!important;
+}
+h1 a {
+color:#00c;
+}
+
+/**************************************************************************/
+.a_arrows a:link,.a_arrows a:visited, .a_arrows span {
+color:#666;
+}
+.a_arrows a:hover,.a_arrows a:active {
+color:#00c;
+}
+#hd {
+color:#666;
+border-bottom:1px dashed #999;
+}
+.fb_button_text {
+color:#fff!important;
+}
+/* EPIGRAPH ***************************************************************/
+#epigraph, #epigraph, #epigraph2, #epigraph2, .ends_epigraph {
+font-style:italic;
+color:#666;
+}
+
+/* NAV ************************************************************************/
+#nav_site {}
+#nav_section {}
+#nav_site a, #nav_section a {}
+.navmodules ul {}
+#nav {}
+
+/* SIGNUPIN *******************************************************************/
+#signupin_panel {
+background-color:#fff;
+border: 1px dashed #999;
+border-top:none;
+}
+
+/* HELP *************************************************************/
+#help_main {
+color:#454545;
+/* colour
+background-color:#f9fca6;
+border:1px dashed #d9c704;
+*/
+border:1px dashed #666;
+border-width:1px 0;
+}
+
+#help_main h3, #help_main h4, #help_main h5 {
+color:#666666;
+font-family:Tahoma,Arial,sans-serif;
+font-size:12px;
+font-weight:bold;
+}
+
+/* TOOLBAR ********************************************************************/
+#toolbar div {
+width:140px;
+}
+
+#toolbar #scholia {
+width:138px;
+border-left:2px solid white;
+}
+
+/* INS/DEL ********************************************************************/
+ins {
+color:#0000ff;
+}
+del {
+color:#ff0000;
+}
+.gibberish {
+border-bottom:2px dotted #ff0000;
+background-color:#ffff66;
+}

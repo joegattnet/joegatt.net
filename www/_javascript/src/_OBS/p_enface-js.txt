@@ -1,0 +1,177 @@
+NB.Enface.enfaceMethods = {
+/*
+		save: function(e) {
+			 var p = e.attr('p'); //e.p(); - breaks IE
+       NB.Enface.Paragraphs.uncolorize(e);
+			 var error_status = e.attr('error_status');
+		 	 var score = NB.Anagram.snap - NB.Anagram.total;
+		 	 NB.Anagram.score = score;
+		 	 var current_text_raw = e.innerHTML;
+       var current_text = NB.Url.encode(current_text_raw);
+
+			 if (current_text_raw != e.attr('p_text') && ((error_status==0&&score>0)||NB.User.level>1)) {
+			   var new_version_number = Math.pow(10,NB.Anagram.total.toString().length) - NB.Anagram.total;
+				 //PENDING should be a function
+         e.attr('p_text',e.innerHTML);
+         var pending = "NB.Ajax.html('post','hidden','../_cgi/wutz/_save_paragraph.cgi','score="+score+"&score_total="+NB.Anagram.snap+"&username='+NB.User.name+'&user_level='+NB.User.level+'&u='+NB.User.id+'&b="+NB.book.id+"&p="+p+"&p_id="+e.id+"&version="+(NB.Versions.info[e.id.replace('paragraph_id_','')][5]+1)+"&text="+current_text+"',false);_gaq.push(['_trackEvent','Wutz', 'Saved', '+'"+score+", p]);NB.Ui.versions.update("+new_version_number+");";
+//         NB.Nav.Track(pending);
+         if (NB.User.id==0&&NB.Cookie.read('confirmed')=='1'){
+					 NB.pending_signedin_action = pending;
+				   NB.User.signin('save your changes');
+				 } else if (NB.User.id==0){
+					 NB.pending_signedin_action = pending;
+				   NB.User.signup('save your changes');
+				 } else {
+				  eval(pending);
+				 	 $('alert').update('Saving paragraph '+p+'...');
+           if (!e.hasClassName('version')){
+ 	 			 	  $J(e).animate({color:NB.SETTINGS.color.ok},500);
+ 	 			 	 }
+				 }
+			 } else {
+			   var alert = e.attr('alert');
+			 	 $('alert').update('<span class="neg">Paragraph '+p+' not saved.</span><br/>'+alert);
+         NB.Nav.Track('_trackEvent','Wutz', 'Not saved', NB.Strip.tags(alert), p);
+         if (!e.hasClassName('version')){
+			 	 $J(e).animate({color:NB.SETTINGS.color.error},500,function(){
+              //To avoid collision if save was triggered by viewing a version
+              //SHOULD WE RESET HERE? otherwise, user starts at a disadvantage in other paragraphs
+              //we should - but only if when user chooses this paragraph again; it reverts
+              //ie: total should always take the base +- current paragraph
+              //also consider updating anagram - at the moment it's in basics but doesn't kick in...
+              //NB.Anagram.snap = NB.Anagram.calc_total();
+              e.reset();
+              NB.Nav.Track('Getting anagram from Save I');
+              NB.Anagram.get();
+            });
+            $J(e).animate({color:NB.SETTINGS.color.text},1000);
+          } else {
+            e.reset();
+              NB.Nav.Track('Getting anagram from Save II');
+            NB.Anagram.get();
+          }
+		   }
+		   return e;
+    },
+  
+    p: function(e){
+       return parseInt(e.attr('p'));
+    },
+    
+
+		active: function(e) {
+//	 			$('total').morph('color:#dd6400');
+
+         $J('.pair .target p').reject(function(item){
+            if(item==e || !item.hasClassName('version')){
+              return true;
+            }
+         }).each(function(item){
+              //item.reset();
+              item.unversion();
+         });
+
+				 var p = parseInt(e.attr('p')); //e.p(); - breaks IE
+         NB.p.current = p;
+				 NB.Anagram.snap = NB.Anagram.total;
+
+ 				 //this needs to be genericised & moved to NB.refresh
+      	 //NB.page.crumb(p);
+         var new_path = NB.root+'wutz/' + p;
+      	 NB.Nav.crumb(new_path);
+
+         //*****************************
+         
+//         var item_id = e.id.replace('paragraph_id_','');
+				 NB.Scholia.get(p);
+         NB.Tools.colorize(e);
+				 NB.Versions.display(e.id.replace('paragraph_id_',''));
+				 return e;
+		},
+		reset: function(e){
+		     e.unversion();
+         NB.Enface.Paragraphs.uncolorize(e);
+         if(NB.Anagram.score!=0){
+      	    $J('total').animate({color:NB.SETTINGS.color.neutral},1000);
+      	    $('total').update(NB.Number.commas(NB.Anagram.calc_total()));
+      	    $('change').update('');
+      	    NB.Anagram.score = 0;
+    	   }
+         return e;
+    },
+    unversion: function(e){
+         e.innerHTML = e.attr('p_text');
+		     e.removeClassName('version');
+ 			 	 e.setStyle({color: NB.SETTINGS.color.text});
+				 //NB.Enface.editor.addInstance(e);
+         return e;
+    },
+    source: function(e){
+         return e.up('.pair').down('.source').down('p');
+    }
+    */
+};
+
+Element.addMethods('p', NB.Enface.enfaceMethods);
+
+NB.Enface.Enface = Class.create({
+		initialize: function(p) {
+    NB.Nav.Track('Getting anagram from Initialize');
+//		  this.refresh(p);
+//		},
+//		
+//s		refresh: function(p) {
+      NB.Anagram.get();
+  		var this_p = p;
+      $J('.target p').each(function(item,iterator) {
+           //Element.extend(item); //for IE compatibility
+					 NB.Enface.editor.addInstance(item);
+					 //Element.clonePosition(item, item.up('.pair').down('.source').down('p'), {setLeft:false});
+					 //item.up('.target').style.height = item.up('.yui-g').getHeight();
+  				 item.attr('p',this_p);
+  				 item.attr('alert','');
+  				 item.attr('error_status',0);
+  				 //var expandedSourceText = item.source().innerHTML.toLowerCase();
+  				 //expandedSourceText = expandedSourceText.replace(/À|Á|Â|Ã|Ä|à|á|â|ã/g,'a').replace(/È|É|Ê|Ë|è|é|ê|ë/g,'e').replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+  				 //expandedSourceText = expandedSourceText.replace(/ü/gi,'ue').replace(/ß/g,'ss');
+           //expandedSourceText = expandedSourceText.replace(/[^0-9a-z]/g,'');
+  				 //NB.Nav.Track(expandedSourceText+': '+expandedSourceText.length);
+           //item.attr('sourceLength',expandedSourceText.length);
+  				 //NB.Nav.Track('flat text: '+item.source().attr('flat'));
+  				 //NB.Nav.Track('flat length: '+item.source().attr('sourcelength'));
+  				 var paragraph_text = item.innerHTML;
+  				 item.attr('p_text',paragraph_text);
+  				 NB.Anagram.origArray[this_p] = paragraph_text.toLowerCase().toArray();
+  				 
+    				if(!item.hasClassName('events')){
+    				 item.observe('keyup',function(event){
+    				    if(event.keyCode==Event.KEY_ESC) {
+                  item.reset();
+                  return false;
+                } else if (event.ctrlKey&&String.fromCharCode(event.keyCode)=='s') {
+                  NB.App.save(item);
+                  return false;
+                } else {
+                  NB.Anagram.letter(item,event.keyCode);
+                }
+              });
+    				 item.observe('mouseup',function(event){
+//This causes anagram to flush (recalculate for paragraph)
+//Intended to be triggered when text has been pasted
+//Causes double-counting at the moment since the mouseup of initial focus is trigerring it
+//                NB.Enface.selectFlag = true;
+             });
+    				 item.observe('blur',function(){NB.App.save(item);});
+  					 item.addClassName('events');
+  				 }
+  				 
+					 item.observe('focus',function(event){
+					     item.active();
+					 });
+					 this_p++;
+ 				});
+      var p_e = NB.App.get_target(p);
+      p_e.focus();
+      p_e.active();
+    }    
+});

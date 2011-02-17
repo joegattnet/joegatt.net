@@ -839,8 +839,8 @@ class FirePHP {
     if(!$Table) return $Table;
     for( $i=0 ; $i<count($Table) ; $i++ ) {
       if(is_array($Table[$i])) {
-        for( $j=0 ; $j<count($Table[$i]) ; $j++ ) {
-          $Table[$i][$j] = $this->encodeObject($Table[$i][$j]);
+        for( $=0 ; $<count($Table[$i]) ; $++ ) {
+          $Table[$i][$] = $this->encodeObject($Table[$i][$]);
         }
       }
     }
@@ -1074,7 +1074,7 @@ class FirePHP {
   /**
    * Keep a list of objects as we descend into the array so we can detect recursion.
    */
-  private $json_objectStack = array();
+  private $son_objectStack = array();
 
 
  /**

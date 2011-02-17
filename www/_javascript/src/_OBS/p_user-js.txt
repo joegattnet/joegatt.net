@@ -1,0 +1,115 @@
+NB.User = Class.create({
+		initialize: function() {
+      return false;
+		},
+		id: 0,
+		name: '',
+		level: 0,
+		_script: NB.root+'_cgi/_common/_user_signupin.cgi',
+		_container: '#signupin_container',
+		
+		signup: function(message) {
+			 		NB.Ajax.html('post',this._container,this._script,'mode=signup&sent_alert='+message+'&is_alert='+($('signupin').hasClassName('alert')?'alert':''),false);
+		},
+		signin: function(message) {
+			 		NB.Ajax.html('post',this._container,this._script,'mode=signin&sent_alert='+message+'&is_alert='+($('signupin').hasClassName('alert')?'alert':''),false);
+		},
+		signedin: function(this_user_id,username,level,reload) {
+					this.id = this_user_id;
+					this.name = username;
+					this.level = level;
+          this.update_page();
+					$J('signupin_panel').effect('highlight');
+					NB.Ui.screencover.hide();
+					var hide = setTimeout("$('signupin_panel').addClassName('closed')",3000);
+//STORE THIS IN A COOKIE THAT LASTS AS LONG AS THE SESSION
+					if (NB.pending_signedin_action!=false){
+						 eval(NB.pending_signedin_action);
+						 NB.pending_signedin_action=false;
+					}
+					//GENERICIZE
+					//only reload if not scholia
+  				 NB.Scholia.get(NB.p.current);
+					// reload paragraphs???
+		},
+		signout: function() {
+					$('signupin').addClassName('closed');
+					this.id = 0;
+					this.name = '';
+					this.level = 0;
+					NB.Cookie.remove('rememberme');
+					NB.Cookie.remove('user_id');
+					NB.Cookie.remove('rmcode');
+			 		NB.Ajax.html('get',this._container,this._script,'mode=signin&is_alert='+($('signupin').hasClassName('alert')?'alert':''),false);
+					$J('.user-name').each(function(item){
+            item.update(item.getAttribute('rel'));
+          });
+					//GENERICIZE
+					// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					NB.page.refresh('u');
+ 				  NB.Scholia.get(NB.p.current);
+ 				  _gaq.push(['_trackEvent','Signupin', 'Signed out']);
+		},
+		password: function(user_id,username) {
+			 		NB.Ajax.html('post',this._container,this._script,'mode=password'+'&is_alert='+($('signupin').hasClassName('alert')?'alert':''),false);
+		},
+		changepassword: function(user_id,username) {
+			 		NB.Ajax.html('post',this._container,this._script,'sent_user_id='+NB.User.id+'&mode=changepassword'+'&is_alert='+($('signupin').hasClassName('alert')?'alert':''),false);
+		},
+		clear: function(message) {
+			 		NB.Ajax.html('post',this._container,this._script,'mode=signedin&found_username='+NB.User.name+'&is_alert='+($('signupin').hasClassName('alert')?'alert':''),false);
+		},
+/*
+		check_input_valid: function(q,reqlength) {
+		      var check = q.name;
+					var value = q.value;
+          var length = value.length;
+          var type = q.type;
+          var warning = $(check+'_warning');
+          var reqlength = q.attr('min') || NB.SETTINGS.form.min_length;
+          if(length==0){
+            warning.update(NB.TEXT.prompt.user_error_required);
+          } else if((check.include('password')&&value=='password')||(check.include('username')&&(value.include('username')||value.include('joegatt')||value.include('admin')))){
+            warning.update(NB.TEXT.prompt.user_error_not_allowed);
+          } else if(check.include('username')) {
+            NB.TEXT.profanity.each(function(i){
+               if(value.include(i)){
+                 warning.update(NB.TEXT.prompt.user_error_obscene);
+               }
+            });
+          } else if(length<reqlength){
+            warning.update(NB.TEXT.prompt.user_too_short);
+          } else if (check.include('email')&&(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value))) {
+            warning.update(NB.TEXT.prompt.user_error_not_valid);
+          } else if (check.include('username')&&(!/^[A-Z0-9]+$/i.test(value))) {
+            warning.update(NB.TEXT.prompt.user_error_not_valid);
+          } else if (check.include('email')||check.include('username')) {
+  					new Ajax.Request(NB.root+'_cgi/_common/_user_check_exists.cgi?'+check+'='+value,{
+  						method:'get',
+  					  onSuccess:function(t){
+                var json = eval(t.getResponseHeader('X-JSON'));
+  							if (json.exists) {
+  								 $(check+'_warning').update(NB.TEXT.prompt.user_error_already_exists);
+  							} else {
+  								 warning.update('');
+  							}
+  					  }
+  					});
+          } else {
+						 warning.update('');
+          }
+        },
+*/
+		resend: function(user_id) {
+			NB.Ajax.html('post',this._container,this._script,'mode=resend&sent_user_id='+user_id,true);
+		},
+		update_page:function(){
+				$J('.user-id').each(function(i){
+          i.setValue(this.id);
+        });
+				$J('.user-'+this.name).each(function(i){
+          i.update('me');
+        });
+     }
+});
+

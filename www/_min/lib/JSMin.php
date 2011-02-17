@@ -68,13 +68,13 @@ class JSMin {
     /**
      * Minify Javascript
      *
-     * @param string $js Javascript to be minified
+     * @param string $s Javascript to be minified
      * @return string
      */
-    public static function minify($js)
+    public static function minify($s)
     {
-        $jsmin = new JSMin($js);
-        return $jsmin->min();
+        $smin = new JSMin($s);
+        return $smin->min();
     }
     
     /**

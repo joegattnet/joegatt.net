@@ -1,0 +1,36 @@
+<div class="grid_3 alpha">
+  <h4>Wutz</h4>
+  <ul>
+    <li><a href="/wutz/1">Jean Paul: Schulmeisterlein Wutz</a></li>
+    <li><a href="/wutz/interlinear">The Interlinear Wutz</a></li>
+    <li><a href="/wutz/statistical">The Statistical Wutz</a></li>
+    <li><a href="/wutz/automated">The Automated Wutz</a></li>
+  </ul>
+</div>
+<div class="grid_3">
+  <h4>More</h4>
+  <ul>
+    <li><a href="/wutz/statistical">Catholicon 140</a></li>
+    <li><a href="/wutz/statistical">Nimrod</a></li>
+    <li><a href="/wutz/interlinear">The Peculiar Melancholy of Nations</a></li>
+    <li><a href="/notes/">Notes</a></li>
+    <li><a href="/tags/">Tags</a></li>
+  </ul>
+</div>
+<div class="grid_3">
+  <h4><a href="/code/">Code</a></h4>
+  <ul>
+    <li><a href="/code/">Code</a></li>
+    <li><a href="/code/git/">Git</a></li>
+    <li><a href="/code/issues/changelog_page.php">Mantis</a></li>
+    <li><a href="/amanuensis/">Amanuensis</a></li>
+  </ul>
+</div>
+<div class="grid_3 omega">
+  <h4>Etc</h4>
+  <ul>
+    <li><a href="/colophon/">Colophon</a></li>
+    <li><a href="/copyright/">Copyright</a></li>
+    <li><a href="mailto:info@joegatt.net">Contact</a></li>
+  </ul>
+</div>
