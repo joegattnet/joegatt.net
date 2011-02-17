@@ -1,0 +1,11 @@
+<!--#set var="category" value="admin" -->
+<!--#set var="section" value="_admin" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="canonical" value="http://$server/$section/" -->
+
+<!--#set var="version_file" value="${root}_includes/_blank.html" -->
+
+<!--#set var="tool_help_default" value="false" -->
+<!--#set var="comments" value="false" -->
+<!--#set var="share" value="false" -->

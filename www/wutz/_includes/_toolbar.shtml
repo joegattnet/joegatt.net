@@ -1,0 +1,38 @@
+<div id="anagramometer" class="draggable separator clearfix">
+  <!--#include virtual="../../_cache/wutz/_anagram_table.html?r=${randomiser}"-->      
+</div>
+
+<!--#include virtual="../../_cgi/_common/_navigator.cgi?p_count=${p_count}&${QUERY_STRING}"-->      
+
+<div class="separator">
+  <div id="paragraphs_slider" class="slider">
+    <a href="javascript:;" class="handle"><!-- --></a>
+  </div>
+</div>
+
+<div id="version_info" class="separator">
+  <div id="version_info_panel"><!-- --></div>
+    <ul id="version_nav" class="nav_h">
+      <li><a href="javascript:;" class="button disabled" id="version_previous">Previous version</a></li>
+      <li><a href="javascript:;" class="button disabled" id="version_next">Next version</a></li>
+      <li><a href="javascript:;" class="button disabled" id="version_latest">Latest version</a></li>
+    </ul>      
+</div>
+<div class="navmods">
+<!--#if expr="1=0" -->		
+  <ul id="n_tools" class="tool toggle draggable remember<!--#if expr="$HTTP_COOKIE=/n_tools\=true/" --> closed<!--#endif -->">
+    <li id="tools_handle" class="header"><a href="javascript:;">Tools</a></li>
+    <li><a href="javascript:;" id="tool_interlinear" rel="interlinear" <!--#if expr="$tool_help_on=true" --> class="on"<!--#endif -->>Interlinear</a></li>
+<!--#endif -->
+  <ul class="tool">
+    <li><a href="javascript:;" id="tool_help" rel="help" <!--#if expr="$tool_help_on=true" --> class="on"<!--#endif -->>Help</a></li>
+    <li><a href="javascript:;" id="tool_colorize" rel="colorize" <!--#if expr="$tool_colorize_on=true" --> class="on"<!--#endif -->>Colourise</a></li>
+    <!--#if expr="1=0" -->
+    <!-- XXXX -->
+    <li><a href="javascript:;" id="tool_diffversions" rel="diffversions" <!--#if expr="$tool_diffversions_on=true" --> class="on"<!--#endif -->>Diff versions</a></li>
+    <!--#endif -->
+  </ul>
+  <ul id="n_scholia" class="toggle draggable remember<!--#if expr="$HTTP_COOKIE=/n_scholia\=true/" --> closed<!--#endif -->" rel="<!--#echo var="QUERY_STRING" -->">
+    <!--#include virtual="../../_cgi/_common/_scholia.cgi?mode=scholia&startup=true&page_id=${scholia_id}&${QUERY_STRING}"-->
+  </ul>						 	  
+</div>

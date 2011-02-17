@@ -1,0 +1,23 @@
+<!--#include virtual="../_includes/_settings.shtml" -->
+<!--#include virtual="_includes/_settings.shtml" -->
+
+<!--#set var="page" value="home" -->
+<!--#set var="share_id" value="home" -->
+<!--#set var="comments_id" value="$page" -->
+<!--#set var="scholia_id" value="$page" -->
+
+<!--#set var="books_id" value="$page" -->
+<!--#set var="links_id" value="$page" -->
+<!--#set var="topics_id" value="$page" -->
+
+<!--#set var="title" value="Home" -->
+<!--#set var="title_url" value="/" -->
+
+<!--#set var="head_detail" value="../_cache/_common/_head__page=${page}&${QUERY_STRING}.html" -->
+
+<!--#set var="yield" value="_yield_1024_12c_05_07.shtml" -->
+<!--#set var="content" value="../home/_content/_konichiwa-vimeo.html" -->
+
+<!--#set var="js_init" value="NB.App = new NB.W.jpsw();" -->
+
+<!--#include virtual="../_layouts/_render.shtml" -->

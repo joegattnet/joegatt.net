@@ -1,0 +1,166 @@
+#wutz_jpsw .title-a {
+    display:block;
+    text-indent:-9999px;
+    overflow:hidden;
+    /*
+    height:22px;
+    width:537px;
+    background-position:-140px -395px
+    height:26px;
+    width:632px;
+    background-position:-141px -430px
+    */
+    height:34px;
+    width:504px;
+    background-position:-138px -350px
+    }
+    
+h1 .version {
+    left:515px;
+    display:none;
+    }
+
+/* content ********************************************************************/
+
+#wutz_jpsw #content {
+    text-align:justify;
+}
+
+/* anagramometer **************************************************************/
+#total {
+font-size:3.5em;
+line-height:1.2;
+color:#dd6400;
+font-family:Arial,sans-serif;
+color:#999999;
+width:120px;
+display:inline-block;
+}
+
+#change {
+display:inline-block;
+width:20px;
+color:#999;
+}
+
+#alert {
+display:block;
+height:3em;
+margin-bottom:0.5em;
+}
+
+#anagramometer {
+padding:0 0 5px 0;
+    }
+
+#anagramometer .tables {
+  background-color:#eef;
+}
+
+#anagramometer table {
+  text-align:right;
+  float:left;
+  width:30%;
+  }
+
+#anagramometer table.middle {
+margin:0 7px;
+}
+
+#anagramometer tr {
+background-color:#ddeeee;
+border-bottom:1px solid #fff;
+}
+
+#anagramometer tr.even {
+background-color:#cceeee;
+}
+
+#anagramometer td, #anagramometer th {
+    font-weight:normal;
+    font-size:0.9em;
+    padding:1px;
+    padding-right:2px;
+}
+
+#anagramometer th {
+    text-align:center;
+    text-transform:uppercase;
+    }
+#toolbar a  {
+  font-weight:normal;
+}
+
+/* version info */
+#version_info {
+display:none;
+position:relative;
+padding:0 0 5px 0;
+height:33px;
+}
+#version_info_panel p {
+color:#666666;
+}
+#version_nav {
+position:absolute;
+top:0;
+right:0;
+margin-top:3px;
+}
+#version_info li {
+margin:0 0 0 2px;
+}
+#version_info a.button, #paragraphs_slider a {
+cursor:default;
+display:inline-block;
+width:4px;
+height:7px;
+background-position:-10px -100px;
+text-indent:-9999px;
+}
+a#version_previous.button, #paragraphs_slider ul.handle .previous {
+background-position:-13px -243px;
+}
+a#version_previous.button:hover, #paragraphs_slider ul.handle a.previous:hover {
+background-position:-13px -263px;
+}
+a#version_previous.disabled, a#version_previous.disabled:hover {
+background-position:-13px -253px;
+}
+
+a#version_next.button, #paragraphs_slider ul.handle .next {
+background-position:-13px -203px;
+}
+a#version_next.button:hover, #paragraphs_slider ul.handle a.next:hover {
+background-position:-13px -223px;
+}
+a#version_next.disabled, a#version_next.disabled:hover {
+background-position:-13px -213px;
+}
+
+a#version_latest.button {
+width:7px;
+background-position:-13px -283px;
+}
+a#version_latest.button:hover {
+background-position:-13px -303px;
+}
+a#version_latest.disabled, a#version_latest.disabled:hover {
+background-position:-13px -293px;
+}
+/* ends - epigraph ************************************************************/
+.ends_section {
+margin-top:3.35em;
+}
+.ends_epigraph div, .ends_epigraph p, .ends_epigraph blockquote, .ends_epigraph q {
+text-align:center;
+color:#000!important;
+}
+/* tarot **********************************************************************/
+
+#buttons {
+margin-right:50px;
+display:block;
+height:20px;
+overflow:hidden;
+}

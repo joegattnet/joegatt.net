@@ -1,0 +1,30 @@
+<div id="toolbar" class="grid_2 alpha">
+  <!--#if expr="$toolbar_pinnable" -->
+    <div class="pinnable<!--#if expr="$HTTP_COOKIE=/pinned\=true/" --> pinned<!--#endif -->">
+      <p class="pin"><a href="javascript:;" class="pin-a">pin</a></p>
+      <!--#include virtual="$toolbar" -->
+    </div>
+  <!--#else -->
+      <!--#include virtual="$toolbar" -->
+  <!--#endif -->
+</div>
+<div id="content" class="grid_10 omega <!--#if expr="$HTTP_COOKIE=/tool_interlinear\=on/" -->interlinear<!--#endif -->">
+  <!--#include virtual="$content" -->
+</div>
+
+<!--#if expr="$copyright||$share!=false" -->
+  <div class="grid_12">
+    <div class="grid_5 alpha">
+      <!--#if expr="$copyright" -->
+        <!--#include virtual="$copyright" -->
+      <!--#endif -->
+      <!--#if expr="$share!=false" -->
+        <!--#include virtual="$share" -->
+      <!--#endif -->
+    </div>
+    <div class="grid_5 suffix_2 omega">
+    </div>
+  </div>
+<!--#endif -->
+
+<!--#include virtual="$apparatus" -->

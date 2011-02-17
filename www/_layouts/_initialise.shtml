@@ -1,0 +1,22 @@
+<script type="text/javascript">
+//<![CDATA[
+  var docBody = document.getElementsByTagName('body')[0];
+  docBody.setAttribute('id', '<!--#echo var="page" -->');
+  docBody.setAttribute('class', docBody.getAttribute('class') + " category_<!--#echo var="category" --> section_<!--#echo var="section" --> page_<!--#echo var="page" -->");
+  NB.crumb = {
+    category: "<!--#echo var="category" -->",
+    section: "<!--#echo var="section" -->",
+    page: "<!--#echo var="page" -->",
+    path: "<!--#echo var="root" --><!--#echo var="section" -->/"
+  };
+  
+  NB.book_id = <!--#echo var="book_id" -->;
+  NB.scroll = 0;
+  NB.pending_signedin_action = false;
+
+  NB.p = {
+    current: 0,
+    count: <!--#echo var="p_count" -->
+  }
+//]]>
+</script>

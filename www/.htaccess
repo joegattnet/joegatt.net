@@ -1,0 +1,62 @@
+AddDefaultCharset UTF-8
+
+DirectorySlash Off
+
+#ERRORS
+#ErrorDocument 404 /error/404
+#ErrorDocument 500 /info/error/500
+
+RewriteEngine On
+
+#RewriteCond %{X-moz} ^prefetch
+#RewriteRule ^.* - [F]
+
+RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
+RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
+
+#RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://[^\/]*joegatt.*$
+#RewriteCond %{HTTP_HOST} ^joegatt.net$ [NC]
+RewriteCond %{REQUEST_URI} !admin
+RewriteCond %{REQUEST_URI} !concordance
+RewriteCond %{REQUEST_URI} !redirect
+RewriteCond %{THE_REQUEST} _
+#RewriteRule ^.* - [F,NS,L]
+
+#MINIFY
+RewriteRule ^/_min/([a-z]=.*)  /_min/index.php?$1  [L,NE]
+  
+#CACHE
+#RewriteCond %{REQUEST_URI} ^.*/_cache/.*$
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.*)_cache\/(.*_cc)\-(.*)\.html$ $1_cgi/$2.cgi?$3 [T=application/x-httpd-cgi,L]
+
+#CONFIRMATIONS
+#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_special/_signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_special/_signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_cgi/_common/_user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_cgi/_common/_user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+
+#Promo referrers
+RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
+
+#RewriteRule ^/?$  /home/
+RewriteRule ^/?([a-z]+)$  /$1/ [L,R]
+RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
+
+RewriteCond %{REQUEST_URI} !^.*/c/.*$
+RewriteCond %{REQUEST_URI} !^.*/p/.*$
+RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
+RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/index.shtml?p=$2 [L,QSA]
+
+RewriteCond %{REQUEST_URI} !^.*_c.*$
+RewriteCond %{REQUEST_URI} !^.*/c/.*$
+RewriteCond %{REQUEST_URI} !^.*/p/.*$
+RewriteCond %{REQUEST_URI} !^(.*)([^0-9]+)/?$
+RewriteCond %{HTTP_COOKIE} p=([0-9]+) [NC]
+RewriteRule ^(.*)$ $1?p=%1 [NS,L,QSA]
+
+ExpiresActive On
+ExpiresDefault "access plus 1 year"
+ExpiresByType text/html "access plus 1 second"
+ExpiresByType text/xml "access plus 10 minutes"

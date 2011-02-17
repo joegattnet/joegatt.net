@@ -1,0 +1,15 @@
+<!--#set var="category" value="projects" -->
+<!--#set var="section" value="wutz" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="canonical" value="http://$server/$section/" -->
+
+<!--#set var="shareicon" value="${root}_images/$section/logo.png" -->
+
+<!--#set var="tool_help_default" value="true" -->
+<!--#set var="tool_colorize_default" value="false" -->
+
+<!--#set var="book_id" value="1" -->
+<!--#set var="p_count" value="82" -->
+
+<!--#set var="epigraph" value="../wutz/_content/_epigraph_yourcenar.html" -->

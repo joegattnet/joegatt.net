@@ -1,0 +1,515 @@
+/******************************************************************************/
+#hd {
+height:1.9em;
+text-transform:lowercase;
+}
+
+#hd a {
+line-height:1em;
+text-transform:lowercase;
+}
+
+#hd a, #hd span.a {
+    background-position:-231px 2px;
+    padding-left:17px;
+    text-decoration:none;
+}
+
+#hd a:hover  {
+    background-position:-230px -18px;
+    text-decoration:none;
+    }
+
+/* top nav ***********************************************************************/
+
+.nav_h li {
+    display:inline-block;
+    min-height: 0;
+    margin-right:10px;
+    }
+#nav_top_right {
+    text-align:right;
+    }
+#nav_top_right li {
+    margin-right:0;
+    margin-left:10px;
+    text-align:right;
+}
+#follow {
+margin-top:-3px;
+}
+#follow a {
+display:block;
+text-indent:-9999px;
+text-align:left;
+}
+#follow a.twitter {
+    background-position:-371px -191px;
+    width:62px;
+    height:16px;
+}
+#follow a.twitter:hover {
+    background-position:-371px -207px;
+}
+
+/* downloads *********************************************************************/
+
+.dl {
+padding-left:10px;
+background-position:-233px -239px;
+}
+
+a.dl:hover {
+background-position:-233px -259px;
+color:#0b0;
+}
+
+/* promos ************************************************************************/
+/*
+#nav .promo {
+  line-height:140px;
+  border-bottom:1px dashed #ffffff;
+}
+#nav .promo a {
+  line-height:140px;
+}
+*/
+
+/* tools **********************************************************************/
+
+.tool a {
+    background-position:-451px -117px;
+    padding-left:13px;
+    text-decoration:none;
+}
+
+.tool a:hover  {
+    background-position:-451px -137px;
+    }
+
+.tool a.on {
+    background-position:-451px -157px;
+}
+
+.tool a.on:hover {
+    background-position:-451px -177px;
+}
+
+/* collapsible ****************************************************************/
+
+.header a  {
+    background-position:-451px -77px;
+    padding-left:16px;
+    text-decoration:none;
+    font-weight:bold;
+    }
+
+.closed a  {
+    background-position:-451px -37px;
+    }
+
+.header a:hover {
+    background-position:-451px -97px;
+    }
+
+.closed a:hover  {
+    background-position:-451px -57px;
+    }
+
+.closed li {
+    display:none;
+    }
+
+.closed .header {
+    display:block;
+    }
+
+.navmods ul, ul.navmod {
+padding:2px 0 5px 0;
+}
+
+.navmods a, .navmod a {
+display:block;
+}
+
+/* Inefficient rule
+.navmods ul ul {
+padding:0;
+border:0;
+}
+*/
+
+/* close *******************************************************************/
+
+.close {
+position:absolute;
+top:0;
+right:5px;
+}
+
+.close a {
+background-position:-230px -200px;
+text-indent:-9999px;
+display:block!important;
+width:10px;
+height:10px;
+padding:0;
+cursor:default;
+}
+
+.close a:hover,.close a:active {
+background-position:-230px -220px;
+}
+
+/* pin *********************************************************************/
+
+.pin {
+z-index:90;
+position:absolute;
+top:8px;
+right:0;
+width:10px;
+height:10px;
+padding:0;
+}
+
+.pin .pin-a {
+margin:0;
+background-position:-450px -242px;
+display:block;
+width:10px;
+height:10px;
+text-indent:-9999px;
+padding:0;
+cursor:default;
+}
+
+.pin a.pin-a:hover {
+background-position:-450px -262px;
+}
+
+.pinned .pin-a {
+background-position:-450px -202px;
+}
+
+.pinned a.pin-a:hover {
+background-position:-450px -222px;
+}
+
+.pinnable {
+position:fixed;
+}
+
+.pinned {
+position:relative;
+}
+
+/* slider *********************************************************************/
+
+div.slider {
+  height:13px;
+  background-position:0 -333px;
+  background-repeat:repeat-x;
+}
+
+#paragraphs_slider a.handle {
+  width:9px;
+  height:12px;
+  display:block;
+  background-position:-29px -320px;
+}
+
+#paragraphs_slider a.handle:hover, #paragraphs_slider.sliding a.handle {
+  background-position:-39px -320px;
+}
+
+/* previous/next ***********************************************************/
+.navigator {
+    margin-top:1.45em;
+}
+
+.navigator li {
+margin-right:0;
+margin-left:10px;
+}
+
+.navigator a {
+display:inline-block;
+text-indent:-9999px;
+text-align:left;
+width:12px;
+height:11px;
+}
+
+.navigator a.previous {
+background-position:-195px -1px;
+}
+
+.navigator a.next {
+background-position:-216px -1px;
+}
+
+.navigator a.next_page {
+background-position:-216px -61px;
+}
+
+.navigator a.first {
+width:15px;
+background-position:-192px -1px;
+}
+
+.navigator a.last {
+width:15px;
+background-position:-216px -1px;
+}
+
+.off a {
+cursor:default;
+}
+
+.off a.previous {
+background-position:-195px -21px!important;
+}
+
+.off a.next {
+background-position:-216px -21px!important;
+}
+
+.off a.next_page {
+background-position:-216px -81px!important;
+}
+
+.off a.first {
+background-position:-192px -21px!important;
+}
+
+.off a.last {
+background-position:-216px -21px!important;
+}
+
+.navigator a:hover.previous {
+background-position:-195px -41px;
+}
+
+.navigator a:hover.next {
+background-position:-216px -41px;
+}
+
+.navigator a:hover.next_page {
+background-position:-216px -101px;
+}
+
+.navigator a:hover.first {
+background-position:-192px -41px;
+}
+
+.navigator a:hover.last {
+background-position:-216px -41px;
+}
+
+.navigator .info {
+  width:19px;
+  height:15px;
+  border:1px solid #ddd;
+  width:19px;
+  height:15px;
+  font-family:Verdana,sans-serif;
+  font-size:11px;
+  color:#333;
+  padding:2px 0 0 8px;
+  position:absolute;
+  top:-21px;
+  background-position:-453px -278px;
+}
+
+.navigator .info:focus {
+color:#00c;
+  background-position:-453px -298px;
+}
+
+.by-paragraph .li-info {
+position:relative;
+width:35px;
+}
+
+/****************************************************************************/
+#toolbar .navigator {
+margin-top:0.25em;
+}
+#toolbar .nav-li {
+width:25px;
+margin-left:0;
+}
+/* share *******************************************************************/
+/*GENERICIZE*/
+#n_share {
+    margin-top:2.45em;
+}
+#n_share .header {
+color:#999;
+text-transform:uppercase;
+font-weight:bold;
+}
+
+#n_share span {
+font-weight:normal;
+}
+
+#n_share li {
+margin-right:5px!important;
+}
+
+/* comments *******************************************************************/
+#apparatus_outer {
+position:relative;
+padding-top:0.2em;
+}
+#apparatus {
+margin-top:1.3em;
+position:absolute;
+left:0;
+top:0;
+z-index:99;
+background-color:#fff;
+}
+
+#new_comment, #new_scholia, #new_note {
+width:100%;
+height:6em;
+padding:2px;
+border:1px dotted #ccc;
+color:#a5a5a5;
+font-family:Tahoma,Arial,sans-serif;
+font-size:1.2em;
+line-height:1.5;
+overflow:auto;
+}
+
+#scholia textarea {
+width:134px;
+font-size:1em;
+}
+
+#scholia_handle {
+margin-bottom:0.3em;
+}
+
+.focused textarea {
+  color:#000!important;
+  height:10.8em!important;
+}
+
+#comments input[type="submit"], #scholia input[type="submit"] {
+display:none;
+}
+
+.focused input[type="submit"] {
+  display:block!important;
+}
+#comments ul {
+color:#333;
+margin-top:1em;
+background-color:#f0f0f5;
+}
+#comments li {
+padding:5px;
+border-bottom:1px dashed #fff;
+}
+#comments p {
+font-size:1.2em;
+}
+#comments p.details {
+font-size:1em;
+color:#666;
+margin-top:0;
+}
+/*comment2*/
+#notes li {
+margin-bottom:1em;
+font-family:georgia,serif
+}
+#notes h4 {
+margin-bottom:1em;
+}
+#new_comment {
+margin-top:10px;
+width:294px;
+}
+.fade_trans-white {
+background:url(/_images/sprite24-v3.png);
+width:140px;
+height:40px;
+overflow:hidden;
+position:absolute;
+right:0;
+top:0;
+}
+
+/*
+add .a_arrows to #more
+*/
+
+/*
+//Inefficient
+#notes .meta a {
+font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+
+#notes li {
+position:relative;
+padding-left:40px;
+}
+#notes .number {
+position:absolute;
+top:0;
+left:0;
+font-size:0.8em;
+line-height:2;
+}
+*/
+/***************************************************************************/
+
+a.bm {
+    background-position:-8px -350px;
+    width:16px;
+    height:16px;
+    text-indent:-9999px;
+    display:block;  
+}
+a.twitter {
+    background-position:-8px -477px;
+}
+a.stumbleupon {
+    background-position:-8px -509px;
+}
+a.reddit {
+    background-position:-8px -541px;
+}
+a.mixx {
+    background-position:-8px -797px;
+}
+a.google {
+    background-position:-8px -701px;
+}
+a.digg {
+    background-position:-8px -349px;
+}
+a.delicious {
+    background-position:-8px -381px;
+}
+a.facebook {
+    background-position:-8px -637px;
+}
+a.friendfeed {
+    background-position:-8px -825px;
+}
+a.myspace {
+    background-position:-8px -605px;
+}
+a.yahoo {
+    background-position:-8px -446px;
+}
+a.technorati {
+    background-position:-8px -765px;
+}

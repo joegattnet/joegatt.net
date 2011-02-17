@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">       
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <title>joegatt.net</title>
+    <script type="text/javascript">
+    <!--
+    function updateClock( )
+    {
+      var currentTime = new Date ( );
+    
+      var currentHours = currentTime.getHours ( );
+      var currentMinutes = currentTime.getMinutes ( );
+      var currentSeconds = currentTime.getSeconds ( );
+      var currentMilliseconds = parseInt(currentTime.getMilliseconds ( ) / 100);
+      currentHours = ( currentHours < 10 ? "0" : "" ) + currentHours;
+      currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+      currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+      currentMilliseconds = ( currentMilliseconds < 10 ? "0" : "" ) + currentMilliseconds;
+
+      var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + ":" + currentMilliseconds;
+
+      document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+    }
+    // -->
+    </script>
+  </head>
+  <body style="background:#000 url(../_images/bg_testcard.gif);" onload="updateClock();setInterval('updateClock()', 50 )">
+    <center>
+      <img src="../_images/testcard_title.gif" alt="joegatt.net STAND BY" border="0" height="300" width="600" style="margin-top:50px;" />
+      <div><p id="clock" style="background-color:#000;color:#fff;font-size:60px;font-weight:bold;font-family:Fixedsys,courier,fixed;display:block;width:480px;">88:88:88:88<!-- --></p></div>
+    </center>
+  </body>
+</html>

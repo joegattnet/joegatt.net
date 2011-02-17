@@ -1,0 +1,14 @@
+<div id="ft" class="grid_12 a_arrows clearfix">
+  <div id="copyright" class="grid_10 alpha">
+    <ul class="nav_h">
+    		<li class="cc"><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/legalcode">Creative Commons Attribution-Noncommercial-Share Alike 3.0 licence</a></li>
+    		<li class="cc-text">Except where otherwise stated, content on this site is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/legalcode">licence</a>.</li>
+    </ul>
+  </div>
+  <div id="institutional" class="grid_2 omega">
+    <ul class="nav_h">
+    		<li><a href="mailto:info@joegatt.net">contact</a></li>
+    </ul>
+  </div>
+</div>
+

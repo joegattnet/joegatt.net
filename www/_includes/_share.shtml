@@ -1,0 +1,17 @@
+<ul id="n_share" class="nav_h" rel="<!--#echo var="canonical" -->">
+	 <li class="header">Share <span id="share_count"><!--#include virtual="../_cache/${section}/_shared_${share_id}.html?r=${randomiser}" --></span></li>
+	 <li><a class="bm delicious" rel="<!--#echo var="share_id" -->" title="Delicious" href="http://www.delicious.com/post?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">Delicious</a></li>
+	 <li><a class="bm digg" rel="<!--#echo var="share_id" -->" title="Digg" href="http://digg.com/submit?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">Digg</a></li>
+	 <li><a class="bm facebook" rel="<!--#echo var="share_id" -->" title="Facebook" href="http://www.facebook.com/sharer.php?u=<!--#echo var="canonical" -->">Facebook</a></li>
+	 <li><a class="bm friendfeed" rel="<!--#echo var="share_id" -->" title="Friendfeed" href="http://friendfeed.com/?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">Facebook</a></li>
+   <li><a class="bm google" rel="<!--#echo var="share_id" -->" title="Google" href="http://www.google.com/bookmarks/mark?op=edit&title=<!--#echo var="title" -->&bkmk=<!--#echo var="canonical" -->">Google Bookmarks</a></li>
+	 <li><a class="bm mixx" rel="<!--#echo var="share_id" -->" title="Mixx" href="http://www.mixx.com/submit?page_url=<!--#echo var="canonical" -->">Mixx</a></li>
+	 <li><a class="bm reddit" rel="<!--#echo var="share_id" -->" title="Reddit" href="http://reddit.com/submit?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">Reddit</a></li>
+	 <li><a class="bm stumbleupon" rel="<!--#echo var="share_id" -->" title="StumbleUpon" href="http://www.stumbleupon.com/submit?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">StumbleUpon</a></li>
+	 <li><a class="bm twitter" rel="<!--#echo var="share_id" -->" title="Twitter" href="http://twitter.com/home?status=<!--#echo var="canonical" -->">Twitter</a></li>
+</ul>
+
+<!--#if expr="1=0" -->
+	 <li><a class="bm myspace" rel="<!--#echo var="share_id" -->" title="MySpace" href="http://www.myspace.com/Modules/PostTo/Pages/?u=<!--#echo var="canonical" -->&t=<!--#echo var="title" -->">MySpace</a></li>
+   <li><a class="bm yahoo" rel="<!--#echo var="share_id" -->" title="Yahoo" href="http://buzz.yahoo.com/submit/?Headline=<!--#echo var="title" -->&Summary=<!--#echo var="summary" -->&submitAssetType=text&submitUrl=<!--#echo var="canonical" -->">Yahoo! My Web</a></li>
+<!--#endif -->

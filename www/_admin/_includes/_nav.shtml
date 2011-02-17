@@ -1,0 +1,34 @@
+<ul class="a_arrows">
+  <ul id="n_a_text" class="toggle remember<!--#if expr="$HTTP_COOKIE=/n_a_text\=true/" --> closed<!--#endif -->">
+    <li class="header"><a href="javascript:;">Text</a></li>
+    <li>
+      <form>
+        <select onchange="//replace b=1 with value" value="0" style="width:100px;margin-left:14px;">
+          <option>Wutz</option>
+        </select>
+      </form>
+    </li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_upload_source_text.cgi?b=1" target="<!--#echo var="rowname" -->">Upload source text</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_upload_target_text.cgi?b=1" target="<!--#echo var="rowname" -->">Upload target text</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_adjust_target_dates.cgi?b=1" target="<!--#echo var="rowname" -->">Adjust target text dates</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_view_latest_target_text.cgi?b=1" target="<!--#echo var="rowname" -->">View latest target text</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_collate_paragraphs.cgi?b=1&wordsPerPage=250" target="<!--#echo var="rowname" -->">Collate paragraphs</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_calculate_anagram.cgi?b=1&mode=all" target="<!--#echo var="rowname" -->">Calculate anagram</a></li>
+</ul>
+<ul class="a_arrows">
+  <ul id="n_a_other" class="toggle remember<!--#if expr="$HTTP_COOKIE=/n_a_other\=true/" --> closed<!--#endif -->">
+    <li class="header"><a href="javascript:;">Other</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_deploy.cgi" target="<!--#echo var="rowname" -->">Deploy</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_sql.cgi" target="<!--#echo var="rowname" -->">SQL</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_stats.cgi?b=1" target="<!--#echo var="rowname" -->">Stats</a></li>
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_error_log.cgi" target="<!--#echo var="rowname" -->">Error log</a></li>
+</ul>
+<ul class="a_arrows">
+  <ul id="n_a_other" class="toggle remember<!--#if expr="$HTTP_COOKIE=/n_a_other\=true/" --> closed<!--#endif -->">
+    <li class="header"><a href="javascript:;">CMD</a></li>
+		<li><a href="<!--#echo var="root"-->_admin/_content/_cmd_dev_update.shtml" target="<!--#echo var="rowname" -->">Dev: bzr update</a></li>
+		<li><a href="<!--#echo var="root"-->_admin/_content/_cmd_dev_commit.shtml" target="<!--#echo var="rowname" -->">Dev: bzr commit</a></li>
+</ul>
+<ul class="a_arrows">
+		<li><a href="<!--#echo var="root"-->_cgi/_admin/_email_users.cgi" target="<!--#echo var="rowname" -->">Email user(s)</a></li>
+</ul>

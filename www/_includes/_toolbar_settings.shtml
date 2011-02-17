@@ -1,0 +1,21 @@
+<!--#if expr="($tool_help_default=false || $HTTP_COOKIE=/v_${page}/) && $HTTP_COOKIE!=/tool_help\=true/" -->
+  <!--#set var="tool_help_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_help_on" value="true" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE=/tool_colorize\=true/" -->
+  <!--#set var="tool_colorize_on" value="true" -->
+<!--#elif expr="$HTTP_COOKIE=/tool_colorize\=false/" -->
+  <!--#set var="tool_colorize_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_colorize_on" value="$tool_colorize_default" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_COOKIE=/tool_diffversions\=true/" -->
+  <!--#set var="tool_diffversions_on" value="true" -->
+<!--#elif expr="$HTTP_COOKIE=/tool_diffversions\=false/" -->
+  <!--#set var="tool_diffversions_on" value="false" -->
+<!--#else -->
+  <!--#set var="tool_diffversions_on" value="$tool_diffversions_default" -->
+<!--#endif -->

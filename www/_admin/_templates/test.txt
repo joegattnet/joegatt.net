@@ -1,0 +1,5 @@
+Hi [% first_name %], 
+
+This is to confirm your purchase of $[% amt_due %]. 
+
+Thank you!

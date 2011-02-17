@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"     
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">       
+  <head>
+    <!--#include virtual="../_includes/_head.shtml"-->       
+  </head>     
+  <body id="<!--#echo var="page" -->" class="ajax_large<!--#if expr="$HTTP_COOKIE=/debug\=true/" --> debug<!--#endif -->">
+    <script type="text/javascript">
+    //<![CDATA[
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '<!--#echo var="google_tracking_code" -->']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    //]]>
+    </script>
+    <div id="container" class="container_12 clearfix<!--#if expr="$HTTP_COOKIE=/short-screen\=true/" --> short-screen<!--#endif -->">
+      <div id="section">
+        <!--#include virtual="_section_${layout}.shtml"-->
+      </div>
+      <div id="screen_cover" style="display:none;"><!-- --></div>
+      <div id="signupin_container">
+        <!--#include virtual="../_cgi/_common/_user_signupin.cgi?startup=true&r=${randomiser}&${QUERY_STRING}"-->
+      </div>
+    </div>
+    <div id="hidden" class="hidden"><!-- --></div>
+    <!--#include virtual="../_includes/_end.shtml"-->
+    <!--#include virtual="../_admin/_includes/_debug_info.shtml"-->
+  </body>
+</html>
