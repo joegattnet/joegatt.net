@@ -32,7 +32,7 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="http://$server$location" -->
 
-<!--#set var="favicon" value="${root}favicon3.ico" -->
+<!--#set var="favicon" value="${root}favicon.ico" -->
 <!--#set var="iphoneicon" value="${root}_images/iphoneicon.png" -->
 <!--#set var="shareicon" value="${root}_images/home/logo.png" -->
 
