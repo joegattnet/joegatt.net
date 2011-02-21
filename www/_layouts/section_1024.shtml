@@ -1,4 +1,0 @@
-<div id="page" href="<!--#echo var="location" -->">
-  <!--#include virtual="page_${layout}.shtml" -->
-  <!--#include virtual="../_includes/common/debug_info.shtml" -->
-</div>

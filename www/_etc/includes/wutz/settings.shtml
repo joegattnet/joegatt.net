@@ -1,0 +1,20 @@
+<!--#set var="category" value="projects" -->
+<!--#set var="section" value="wutz" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="http://$server$location" -->
+
+<!--#set var="shareicon" value="${root}_etc/images/$section/logo.png" -->
+
+<!--#set var="tool_help_default" value="true" -->
+<!--#set var="tool_colorize_default" value="false" -->
+
+<!--#set var="b" value="1" -->
+<!--#set var="p_max" value="82" -->
+
+<!--#set var="epigraph" value="/_etc/content/wutz/epigraph_yourcenar.html" -->
+
+<!--#set var="notes" value="true" -->
+
+<!--#set var="tags" value="Wutz" -->

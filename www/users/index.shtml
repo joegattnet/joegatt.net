@@ -1,5 +1,5 @@
-<!--#include virtual="../_includes/settings.shtml" -->
-<!--#include virtual="../_includes/users/settings.shtml" -->
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/users/settings.shtml" -->
 
 <!--#set var="page" value="users" -->
 <!--#set var="share_id" value="users" -->
@@ -14,6 +14,6 @@
 <!--#set var="title_url" value="/${section}/" -->
 
 <!--#set var="yield" value="yield_1024_12c_05_07.shtml" -->
-<!--#set var="content" value="../_content/${section}/konichiwa.html" -->
+<!--#set var="content" value="/_etc/content/${section}/konichiwa.html" -->
 
-<!--#include virtual="../_layouts/render.shtml" -->
+<!--#include virtual="/_etc/layouts/render.shtml" -->

@@ -1,5 +1,5 @@
-<!--#include virtual="../_includes/settings.shtml" -->
-<!--#include virtual="../_includes/notes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/notes/settings.shtml" -->
 
 <!--#set var="page" value="page" -->
 <!--#set var="share_id" value="${section}_${p}" -->
@@ -23,6 +23,6 @@
 <!--#set var="title.window" value="Notes: #$p" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
-<!--#set var="content" value="../_cache/${section}--${page}-p=${p}&mode=standalone.shtml" -->
+<!--#set var="content" value="/_etc/cache/${section}--${page}-p=${p}&mode=standalone.shtml" -->
 
-<!--#include virtual="../_layouts/render.shtml" -->
+<!--#include virtual="/_etc/layouts/render.shtml" -->

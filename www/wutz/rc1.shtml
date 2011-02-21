@@ -1,5 +1,5 @@
-<!--#include virtual="../_includes/settings.shtml" -->
-<!--#include virtual="../_includes/wutz/settings.shtml" -->
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/wutz/settings.shtml" -->
 
 <!--#set var="page" value="index" -->
 <!--#set var="share_id" value="$section" -->
@@ -17,18 +17,18 @@
 
 <!--#set var="notranslate" value="true" -->
 
-<!--#set var="head_detail" value="../_cache/head--${page_type}-page=${page}&b=${b}&${QUERY_STRING}.html" -->
+<!--#set var="head_detail" value="/_etc/cache/head--${page_type}-page=${page}&b=${b}&${QUERY_STRING}.html" -->
 
-<!--#set var="version_file" value="../_cache/${section}--version_index.html?r=${randomiser}" -->
+<!--#set var="version_file" value="/_etc/cache/${section}--version_index.html?r=${randomiser}" -->
 
-<!--#set var="help" value="../_content/${section}/help_${page}.shtml" -->
+<!--#set var="help" value="/_etc/content/${section}/help_${page}.shtml" -->
 <!--#set var="toolbar_pinnable" value="false" -->
 
 <!--#set var="nav_end" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
-<!--#set var="content" value="../_cache/content--${page_type}-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest&scope=content.html" -->
+<!--#set var="content" value="/_etc/cache/content--${page_type}-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest&scope=content.html" -->
 <!--#set var="direct_content" value="true" -->
-<!--#set var="toolbar" value="../_cache/notes--fragment-tags=_wutz_rc1_panel.html" -->
+<!--#set var="toolbar" value="/_etc/cache/notes--fragment-tags=_wutz_rc1_panel.html" -->
 
-<!--#include virtual="../_layouts/render.shtml" -->
+<!--#include virtual="/_etc/layouts/render.shtml" -->

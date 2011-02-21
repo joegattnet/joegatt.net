@@ -1,0 +1,13 @@
+/* sprite declaration ***********************************************************************/
+
+.sprite,#version_info a.button,.a_arrows a,.a_arrows .a,
+#follow a#twitter-follow,.evernote,.radio,.tool a,.header a,.close a,.pin a,.ui-slider,
+.ui-slider-handle,.navigator a,.navigator .goto,a.bm,.ends_section div,.ends div,.dl,.cc a, .panel_handle {
+background-image:url(/_etc/images/sprite-v6.png);
+background-repeat:no-repeat;
+}
+
+.fbml a, .fbml span, .fbml div {
+padding:0;
+background-image:url();
+}

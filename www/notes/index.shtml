@@ -1,5 +1,5 @@
-<!--#include virtual="../_includes/settings.shtml" -->
-<!--#include virtual="../_includes/notes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/notes/settings.shtml" -->
 
 <!--#set var="page" value="index" -->
 <!--#set var="share_id" value="$section" -->
@@ -12,11 +12,11 @@
 <!--#set var="title.window" value="$title" -->
 
 <!--#set var="yield" value="yield_1024_05_02s_05_a.shtml" -->
-<!--#set var="content" value="../_cache/notes--list-template=compact&header=no&latest=true.html" -->
-<!--#set var="toolbar" value="../_cache/tags--list-template=cloud&min=2.shtml" -->
+<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true.html" -->
+<!--#set var="toolbar" value="/_etc/cache/tags--list-template=cloud&min=2.shtml" -->
 
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->
 <!--#set var="notes" value="false" -->
 
-<!--#include virtual="../_layouts/render.shtml" -->
+<!--#include virtual="/_etc/layouts/render.shtml" -->

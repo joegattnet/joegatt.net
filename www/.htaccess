@@ -45,29 +45,29 @@ RewriteCond %{REQUEST_URI} !/c/
 #SHOULD THIS BE ON? DOES IT STOP REDIRECTS????????????
 
 #CONFIRMATIONS
-#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_cgi/common/user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_cgi/common/user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/cgi/common/user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/cgi/common/user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
 
 #JAVASCRIPT ERRORS
 RewriteRule ^(.*)/NaN/?$ $1/1
 RewriteRule ^(.*)/undefined/?$ $1/1
 
 #MINIFY
-RewriteRule ^/_min/([a-z]=.*)  /_min/index.php?$1  [L,NE]
+RewriteRule ^/_etc/min/([a-z]=.*)  /_etc/min/index.php?$1  [L,NE]
 
 #IMAGES
-RewriteCond %{REQUEST_URI} ^.*/_resources/.*$
+RewriteCond %{REQUEST_URI} ^.*/_etc/resources/.*$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^_resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
+RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
 
-RewriteRule ^/?code/issues/(.*)$ /code/mantis/page.shtml?$1 [T=text/html,L]
+#RewriteRule ^/?code/issues/(.*)$ /code/mantis/page.shtml?$1 [T=text/html,L]
 
 #CACHE
-RewriteCond %{REQUEST_URI} ^.*/_cache/.*$
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
 RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)_cache\/([_0-9a-z]+)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_cgi/$2/$3.cgi?$4 [T=application/x-httpd-cgi,L]
+RewriteRule ^(.*)_etc/cache\/([_0-9a-z]+)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4 [T=application/x-httpd-cgi,L]
 
 #PROMOS
 RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
@@ -92,7 +92,7 @@ RewriteCond %{REQUEST_URI} !^.*/p/.*$
 #RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
 RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 
-#RewriteCond %{REQUEST_URI} !^.*_c.*$
+#RewriteCond %{REQUEST_URI} !^.*_etc/c.*$
 #RewriteCond %{REQUEST_URI} !^.*/c/.*$
 #RewriteCond %{REQUEST_URI} !^.*/p/.*$
 #RewriteCond %{REQUEST_URI} !^(.*)([^0-9]+)/?$

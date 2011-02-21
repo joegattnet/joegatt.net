@@ -1,5 +1,5 @@
-<!--#include virtual="../_includes/settings.shtml" -->
-<!--#include virtual="../_includes/colophon/settings.shtml" -->
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/colophon/settings.shtml" -->
 
 <!--#set var="page" value="index" -->
 <!--#set var="share_id" value="$page" -->
@@ -16,6 +16,6 @@
 <!--#set var="tags" value="false" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
-<!--#set var="content" value="../_content/colophon/index.html" -->
+<!--#set var="content" value="/_etc/content/colophon/index.html" -->
 
-<!--#include virtual="../_layouts/render.shtml" -->
+<!--#include virtual="/_etc/layouts/render.shtml" -->

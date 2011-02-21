@@ -1,0 +1,10 @@
+<div id="tags" class="refresh" href="/_etc/cache/tags--tags-tags=<!--#echo var="tags" -->.html">
+  <!--#if expr="$tags!=false" -->
+    <!--#include virtual="/_etc/cache/tags--tags-tags=${tags}.html" -->
+  <!--#endif -->    
+</div>
+<div id="notes" class="refresh" href="/_etc/cache/notes--list-tags=<!--#echo var="tags" -->.html">
+  <!--#if expr="$notes!=false" -->
+    <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->
+  <!--#endif -->
+</div>

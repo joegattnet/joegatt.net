@@ -1,0 +1,79 @@
+<script type="text/javascript">
+  //<![CDATA[
+    if(location.hash.indexOf('pr-')!=-1){
+      NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
+      location.hash='';
+    } else if (location.hash.indexOf('/')==1&&location.host+location.hash.substr(1)!=location.href){
+      location.replace(location.hash.substr(1));
+    }
+  //]]>
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="en" /> 
+<meta http-equiv="content-script-type" content="text/javascript" /> 
+<meta http-equiv="imagetoolbar" content="no" /> 
+<meta name="generator" content="<!--#if expr="generator" -->" /> 
+<!--#if expr="$nocache=true" -->
+  <meta http-equiv="Cache" content="no-cache" />
+  <meta http-equiv="Expires" content="-1" />
+<!--#endif -->
+<!--#if expr="$notranslate=true" -->
+  <meta name="google" value="notranslate" />
+<!--#endif -->
+
+<!--#include virtual="$head_detail" -->
+
+<link rel="shortcut icon" href="<!--#echo var="images_url" --><!--#echo var="favicon" -->" />
+<link rel="apple-touch-icon" href="<!--#echo var="images_url" --><!--#echo var="iphoneicon" -->" />
+<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"  />
+
+<!--#if expr="1=0" -->
+  Do all these:
+  http://caronia2.info/car2blog/index.php/2008/02/05/the_importance_of_the_alt_link_rel_agt_t
+  http://www.lyberty.com/html/meta/link-rel_navigation.htm
+  
+  <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->" />
+<!--#endif -->
+
+<!--#if expr="$styles_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
+   <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_etc/min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+   <!--#if expr="$HTTP_USER_AGENT = /MSIE/ && ($HTTP_USER_AGENT!=/MSIE 7/ && $HTTP_USER_AGENT!=/MSIE 8/)" -->
+     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_etc/min/g=cssie6fixes<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+   <!--#endif -->
+   <!--#if expr="$HTTP_USER_AGENT = /MSIE 7/" -->
+     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_etc/min/g=cssie7fixes<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+   <!--#endif -->
+<!--#else -->
+  <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
+<!--#endif -->
+
+<!--#if expr="$server!=joegatt.net" -->
+  <style type="text/css">
+    <!--#include virtual="/_etc/css/src/Debug.css"-->  
+  </style>
+<!--#endif -->
+<style type="text/css" media="print">
+  <!--#include virtual="/_etc/css/src/Print.css"-->  
+</style>
+
+<script type="text/javascript">
+//<![CDATA[
+    var NB = {
+        loaded: false,
+        pending_signedin_action:  false
+    };
+    NB.timestamp = new Date().getTime();
+      NB.p = {
+      <!--#if expr="$p=/^[0-9]*$/" -->
+        top: <!--#echo var="p" -->,
+        current: <!--#echo var="p" -->
+      <!--#else -->
+        top: '<!--#echo var="p" -->',
+        current: '<!--#echo var="p" -->'
+      <!--#endif -->
+      }
+
+  <!--#include virtual="/_etc/javascript/src/_Prime.js"-->
+    
+//]]>
+</script>

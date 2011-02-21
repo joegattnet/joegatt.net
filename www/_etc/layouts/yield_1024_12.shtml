@@ -1,0 +1,4 @@
+<div id="content" class="grid_12<!--#if expr="$direct_content=true" --> direct<!--#endif -->" href="<!--#echo var="content" -->">
+  <!--#include virtual="$content" -->
+</div>
+<!--#include virtual="/_etc/includes/footer.shtml" -->           

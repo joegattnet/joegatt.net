@@ -1,5 +1,5 @@
-<!--#include virtual="../_includes/settings.shtml" -->
-<!--#include virtual="../_includes/errors/settings.shtml" -->
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/errors/settings.shtml" -->
 
 <!--#set var="page" value="index" -->
 <!--#set var="share_id" value="$page" -->
@@ -33,6 +33,6 @@
 <!--#set var="tags" value="false" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
-<!--#set var="content" value="../_content/${section}/page.shtml" -->
+<!--#set var="content" value="/_etc/content/${section}/page.shtml" -->
 
-<!--#include virtual="../_layouts/render.shtml" -->
+<!--#include virtual="/_etc/layouts/render.shtml" -->
