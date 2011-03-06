@@ -9,7 +9,7 @@ sub email_confirm_registration {
   $url =~ s/\/$//;
   my $template = 'confirm_registration';
   my $subject = 'Confirm email';
-  my $from_email = "$serverName <register@joegatt.net>";
+  my $from_email = "$serverName <register>";
   
   send_email($template,$subject,$from_email,$to_email,$username,$user_id,$code,$url);
 }
@@ -23,7 +23,7 @@ sub email_password_reset {
   $url =~ s/\/$//;
   my $template = 'password_reset';
   my $subject = 'Password reset';
-  my $from_email = "$serverName <register@joegatt.net>";
+  my $from_email = "$serverName <register>";
   
   send_email($template,$subject,$from_email,$to_email,$username,$user_id,$code,$url);
 }
@@ -46,7 +46,7 @@ sub send_email {
    $template_txt = $template.'.txt';
 
    my %options; 
-   $options{INCLUDE_PATH} = '../../_etc/admin/templates'; 
+   $options{INCLUDE_PATH} = '../../../_etc/admin/templates'; 
   
    my $msg = MIME::Lite::TT->new( 
               From        =>  $from_email,
@@ -80,7 +80,7 @@ sub send_email_html {
 #   $template_html = $template.'.html';
    
 #   my %options; 
-#   $options{INCLUDE_PATH} = '../../_etc/admin/templates'; 
+#   $options{INCLUDE_PATH} = '../../../_etc/admin/templates'; 
   
 #   my $msg = MIME::Lite::TT::HTML->new( 
 #              From        =>  $from_email,
