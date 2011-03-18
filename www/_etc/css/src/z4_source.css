@@ -1,0 +1,20 @@
+#container {
+  position:relative;
+}
+
+#source {
+  filter:alpha(opacity=85);
+  -moz-opacity:0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  z-index:10;
+  position:absolute;
+  top:170px;
+  background-color:#fff;
+  width:990px;
+  height:100%;
+  font-family:Courier,mono;
+  font-size:14px;
+  color:#000;
+  margin-left:-30px;
+}

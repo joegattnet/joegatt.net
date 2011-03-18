@@ -5,7 +5,9 @@ NB.User.signedin = function(this_user_id,username,level,mode) {
   if(!$('#signupin').hasClass('panel_closed')){
     $('#signupin_panel').effect('highlight',NB.S.speed.slower);
   }
-  var hide = setTimeout("$('#signupin').addClass('panel_closed')",NB.S.speed.slower);
+  var hide = setTimeout(function(){
+      $('#signupin').addClass('panel_closed')
+    },NB.S.speed.slower);
   NB.Ui.screencover.hide();
   $(window).scrollTop(0);
   $('body').trigger('signedin.user');

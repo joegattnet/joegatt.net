@@ -19,7 +19,7 @@ include 'header.php';
     $aspectHeight = $_GET["aspectHeight"];
     $imageFileName = $_GET["image"];
 
-    $imageLocation = '../../../_etc/resources/raw/' . $_GET["image"] . '.jpg';
+    $imageLocation = '../../../_etc/resources/raw/' . $_GET["image"] . '.' . $_GET["ext"];
 
     // GET UPLOADED IMAGE DIMENSIONS
     $cmd = "identify '" . $imageLocation . "' 2>/dev/null";

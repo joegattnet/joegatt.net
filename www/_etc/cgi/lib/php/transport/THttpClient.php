@@ -178,6 +178,7 @@ class THttpClient extends TTransport {
                      'Content-Length: '.strlen($this->buf_));
 
     $options = array('method' => 'POST',
+                    'protocol_version' => 1.1,
                      'header' => implode("\r\n", $headers),
                      'max_redirects' => 1,
                      'content' => $this->buf_);

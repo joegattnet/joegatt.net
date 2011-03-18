@@ -15,6 +15,7 @@ BrowserMatch ^Mozilla/4 gzip-only-text/html
 BrowserMatch ^Mozilla/4\.0[678] no-gzip
 BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|zip|pdf|woff)$ no-gzip dont-vary
+#SetEnvIf Request_URI -f no-gzip dont-vary
 Header append Vary User-Agent env=!dont-vary
 
 ExpiresActive On
@@ -104,4 +105,4 @@ RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 #PassEnv p
 
 #RewriteCond %{REQUEST_URI} !-s
-#RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404}
+#RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404} 

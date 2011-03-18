@@ -2,7 +2,7 @@
 
 use utf8;
 use URI::Escape;
-use CGI::Cookie;
+use CGI;
 
 # ******************************************************************************
 
@@ -595,7 +595,7 @@ sub cache_refresh {
     $cachefile = "../../../_etc/cache/$file";
     $cachefile = untaint($cachefile);
     if($file =~ /archive=true/){
-      my $archivefile = "../../../_etc/cache_archive/$file";
+      my $archivefile = "../../../_etc/archive/$file";
       use POSIX;
       my $timestamp = POSIX::strftime("%H%M%S%m%d%Y", localtime);
       $archivefile =~ s/(.*)(\..{3,4})$/$1---$timestamp$2/;

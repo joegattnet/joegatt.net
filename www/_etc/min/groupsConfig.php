@@ -15,6 +15,7 @@ return array(
    '//_etc/javascript/lib/jquery.rich-array.js',
    '//_etc/javascript/lib/jquery.rich-array2-extra.js',
    '//_etc/javascript/lib/jquery.timeago.js',
+   '//_etc/javascript/lib/jquery.syntaxhighlighter.js',
 //   '//_etc/javascript/lib/evernote-noteit.js',
 //   '//_etc/javascript/lib/facebook-all.js',
 //   '//_etc/javascript/lib/jquery.ui.1.8.2.js',
@@ -51,6 +52,7 @@ return array(
    '//_etc/javascript/src/form.--------------.js',
    '//_etc/javascript/src/form.submit.js',
    '//_etc/javascript/src/form.validate.js',
+   '//_etc/javascript/src/highlighter.-------.js',
    '//_etc/javascript/src/nav.---------------.js',
    '//_etc/javascript/src/nav.arrows.js',
    '//_etc/javascript/src/nav.crumb.js',
@@ -78,6 +80,7 @@ return array(
    '//_etc/javascript/src/tools.diff.js',
    '//_etc/javascript/src/tools.help.js',
    '//_etc/javascript/src/tools.interlinear.js',
+   '//_etc/javascript/src/tools.source.js',
    '//_etc/javascript/src/ui.------------------.js',
    '//_etc/javascript/src/ui.caret.js',
    '//_etc/javascript/src/ui.clip.js',
@@ -130,10 +133,11 @@ return array(
    '//_etc/css/src/z1_notes.css',
    '//_etc/css/src/z2_tags.css',
    '//_etc/css/src/z3_home.css',
+   '//_etc/css/src/z4_source.css',
    '//_etc/css/src/z5_enface.css',
    '//_etc/css/src/z9_fonts.css'
      ),
-     'cssprint1-1' => array('//_etc/css/nb_print.css'),
-     'cssie6fixes1-1' => array('//_etc/css/nb_ie6.css'),
-     'cssie7fixes1-1' => array('//_etc/css/nb_ie7.css')
+     'cssprint1-1' => array('//_etc/css/Print.css'),
+     'cssie6fixes1-1' => array('//_etc/css/IE6.css'),
+     'cssie7fixes1-1' => array('//_etc/css/IE7.css')
 );

@@ -15,7 +15,7 @@ $noteStore = new NoteStoreClient($noteStoreProtocol, $noteStoreProtocol);
 $notebooks = $noteStore->listNotebooks($authToken);
 
 //echo var_export($notebooks,1);
-usleep(500);
+//usleep(500);
 
 // Select Notebook *************************************************************
 
@@ -29,32 +29,32 @@ foreach ($notebooks as $notebook) {
 }
 
 //echo $notebook_update_sequence.'\n\n\n';
-usleep(500);
+//usleep(500);
 
 $con = connect_db();
 
-//$query = "SELECT unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
-$query = "SELECT update_sequence FROM notes";
+$query = "SELECT unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
+//$query = "SELECT update_sequence FROM notes";
 
 $result = mysql_query($query);
 while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-$latest_update_sequence = $row['update_sequence'];
-//    $latest_unix = $row['latest_unix']*1000;
+//$latest_update_sequence = $row['update_sequence'];
+    $latest_unix = $row['latest_unix']*1000;
 //    $latest = $row['latest'];
-//    $latest_unix_deleted = $row['latest_unix_deleted']*1000;
+    $latest_unix_deleted = $row['latest_unix_deleted']*1000;
     //echo "Latest:$latest\n";
     //echo "Latest:$latest_unix\n";
 }
 
 $search = new edam_notestore_NoteFilter();
 $search->notebookGuid = $notebookGuid;
-//$search->ascending = true;
+$search->ascending = true;
 //$search->timeZone = "Europe/London";
 $result = $noteStore->findNotes($authToken, $search, 0, 99);
 $notesFound = $result->notes;
 
 //echo var_export($result,1);
-usleep(500);
+//usleep(500);
 
 $cache_queue = array();
 $url_queue = array();
@@ -63,15 +63,15 @@ foreach ($notesFound as $note) {
   $date_modified=$note->updated;
   $update_sequence=$note->updateSequenceNum;
 
-//  if($date_modified>$latest_unix){
+  if($date_modified>$latest_unix){
 
-  if($update_sequence>$latest_update_sequence){
+//  if($update_sequence>$latest_update_sequence){
     
     $note_guid=$note->guid;
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   
     //echo var_export($noteEdam,1);
-    usleep(500);
+    //usleep(500);
     
     $tagGuids=$noteEdam->tagGuids;
     $resources=$noteEdam->resources;
@@ -266,10 +266,10 @@ foreach ($notesFound as $note) {
   $note_guid=$note->guid;
   $title=$note->title;
   $date_deleted=$note->deleted;
-  $update_sequence=$note->updateSequenceNum;
+//  $update_sequence=$note->updateSequenceNum;
 
-//  if($date_deleted>$latest_unix_deleted){
-  if($update_sequence>$latest_update_sequence){
+  if($date_deleted>$latest_unix_deleted){
+//  if($update_sequence>$latest_update_sequence){
     $date_deleted=date("Y-m-d H:i:s", ($date_deleted/1000));
     $query = sprintf("UPDATE notes SET deleted=1,date_deleted='%s' WHERE e_guid='%s'",
         $date_deleted,
@@ -304,10 +304,12 @@ if(sizeof($cache_queue)>0||sizeof($url_queue)>0){
 
 mysql_close($con);
 
+#echo "Done.\n";
+
 // *****************************************************************************
 
 function cache_queue($cache_queue,$string){
-  if ($handle = opendir('/_etc/cache')) {
+  if ($handle = opendir('../../../_etc/cache')) {
     while (($file = readdir($handle)) !== false) {
       if(preg_match($string,$file)!=0){
         array_push($cache_queue,$file);
@@ -321,7 +323,7 @@ function cache_queue($cache_queue,$string){
 
 function cache_queue_guid($cache_queue,$eguid_dec){
   //$eguid_dec = hexdec(substr($note_guid,0,4));
-  if ($handle = opendir('/_etc/cache')) {
+  if ($handle = opendir('../../../_etc/cache')) {
     while (($file = readdir($handle)) !== false) {
       if(preg_match('/page-p=.*\b'.$eguid_dec.'\b/i',$file)!=0){
         array_push($cache_queue,$file);
@@ -336,7 +338,7 @@ function cache_queue_guid($cache_queue,$eguid_dec){
 function cache_refresh($cache_queue,$servername ){
   $cache_queue = array_unique($cache_queue);
   foreach($cache_queue as $file){
-    unlink('/_etc/cache/'.$file);
+    unlink('../../../_etc/cache/'.$file);
     echo "Deleted: $file\n";
     $url = 'http://'.$servername.'/_etc/cache/'.$file;
     $temp = get_content($url);

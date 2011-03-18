@@ -5,18 +5,21 @@
     <!--#include virtual="/_etc/includes/head.shtml" -->       
   </head>     
   <body id="<!--#echo var="section" -->_<!--#echo var="page" -->" class="ajax_large<!--#if expr="$HTTP_COOKIE=/debug=true/" --> debug<!--#endif -->">
-    <!--#include virtual="/_etc/includes/external_scripts.shtml" -->
+    <!--#include virtual="/_etc/includes/scripts_3rdparty.shtml" -->
     <div id="container" class="container_12 clearfix">
       <div id="section" href="<!--#echo var="location" -->">
         <!--#include virtual="/_etc/layouts/section_${layout}.shtml" -->
       </div>
-      <div id="screen_cover" style="display:none;"><!-- --></div>
+      <div id="source" class="draggable panel panel_closed escapable-panel"<!--#if expr="$tool_source_on!=true" --> style="display:none;"<!--#endif -->>
+        <!--#include virtual="/_etc/includes/source.shtml" -->
+      </div>
       <div id="signupin_container" href="/_etc/cgi/users/signupin.cgi?<!--#echo var="QUERY_STRING"-->">
         <!--#include virtual="/_etc/cgi/users/signupin.cgi?startup=true&r=${randomiser}&${QUERY_STRING}"-->
       </div>
+      <div id="screen_cover" style="display:none;"><!-- --></div>
     </div>
     <div id="hidden" class="hidden"><!-- --></div>
-    <!--#include virtual="/_etc/includes/end_scripts.shtml" -->
+    <!--#include virtual="/_etc/includes/scripts.shtml" -->
     <!--#include virtual="/_etc/includes/common/debug_info.shtml" -->
   </body>
 </html>

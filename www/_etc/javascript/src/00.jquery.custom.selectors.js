@@ -5,7 +5,7 @@ jQuery.extend(
       return /:\/\//.test($(obj).attr("href"));
     },
     internal: function(obj, index, meta, stack) {
-      return !/\:\/\/|\.jpg$|\.png$|\.gif$|\.zip$|\.pdf$|javascript\:|^\#$/.test($(obj).attr("href"));
+      return !(/\:\/\/|code\/www|\.jpg$|\.png$|\.gif$|\.zip$|\.pdf$|javascript\:|^\#$/.test($(obj).attr("href")) || $(obj).attr("target"));
     },
     document: function(obj, index, meta, stack) {
       return /\.pdf$/.test($(obj).attr("href"));

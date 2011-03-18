@@ -6,15 +6,15 @@
 
 <!--#set var="title" value="Admin @ $SERVER_NAME" -->
 <!--#set var="title_url" value="/_etc/admin/" -->
-<!--#set var="version_file" value="/_etc/admin/includes/version.txt" -->
+<!--#set var="version_file" value="/_etc/includes/admin/version.txt" -->
 
-<!--#set var="yield" value="yield_1024_10c_02t_05_07_x2.shtml" -->
-<!--#set var="content" value="/_etc/admin/includes/iframe.shtml" -->
+<!--#set var="yield" value="yield_1024_10c_02t_05_07.shtml" -->
+<!--#set var="content" value="/_etc/includes/admin/iframe.shtml" -->
 
 <!--#set var="rowname" value="results" -->
 <!--#set var="rowname2" value="results2" -->
 
-<!--#set var="toolbar" value="/_etc/admin/includes/nav.shtml" -->
+<!--#set var="toolbar" value="/_etc/includes/admin/nav.shtml" -->
 
 <!--#set var="follow" value="false" -->
 

@@ -1,12 +1,13 @@
 var tracker = 0;
 
 NB.Nav.track = function(mode, category, action, optional_label, optional_value){
-  tracker++;
   if(window.console){
-    console.log(mode, tracker, category, (action||''), (optional_label||''), (optional_value||0));
+    console.log(mode, category, (action||''), (optional_label||''), (optional_value||0));
   }
   if(mode>0){
-    // Alert to /{code}
+    $('#track li:first').show();
+    $('#track li:first').before('<li style="display:none;">'+ (category||'') + (action||'') + (optional_label||'') + (optional_value||'') + '</li>');
+    $('#track li:first').show('blind');
   }
   if(mode>1){
     if(category == '_trackPageview'){

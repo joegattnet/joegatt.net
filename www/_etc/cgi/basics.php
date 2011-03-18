@@ -2,14 +2,14 @@
 
   ini_set("include_path", ini_get("include_path") . PATH_SEPARATOR . "../lib/php" . PATH_SEPARATOR . "../src/php" . PATH_SEPARATOR);
 
-  //Not good enough - this will always be unset when not run on Apache
+  //Not good enough - this will always be unset when not run on Apache (via cron)
   //(Needs to read directory)
   //if(isset($_SERVER['SERVER_NAME'])) {
   //  DEFINE("SERVER_NAME",$_SERVER['SERVER_NAME']);
   //} else {
   //  DEFINE("SERVER_NAME","localhost");
   //}
-  DEFINE("SERVER_NAME","xp.joegatt.org");
+  DEFINE("SERVER_NAME","dropbox.joegatt.org");
 
   if (SERVER_NAME == 'joegatt.net') {
     DEFINE("DATABASE","joegatt-net-production");

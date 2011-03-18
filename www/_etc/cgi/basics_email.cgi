@@ -46,7 +46,7 @@ sub send_email {
    $template_txt = $template.'.txt';
 
    my %options; 
-   $options{INCLUDE_PATH} = '../../../_etc/admin/templates'; 
+   $options{INCLUDE_PATH} = '../../../_etc/templates'; 
   
    my $msg = MIME::Lite::TT->new( 
               From        =>  $from_email,
@@ -80,7 +80,7 @@ sub send_email_html {
 #   $template_html = $template.'.html';
    
 #   my %options; 
-#   $options{INCLUDE_PATH} = '../../../_etc/admin/templates'; 
+#   $options{INCLUDE_PATH} = '../../../_etc/templates'; 
   
 #   my $msg = MIME::Lite::TT::HTML->new( 
 #              From        =>  $from_email,
