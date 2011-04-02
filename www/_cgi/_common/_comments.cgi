@@ -4,6 +4,8 @@ require '../_basics.cgi';
 
 formRead("get");
 
+use cgi;
+
 if ($sequence eq '') {
   if ($p ne '') {
     $sequence = $p;
