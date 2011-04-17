@@ -18,7 +18,7 @@
 <ul class="a_arrows">
   <ul id="n_a_other" class="toggle remember<!--#if expr="$HTTP_COOKIE=/n_a_other=true/" --> closed<!--#endif -->">
     <li class="header"><a href="javascript:;">Other</a></li>
-		<li><a href="/_etc/cgi/crop/index.php" target="<!--#echo var="rowname" -->">Cache</a></li>
+		<li><a href="/_etc/cgi/admin/cache.cgi" target="<!--#echo var="rowname" -->">Cache</a></li>
 		<li><a href="/_etc/cgi/crop/index.php" target="<!--#echo var="rowname" -->">Images</a></li>
 		<li><a href="/_etc/cgi/admin/error_log.cgi" target="<!--#echo var="rowname" -->">Error log</a></li>
 </ul>

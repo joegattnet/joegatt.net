@@ -10,8 +10,8 @@
       <div id="section" href="<!--#echo var="location" -->">
         <!--#include virtual="/_etc/layouts/section_${layout}.shtml" -->
       </div>
-      <div id="source" class="draggable panel panel_closed escapable-panel"<!--#if expr="$tool_source_on!=true" --> style="display:none;"<!--#endif -->>
-        <!--#include virtual="/_etc/includes/source.shtml" -->
+      <div id="code" class="draggable panel panel_closed escapable-panel"<!--#if expr="$tool_code_on != true" --> style="display:none;"<!--#endif -->>
+        <!--#include virtual="/_etc/includes/code.shtml" -->
       </div>
       <div id="signupin_container" href="/_etc/cgi/users/signupin.cgi?<!--#echo var="QUERY_STRING"-->">
         <!--#include virtual="/_etc/cgi/users/signupin.cgi?startup=true&r=${randomiser}&${QUERY_STRING}"-->

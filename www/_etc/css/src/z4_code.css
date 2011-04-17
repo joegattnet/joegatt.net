@@ -1,0 +1,86 @@
+#container {
+  position:relative;
+}
+
+#source {
+  margin-top:-20px;
+}
+
+#code {
+  filter:alpha(opacity=85);
+  -moz-opacity:0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  z-index:100;
+  position:absolute;
+  top:170px;
+  background-color:#eeeeee;
+  width:940px;
+  height:100%;
+  color:#454545;
+  line-height:20px!important;
+/*  margin-left:-30px; */
+}
+
+#track {
+  height:100%;
+  color:#666;
+  overflow:hidden;
+}
+
+/* Overrides */
+
+.syntax-container {
+  padding:0!important;
+  margin-left: -50px!important;
+}
+
+.syntax-container .toolbar {
+  display: none!important;
+}
+
+ol.syntax li div.source {
+  border-left:0!important;
+}
+
+ol.syntax {
+  background-color:#ffffff!important;
+  border:0!important;
+}
+
+/************/
+
+#tool_code {
+  background:none;
+  padding:0;
+  color:#c0c0c0;
+  margin-left:0;
+}
+
+#tool_code:before {
+  padding-right:2px;
+  color:#c0c0c0;
+	content: "{";
+}
+
+#tool_code:after {
+  padding-left:2px;
+  color:#c0c0c0;
+	content: "}";
+}
+
+#tool_code.on, 
+#tool_code.on:before,
+#tool_code.on:after {
+  color:#666;
+}
+
+#tool_code:hover, 
+#tool_code.on:hover, 
+#tool_code:before:hover, 
+#tool_code:after:hover,
+#tool_code.on:before:hover, 
+#tool_code.on:after:hover  {
+  color:#00c;
+}
+

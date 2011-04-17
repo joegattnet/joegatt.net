@@ -31,7 +31,10 @@ NB.Nav.fetch = function(url) {
         true,
         null,
         null,
-        url
+        url,
+        function(){
+          NB.Highlighter.fetch((url.replace(/\/([0-9]*)$/,'') + '/index.shtml').replace('index.shtml\/index.shtml','index.shtml').replace('\/\/','/'),true);      
+        }
       );
   }
 }

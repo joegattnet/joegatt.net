@@ -16,7 +16,7 @@
 <!--#set var="tags" value="false" -->
 
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/content--home_wall-cols=2&rows=1&archive=true.html" -->
+<!--#set var="content" value="/_etc/cache/content--home_wall-cols=4&rows=2&archive=true.html" -->
 <!--#set var="toolbar" value="" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

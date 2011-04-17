@@ -63,17 +63,15 @@
         pending_signedin_action:  false
     };
     NB.timestamp = new Date().getTime();
-      NB.p = {
-      <!--#if expr="$p=/^[0-9]*$/" -->
-        top: <!--#echo var="p" -->,
-        current: <!--#echo var="p" -->
-      <!--#else -->
-        top: '<!--#echo var="p" -->',
-        current: '<!--#echo var="p" -->'
-      <!--#endif -->
-      }
-
-  <!--#include virtual="/_etc/javascript/src/_Prime.js"-->
-    
+    NB.p = {
+    <!--#if expr="$p=/^[0-9]*$/" -->
+      top: <!--#echo var="p" -->,
+      current: <!--#echo var="p" -->
+    <!--#else -->
+      top: '<!--#echo var="p" -->',
+      current: '<!--#echo var="p" -->'
+    <!--#endif -->
+    }
+    <!--#include virtual="/_etc/javascript/src/_Prime.js"-->
 //]]>
 </script>

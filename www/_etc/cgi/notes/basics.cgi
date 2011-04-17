@@ -224,7 +224,7 @@ sub printNote {
       # Caption ****************************************************************
       # Use line limts
     
-      if ($text=~s/capt?i?o?n?\: ?(.*?)$//) {
+      if ($text=~s/capt?i?o?n?\: ?(.*?)$//i) {
         $caption = "<p class=\"caption\">$1</p>";
       }
 

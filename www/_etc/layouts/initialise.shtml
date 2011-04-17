@@ -29,5 +29,10 @@
     NB.p.top = "<!--#echo var="p" -->";
     NB.p.max = "<!--#echo var="p_max" -->";
   <!--#endif -->
+  
+//  NB.loaded_scripts.add(function(){
+//    NB.Highlighter.fetch('/<!--#echo var="section" -->/index.shtml');
+//  });
+  
 //]]>
 </script>

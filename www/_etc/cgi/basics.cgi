@@ -632,6 +632,21 @@ sub cache_refresh {
 
 # ******************************************************************************
 
+sub linkifyPath {
+  $fileNav = $_[0];
+  $crumbPath = $_[1];
+  @crumbs = split('/', $fileNav);
+  $last = pop(@crumbs);
+  foreach $crumb (@crumbs) {
+    $crumbPath .= "/$crumb";
+    $linkifiedPath .= "/<a href=\"$crumbPath\" class=\"source-file\">$crumb</a>";
+  }
+  $linkifiedPath .= "/$last";
+  return $linkifiedPath;
+}
+
+# ******************************************************************************
+
 sub user_integrity {
 
 }

@@ -23,6 +23,192 @@ ExpiresDefault "access plus 1 year"
 ExpiresByType text/html "access plus 10 minutes"
 ExpiresByType text/xml "access plus 10 minutes"
 
+#From https://github.com/paulirish/html5-boilerplate/blob/master/.htaccess
+
+# ----------------------------------------------------------------------
+# Better website experience for IE users
+# ----------------------------------------------------------------------
+
+# Force the latest IE version, in various cases when it may fall back to IE7 mode
+# github.com/rails/rails/commit/123eb25#commitcomment-118920
+# Use ChromeFrame if it's installed for a better experience for the poor IE folk
+
+<IfModule mod_setenvif.c>
+  <IfModule mod_headers.c>
+    BrowserMatch MSIE ie
+    Header set X-UA-Compatible "IE=Edge,chrome=1" env=ie
+  </IfModule>
+</IfModule>
+
+<IfModule mod_headers.c>
+# Because X-UA-Compatible isn't sent to non-IE (to save header bytes),
+# We need to inform proxies that content changes based on UA
+  Header append Vary User-Agent
+# Cache control is set only if mod_headers is enabled, so that's unncessary to declare
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Webfont access
+# ----------------------------------------------------------------------
+
+# allow access from all domains for webfonts
+# alternatively you could only whitelist
+# your subdomains like "sub.domain.com"
+
+<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+# ----------------------------------------------------------------------
+# Proper MIME type for all files
+# ----------------------------------------------------------------------
+
+# audio
+AddType audio/ogg oga ogg
+
+# video
+AddType video/ogg ogv
+AddType video/mp4 mp4
+AddType video/webm webm
+
+# Proper svg serving. Required for svg webfonts on iPad
+# twitter.com/FontSquirrel/status/14855840545
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+                                       
+# webfonts
+AddType application/vnd.ms-fontobject eot
+AddType font/truetype ttf
+AddType font/opentype otf
+AddType application/x-font-woff woff
+
+# assorted types
+AddType image/x-icon ico
+AddType image/webp webp
+AddType text/cache-manifest appcache manifest
+AddType text/x-component htc
+AddType application/x-chrome-extension crx
+AddType application/x-xpinstall xpi
+AddType application/octet-stream safariextz
+
+# ----------------------------------------------------------------------
+# gzip compression
+# ----------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+
+
+# force deflate for mangled headers developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
+<IfModule mod_setenvif.c>
+  <IfModule mod_headers.c>
+    SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+    RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+  </IfModule>
+</IfModule>
+# html, txt, css, js, json, xml, htc:
+<IfModule filter_module>
+  FilterDeclare COMPRESS
+  FilterProvider COMPRESS DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
+  FilterProvider COMPRESS DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
+  FilterChain COMPRESS
+  FilterProtocol COMPRESS change=yes;byteranges=no
+</IfModule>
+
+<IfModule !mod_filter.c>
+  # Legacy versions of Apache
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+</IfModule>
+
+# webfonts and svg:
+  <FilesMatch "\.(ttf|otf|eot|svg)$" >
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+
+
+
+# ----------------------------------------------------------------------
+# Expires headers (for better cache control)
+# ----------------------------------------------------------------------
+
+# these are pretty far-future expires headers
+# they assume you control versioning with cachebusting query params like
+# <script src="application.js?20100608">
+# additionally, consider that outdated proxies may miscache
+# www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+
+# if you don't use filenames to version, lower the css and js to something like
+# "access plus 1 week" or so
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+# Perhaps better to whitelist expires rules? Perhaps.
+  ExpiresDefault "access plus 1 month"
+
+# cache.appcache needs re-requests in FF 3.6 (thx Remy ~Introducing HTML5)
+  ExpiresByType text/cache-manifest "access plus 0 seconds"
+
+# your document html
+  ExpiresByType text/html "access plus 0 seconds"
+  
+# data
+  ExpiresByType text/xml "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
+
+# rss feed
+  ExpiresByType application/rss+xml "access plus 1 hour"
+
+# favicon (cannot be renamed)
+  ExpiresByType image/x-icon "access plus 1 week"
+
+# media: images, video, audio
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType video/ogg "access plus 1 month"
+  ExpiresByType audio/ogg "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType video/webm "access plus 1 month"
+  
+# htc files (css3pie)
+  ExpiresByType text/x-component "access plus 1 month"
+  
+# webfonts
+  ExpiresByType font/truetype "access plus 1 month"
+  ExpiresByType font/opentype "access plus 1 month"
+  ExpiresByType application/x-font-woff "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+    
+# css and javascript
+  ExpiresByType text/css "access plus 2 months"
+  ExpiresByType application/javascript "access plus 2 months"
+  ExpiresByType text/javascript "access plus 2 months"
+  
+  <IfModule mod_headers.c>
+    Header append Cache-Control "public"
+  </IfModule>
+  
+</IfModule>
+
+
+
+# ----------------------------------------------------------------------
+# ETag removal
+# ----------------------------------------------------------------------
+
+# Since we're sending far-future expires, we don't need ETags for
+# static content.
+# developer.yahoo.com/performance/rules.html#etags
+FileETag None
+
 # ******************************************************************************
 
 RewriteEngine On
@@ -63,8 +249,6 @@ RewriteCond %{REQUEST_URI} ^.*/_etc/resources/.*$
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
 
-#RewriteRule ^/?code/issues/(.*)$ /code/mantis/page.shtml?$1 [T=text/html,L]
-
 #CACHE
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
 RewriteCond %{REQUEST_FILENAME} !-s
@@ -73,6 +257,9 @@ RewriteRule ^(.*)_etc/cache\/([_0-9a-z]+)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_et
 #PROMOS
 RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
 
+# ******************************************************************************
+
+#URLs
 RewriteRule ^/?$  /home/ [L]
 RewriteRule ^/?([a-z]+)/?$  $1/index.shtml [L]
 #RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
@@ -81,28 +268,18 @@ RewriteRule ^/?(.*)tags/?([_:a-zA-Z0-9]+)/?$ /$1/tags/page.shtml?p=$2 [L,QSA]
 
 RewriteCond %{REQUEST_URI} !^.*/c/.*$
 RewriteCond %{REQUEST_URI} !^.*/p/.*$
-#RewriteRule ^/?(.*)/([a-z]*) /$1/$2.shtml
+RewriteRule ^/?(.*)/(rc1)/?$ /$1/$2.shtml [L]
 
 #RewriteRule ^/?(.*)/v([0-9]+)/?$ /$1?v=$2 [QSA]
 
-#This should be handled somewhere else?
-RewriteRule ^/?wutz/?$ /wutz/1
 
 RewriteCond %{REQUEST_URI} !^.*/c/.*$
 RewriteCond %{REQUEST_URI} !^.*/p/.*$
 #RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
 RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 
-#RewriteCond %{REQUEST_URI} !^.*_etc/c.*$
-#RewriteCond %{REQUEST_URI} !^.*/c/.*$
-#RewriteCond %{REQUEST_URI} !^.*/p/.*$
-#RewriteCond %{REQUEST_URI} !^(.*)([^0-9]+)/?$
-#RewriteCond %{HTTP_COOKIE} p=([0-9]+) [NC]
-#RewriteRule ^(.*)$ $1?p=%1 [NS,L,QSA]
-
-#SetEnv p 1
-#SetEnvIfNoCase Request_URI ^(.*)([^0-9]+)/?$ p=$1
-#PassEnv p
+#This should be handled somewhere else?
+RewriteRule ^/?wutz/?$ /wutz/1
 
 #RewriteCond %{REQUEST_URI} !-s
 #RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404} 

@@ -142,7 +142,7 @@ $min_symlinks = array();
  * select the option "Adjust remote timestamp with DST".
  * @link http://winscp.net/eng/docs/ui_login_environment#daylight_saving_time
  */
-$min_uploaderHoursBehind = 0;
+$min_uploaderHoursBehind = 1;
 
 
 /**
