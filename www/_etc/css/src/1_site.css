@@ -267,12 +267,12 @@ h3 {
 
 /* yield **********************************************************************/
 #yield {
-position:relative;
-margin-top:25px;
+  position:relative;
+  margin-top:26px;
 }
 
 #yield.tool_help_on {
-margin-top:215px;
+  margin-top:216px;
 }
 
 /* content ********************************************************************/

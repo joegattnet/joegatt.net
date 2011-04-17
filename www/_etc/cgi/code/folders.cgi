@@ -30,7 +30,7 @@ chdir untaint($originalLoc);
 
 $linkifiedPath = linkifyPath($fullPath, '/code');
 
-$output .= "<li class=\"path\">$linkifiedPath</li>\n";
+$output .= "<li class=\"path\">$linkifiedPath <span class=\"github-link a_arrows\"><a href=\"http://github.com/joegattnet/joegatt.net/blob/master/$fileNav\">github</a></span></li>\n";
 
 foreach $object (@folders) {
   if(!($object eq '..' and $folder eq 'www')){

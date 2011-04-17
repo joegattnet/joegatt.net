@@ -21,7 +21,7 @@ $file_content =~ s/>/&gt;/g;
 
 $linkifiedPath = linkifyPath('www'.$fileNav, '/code');
 
-$output = qq~<p>$linkifiedPath [<a href="http://github.com/joegattnet/joegatt.net/blob/master$fileNav">on github</a>]</p>~;
+$output = qq~<p class="path">$linkifiedPath <span class="github-link a_arrows"><a href="http://github.com/joegattnet/joegatt.net/blob/master/$fileNav">github</a></span></p>~;
 
 if($extension eq 'cgi'){
   $extension = 'perl5';
@@ -29,6 +29,7 @@ if($extension eq 'cgi'){
   $extension = 'html';
 }
 
+#<iframe src="http://docs.google.com/gview?url=http://example.com/mypdf.pdf&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
 if($extension =~ /gif|png|jpg|jpeg/){
   $output .= qq~<img src="$file" />~;
 } else {

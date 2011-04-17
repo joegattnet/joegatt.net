@@ -77,7 +77,7 @@
 
 <!--#set var="version_file" value="/_etc/includes/blank.html" -->
 
-<!--#set var="tool_source_default" value="false" -->
+<!--#set var="tool_code_default" value="false" -->
 <!--#set var="tool_help_default" value="false" -->
 <!--#set var="tool_colorize_default" value="false" -->
 <!--#set var="tool_diffversions_default" value="false" -->
