@@ -1,7 +1,7 @@
 #!/usr/bin/perl -T
 
 require '../basics.cgi';
-require "../basics_broadcast.cgi";
+require '../basics_broadcast.cgi';
 
 formRead("post");
 

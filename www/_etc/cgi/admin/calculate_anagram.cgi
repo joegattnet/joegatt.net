@@ -77,7 +77,7 @@ $allDates = join(",", @dates);
 $sql = "SELECT target_text.text AS target,target_text.p FROM source_text,target_text,users WHERE users.Id=target_text.user_id AND target_text.date_created IN ($allDates) AND source_text.book_id=$b AND target_text.book_id=$b AND source_text.p=target_text.p GROUP BY p ORDER BY p";
 #  $sql = "SELECT target_text.text,target_text.p FROM ($allDates) X LEFT JOIN target_text ON date_created=latest AND x.p=target_text.p WHERE target_text.book_id=$b GROUP BY p;";
   my $sth = $dbh->prepare("$sql");
-  $sth->execute() or die print "<p class=\"neg\">Can't execute SQL.</p><p class=\"neg\">$sql</p>";;
+  $sth->execute() or die print "<p class=\"neg\">Can't execute SQL.</p><p class=\"neg\">$sql</p>";
   
   while (my ($text,$p) = $sth->fetchrow_array()) {
     $target_text = "$text";

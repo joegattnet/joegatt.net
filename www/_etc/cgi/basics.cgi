@@ -325,7 +325,6 @@ sub saveAnagramParagraph {
   my $b = $_[0];
   my $p = $_[1];
   my $target_text = $_[2];
-  
 	$dbh = connectDB();
 
 	if ($target_text eq '') {
@@ -394,13 +393,13 @@ sub saveAnagramParagraph {
 
   $values_string = join(',', @jsarrayvalues);
 
-  $location = untaint("../_etc/cache/enface--anagram_table-b=$b.json");
-  open ANAGRAM_TABLE,">$location";
+  $location = untaint("../../../_etc/cache/enface--anagram_table-b=$b.json");
+  open ANAGRAM_TABLE,">$location" or die print "ERRROR: File not opened: $! $location";
   print ANAGRAM_TABLE "[$values_string]";
   close ANAGRAM_TABLE;
   
-  $location = untaint("../_etc/cache/enface--anagram_table-b=$b.html");
-  open ANAGRAM_TABLE,">$location";
+  $location = untaint("../../../_etc/cache/enface--anagram_table-b=$b.html");
+  open ANAGRAM_TABLE,">$location" or die print "ERRROR: File not opened: $! $location";
   print ANAGRAM_TABLE $anagram_table;
   print ANAGRAM_TABLE qq~
     <script type="text/javascript">
@@ -413,8 +412,8 @@ sub saveAnagramParagraph {
   close ANAGRAM_TABLE;
   
   $version_number = eval ("1 - 0.$anagram_total");
-  $location = untaint("../_etc/cache/enface--version_index-b=$b.html");
-  open VERSION_NUMBER,">$location";
+  $location = untaint("../../../_etc/cache/enface--version_index-b=$b.html");
+  open VERSION_NUMBER,">$location" or die print "ERRROR: File not opened: $! $location";
   print VERSION_NUMBER " $version_number";
   close VERSION_NUMBER;
 
