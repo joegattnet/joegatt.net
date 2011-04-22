@@ -525,10 +525,9 @@ sub date_string_long {
 
 # ******************************************************************************
 
-sub date_string_long {
-  ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
-  @months3letter = ('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
-  return "$mday ".@months3letter[$mon]." ".($year+1900)." at ".sprintf("%02d", $hour).":". sprintf("%02d", $min)." UTC";
+sub date_string_iso {
+   use POSIX qw(strftime);
+   return strftime("%Y-%m-%dT%H:%M:%S", localtime());
 }
 
 # ******************************************************************************

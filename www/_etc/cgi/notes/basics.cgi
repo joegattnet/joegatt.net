@@ -221,14 +221,9 @@ sub printNote {
   $text =~ s/^\s+|\s+$//g;
 #  $text =~ s/^\W+|\W+$//g; #This removes punctuation
 
-      # Caption ****************************************************************
-      # Use line limts
-    
-      if ($text=~s/capt?i?o?n?\: ?(.*?)$//i) {
-        $caption = "<p class=\"caption\">$1</p>";
-      }
-
-      # ************************************************************************
+  if ($text =~ s/capt?i?o?n?\: *(.*?)$//i) {
+    $caption = "<p class=\"caption\">$1</p>";
+  }
 
   if($truncateAt != 0) {
    $text = textTruncateLink($text,$truncateAt,false,"/notes/$noteRef",'More');

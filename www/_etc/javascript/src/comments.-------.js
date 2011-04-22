@@ -21,9 +21,7 @@ NB.Comments = {
     var form = $('#comments form');
     NB.Ajax.html('post','#comments_list',form.attr('action'),form.serialize(),false,'top','#comments',null,function(){
         NB.String.increment($('span','#comments_count'));
-        $('#added_comment').show('blind').show('highlight',function(){
-        //NB.Cache.updateCurrent(); - this now happens at Nav.fetch
-      });
+        $('#added_comment').show('blind').show('highlight');
     });
   }  
 }

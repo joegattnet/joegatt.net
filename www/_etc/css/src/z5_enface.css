@@ -174,7 +174,7 @@ overflow:hidden;
     top:10px;
   }
 .interlinear .text p {
-    line-height:50px;
+    line-height:50px!important;
   }
 .interlinear .target {
     width:460px;

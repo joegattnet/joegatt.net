@@ -49,23 +49,23 @@ NB.String.diff = {
     }
 */  
     if (out.n.length == 0) {
-        for (var i = 0; i < out.o.length; i++) {
+        for (var i = 0, len = out.o.length; i < len; i++) {
           str += '<del>' + NB.String.diff.escape(out.o[i]) + "</del>";
         }
     } else {
       if (out.n[0].text == null) {
-        for (n = 0; n < out.o.length && out.o[n].text == null; n++) {
+        for (n = 0,len = out.o.length; n < len && out.o[n].text == null; n++) {
           str += '<del>' + NB.String.diff.escape(out.o[n]) + "</del>";
         }
       }
   
-      for ( var i = 0; i < out.n.length; i++ ) {
+      for ( var i = 0, len = out.n.length; i < len; i++ ) {
         if (out.n[i].text == null) {
           str += '<ins>' + NB.String.diff.escape(out.n[i]) + "</ins>";
         } else {
           var pre = "";
   
-          for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) {
+          for (n = out.n[i].row + 1, len2 = out.o.length; n < len2 && out.o[n].text == null; n++ ) {
             pre += '<del>' + NB.String.diff.escape(out.o[n]) + "</del>";
           }
           str += out.n[i].text + pre;

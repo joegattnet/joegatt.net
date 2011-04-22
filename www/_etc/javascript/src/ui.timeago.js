@@ -4,4 +4,4 @@ NB.Ui.timeago = function() {
 
 /******************************************************************************/
 
-$('body').bind('minor.loaded',NB.Ui.timeago);
+$('body').bind('minor.loaded', NB.Ui.timeago);

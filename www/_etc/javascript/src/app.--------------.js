@@ -18,7 +18,7 @@ NB.App = {
 
 /******************************************************************************/
 
-$('body').bind('content.loaded',function(){
+$('body').bind('content.loaded', function(){
   if(NB.crumb.page_type == 'enface'){
     NB.Enface.invoke();
   } else {

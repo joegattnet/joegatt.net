@@ -32,7 +32,7 @@ NB.Cookie = {
 	purge: function(){
 	  //This only removes root cookies
     var cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++){
+    for (var i = 0, len = cookies.length; i < length; i++){
       NB.Cookie.remove(cookies[i].split("=")[0]);
     }
   }
