@@ -1,7 +1,7 @@
-<div id="content" class="grid_5 suffix_2 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" href="<!--#echo var="content" -->">
+<article id="content" class="grid_5 suffix_2 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
   <!--#include virtual="$content" -->
-</div>
-<div id="toolbar" class="grid_5 omega">
+</article>
+<nav id="toolbar" class="grid_5 omega">
   <!--#include virtual="$toolbar" -->
-</div>
+</nav>
 <!--#include virtual="$apparatus" -->

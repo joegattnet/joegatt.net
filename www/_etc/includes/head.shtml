@@ -8,11 +8,10 @@
     }
   //]]>
 </script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="content-language" content="en" /> 
-<meta http-equiv="content-script-type" content="text/javascript" /> 
-<meta http-equiv="imagetoolbar" content="no" /> 
-<meta name="generator" content="<!--#if expr="generator" -->" /> 
+<meta charset="utf-8">
+<!--#if expr="generator" -->
+  <meta name="generator" content="<!--#if expr="generator" -->" />
+  <!--#endif -->
 <!--#if expr="$nocache=true" -->
   <meta http-equiv="Cache" content="no-cache" />
   <meta http-equiv="Expires" content="-1" />
@@ -20,43 +19,27 @@
 <!--#if expr="$notranslate=true" -->
   <meta name="google" value="notranslate" />
 <!--#endif -->
-
 <!--#include virtual="$head_detail" -->
-
-<link rel="shortcut icon" href="<!--#echo var="images_url" --><!--#echo var="favicon" -->" />
-<link rel="apple-touch-icon" href="<!--#echo var="images_url" --><!--#echo var="iphoneicon" -->" />
-<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"  />
-
+<link rel="up" href="/" title="joegatt.net" />
+<link rel="shortcut icon" href="<!--#echo var="favicon" -->" />
+<link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->" />
+<link rel="image_src" href="<!--#echo var="shareicon" -->"  />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--#if expr="1=0" -->
-  Do all these:
-  http://caronia2.info/car2blog/index.php/2008/02/05/the_importance_of_the_alt_link_rel_agt_t
-  http://www.lyberty.com/html/meta/link-rel_navigation.htm
-  
   <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->" />
 <!--#endif -->
-
 <!--#if expr="$styles_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
-   <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_etc/min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
-   <!--#if expr="$HTTP_USER_AGENT = /MSIE/ && ($HTTP_USER_AGENT!=/MSIE 7/ && $HTTP_USER_AGENT!=/MSIE 8/)" -->
-     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_etc/min/g=cssie6fixes<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
-   <!--#endif -->
-   <!--#if expr="$HTTP_USER_AGENT = /MSIE 7/" -->
-     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_etc/min/g=cssie7fixes<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
-   <!--#endif -->
+  <link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
 <!--#endif -->
-
-<!--#if expr="$server!=joegatt.net" -->
+<!--#if expr="$server != /joegatt.net/" -->
   <style type="text/css">
-    <!--#include virtual="/_etc/css/src/Debug.css"-->  
+    <!--#include virtual="/_etc/css/src/0.Debug.css"-->  
   </style>
 <!--#endif -->
-<style type="text/css" media="print">
-  <!--#include virtual="/_etc/css/src/Print.css"-->  
-</style>
-
-<script type="text/javascript">
+<script src="<!--#echo var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr-1.7.js&amp;<!--#echo var="js_cachebuster" -->"></script>
+<script>
 //<![CDATA[
     var NB = {
         loaded: false,

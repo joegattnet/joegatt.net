@@ -15,6 +15,13 @@ NB.User.twitter = {
     twttr.anywhere.signOut();
     // try // Cookie.write('twuser',false);
     // try // location.reload();
+  },
+  button: function(){
+    if(NB.external.twitter){
+      twttr.anywhere(function (T) {
+        T("#twitter-button:empty").connectButton({size:'small'});
+      });
+    }
   }
 }
 
@@ -22,10 +29,11 @@ NB.User.twitter = {
 
 jQuery(function() {
   if(NB.external.twitter){
+    twttr.anywhere.config({callbackURL: 'http://'+location.host+'/twitter-signedin.html'});
     twttr.anywhere(function (T) {
       if (T.isConnected()) {
         NB.User.twitter.loggedin(T.currentUser);    
-      //Turn off twitter button if user follows me
+      //Turn off twitter follow button if user follows me
       }
       T.bind('authComplete', function (e, user) {
         NB.User.twitter.loggedin(user);
@@ -36,3 +44,5 @@ jQuery(function() {
     });
   }
 });
+
+$('body').bind('minor.loaded', NB.User.twitter.button);

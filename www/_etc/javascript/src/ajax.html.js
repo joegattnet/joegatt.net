@@ -1,6 +1,6 @@
 NB.Ajax = {
 		html: function(formMethod,outDiv,url,params,cache,position,indDivIn,loadUrl,run) {
-    		var current = $(outDiv).attr('href')||'';
+    		var current = $(outDiv).data('url')||'';
     		var urlFull = url+(params==''?'':'?'+params);
         var key = NB.Url.path(url);
 		    NB.Nav.track(1,'<a href="/code/www/_etc/javascript/src/ajax.html.js" class="source-file">New Ajax</a>: ',current,urlFull);
@@ -43,7 +43,7 @@ NB.Ajax = {
                    NB.Ajax._meta_load(urlFull,loadUrl);
                 } else {
                    $('body').trigger('minor.loaded');
-                   $(outDiv).attr('href', url);
+                   $(outDiv).data('url', url);
                 }
                 if(run){
                    run();
@@ -103,7 +103,7 @@ NB.Ajax = {
         $(window).scrollTop(0);
         NB.Nav.crumb(loadUrl);
         var scope = url.indexOf('scope')>=0?url.match(/(scope=)([a-z]+)/)[2]:'minor';
-        $('#'+scope).attr('href', NB.Url.path(url));
+        $('#'+scope).data('url', NB.Url.path(url));
         $('body').trigger(scope+'.loaded');
     }
 }

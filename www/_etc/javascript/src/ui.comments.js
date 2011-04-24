@@ -27,4 +27,4 @@ NB.Ui.comments = function() {
 
 /******************************************************************************/
 
-$('body').bind('minor.loaded',NB.Ui.comments);
+$('body').bind('minor.loaded', NB.Ui.comments);

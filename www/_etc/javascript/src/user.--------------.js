@@ -7,3 +7,15 @@ NB.User = {
   _script_tw: '/_etc/cgi/users/signupin_twitter.cgi',
   _container: '#signupin_container'
 }
+
+/******************************************************************************/
+
+NB.loaded_scripts.add(function(){
+	NB.Ajax.html(
+    'post',
+    NB.User._container,
+    NB.User._script,
+    'startup=true',
+    false
+  );
+});

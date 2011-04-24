@@ -1,4 +1,4 @@
-<div id="toolbar_top" class="<!--#if expr="$toolbar_pinnable=true" -->pinnable<!--#if expr="$HTTP_COOKIE=/pinned=true/" --> pinned<!--#endif --><!--#endif -->">
+<div id="toolbar_top" class="<!--#if expr="$toolbar_pinnable=true" -->pinnable">
   <!--#if expr="$toolbar_pinnable=true" --><p class="pin"><a href="javascript:;" class="pin-a">pin</a></p><!--#endif -->
   <div id="anagramometer" class="separator clearfix stripe">
     <!--#include virtual="/_etc/cache/enface--anagram_table-b=${b}.html?r=${randomiser}"-->      
@@ -6,7 +6,7 @@
   <!--#include virtual="/_etc/cache/common--navigator-pagefull=false&p_max=${p_max}&${QUERY_STRING}.html" -->      
   <div class="separator">
     <div id="paragraphs_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-      <a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left:<!--#echo var="paragraphs_slider_left" -->%;"></a>
+      <a href="#" class="ui-slider-handle ui-state-default ui-corner-all"></a>
     </div>
   </div>
   <div id="version_info">
@@ -17,19 +17,16 @@
         <li><a href="javascript:;" class="button disabled" id="version_latest">Latest version</a></li>
       </ul>      
   </div>
-  <div id="tools" class="navmodules panel<!--#if expr="$HTTP_COOKIE=/n_tools_closed=true/" --> panel_closed<!--#endif -->">
+  <div id="tools" class="navmodules panel">
     <h5><a class="panel_handle" href="javascript:;">Tools</a></h5>
     <ul class="tool panel_body">
-      <li><a href="javascript:;" id="tool_help" <!--#if expr="$tool_help_on=true" --> class="on"<!--#endif -->>Help</a></li>
-      <li><a href="javascript:;" id="tool_colorize" <!--#if expr="$tool_colorize_on=true" --> class="on"<!--#endif -->>Colourise</a></li>
-      <li><a href="javascript:;" id="tool_interlinear" <!--#if expr="$tool_interlinear_on=true" --> class="on"<!--#endif -->>Interlinear</a></li>
-      <li><a href="javascript:;" id="tool_blackletter" <!--#if expr="$tool_blackletter_on=true" --> class="on"<!--#endif -->>Blackletter</a></li>
-      <!--#if expr="1=0" -->
-      <li><a href="javascript:;" id="tool_diffversions" <!--#if expr="$tool_diffversions_on=true" --> class="on"<!--#endif -->>Diff versions</a></li>
-      <!--#endif -->
+      <li><a href="javascript:;" id="tool_help">Help</a></li>
+      <li><a href="javascript:;" id="tool_colorize">Colourise</a></li>
+      <li><a href="javascript:;" id="tool_interlinear">Interlinear</a></li>
+      <li><a href="javascript:;" id="tool_blackletter">Blackletter</a></li>
     </ul>
   </div>
-  <div id="scholia" class="navmodules panel<!--#if expr="$HTTP_COOKIE=/scholia_closed=true/" --> panel_closed<!--#endif -->" href="/_etc/cache/common--scholia-editable=false&u=0&b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
+  <div id="scholia" class="navmodules panel" data-url="/_etc/cache/common--scholia-editable=false&u=0&b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
     <!--#include virtual="/_etc/cache/common--scholia-b=${b}&p=${p}&page_id=${scholia_id}.html" -->
   </div>
 </div>

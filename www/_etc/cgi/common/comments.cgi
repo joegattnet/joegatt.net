@@ -46,7 +46,7 @@ while (my ($text,$found_user_id,$username,$score,$date_iso8601,$date_full) = $st
   if ($ulinks){
   	$usernameString = qq~<a href="/users/$found_user_id" class="user-name" rel="$username">$username</a>~;
 	} else {
-  	$usernameString = qq~<span class="user-name" rel="$username">$username</span>~;
+  	$usernameString = qq~<span class="user-name" data-username="$username">$username</span>~;
   }
 	
   $comments .= qq~

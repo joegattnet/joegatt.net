@@ -17,7 +17,7 @@
       </li>
   		<li><span id="crumbs_chunk" style="display:none;" class="a"></span></li>
   		<li><span id="crumbs_chunk_version" style="display:none;" class="a"></span></li>
-      <li><a id="tool_code" href="javascript:;"<!--#if expr="$tool_code_on=true" --> class="on"<!--#endif -->>code</a></li>
+      <li><a id="tool_code" href="javascript:;">code</a></li>
   </ul>
 </div>
 <div id="nav_top_right" class="grid_2 suffix_2 omega">

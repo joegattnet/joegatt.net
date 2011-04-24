@@ -19,7 +19,7 @@ jQuery.assArray = {
     }
     return temp;
   },
-  with: function(array,find) {
+  within: function(array,find) {
     var temp = {};
     for(var i in array) {
       if (i.match(find)) {

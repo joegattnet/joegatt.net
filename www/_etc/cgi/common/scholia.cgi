@@ -26,8 +26,10 @@ $found = $#scholia+1;
 
 if ($found > 0){
   $count = OOOcomma($found);
-  $count_string = "(<span>$count</span>)";
+} else {
+  $count = '0';
 }
+  $count_string = "(<span>$count</span>)";
 
 $output .= qq~
   <h5><a class="panel_handle" href="javascript:;">Scholia <span id="scholia_count">$count_string</span></a></h5>
@@ -72,7 +74,7 @@ while ($found>0 and $counter<=$#scholia){
   if ($ulinks){
   	$usernameString = qq~<a href="/users/$found_user_id" class="user-name" rel="$username">$username</a>~;
 	} else {
-  	$usernameString = qq~<span class="user-name" rel="$username">$username</span>~;
+  	$usernameString = qq~<span class="user-name" data-username="$username">$username</span>~;
   }
 
   $output .= qq~

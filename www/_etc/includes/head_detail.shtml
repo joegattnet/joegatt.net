@@ -12,12 +12,8 @@
 <!--#endif -->
 
 <title><!--#echo var="title.show" --></title>
-
-<meta property="og:title" content="<!--#echo var="title.show" -->" />
-<meta property="og:type" content="<!--#echo var="type" -->" />
-<meta property="og:url" content="<!--#echo var="canonical" -->" />
-<meta property="og:image" content="<!--#echo var="shareicon" -->" />
-
 <meta name="author" content="<!--#echo var="author" -->" />
-<meta name="description" content="<!--#echo var="summary" -->" /> 
+<meta name="description" content="<!--#echo var="description" -->" /> 
 <meta name="keywords" content="<!--#echo var="keywords" -->" /> 
+<meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
+<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"  />

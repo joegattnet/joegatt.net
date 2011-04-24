@@ -34,8 +34,8 @@ NB.Anagram.letter = function (e, k) {
   NB.Enface.indicating = $(letter_panel).effect('highlight', {color: showcolor}, NB.S.anagramometer.fade);
   NB.Anagram.total_update();
   $('#alert').html(NB.Enface.check_text(e));
-  if ($.richArray.in([32,186,188,190,221],k)) {
+  if ($.richarray.isin([32,186,188,190,221],k)) {
 // What's this for?
-// NB.Tools.colorize.do(e);
+// NB.Tools.colorize.colorize(e);
   }
 }

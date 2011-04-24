@@ -40,7 +40,7 @@ while (my ($note_e_guid,$note_title,$title,$rnd,$ext) = $sth->fetchrow_array()) 
   $output .= qq~
     <li$omega>
       <a href="/notes/$noteRef" title="$note_title">
-        <img src="/_etc/resources/cut/$title-$rnd-16_9-wb-$imageCols-0-0-0.$ext" />
+        <img src="/_etc/resources/cut/$title-$rnd-16_9-wb-$imageCols-0-0-0.$ext">
       </a>
     </li>~;
 }

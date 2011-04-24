@@ -7,3 +7,9 @@ NB.Ui.pinnables = function(){
 /******************************************************************************/
 
 $('#container').delegate('.pin-a','click',NB.Ui.pinnables);
+
+NB.loaded_scripts.add(function(){
+	 if(NB.Cookie.read('pinned') === 'true'){
+      $('.pinnable').addClass('pinned');
+	 }
+});

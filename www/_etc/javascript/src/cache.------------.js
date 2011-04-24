@@ -30,14 +30,14 @@ NB.Cache = {
     }
   },
   removeCurrent: function(){
-    NB.Cache.remove($('#comments').attr('href'));
-//    NB.Cache.remove($('#scholia').attr('href'));
-//    NB.Cache.remove($('#page').attr('href'));
-    NB.Cache.remove($('#section').attr('href'));
+    NB.Cache.remove($('#comments').data('url'));
+//    NB.Cache.remove($('#scholia').data('url'));
+//    NB.Cache.remove($('#page').data('url'));
+    NB.Cache.remove($('#section').data('url'));
   },
   update: function(e){
     var j = $(e);
-    NB.Cache.add(j.attr('href'),j.html());
+    NB.Cache.add(j.data('url'),j.html());
   },
   updateCurrent: function(){
   //use page_id, comments_id etc; search on keys and do it

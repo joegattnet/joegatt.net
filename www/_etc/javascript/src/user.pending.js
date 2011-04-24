@@ -1,7 +1,8 @@
 NB.User.pending = {
   add: function(actions,duration) {
     var duration = duration || 60;
-    var pending = (NB.Cookie.read('pending_actions')?pending:'') + escape(actions);
+    var pending = NB.Cookie.read('pending_actions');    
+    pending = (pending?pending+';':'') + escape(actions);
     NB.Cookie.write('pending_actions',pending,'/',duration);
   },
   run: function(){

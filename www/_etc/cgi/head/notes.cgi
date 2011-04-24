@@ -85,4 +85,4 @@ formRead("get");
 
 # ******************************************************************************
 
-cache_output("../_etc/cache/head--enface-".$ENV{"QUERY_STRING"}.".html",$output);
+cache_output("../../cache/head--notes-$ENV{\"QUERY_STRING\"}.html",$output);

@@ -365,7 +365,9 @@ function get_content($url){
     echo "Curl: $url\n";
     $string = ob_get_contents();
     ob_end_clean();
-    return $string;     
+    return $string;
+    //If url is a 'real' page i.e. !~ /cache/
+    //curl http://developers.facebook.com/tools/lint/?url={YOUR_URL}&format=json
 }
 
 ?>

@@ -1,5 +1,5 @@
 <h4>Cite <span id="cite_count"></span></h4>
-<ul id="n_cite" class="nav_h" rel="<!--#echo var="canonical" -->">
+<ul id="n_cite" class="nav_h" data-link="<!--#echo var="canonical" -->">
 	<li>
     <a href="#">Harvard System</a>
     <p>

@@ -1,25 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"     
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en">       
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
   <head>
     <!--#include virtual="/_etc/includes/head.shtml" -->       
   </head>     
-  <body id="<!--#echo var="section" -->_<!--#echo var="page" -->" class="ajax_large<!--#if expr="$HTTP_COOKIE=/debug=true/" --> debug<!--#endif -->">
-    <!--#include virtual="/_etc/includes/scripts_3rdparty.shtml" -->
+  <body id="<!--#echo var="section" -->_<!--#echo var="page" -->" class="ajax_large">
     <div id="container" class="container_12 clearfix">
-      <div id="section" href="<!--#echo var="location" -->">
+      <div id="section" data-url="<!--#echo var="location" -->">
         <!--#include virtual="/_etc/layouts/section_${layout}.shtml" -->
       </div>
-      <div id="code" class="draggable panel panel_closed escapable-panel"<!--#if expr="$tool_code_on != true" --> style="display:none;"<!--#endif -->>
+      <div id="code" class="draggable panel panel_closed escapable-panel" style="display:none;">
         <!--#include virtual="/_etc/includes/code.shtml" -->
       </div>
-      <div id="signupin_container" href="/_etc/cgi/users/signupin.cgi?<!--#echo var="QUERY_STRING"-->">
-        <!--#include virtual="/_etc/cgi/users/signupin.cgi?startup=true&r=${randomiser}&${QUERY_STRING}"-->
-      </div>
+      <div id="signupin_container"></div>
       <div id="screen_cover" style="display:none;"><!-- --></div>
     </div>
     <div id="hidden" class="hidden"><!-- --></div>
     <!--#include virtual="/_etc/includes/scripts.shtml" -->
-    <!--#include virtual="/_etc/includes/common/debug_info.shtml" -->
   </body>
 </html>

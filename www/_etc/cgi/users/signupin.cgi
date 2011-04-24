@@ -179,9 +179,9 @@ if ($mode eq 'signup') {
   $formstring .= qq~
     <form id="signupinform" action="/_etc/cgi/users/signupin.cgi" class="validate">
       <fieldset>
-      <label><span id="sent_username_warning" class="warning"></span>Username</label><input type="text" name="sent_username" min="5" maxlength="12" />
-      <label><span id="sent_email_warning" class="warning"></span>Email</label><input type="text" name="sent_email" min="5" maxlength="50" />
-      <label><span id="sent_password_warning" class="warning"></span>Password</label><input type="password" name="sent_password"  min="7" maxlength="12" />
+      <label><span id="sent_username_warning" class="warning"></span>Username</label><input type="text" name="sent_username" maxlength="12" placeholder="username" />
+      <label><span id="sent_email_warning" class="warning"></span>Email</label><input type="text" name="sent_email" maxlength="50" placeholder="email" />
+      <label><span id="sent_password_warning" class="warning"></span>Password</label><input type="password" name="sent_password"  min="7" maxlength="12" placeholder="password" />
           <input type="hidden" name="sent_signup_url" id="signup_url" value="" />
           <input type="hidden" name="mode" value="signingup" />
           <input type="hidden" name="is_alert" value="$is_alert" />
@@ -254,7 +254,7 @@ $formstring .= qq~
       $confirmation_message
       <form id="signupinform" action="/_etc/cgi/users/signupin.cgi">
         <fieldset>
-        <label>Code <span id="email_code"></span></label><input type="text" name="sent_confirmation_code"  min="7" maxlength="20" />
+        <label>Code <span id="email_code"></span></label><input type="text" name="sent_confirmation_code"  min="7" maxlength="20" placeholder="confirmation code" />
             <input type="hidden" name="sent_user_id" value="$found_user_id" />
             <input type="hidden" name="mode" value="confirming" />
             <input type="hidden" name="is_alert" value="$is_alert" />
@@ -356,7 +356,7 @@ if ($mode eq 'password') {
   $passwordmessage
     <form id="signupinform" action="/_etc/cgi/users/signupin.cgi">
       <fieldset>
-      <label><span id="sent_email_warning" class="warning"></span>Email</label><input type="text" name="sent_email" value="$sent_email" min="5" maxlength="50" />
+      <label><span id="sent_email_warning" class="warning"></span>Email</label><input type="text" name="sent_email" value="$sent_email" maxlength="50" placeholder="email" />
           <input type="hidden" name="mode" value="resettingpassword" />
           <input type="hidden" name="is_alert" value="$is_alert" />
           <input type="hidden" name="sent_url" id="sent_url" value="" />
@@ -381,9 +381,9 @@ if ($mode eq 'changepassword') {
     <form id="signupinform" action="/_etc/cgi/users/signupin.cgi" class="validate">
       <fieldset>
       <label><span id="sent_old_password_warning" class="warning"></span>Password</label>
-          <input type="password" name="sent_old_password" maxlength="12" />
+          <input type="password" name="sent_old_password" maxlength="12" placeholder="old" />
           <label><span id="sent_new_password_warning" class="warning"></span>New password</label>
-          <input type="password" name="sent_new_password" maxlength="12" />
+          <input type="password" name="sent_new_password" maxlength="12" placeholder="new password" />
           <input type="hidden" name="mode" value="changingpassword" />
           <input type="hidden" name="sent_user_id" value="$sent_user_id" />
           <input type="hidden" name="is_alert" value="$is_alert" />
@@ -411,9 +411,9 @@ if ($mode eq 'signin' or $mode eq 'signinerror') {
   $signinmessage
       <form id="signupinform" action="/_etc/cgi/users/signupin.cgi">
         <fieldset>
-        <label>Username or email</label><input type="text" name="sent_username" min="5" maxlength="50" />
+        <label>Username or email</label><input type="text" name="sent_username" maxlength="50" placeholder="username" />
         <label>Password</label><input type="password" name="sent_password" min="7" maxlength="12" />
-        <input type="checkbox" name="rememberme" value="1" id="rememberme" checked="true" />
+        <input type="checkbox" name="rememberme" value="1" id="rememberme" checked="true" placeholder="password" />
             <label style="display:inline;" for="rememberme">Remember me</label>
             <input type="hidden" name="mode" value="signingin" />
             <input type="hidden" name="is_alert" value="$is_alert" />
@@ -496,9 +496,9 @@ $facebookbutton = qq~
 $twitterbutton = qq~
   <p id="twitter-button"></p>
   <script type="text/javascript">
-    twttr.anywhere(function (T) {
-      T("#twitter-button").connectButton({size:'small'});
-    });
+//    twttr.anywhere(function (T) {
+//      T("#twitter-button:empty").connectButton({size:'small'});
+//    });
   </script>
 ~;
 
@@ -551,7 +551,7 @@ print qq~
   </script>
 ~;
 
-$focus = "if(\$('#signupinform')&&!\$('#signupin').hasClass('panel_closed')){\$('signupinform').focusFirstElement();}";
+$focus = "if(!jQuery.isEmptyObject(\$('#signupinform input[type=\"text\"]'))&&!\$('#signupin').hasClass('panel_closed')){\$('signupinform').focusFirstElement();}";
 
 print qq~
   <script type="text/javascript">

@@ -72,9 +72,9 @@ if ($autheticated == 1){
           <p>Please try again.</p>
           <p id="twitter-button"></p>
           <script type="text/javascript">
-            twttr.anywhere(function (T) {
-              T("#twitter-button").connectButton({size:'small'});
-            });
+            //twttr.anywhere(function (T) {
+            //  T("#twitter-button:empty").connectButton({size:'small'});
+            //});
             NB.Nav.track(2,'Signupin', 'Signed in', 'Twitter error',0);
           </script>
           ~;

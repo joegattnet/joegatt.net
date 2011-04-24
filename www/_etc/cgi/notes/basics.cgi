@@ -100,7 +100,7 @@ sub printNote {
     $imageFileLocationFull = $imageFileLocation;
     $imageFileLocationFull =~ s/wb\-[0-9]+\-/wb-12-/;
     
-    $images = qq~<a href="$imageFileLocationFull"><img src="$imageFileLocation" border="0"/></a>~;
+    $images = qq~<a href="$imageFileLocationFull"><img src="$imageFileLocation"></a>~;
      
     if ($show_maps && ($resource_longitude != 0 && $resource_latitude != 0)){
       $resource_lat_lang = qq~
@@ -132,7 +132,7 @@ sub printNote {
    if ($text=~s/http.*vimeo\.com.*?([0-9]+)// || $source_url=~s/http.*vimeo\.com.*?([0-9]+)//) {
      #This is buggy: http://vimeo.com/forums/topic:28447#comment_3658475 to check whether it's been resolved
      #$video .= qq~
-     #  <iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;color=c9ff23" width="$vimeoWidth" height="$vimeoHeight" frameborder="0"></iframe>
+     #  <iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;color=c9ff23" width="$vimeoWidth" height="$vimeoHeight"></iframe>
      #~;
      $video .= qq~
       <object width="$vimeoWidth" height="$vimeoHeight">
@@ -145,7 +145,7 @@ sub printNote {
     }
    if ($text=~s/http.*youtube\.com\/watch\?v\=(\w+)// || $source_url=~s/http.*youtube\.com\/watch\?v\=(\w+)//) {
      $video .= qq~
-      <iframe title="YouTube video player" class="youtube-player" type="text/html" width="$youtubeWidth" height="$youtubeHeight" src="http://www.youtube.com/embed/$1?hd=1" frameborder="0"></iframe>
+      <iframe title="YouTube video player" class="youtube-player" type="text/html" width="$youtubeWidth" height="$youtubeHeight" src="http://www.youtube.com/embed/$1?hd=1"></iframe>
      ~;
    }
 

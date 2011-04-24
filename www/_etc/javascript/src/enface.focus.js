@@ -20,7 +20,7 @@ NB.Enface.focus = function(event){
 		  NB.Nav.crumb.last(p,new_path);
     }
     NB.Anagram.snap = NB.Anagram.total;
-    NB.Tools.colorize.do(NB.Enface.get_target(NB.p.current));
+    NB.Tools.colorize.colorize(NB.Enface.get_target(NB.p.current));
     j.addClass('focused');
     j.focus();
   }

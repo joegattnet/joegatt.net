@@ -32,7 +32,7 @@ if (!$con) {
 
 mysql_select_db("joegatt-net-dev", $con);
 
-$ril_json = file("https://readitlaterlist.com/v2/get?username=joegatt&password=harmony&apikey=111g8B3dpOR46V6cQ4TG84bk03A2rnn6&since=0");
+$ril_json = file("https://readitlaterlist.com/v2/get?username=joegatt&amp;password=harmony&amp;apikey=111g8B3dpOR46V6cQ4TG84bk03A2rnn6&amp;since=0");
 
 foreach($ril_json as $key=>$value) { 
   echo $key.": ".$value; 

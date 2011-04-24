@@ -369,7 +369,7 @@ sub saveAnagramParagraph {
   my $sth = $dbh->prepare("$sql");
   $sth->execute($b);
   
-  $anagram_table = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tbody>";
+  $anagram_table = "<table><tbody>";
 
   while (my ($label,$count) = $sth->fetchrow_array()) {
     push(@jsarrayvalues, "$count");
@@ -379,7 +379,7 @@ sub saveAnagramParagraph {
     if ($label eq 'b') {
       $anagram_table .= "</tbody></table><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"middle\"><tbody>";
     } elsif ($label eq 'n') {
-      $anagram_table .= "</tbody></table><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tbody>"
+      $anagram_table .= "</tbody></table><table><tbody>"
     }
 
   }
@@ -627,6 +627,8 @@ sub cache_refresh {
       print "<p>Refreshed $feedback_counter files.</p>";
     }
 }
+
+#If a page is refreshed: curl http://developers.facebook.com/tools/lint/?url={YOUR_URL}&format=json
 
 # ******************************************************************************
 

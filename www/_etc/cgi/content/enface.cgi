@@ -66,7 +66,7 @@ while (my ($source,$target,$found_p,$version,$date_string,$date,$target_id,$scor
   					<p lang="de" sourceLength="$length" class="notranslate">$source</p>
     	  </div>
         <div class="grid_5 omega text target">
-  					<p id="paragraph\_id\_$target_id"$appClass sourcelength="$length">$target</p>
+  					<p id="paragraph\_id\_$target_id"$appClass data-p="$found_p" data-id="$target_id" data-sourcelength="$length">$target</p>
     	  </div>
       ~;
   

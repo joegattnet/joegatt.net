@@ -34,7 +34,6 @@ if(NB.Cookie.read('promo')){
     NB.Nav.track(2,'Promo - referrer', promo);
   });
 }
-
 $(function(){
   NB.loaded = true;
   NB.loaded_scripts.run();

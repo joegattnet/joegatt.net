@@ -54,7 +54,7 @@ if ($rows == 0) {
 
 if ($rows != 0) {
 print qq~
-<br/><br/><table cellpadding="0" cellspacing="10" border="0">
+<br/><br/><table>
 <tr>$header</tr>
 ~;
 

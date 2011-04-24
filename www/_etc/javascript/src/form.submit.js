@@ -2,11 +2,9 @@ NB.Form.submit = function(element,indicateDiv) {
 	 var form = $(element).closest('form');
 	 $('input:text,input:password',form).each(function(){return $(this).val()=='';})
 	 if($(':text:unfilled,:password:unfilled',form).size()){
-      alert(NB.TEXT.error.fill);
 	    NB.Nav.track(1,'User Error','Fill required');
       return false;
    } else if($('.warning:sometext',form).size()){
-      alert(NB.TEXT.error.fix);
 	    NB.Nav.track(1,'User Error','Fix errors');
       return false;
  	 } else {

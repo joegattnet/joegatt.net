@@ -12,9 +12,9 @@ formRead("get");
   #replace by search in sitemap table
   #also get book id?
   if($page eq 'index'){
-    $title= "Jean Paul: Schulmeisterlein Wutz";
+    $title = "Jean Paul: Schulmeisterlein Wutz";
   } else {
-    $title= "joegatt.net";
+    $title = "joegatt.net";
   }
 
 	$dbh = connectDB();
@@ -68,10 +68,6 @@ formRead("get");
     <meta name="OriginalPublicationDate" content="$page_last_modified" />
     <meta name="author" content="Joe Gatt" />
     <meta name="keywords" content="" /> 
-    <meta property="og:title" content="$title$extra" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="$canonical" />
-    <meta property="og:image" content="" />
     <link rel="canonical" href="$canonical" />
     <link rel="first" href="$firstLink" title="$firstTitle" />
     <link rel="prev" href="$prevLink" title="$prevTitle" />
@@ -85,4 +81,4 @@ formRead("get");
 
 # ******************************************************************************
 
-cache_output("../_etc/cache/head--enface-".$ENV{"QUERY_STRING"}.".html",$output);
+cache_output("../../cache/head--enface-$ENV{\"QUERY_STRING\"}.html",$output);

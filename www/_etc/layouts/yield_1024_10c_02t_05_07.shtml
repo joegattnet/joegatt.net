@@ -1,13 +1,13 @@
-<div id="content" class="grid_10 row_<!--#echo var="rowname" --> alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" href="<!--#echo var="content" -->">
+<article id="content" class="grid_10 row_<!--#echo var="rowname" --> alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
   <!--#include virtual="$content" -->
-</div>
-<div id="toolbar" class="grid_2 omega">
+</article>
+<nav id="toolbar" class="grid_2 omega">
   <!--#if expr="$toolbar_pinnable=true" -->
-    <div class="pinnable<!--#if expr="$HTTP_COOKIE=/pinned=true/" --> pinned<!--#endif -->">
+    <div class="pinnable">
       <p class="pin"><a href="javascript:;" class="pin-a">pin</a></p>
       <!--#include virtual="$toolbar" -->
     </div>
   <!--#else -->
       <!--#include virtual="$toolbar" -->
   <!--#endif -->
-</div>
+</nav>

@@ -12,7 +12,7 @@ NB.Nav.fetch = function(url) {
    	  NB.Ajax.html(
         'get',
         '#content',
-        $('#content').attr('href').replace(/([^\-])-{1}[a-z][^\.]*/,'$1-'+params),
+        $('#content').data('url').replace(/([^\-])-{1}[a-z][^\.]*/,'$1-'+params),
         '',
         true,
         null,

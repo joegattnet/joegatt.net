@@ -23,12 +23,12 @@ NB.Versions = {
         }
 //        NB.Nav.track(2,'Enface', 'Version', 'v'+version+(latest?' (latest)':''), q);
 // NEXTREL        $('version_info_panel').update('<p>version '+version+(score>0?' &#x25b2;'+score:'')+'</p><p><a href="'+NB.root+'users.shtml?u='+user_id+'&b='+NB.book.id+'">'+username+'</a>, <span title="'+date+'">'+date_string+'</span></p>');
-        $('#version_info_panel').html('<p>&para; ' + NB.p.current + ' version '+version+(score>0?' &#x25b2;'+score:'')+'</p><p class="user-name user-'+username+'" rel="'+username+'">'+showusername+', <span title="'+date+'">'+date_string+'</span></p>');
+        $('#version_info_panel').html('<p>&para; ' + NB.p.current + ' version '+version+(score>0?' &#x25b2;'+score:'')+'</p><p class="user-name user-'+username+'" data-username="'+username+'">'+showusername+', <span title="'+date+'">'+date_string+'</span></p>');
         $('#versions_nav a').each(function(){
           $(this).unbind('click.versions');
         });
         if (version==0) {
-          $('#version_previous').bind('click.versions',NB.Utils.false);
+          $('#version_previous').bind('click.versions',NB.Tools.empty);
           $('#version_previous').addClass('disabled');
         } else {
           $('#version_previous').bind('click.versions',function(){
@@ -37,9 +37,9 @@ NB.Versions = {
           $('#version_previous').removeClass('disabled');
         }
         if (latest) {
-          $('#version_next').bind('click.versions',NB.Utils.false);
+          $('#version_next').bind('click.versions',NB.Tools.empty);
           $('#version_next').addClass('disabled');
-          $('#version_latest').bind('click.versions',NB.Utils.false);
+          $('#version_latest').bind('click.versions',NB.Tools.empty);
           $('#version_latest').addClass('disabled');
         } else {
           $('#version_next').bind('click.versions',function(){

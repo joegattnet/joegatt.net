@@ -10,4 +10,11 @@ NB.User.popup = function(message) {
   NB.Ui.screencover.show();
   $('#signupin').addClass('alert');
   $('#signupin').removeClass('panel_closed');
+  if(NB.external.twitter){
+    twttr.anywhere(function (T) {
+      T("#twitter-button:empty").connectButton({size:'small'});
+    });
+    //Hack - twitter hides buttons for some reason
+    $("#twitter-button iframe").css({display:'inline'});
+  }
 }

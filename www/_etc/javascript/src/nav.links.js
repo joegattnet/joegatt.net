@@ -7,7 +7,7 @@ NB.Nav.links = {
       'get',
       '#hidden',
       '/_etc/cgi/common/popularity.cgi',
-      'type=1&section='+NB.crumb.section+'&page_id='+e.attr('rel')+'&external='+e.attr('title')+'&url='+e.closest('#n_share').attr('rel'),
+      'type=1&section='+NB.crumb.section+'&page_id='+e.data('link')+'&external='+e.attr('title')+'&url='+e.closest('#n_share').data('link'),
       false
     );
     return true;

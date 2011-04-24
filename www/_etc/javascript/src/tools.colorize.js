@@ -3,7 +3,7 @@ NB.Tools.colorize = {
    $('#tool_colorize').toggleClass('on');
     var e = NB.Enface.get_target(NB.p.current);
      if($('#tool_colorize').hasClass('on')){
-        NB.Tools.colorize.do(e);
+        NB.Tools.colorize.colorize(e);
      } else {
         NB.Tools.colorize.undo(e);
      }
@@ -13,7 +13,7 @@ NB.Tools.colorize = {
   on: function(){
     NB.Nav.track(1,'Colorizer: on.');
     $('.colorizer').each(function(i,e){
-      NB.Tools.colorize.do(e);
+      NB.Tools.colorize.colorize(e);
     });
   },
   off: function(){
@@ -22,7 +22,7 @@ NB.Tools.colorize = {
       NB.Tools.colorize.undo(e);
     });
   },
-  do: function(e){
+  colorize: function(e){
   NB.Nav.track(0,'Tools.Colorize.do',e.id);
     if($('#tool_colorize').hasClass('on')){
      NB.Ui.caret.restore();
@@ -62,3 +62,10 @@ NB.Tools.colorize = {
 
 $('#container').delegate('#tool_colorize','click',NB.Tools.colorize.toggle);
 $('#container').delegate('.tool_colorize_extra','click',NB.Tools.colorize.toggle);
+
+NB.loaded_scripts.add(function(){
+	 if(NB.Cookie.read('tool_colorize_on') === 'true'){
+     $('#yield').addClass('tool_colorize');
+  	 $('#tool_colorize').addClass('on');
+	 }
+});

@@ -3,7 +3,7 @@ NB.Enface.check_text = function(e){
   var elementContent = j.html();
   var elementContentStripped = NB.String.strip(elementContent.replace(/<del>.*?<\/del>/g,''));
   var targetLength = elementContentStripped.replace(/[^0-9a-zA-Z]/g,'').length;
-  var difference = j.attr('sourcelength') - targetLength;
+  var difference = j.data('sourcelength') - targetLength;
   var alertMessage = '';
   var error_status = 0;
   if (/([a-zA-Z])\1\1+/.test(elementContent)){
