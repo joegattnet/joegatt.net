@@ -67,12 +67,16 @@ formRead("get");
     <meta name="description" content="$description" />
     <meta name="OriginalPublicationDate" content="$page_last_modified" />
     <meta name="author" content="Joe Gatt" />
-    <meta name="keywords" content="" /> 
+    <meta name="keywords" content="anagram,Wutz,Oulipo,Walter Benjamin,Jean Paul" />
+    <meta name="og:title" content="$title"/>
+    <meta name="og:url" content="$canonical"/>
+    <meta name="og:image" content="http://$serverName/logo.png"/>
+    <meta name="og:description" content="$description"/>
     <link rel="canonical" href="$canonical" />
     <link rel="first" href="$firstLink" title="$firstTitle" />
     <link rel="prev" href="$prevLink" title="$prevTitle" />
     <link rel="last" href="$lastLink" title="$lastTitle" />
-    <link rel="image_src" href="/logo.png"  />
+    <link rel="image_src" href="http://$server/logo.png"  />
   ~;
 
 #Prefetching is registering double visits, upseting rememberme code

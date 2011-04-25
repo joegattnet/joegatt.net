@@ -19,11 +19,13 @@
 <!--#if expr="$notranslate=true" -->
   <meta name="google" value="notranslate" />
 <!--#endif -->
+
 <!--#include virtual="$head_detail" -->
+<meta name="og:site_name" content="joegatt.net"/>
 <meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
+
 <link rel="shortcut icon" href="<!--#echo var="favicon" -->" />
 <link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->" />
-<link rel="image_src" href="<!--#echo var="shareicon" -->"  />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--#if expr="1=0" -->
   <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->" />

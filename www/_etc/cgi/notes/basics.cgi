@@ -33,7 +33,11 @@ sub printNote {
     $truncateAt = 300;
   } elsif ($template eq 'head') {
     $imageFileSpecs = "0-sq-100-0-0-0";
-    $truncateAt = 25;
+    $truncateAt = 250;
+    $images = qq~
+      <link rel="image_src" href="http://$serverName/logo.png"  />
+      <meta name="og:image" content="http://$serverName/logo.png"/>
+    ~;
   } else {
     $imageFileSpecs = "16_9-wb-3-0-0-0";
     $vimeoWidth = 300;
@@ -102,7 +106,10 @@ sub printNote {
     $imageFileLocation = "/_etc/resources/cut/$resource_title-$rnd-$imageFileSpecs.$ext";
     
     if($template eq 'head'){
-      $images = qq~<link rel="image_src" href="$imageFileLocation"  />~;
+      $images = qq~
+        <link rel="image_src" href="http://$serverName$imageFileLocation"  />
+        <meta name="og:image" content="http://$serverName$imageFileLocation"/>
+      ~;
     } else {
       $imageFileLocationFull = $imageFileLocation;
       $imageFileLocationFull =~ s/wb\-[0-9]+\-/wb-12-/;
@@ -116,6 +123,8 @@ sub printNote {
        if($template eq 'head'){
           $geo_tag = qq~
             <meta name="geo.position" content="$resource_latitude; $resource_longitude">
+            <meta name="og:latitude" content="$resource_latitude"/>
+            <meta name="og:longitude" content="$resource_longitude"/>
           ~;
        } else {
         $resource_map_marker = qq~
@@ -171,6 +180,8 @@ sub printNote {
     if($template eq 'head'){
       $geo_tag = qq~
         <meta name="geo.position" content="$note_latitude; $note_longitude">
+        <meta name="og:latitude" content="$note_latitude"/>
+        <meta name="og:longitude" content="$note_longitude"/>
       ~;
     } else {
 
@@ -260,17 +271,24 @@ sub printNote {
   $text =~ s/\n/<\/p><p>/g;
   $textWrapped = "<p class=\"first\">$text</p>";
   
-  if($title ne '' && $title ne 'Note Title' && $title ne 'Untitled Note' && $text !~ /$title/i){
-    $title =~ s/[^\w]$//;
-    if($template eq 'head'){
-     $pageTitle = "<title>Note $noteRef: $title</title>";
-     $text = "<meta name=\"description\" content=\"$text\">";
-    } elsif($template eq 'standalone'){
-     $pageTitle = "<h3 class=\"inserted\" rel=\"subtitle\">$title</h3>";
-    } else {
-     $pageTitle = "";
-     $text = "<h6><a href=\"/notes/$noteRef\">$title</a></h6>$textWrapped";
-    }
+  if($template eq 'head'){
+     $pageTitle = qq~
+       <title>Note $noteRef: $title</title>
+       <meta name="og:title" content="$title"/>
+      ~;
+     $text = qq~
+      <meta name="description" content="$text"/>
+      <meta name="og:description" content="$text"/>
+      ~;
+  } else {
+    if($title ne '' && $title ne 'Note Title' && $title ne 'Untitled Note' && $text !~ /$title/i){
+      $title =~ s/[^\w]$//;
+      } elsif($template eq 'standalone'){
+       $pageTitle = "<h3 class=\"inserted\" rel=\"subtitle\">$title</h3>";
+      } else {
+       $pageTitle = "";
+       $text = "<h6><a href=\"/notes/$noteRef\">$title</a></h6>$textWrapped";
+      }
   }
   
   $tagsFound = "";
@@ -352,6 +370,7 @@ sub printNote {
           <meta name="author" content="Joe Gatt" />
           <meta name="keywords" content="$tagsUrl" />
           $geo_tag
+          <meta name="og:url" content="http://$serverName/notes/$noteRef"/>
           <link rel="canonical" href="/notes/$noteRef" />
           <link rel="up" href="/notes/" title="Notes" />
           $images

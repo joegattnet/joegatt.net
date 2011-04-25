@@ -5,6 +5,4 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="http://$server$location" -->
 
-<!--#set var="shareicon" value="/_etc/images/$section/logo.png" -->
-
 <!--#set var="notes" value="true" -->

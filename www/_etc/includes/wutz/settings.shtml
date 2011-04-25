@@ -5,8 +5,6 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="http://$server$location" -->
 
-<!--#set var="shareicon" value="${root}_etc/images/$section/logo.png" -->
-
 <!--#set var="tool_help_default" value="true" -->
 <!--#set var="tool_colorize_default" value="false" -->
 

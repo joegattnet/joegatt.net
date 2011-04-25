@@ -44,6 +44,7 @@
 <!--#set var="css_cachebuster" value="5" -->
 
 <!--#set var="author" value="Joe Gatt" -->
+<!--#set var="fbadmins" value="" -->
 <!--#set var="generator" value="nembrot.org" -->
 <!--#set var="description" value="A long anagram." -->
 <!--#set var="keywords" value="anagram,oulipo" -->

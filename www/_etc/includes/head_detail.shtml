@@ -15,5 +15,7 @@
 <meta name="author" content="<!--#echo var="author" -->" />
 <meta name="description" content="<!--#echo var="description" -->" /> 
 <meta name="keywords" content="<!--#echo var="keywords" -->" /> 
+<meta name="og:description" content="<!--#echo var="description" -->"/>
+<meta name="og:image" content="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"/>
 <link rel="up" href="/" title="joegatt.net" />
 <link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"  />

@@ -21,8 +21,8 @@
 
 <!--#set var="title.super" value="Notes" -->
 <!--#set var="title.super.url" value="$path" -->
-<!--#set var="title" value="#${p}" -->
-<!--#set var="title.window" value="Notes: #$p" -->
+<!--#set var="title" value="${p}" -->
+<!--#set var="title.window" value="Note $p" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
 <!--#set var="content" value="/_etc/cache/${section}--${page}-p=${p}&mode=standalone.shtml" -->
