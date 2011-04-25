@@ -31,6 +31,9 @@ sub printNote {
     $youtubeWidth = 220;
     $youtubeHeight = 165;
     $truncateAt = 300;
+  } elsif ($template eq 'head') {
+    $imageFileSpecs = "0-sq-100-0-0-0";
+    $truncateAt = 25;
   } else {
     $imageFileSpecs = "16_9-wb-3-0-0-0";
     $vimeoWidth = 300;
@@ -96,107 +99,130 @@ sub printNote {
   # Resources (images & binary files) ******************************************
   
   while (my ($resource_title,$rnd,$ext,$resource_longitude,$resource_latitude) = $sthResources->fetchrow_array()) {
-    $imageFileLocation = "../../_etc/resources/cut/$resource_title-$rnd-$imageFileSpecs.$ext";
-    $imageFileLocationFull = $imageFileLocation;
-    $imageFileLocationFull =~ s/wb\-[0-9]+\-/wb-12-/;
+    $imageFileLocation = "/_etc/resources/cut/$resource_title-$rnd-$imageFileSpecs.$ext";
     
-    $images = qq~<a href="$imageFileLocationFull"><img src="$imageFileLocation"></a>~;
-     
+    if($template eq 'head'){
+      $images = qq~<link rel="image_src" href="$imageFileLocation"  />~;
+    } else {
+      $imageFileLocationFull = $imageFileLocation;
+      $imageFileLocationFull =~ s/wb\-[0-9]+\-/wb-12-/;
+      $images = qq~<a href="$imageFileLocationFull"><img src="$imageFileLocation"></a>~;
+    }
+             
     if ($show_maps && ($resource_longitude != 0 && $resource_latitude != 0)){
       $resource_lat_lang = qq~
           var resource_latlng = new google.maps.LatLng($resource_latitude, $resource_longitude);
       ~;
-      $resource_map_marker = qq~
-          resource_marker = new google.maps.Marker({
-            map:map,
-            draggable:false,
-            clickable:false,
-            title:'Image',
-            position: resource_latlng
-          });
-        bounds.extend(resource_latlng);
-        map.fitBounds(bounds);
-      ~;
-      $resource_geo_tag = qq~
-        <div class="geo">
-         <span class="latitude">$resource_latitude</span>,  
-         <span class="longitude">$resource_longitude</span>
-        </div>
-      ~;
-      $map_center = 'resource_latlng';
+       if($template eq 'head'){
+          $geo_tag = qq~
+            <meta name="geo.position" content="$resource_latitude; $resource_longitude">
+          ~;
+       } else {
+        $resource_map_marker = qq~
+            resource_marker = new google.maps.Marker({
+              map:map,
+              draggable:false,
+              clickable:false,
+              title:'Image',
+              position: resource_latlng
+            });
+          bounds.extend(resource_latlng);
+          map.fitBounds(bounds);
+        ~;
+        $resource_geo_tag = qq~
+          <div class="geo">
+           <span class="latitude">$resource_latitude</span>,  
+           <span class="longitude">$resource_longitude</span>
+          </div>
+        ~;
+        $map_center = 'resource_latlng';
+       }
      }      
   }
 
   # Video **********************************************************************
 
-   if ($text=~s/http.*vimeo\.com.*?([0-9]+)// || $source_url=~s/http.*vimeo\.com.*?([0-9]+)//) {
-     #This is buggy: http://vimeo.com/forums/topic:28447#comment_3658475 to check whether it's been resolved
-     #$video .= qq~
-     #  <iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;color=c9ff23" width="$vimeoWidth" height="$vimeoHeight"></iframe>
-     #~;
-     $video .= qq~
-      <object width="$vimeoWidth" height="$vimeoHeight">
-        <param name="allowfullscreen" value="true" />
-        <param name="allowscriptaccess" value="always" />
-        <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=$1&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" />
-        <embed src="http://vimeo.com/moogaloop.swf?clip_id=$1&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="$vimeoWidth" height="$vimeoHeight"></embed>
-      </object>
-     ~;
-    }
-   if ($text=~s/http.*youtube\.com\/watch\?v\=(\w+)// || $source_url=~s/http.*youtube\.com\/watch\?v\=(\w+)//) {
-     $video .= qq~
-      <iframe title="YouTube video player" class="youtube-player" type="text/html" width="$youtubeWidth" height="$youtubeHeight" src="http://www.youtube.com/embed/$1?hd=1"></iframe>
-     ~;
+   if ($template ne 'head') {
+     if ($text=~s/http.*vimeo\.com.*?([0-9]+)// || $source_url=~s/http.*vimeo\.com.*?([0-9]+)//) {
+       #This is buggy: http://vimeo.com/forums/topic:28447#comment_3658475 to check whether it's been resolved
+       #$video .= qq~
+       #  <iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;color=c9ff23" width="$vimeoWidth" height="$vimeoHeight"></iframe>
+       #~;
+       $video .= qq~
+        <object width="$vimeoWidth" height="$vimeoHeight">
+          <param name="allowfullscreen" value="true" />
+          <param name="allowscriptaccess" value="always" />
+          <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=$1&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" />
+          <embed src="http://vimeo.com/moogaloop.swf?clip_id=$1&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="$vimeoWidth" height="$vimeoHeight"></embed>
+        </object>
+       ~;
+      }
+     if ($text=~s/http.*youtube\.com\/watch\?v\=(\w+)// || $source_url=~s/http.*youtube\.com\/watch\?v\=(\w+)//) {
+       $video .= qq~
+        <iframe title="YouTube video player" class="youtube-player" type="text/html" width="$youtubeWidth" height="$youtubeHeight" src="http://www.youtube.com/embed/$1?hd=1"></iframe>
+       ~;
+     }
    }
 
   # Map ************************************************************************
 
-  if ($show_maps && ($note_longitude != 0 && $note_latitude != 0)){
-    $note_lat_lang = qq~
-        var note_latlng = new google.maps.LatLng($note_latitude, $note_longitude);
-    ~;
-    $note_map_marker = qq~
-        note_marker = new google.maps.Marker({
-          map:map,
-          draggable:false,
-          clickable:false,
-          title:'Note',
-          position: note_latlng
-        });
-        bounds.extend(note_latlng);
-        map.fitBounds(bounds);
-     ~;
-    $note_geo_tag = qq~
-      <div class="geo">
-       <span class="latitude">$note_latitude</span>,  
-       <span class="longitude">$note_longitude</span>
-      </div>
-    ~;
-    $map_center = 'note_latlng';
-   }
-    
-  if ($note_lat_lang ne '' || $resource_lat_lang ne '') {
-    $map = qq~
-      <div id="map" class="wb-4-16_9"><!-- --></div>
-      <script type="text/javascript">
-        $note_lat_lang
-        $resource_lat_lang
-        var myOptions = {
-          zoom: 14,
-          center: $map_center,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"), myOptions);
-        var bounds = new google.maps.LatLngBounds();
-        $note_map_marker
-        $resource_map_marker
-        $map_extend
-      </script>
-      $note_geo_tag
-      $resource_geo_tag
-    ~;
-  }
+  if ($show_maps){
+  
+    if($template eq 'head'){
+      $geo_tag = qq~
+        <meta name="geo.position" content="$note_latitude; $note_longitude">
+      ~;
+    } else {
 
+      if ($note_longitude != 0 && $note_latitude != 0){
+            $note_lat_lang = qq~
+                var note_latlng = new google.maps.LatLng($note_latitude, $note_longitude);
+            ~;
+            $note_map_marker = qq~
+                note_marker = new google.maps.Marker({
+                  map:map,
+                  draggable:false,
+                  clickable:false,
+                  title:'Note',
+                  position: note_latlng
+                });
+                bounds.extend(note_latlng);
+                map.fitBounds(bounds);
+             ~;
+            $note_geo_tag = qq~
+              <div class="geo">
+               <span class="latitude">$note_latitude</span>,  
+               <span class="longitude">$note_longitude</span>
+              </div>
+            ~;
+            $map_center = 'note_latlng';
+          }
+            
+          if ($note_lat_lang ne '' || $resource_lat_lang ne '') {
+            $map = qq~
+              <div id="map" class="wb-4-16_9"><!-- --></div>
+              <script>
+                NB.loaded_scripts.add(function(){
+                  $note_lat_lang
+                  $resource_lat_lang
+                  var myOptions = {
+                    zoom: 14,
+                    center: $map_center,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                  };
+                  var map = new google.maps.Map(document.getElementById("map"), myOptions);
+                  var bounds = new google.maps.LatLngBounds();
+                  $note_map_marker
+                  $resource_map_marker
+                  $map_extend
+                });
+              </script>
+              $note_geo_tag
+              $resource_geo_tag
+            ~;
+          }
+    }
+  }
   # Text & Title ***************************************************************
 
   #HTML::Strip does not allow exceptions
@@ -225,20 +251,25 @@ sub printNote {
     $caption = "<p class=\"caption\">$1</p>";
   }
 
-  if($truncateAt != 0) {
+  if($template eq 'head') {
+   $text = textTruncate($text,$truncateAt);
+  } elsif($truncateAt != 0) {
    $text = textTruncateLink($text,$truncateAt,false,"/notes/$noteRef",'More');
   }
 
   $text =~ s/\n/<\/p><p>/g;
-  $text = "<p class=\"first\">$text</p>";
+  $textWrapped = "<p class=\"first\">$text</p>";
   
   if($title ne '' && $title ne 'Note Title' && $title ne 'Untitled Note' && $text !~ /$title/i){
     $title =~ s/[^\w]$//;
-    if($mode eq 'standalone'){
+    if($template eq 'head'){
+     $pageTitle = "<title>Note $noteRef: $title</title>";
+     $text = "<meta name=\"description\" content=\"$text\">";
+    } elsif($template eq 'standalone'){
      $pageTitle = "<h3 class=\"inserted\" rel=\"subtitle\">$title</h3>";
     } else {
      $pageTitle = "";
-     $text = "<h6><a href=\"/notes/$noteRef\">$title</a></h6>$text";
+     $text = "<h6><a href=\"/notes/$noteRef\">$title</a></h6>$textWrapped";
     }
   }
   
@@ -272,7 +303,7 @@ sub printNote {
         $pageTitle
         <div class="grid_5 alpha">
           <div class="text">
-            $text
+            $textWrapped
           </div>
           <div id="versions" class="meta">
             <p>Version $version (<abbr class="timeago" title="$date_iso8601">$date_full</abbr>)</p>
@@ -304,20 +335,32 @@ sub printNote {
         ~;
       }
       $note_output .= qq~
-        $text
+        $textWrapped
       ~;
     } elsif($template eq 'compact') {
       $note_output = qq~
         $images
         $video
-        $text
+        $textWrapped
         $meta  
       ~;
+    } elsif($template eq 'head') {
+        $note_output = qq~
+          $pageTitle
+          $text
+          <meta name="OriginalPublicationDate" content="$date_iso8601" />
+          <meta name="author" content="Joe Gatt" />
+          <meta name="keywords" content="$tagsUrl" />
+          $geo_tag
+          <link rel="canonical" href="/notes/$noteRef" />
+          <link rel="up" href="/notes/" title="Notes" />
+          $images
+        ~;
     } else {
       $note_output = qq~
         $images
         $video
-        $text
+        $textWrapped
         $meta  
       ~;
     }

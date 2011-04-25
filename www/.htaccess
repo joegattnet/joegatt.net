@@ -7,22 +7,6 @@ DirectorySlash Off
 #ErrorDocument 404 /error/404
 #ErrorDocument 500 /error/500
 
-Header unset ETag
-FileETag None
-
-SetOutputFilter DEFLATE
-BrowserMatch ^Mozilla/4 gzip-only-text/html
-BrowserMatch ^Mozilla/4\.0[678] no-gzip
-BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
-SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|zip|pdf|woff)$ no-gzip dont-vary
-#SetEnvIf Request_URI -f no-gzip dont-vary
-Header append Vary User-Agent env=!dont-vary
-
-ExpiresActive On
-ExpiresDefault "access plus 1 year"
-ExpiresByType text/html "access plus 10 minutes"
-ExpiresByType text/xml "access plus 10 minutes"
-
 #From https://github.com/paulirish/html5-boilerplate/blob/master/.htaccess
 
 # ----------------------------------------------------------------------
@@ -99,7 +83,6 @@ AddType application/octet-stream safariextz
 
 <IfModule mod_deflate.c>
 
-
 # force deflate for mangled headers developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
 <IfModule mod_setenvif.c>
   <IfModule mod_headers.c>
@@ -154,6 +137,7 @@ AddType application/octet-stream safariextz
   ExpiresByType text/cache-manifest "access plus 0 seconds"
 
 # your document html
+#on production, this is overridden
   ExpiresByType text/html "access plus 0 seconds"
   
 # data

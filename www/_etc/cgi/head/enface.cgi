@@ -72,6 +72,7 @@ formRead("get");
     <link rel="first" href="$firstLink" title="$firstTitle" />
     <link rel="prev" href="$prevLink" title="$prevTitle" />
     <link rel="last" href="$lastLink" title="$lastTitle" />
+    <link rel="image_src" href="/logo.png"  />
   ~;
 
 #Prefetching is registering double visits, upseting rememberme code

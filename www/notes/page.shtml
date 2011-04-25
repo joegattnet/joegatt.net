@@ -17,6 +17,8 @@
 <!--#set var="location" value="$path$p" -->
 <!--#set var="canonical" value="http://$server$location" -->
 
+<!--#set var="head_detail" value="/_etc/cache/head--${page_type}-${QUERY_STRING}.html" -->
+
 <!--#set var="title.super" value="Notes" -->
 <!--#set var="title.super.url" value="$path" -->
 <!--#set var="title" value="#${p}" -->

@@ -381,7 +381,7 @@ if ($mode eq 'changepassword') {
     <form id="signupinform" action="/_etc/cgi/users/signupin.cgi" class="validate">
       <fieldset>
       <label><span id="sent_old_password_warning" class="warning"></span>Password</label>
-          <input type="password" name="sent_old_password" maxlength="12" placeholder="old" />
+          <input type="password" name="sent_old_password" maxlength="12" placeholder="old password" />
           <label><span id="sent_new_password_warning" class="warning"></span>New password</label>
           <input type="password" name="sent_new_password" maxlength="12" placeholder="new password" />
           <input type="hidden" name="mode" value="changingpassword" />
@@ -412,7 +412,7 @@ if ($mode eq 'signin' or $mode eq 'signinerror') {
       <form id="signupinform" action="/_etc/cgi/users/signupin.cgi">
         <fieldset>
         <label>Username or email</label><input type="text" name="sent_username" maxlength="50" placeholder="username" />
-        <label>Password</label><input type="password" name="sent_password" min="7" maxlength="12" />
+        <label>Password</label><input type="password" name="sent_password" min="7" maxlength="12"  placeholder="password" />
         <input type="checkbox" name="rememberme" value="1" id="rememberme" checked="true" placeholder="password" />
             <label style="display:inline;" for="rememberme">Remember me</label>
             <input type="hidden" name="mode" value="signingin" />

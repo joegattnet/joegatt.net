@@ -20,7 +20,7 @@
   <meta name="google" value="notranslate" />
 <!--#endif -->
 <!--#include virtual="$head_detail" -->
-<link rel="up" href="/" title="joegatt.net" />
+<meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
 <link rel="shortcut icon" href="<!--#echo var="favicon" -->" />
 <link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->" />
 <link rel="image_src" href="<!--#echo var="shareicon" -->"  />

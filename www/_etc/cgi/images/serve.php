@@ -42,16 +42,16 @@ if (file_exists($outputLocation)){
   $outputHeight = 0;
    
   switch ($platform) {
-  	case 'wb':
+  	case 'wb': // Web
   		$outputWidth = ($columnWidths[$platform] * $columns) + ($gutterWidths[$platform] * ($columns - 1));
   		break;
   	case 'if':
   		$outputWidth = 100;
   		break;
-  	case 'ip':
+  	case 'ip': // iPhone
   		$outputWidth = 250;
   		break;
-  	case 'k3':
+  	case 'k3': // Kindle
   		$outputWidth = 600;
       $aspectWidth = 3;
       $aspectHeight = 4;
@@ -63,7 +63,7 @@ if (file_exists($outputLocation)){
   	case 'th':
   		$outputHeight = $columns;
   		break;
-  	case 'fw':
+  	case 'fw': // Freeform - force width
   		$outputWidth = $columns;
   	    $rawImage = imagelocation($imageName,'raw') . $imageName . '.' . $ext;
         $size = getimagesize($rawImage);
@@ -71,13 +71,18 @@ if (file_exists($outputLocation)){
       $aspectWidth = 0;
       $aspectHeight = 0;
   		break;
-  	case 'fh':
+  	case 'fh': //Freeform - force height
   		$outputHeight = $columns;
   	    $rawImage = imagelocation($imageName,'raw') . $imageName . '.' . $ext;
         $size = getimagesize($rawImage);
       $outputWidth = ($size[0] * $outputHeight) / $size[1];
       $aspectWidth = 0;
       $aspectHeight = 0;
+  		break;
+  	case 'sq': // Square (icon)
+      $outputWidth = $columns;
+      $aspectWidth = 1;
+      $aspectHeight = 1;
   		break;
   	default:
   		$outputWidth = ($columnWidths[$platform] * $columns) + ($gutterWidths[$platform] * ($columns - 1));
