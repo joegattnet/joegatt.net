@@ -40,3 +40,10 @@ $(function(){
   $('body').trigger('section.loaded');
   $('body').removeClass('ajax_large');
 });
+
+/****************************************************************************/
+
+$('body').bind('content.loaded',function(){
+  NB.Cookie.write('v_' + NB.crumb.page_id, true, NB.crumb.path, 7*24*60);
+});
+

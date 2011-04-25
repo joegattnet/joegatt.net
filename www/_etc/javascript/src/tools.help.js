@@ -17,7 +17,7 @@ $('#container').delegate('#tool_help','click',NB.Tools.help);
 $('#container').delegate('.tool_help_extra','click',NB.Tools.help);
 
 NB.loaded_scripts.add(function(){
-	 if(NB.Cookie.read('tool_help_on') === 'true'){
+	 if(NB.Cookie.read('tool_help_on') === 'true' || !NB.Cookie.read('v_' + NB.crumb.page_id)){
      $('#yield').animate({marginTop:'215px'},'fast');
   	 $('#help_main').show('blind');
   	 $('#tool_help').addClass('on');
