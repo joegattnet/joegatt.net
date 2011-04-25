@@ -42,20 +42,3 @@ p.caption {
   margin-top:-5px;
   margin-bottom:10px;
 }
-
-img[src*=wb-3-0-0-0] {width:220px;height:123px;margin-bottom:5px;}
-img[src*=wb-3-1-0-0] {width:218px;height:121px;border:solid 1px #999;margin-bottom:7px;}
-
-img[src*=wb-4-0-0-0],.wb-4-16_9 {width:300px;height:168px;margin-bottom:10px;}
-img[src*=wb-4-1-0-0] {width:298px;height:166px;border:solid 1px #999;margin-bottom:12px;}
-
-img[src*=wb-6-0-0-0] {width:460px;height:258px;margin-bottom:10px;}
-img[src*=wb-6-1-0-0] {width:458px;height:256px;border:solid 1px #999;margin-bottom:12px;}
-
-img[src*=wb-7-0-0-0] {width:540px;height:303px;margin-bottom:10px;}
-img[src*=wb-7-1-0-0] {width:538px;height:301px;border:solid 1px #999;margin-bottom:12px;}
-
-img[src*=wb-12-0-0-0] {width:940px;height:528px;margin-bottom:10px;}
-img[src*=wb-12-1-0-0] {width:938px;height:526px;border:solid 1px #999;margin-bottom:12px;}
-
-#home_index img[src*=wb-3-0-0-0] {margin-bottom:15px;}

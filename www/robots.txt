@@ -10,7 +10,7 @@ User-agent: *
 Disallow: /errors
 
 User-agent: *
-Disallow: /twitter-signedin
+Disallow: /twitter
 
 User-agent: *
 Disallow: /google

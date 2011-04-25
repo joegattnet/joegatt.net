@@ -30,6 +30,9 @@
     NB.p.max = "<!--#echo var="p_max" -->";
   <!--#endif -->
   
+  NB.layout = "<!--#echo var="layout" -->";
+  NB.page_type = "<!--#echo var="page_type" -->";
+  
 //  NB.loaded_scripts.add(function(){
 //    NB.Highlighter.fetch('/<!--#echo var="section" -->/index.shtml');
 //  });

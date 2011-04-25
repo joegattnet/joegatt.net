@@ -7,24 +7,23 @@
 <!--#set var="page_type" value="index" -->
 <!--#set var="chunk" value="index" -->
 
-<!--#set var="title" value="$REDIRECT_STATUS error" -->
-<!--#set var="title.window" value="$title" -->
+<!--#if expr="$REDIRECT_STATUS != 200"  -->
+  <!--#set var="title" value="$REDIRECT_STATUS error" -->
+  <!--#set var="title.window" value="$title" -->
+<!--#else -->
+  <!--#set var="title" value="Errors" -->
+  <!--#set var="title.window" value="$title" -->
+<!--#endif -->
 
 <!--#set var="request" value="$SERVER_NAME$REQUEST_URI" -->
 <!--#set var="p" value="$REDIRECT_STATUS" -->
 
 <!--#if expr="$p=403" -->
-  <!--#set var="message" value="Access to $url is forbidden." -->
   <!--#set var="title.sub" value="Access forbidden" -->
 <!--#elif expr="$p=404" -->
-  <!--#set var="message" value="The page you were looking for - $request - was not found on this server." -->
   <!--#set var="title.sub" value="Page not found" -->
 <!--#elif expr="$p=500" -->
-  <!--#set var="message" value="A server error has occurred." -->
   <!--#set var="title.sub" value="Server error" -->
-<!--#else -->
-  <!--#set var="message" value="An error has occurred." -->
-  <!--#set var="title.sub" value="The page you were looking for - $url - caused a $p error." -->
 <!--#endif -->
 
 <!--#set var="comments" value="false" -->

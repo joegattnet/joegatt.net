@@ -1,9 +1,19 @@
-<p><!--#echo var="message" --></p>
+<img src="/_etc/resources/cut/and_what_about_this_real_nothing__then__the_nothing_is_rejected_precisely_by_sci_0-32676-10_3-wb-12-0-0-0.jpg">
 
-<p>If you continue to have problems please email <a href="mailto:webmaster@joegatt.net">webmaster@joegatt.net</a>.
+<!--#if expr="$p=403" -->
+  <p>Access to <span class="error"><!--#echo var="request" --></span> is forbidden.</p>
+<!--#elif expr="$p=404" -->
+  <p>The page you were looking for - <span class="error"><!--#echo var="request" --></span> - was not found on this server.</p>
+<!--#elif expr="$p=500" -->
+  <p>A server error has occurred.</p>
+<!--#else -->
+  <p>An error has occurred.</p>
+<!--#endif -->
 
-<script type="text/javascript">
-  //<![CDATA[
+<p>If you continue to have problems please email <a href="mailto:webmaster@joegatt.net">webmaster@joegatt.net</a>.</p>
+
+<script>
+  NB.loaded_scripts.add(function(){
     NB.Nav.track(2,"Error","<!--#echo var="message" -->");
-  //]]>
+  });
 </script>

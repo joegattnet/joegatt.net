@@ -99,3 +99,35 @@ ol.syntax {
 #tool_code.on:after:hover  {
   color:#00c;
 }
+
+/*Syntax*/
+.syntax {
+  font-family: Menlo, Monaco, Consolas, monospace;
+  line-height: 1.5em; }
+  .syntax .function {
+    color: #362fd4!important; }
+  .syntax .keyword {
+    color: #f74b23!important; }
+  .syntax .access {
+    color: #75d42f!important;
+    font-weight: bold; }
+  .syntax .type {
+    color: #86853a!important;
+    font-weight: bold; }
+  .syntax .comment {
+    color: #999999!important;
+    font-style: italic; }
+  .syntax .string, .syntax .constant {
+    color: #f74b23!important; }
+  .syntax .string .escape {
+    color: #362fd4!important; }
+  .syntax .operator {
+    color: #f74b23!important; }
+  .syntax .href {
+    color: inherit!important;
+    border-bottom: 1px dotted #336699; }
+  .syntax .variable {
+    color: #336699!important; }
+  .syntax pre {
+    overflow: auto;
+    font-family: inherit; }

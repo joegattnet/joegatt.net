@@ -32,11 +32,14 @@ NB.Highlighter = {
       /\/_etc\/cache\/(.*?)\-\-(.*?)\-.*/g,
       '/_etc/cgi/$1/$2.cgi'
     );
+    var filesection = NB.Url.section(file);
     file = file.replace(/\//g,'|').replace(/\./g,'~');
     if(file.match(/\~[a-z]*$/)){
       var div = '#source';
       var script = '/_etc/cache/code--files-file=';
       if(!nofollow && file.match(/index\~shtml$/)){
+        file.replace(/\$\{?layout\}?/g, NB.layout);
+        file.replace(/\$\{?section\}?/g, filesection);
         NB.Nav.fetch(url.replace(/.*www/,'').replace('index.shtml',''));
       }
     } else {
