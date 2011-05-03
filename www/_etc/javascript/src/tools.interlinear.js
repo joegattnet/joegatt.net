@@ -7,6 +7,7 @@ NB.Tools.interlinear = {
   	NB.Nav.track(2,'Tools',(on?'on':'off'),'tool_interlinear_on');
   },
   on: function(){
+    $('.target','#content').css({position:'absolute',left:'0'});
     $('#nav_end_container').css({position:'relative'});
     $('#nav_end,#nav_end_page','#yield').css({position:'absolute'});
     $('#scholia','#yield').css({position:'absolute',top:'444px'});

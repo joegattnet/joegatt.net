@@ -164,9 +164,6 @@ overflow:hidden;
 
 /* interlinear *****************************************************************/
 
-.target {
-    left:0;
-  }
 .interlinear .extra_out {
     text-align:left;
     left:0;
@@ -176,6 +173,9 @@ overflow:hidden;
     line-height:50px;
   }
 .interlinear .target {
+    top:0;
+    left:0;
+    position:absolute;
     width:460px;
     margin-left:80px;
     padding-top:20px;
