@@ -43,11 +43,14 @@
 <!--#set var="js_cachebuster" value="9" -->
 <!--#set var="css_cachebuster" value="5" -->
 
-<!--#set var="author" value="Joe Gatt" -->
+<!--#set var="author" value="Gatt, Joe" -->
+<!--#set var="author_last_first" value="Gatt, Joe" -->
 <!--#set var="fbadmins" value="" -->
 <!--#set var="generator" value="nembrot.org" -->
 <!--#set var="description" value="A long anagram." -->
 <!--#set var="keywords" value="anagram,oulipo" -->
+<!--#set var="copyright" value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported" -->
+<!--#set var="subject" value="Translation" -->
 
 <!--#if expr="$server=joegatt.net" -->
   <!--#set var="google_tracking_code" value="UA-16898823-1" -->

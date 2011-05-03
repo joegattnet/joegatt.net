@@ -20,7 +20,7 @@ if($latest eq 'true'){
   $order = "ORDER BY score DESC,date_modified DESC";
 }
 
-
+#Publish is here tested from tags and from column
 if($serverName eq 'joegatt.net' || $serverName eq 'test.joegatt.org'){
   $productionSQL = "AND ? LIKE CONCAT('%__PUBLISH%')";
 }

@@ -76,7 +76,7 @@ while (my ($source,$target,$found_p,$version,$date_string,$date,$target_id,$scor
           <div class="grid_6 prefix_2 suffix_2 alpha omega ends_epigraph">
             <div>
             ~;
-              open (EPIGRAPH, "../../_etc/content/wutz/epigraph_1corinthians.html");
+              open (EPIGRAPH, "../../../_etc/content/wutz/epigraph_1corinthians.html");
               my @lines = <EPIGRAPH>;
               $output .= "@lines";
               close (EPIGRAPH);

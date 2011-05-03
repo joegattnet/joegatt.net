@@ -277,8 +277,11 @@ sub printNote {
        <meta name="og:title" content="$title"/>
       ~;
      $text = qq~
-      <meta name="description" content="$text"/>
-      <meta name="og:description" content="$text"/>
+      <meta name="description" content="$text">
+      <meta name="og:description" content="$text">
+      <meta name="DC.Title" content="$title">
+      <meta name="DC.Description" content="$text">
+      <meta name="DC.Subject" content="Note">
       ~;
   } else {
     if($title ne '' && $title ne 'Note Title' && $title ne 'Untitled Note' && $text !~ /$title/i){

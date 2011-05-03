@@ -1,8 +1,8 @@
-<!--#if expr="$copyright||$nav_end=true" -->
+<!--#if expr="$copyright_explicit||$nav_end=true" -->
   <div id="apparatus_page" class="grid_10 alpha omega">
       <div class="grid_5 alpha">
-        <!--#if expr="$copyright" -->
-          <!--#include virtual="$copyright" -->
+        <!--#if expr="$copyright_explicit" -->
+          <!--#include virtual="$copyright_explicit" -->
         <!--#else -->
           &nbsp;
         <!--#endif -->

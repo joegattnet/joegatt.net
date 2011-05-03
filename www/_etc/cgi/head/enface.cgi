@@ -66,12 +66,14 @@ formRead("get");
     <title>$title$extra</title>
     <meta name="description" content="$description" />
     <meta name="OriginalPublicationDate" content="$page_last_modified" />
-    <meta name="author" content="Joe Gatt" />
     <meta name="keywords" content="anagram,Wutz,Oulipo,Walter Benjamin,Jean Paul" />
     <meta name="og:title" content="$title"/>
     <meta name="og:url" content="$canonical"/>
     <meta name="og:image" content="http://$serverName/logo.png"/>
     <meta name="og:description" content="$description"/>
+    <meta name="DC.Title" content="$title">
+    <meta name="DC.Description" content="$description">
+    <meta name="DC.Subject" content="Translation">
     <link rel="canonical" href="$canonical" />
     <link rel="first" href="$firstLink" title="$firstTitle" />
     <link rel="prev" href="$prevLink" title="$prevTitle" />

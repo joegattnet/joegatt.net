@@ -132,13 +132,13 @@ RewriteCond %{REQUEST_URI} !admin
 RewriteCond %{THE_REQUEST} !^/p/
 RewriteCond %{THE_REQUEST} !^/c/
 RewriteCond %{THE_REQUEST} _
-RewriteRule ^.* - [F,NS,L]
+#RewriteRule ^.* - [F,NS,L]
 
 #Confirmations
 #RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
 #RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
 
 #Redirect javascript errors
 RewriteRule ^(.*)/NaN/?$ $1/1
@@ -165,6 +165,8 @@ RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
 #Genericise these rules (And don't use page but rely on iteration - remove [L])
 RewriteRule ^/?tags/?([_:a-zA-Z0-9]+)/?$ /tags/page.shtml?p=$1 [L,QSA]
 RewriteRule ^/?wutz/?$ /wutz/page.shtml?p=1 [L,QSA]
+RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
+RewriteRule ^/?([a-z0-9]+)/([a-z0-9]+)/?$ /$1/$2.shtml [L,QSA]
 
 #URLs
 RewriteRule ^/?$  /home/ [L]
@@ -179,12 +181,12 @@ RewriteRule ^/?([a-z]+)/?$  $1/index.shtml [L]
 RewriteCond %{REQUEST_URI} !^.*/c/.*$
 RewriteCond %{REQUEST_URI} !^.*/p/.*$
 RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
-RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
+#RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 
 RewriteCond %{REQUEST_URI} !^.*/c/.*$
 RewriteCond %{REQUEST_URI} !^.*/p/.*$
 RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
-#RewriteRule ^/?(.*)/([a-zA-Z0-9]+)/?(.*)/?$ /$1/$2.shtml?p=$3 [L,QSA]
+RewriteRule ^/?(.*)/([a-zA-Z0-9]+)/?(.*)/?$ /$1/$2.shtml?p=$3 [L,QSA]
 
 #RewriteCond %{REQUEST_URI} !-s
 #RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404} 

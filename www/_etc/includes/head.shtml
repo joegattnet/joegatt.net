@@ -21,6 +21,15 @@
 <!--#endif -->
 
 <!--#include virtual="$head_detail" -->
+<meta name="author" content="<!--#echo var="author" -->">
+<meta name="DC.Title" content="<!--#echo var="title.show" -->">
+<meta name="DC.Description" content="<!--#echo var="description" -->">
+<meta name="DC.Subject" content="<!--#echo var="subject" -->">
+<meta name="DC.Publisher" content="joegatt.net">
+<meta name="DC.Type" content="Text">
+<meta name="DC.Format" content="text/html">
+<meta name="DC.Language" content="en-GB">
+<meta name="DC.Rights" content="<!--#echo var="copyright" -->">
 <meta name="og:site_name" content="joegatt.net"/>
 <meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
 
