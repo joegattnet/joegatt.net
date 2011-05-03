@@ -7,6 +7,7 @@ NB.Tools.interlinear = {
   	NB.Nav.track(2,'Tools',(on?'on':'off'),'tool_interlinear_on');
   },
   on: function(){
+    $('#nav_end_container').css({position:'relative'});
     $('#nav_end,#nav_end_page','#yield').css({position:'absolute'});
     $('#scholia','#yield').css({position:'absolute',top:'444px'});
     $('.target','#content').css({position:'absolute',marginLeft:'390px'});
@@ -21,7 +22,7 @@ NB.Tools.interlinear = {
     $('#toolbar_top','#yield').animate({marginLeft:'-160px'},NB.S.speed.slower);
     $('#scholia','#yield').animate({left:'160px',top:'0'},NB.S.speed.slow);
     $('#nav_end','#yield').animate({height:'54px'},NB.S.speed.fast);
-    $('#nav_end_page','#yield').animate({top:'-50px',left:'-70px'},NB.S.speed.fast);
+    $('#nav_end_page','#yield').animate({top:'-15px',left:'12px'},NB.S.speed.fast);
     $('.source p','#content').animate({
       color:NB.S.color.source
       },NB.S.speed.slower,function(){
@@ -44,10 +45,11 @@ NB.Tools.interlinear = {
       $('#scholia','#yield').css({position:'relative',top:'0'});
     });
     $('#nav_end_page','#yield').animate({left:'0',top:'0'},NB.S.speed.slow);
+    $('#nav_end,#nav_end_page','#yield').css({position:'relative'});
     $('.source p','#content').animate({
       color:NB.S.color.text
       },NB.S.speed.slower,function(){
-      $('#yield').removeClass('interlinear');
+      //$('#yield').removeClass('interlinear');
     });
   }
 }
