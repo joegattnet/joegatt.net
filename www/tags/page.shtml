@@ -15,7 +15,9 @@
 <!--#set var="title.super" value="Tags" -->
 <!--#set var="title.super.url" value="$path" -->
 <!--#set var="title" value="$p" -->
-<!--#set var="title.window" value="Tags: $p" -->
+<!--#set var="title.window" value="Tag: $p" -->
+
+<!--#include virtual="/_etc/cache/head--${page_type}-${QUERY_STRING}.shtml" -->
 
 <!--#set var="yield" value="yield_1024_05_02s_05_a.shtml" -->
 <!--#set var="content" value="/_etc/cache/notes--list-tags=${p}&template=compact.html" -->

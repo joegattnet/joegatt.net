@@ -51,7 +51,7 @@ include 'header.php' ?>
           $aspectRatio = $aspectWidth . '_' . $aspectHeight;
           print "<li style=\"float:left;display:inline-block;margin:0 5px 5px 0;\">
             <a href=\"crop_image2.php?image=$image&ext=$ext&aspectWidth=$aspectWidth&aspectHeight=$aspectHeight\">
-              <img src=\"../../../_etc/resources/cut/$image-0-$aspectRatio-th-120-0-0-0.$ext\" height=\"120\" title=\"$image $aspectWidth:$aspectHeight\"/>
+              <img src=\"../../../_etc/resources/cut/$image-0-$aspectRatio-th-120-0-0-0.$ext\" height=\"120\" title=\".$ext: $image $aspectWidth:$aspectHeight\"/>
             </a></li>";
         }
       }
@@ -69,7 +69,7 @@ include 'header.php' ?>
           $aspectRatio = $aspectWidth . '_' . $aspectHeight;
           print "<li style=\"float:left;display:inline-block;margin:0 5px 5px 0;\">
             <a href=\"crop_image2.php?image=$image&ext=$ext&aspectWidth=$aspectWidth&aspectHeight=$aspectHeight\">
-              <img src=\"../../../_etc/resources/cut/$image-0-$aspectRatio-th-120-0-0-0.$ext\" height=\"120\" title=\"$image $aspectWidth:$aspectHeight\"/>
+              <img src=\"../../../_etc/resources/cut/$image-0-$aspectRatio-th-120-0-0-0.$ext\" height=\"120\" title=\".$ext: $image $aspectWidth:$aspectHeight\"/>
             </a></li>";
         }
       }

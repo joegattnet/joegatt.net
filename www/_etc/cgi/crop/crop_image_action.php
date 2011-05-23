@@ -1,5 +1,6 @@
 <?php 
 
+require_once('../src/php/createimage.php');
 require_once('../src/php/imagecachebuster.php');
 
 #$styles = '<link type="text/css" rel="stylesheet" href="css/imig.css" media="screen, projection" />';
@@ -15,6 +16,7 @@ if(isset($_POST['imageFileName'])) {
   $imageWidth      = $_POST['imageWidth'];
   $imageHeight     = $_POST['imageHeight'];
   $imageFileName   = $_POST['imageFileName'];
+  $imageExtension = $_POST['imageExtension'];
   $adjustPreview   = $_POST['adjustPreview'];
   $cropX           = $_POST['cropX'] * $adjustPreview;
   $cropY           = $_POST['cropY'] * $adjustPreview;
@@ -28,12 +30,12 @@ if(isset($_POST['imageFileName'])) {
   if($cropWidth == 0) { $cropWidth = $imageWidth; }
   if($cropHeight == 0) { $cropHeight = $imageHeight; }
 
-  $sourceFile      = '../../../_etc/resources/raw/' . $imageFileName . '.jpg';
-  $destinationFile = '../../../_etc/resources/templates/' . $imageFileName . '-' . $aspectWidth . '_' . $aspectHeight . '.jpg';
-  $destinationFileAuto = '../../../_etc/resources/templates/' . $imageFileName . '-' . $aspectWidth . '_' . $aspectHeight . '.auto.jpg';
+  $sourceFile      = '../../../_etc/resources/raw/' . $imageFileName . '.' . $imageExtension;
+  $destinationFile = '../../../_etc/resources/templates/' . $imageFileName . '-' . $aspectWidth . '_' . $aspectHeight . '.' . $imageExtension;
+  $destinationFileAuto = '../../../_etc/resources/templates/' . $imageFileName . '-' . $aspectWidth . '_' . $aspectHeight . '.auto.' . $imageExtension;
 
 #    $src = createimage($sourceFile);
-    $src = imagecreatefromjpeg($sourceFile);    
+    $src = createimage($sourceFile);    
     $dst = imagecreatetruecolor($cropWidth, $cropHeight);
   
     imagecopyresampled($dst, $src, 0, 0, $cropX, $cropY, $cropWidth, $cropHeight, $cropWidth, $cropHeight);
@@ -55,9 +57,9 @@ if(isset($_POST['imageFileName'])) {
 
   imagecachebuster($imageFileName,$oldRnd,$newRnd,$aspectWidth . '_' . $aspectHeight);
 
-  $preview1 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-wb-4-0-0-0' . '.jpg';
-  $preview2 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-wb-7-0-0-0' . '.jpg';
-  $preview3 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-k3-7-0-0-0' . '.jpg';
+  $preview1 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-wb-4-0-0-0.' . $imageExtension;
+  $preview2 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-wb-7-0-0-0.' . $imageExtension;
+  $preview3 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-k3-7-0-0-0.' . $imageExtension;
   
   imagedestroy($src);
   imagedestroy($dst);

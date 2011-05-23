@@ -108,6 +108,7 @@ return array(
    '//_etc/javascript/src/ui.kill.js',
    '//_etc/javascript/src/ui.image.js',
    '//_etc/javascript/src/ui.panels.js',
+   '//_etc/javascript/src/ui.palette.js',
    '//_etc/javascript/src/ui.pinnables.js',
    '//_etc/javascript/src/ui.screencover.js',
    '//_etc/javascript/src/ui.stripes.js',

@@ -12,7 +12,9 @@ formRead("get");
 
 $range = 100 - $smallest;
 
-#We should make sure that all displayed tags also have notes with __PUBLISHED attached to them
+#We need to think through parent/child tags
+#We should make sure that all displayed tags also have notes with __PUBLISHED
+# and not __NOLIST attached to them
 #Also; this is double counting all versions; we need to group by note.guid too
 
 $dbh = connectDB();

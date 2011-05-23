@@ -9,32 +9,88 @@
   //]]>
 </script>
 <meta charset="utf-8">
-<!--#if expr="generator" -->
+
+<!--#if expr="${title.window}" -->
+  <!--#set var="title.show" value="${title.window}" -->
+<!--#else -->
+  <!--#if expr="${title.super}" -->
+    <!--#set var="title.show" value="${title.super}: $title" --> 
+  <!--#else -->
+    <!--#set var="title.show" value="$title" --> 
+  <!--#endif -->
+<!--#endif -->
+<!--#if expr="${title.sub}" -->
+  <!--#set var="title.show" value="${title.show} - ${title.sub}" -->
+<!--#endif -->
+<title><!--#echo var="title.show" --></title>
+
+<!--#if expr="$generator" -->
   <meta name="generator" content="<!--#if expr="generator" -->" />
   <!--#endif -->
 <!--#if expr="$nocache=true" -->
   <meta http-equiv="Cache" content="no-cache" />
   <meta http-equiv="Expires" content="-1" />
+<!--#else -->
+  <meta http-equiv="Expires" content="mon, 27 sep 2010 14:30:00 GMT">
 <!--#endif -->
 <!--#if expr="$notranslate=true" -->
   <meta name="google" value="notranslate" />
 <!--#endif -->
 
-<!--#include virtual="$head_detail" -->
+<meta name="description" content="<!--#echo var="description" -->"> 
+<meta name="keywords" content="<!--#echo var="keywords" -->"> 
 <meta name="author" content="<!--#echo var="author" -->">
+
+<meta name="og:description" content="<!--#echo var="description" -->">
+<meta name="og:image" content="<!--#echo var="images_url" --><!--#echo var="shareicon" -->">
+<meta name="og:site_name" content="<!--#echo var="sitename" -->"/>
+
+<meta name="DC.Creator" content="<!--#echo var="author_last_first" -->">
 <meta name="DC.Title" content="<!--#echo var="title.show" -->">
 <meta name="DC.Description" content="<!--#echo var="description" -->">
 <meta name="DC.Subject" content="<!--#echo var="subject" -->">
-<meta name="DC.Publisher" content="joegatt.net">
+<meta name="DC.Publisher" content="<!--#echo var="publisher" -->">
 <meta name="DC.Type" content="Text">
 <meta name="DC.Format" content="text/html">
 <meta name="DC.Language" content="en-GB">
 <meta name="DC.Rights" content="<!--#echo var="copyright" -->">
-<meta name="og:site_name" content="joegatt.net"/>
 <meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
 
+<link rel="canonical" href="http://<!--#echo var="server" --><!--#echo var="canonical" -->" />
 <link rel="shortcut icon" href="<!--#echo var="favicon" -->" />
 <link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->" />
+
+<!--#if expr="$copyright_url" -->
+  <link rel="copyright" href="<!--#echo var="copyright_url" -->" />
+<!--#endif -->
+
+<!--#if expr="$nav_up" -->
+  <link rel="up" href="<!--#echo var="nav_up" -->" title="<!--#echo var="nav_up_title" -->" />
+<!--#endif -->
+<!--#if expr="$nav_first" -->
+  <link rel="first" href="<!--#echo var="nav_first" -->" title="<!--#echo var="nav_first_title" -->" />
+<!--#endif -->
+<!--#if expr="$nav_prev" -->
+  <link rel="prev" href="<!--#echo var="nav_prev" -->" title="<!--#echo var="nav_prev_title" -->" />
+<!--#endif -->
+<!--#if expr="$nav_last" -->
+  <link rel="last" href="<!--#echo var="nav_last" -->" title="<!--#echo var="nav_last_title" -->" />
+<!--#endif -->
+
+<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"  />
+
+<!--#if expr="$latitude1" -->
+  <meta name="geo.position" content="<!--#echo var="latitude1" -->; <!--#echo var="longitude1" -->" -->
+  <meta name="og:latitude" content="<!--#echo var="latitude1" -->" -->
+  <meta name="og:longitude" content="<!--#echo var="longitude1" -->" -->
+<!--#endif -->
+
+<!--#if expr="$latitude2" -->
+  <meta name="geo.position" content="<!--#echo var="latitude" -->; <!--#echo var="longitude2" -->" -->
+  <meta name="og:latitude" content="<!--#echo var="latitude2" -->" -->
+  <meta name="og:longitude" content="<!--#echo var="longitude2" -->" -->
+<!--#endif -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--#if expr="1=0" -->
   <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->" />

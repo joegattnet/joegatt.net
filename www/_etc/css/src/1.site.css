@@ -175,7 +175,8 @@ abbr[title], dfn[title] {
 color:#666;
 font-size:11px;
 }
-#content .text p {
+
+#content .text {
     font-size:14px;
     font-family:Georgia,Palatino,"Palatino Linotype",serif;
     color:#333333;

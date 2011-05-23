@@ -16,8 +16,7 @@ $output = qq~
 ~;
 
 foreach $tag (@tags){
-  $tagLink = lc($tag);
-  $tagLink =~ s/ /_/g;
+  $tagLink = tagLinkify($tag);
   $count++;
   $output .= qq~
     <li><a href="/tags/$tagLink" rel="tag">$tag</a></li>

@@ -47,12 +47,12 @@ NB.Ui.image = {
 
 /******************************************************************************/
 
-$('.prefix_1 .notes-list img[src*="-wb-3-0-"]').live('click',function(event){
+$('.prefix_1 .notes-list img[src*="-wb-3-0-"],.prefix_1 .notes-list img[src*="-fw-220-0-"]').live('click',function(event){
   NB.Ui.image.open(event,'220px','123px','540px','303px',3,7,0,'7px','-80px','7px');
   return false;
 });
 
-$('#notes_index .notes-list img[src*="-wb-3-0-"],#tags_page .notes-list img[src*="-wb-3-0-"]').live('click',function(event){
+$('#notes_index .notes-list img[src*="-wb-3-0-"],#tags_page .notes-list img[src*="-wb-3-0-"],#notes_index .notes-list img[src*="-fw-220-0-"],#tags_page .notes-list img[src*="-fw-220-0-"]').live('click',function(event){
   NB.Ui.image.open(event,'220px','123px','538px','303px',3,7,0,'7px',0,'7px');
   return false;
 });
@@ -62,7 +62,7 @@ $('.suffix_1 .notes-list img[src*="-wb-4-0-"]').live('click',function(event){
   return false;
 });
 
-$('#notes_page img[src*="-wb-6-0-"]').live('click',function(event){
+$('#notes_page img[src*="-wb-6-0-"],#notes_page img[src*="-fw-460-0-"]').live('click',function(event){
   NB.Ui.image.open(event,'460px','258px','940px','528px',6,12,0,'12px','-480px','12px','#content .text',{marginTop:0},{marginTop:'540px'});
   return false;
 });

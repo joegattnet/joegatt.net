@@ -42,3 +42,28 @@ p.caption {
   margin-top:-5px;
   margin-bottom:10px;
 }
+
+blockquote {
+text-indent:0;
+font-family:Arial,sans-serif;
+}
+blockquote:before {
+  content: "“";
+}
+blockquote:after {
+  content: "”";
+}
+.caption, .attribution {
+text-indent:0;
+color:#666;
+font-family:Arial,sans-serif;
+display:block;
+font-size:8px;
+}
+.caption {
+text-indent:0;
+}
+.details {
+text-indent:0;
+font-size:8px;
+}

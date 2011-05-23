@@ -10,15 +10,14 @@
 <!--#set var="page_type" value="enface" -->
 <!--#set var="chunk" value="paragraph" -->
 
-<!--#set var="tags" value="$tags,_p$p" -->
+<!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
 
 <!--#set var="title" value="Jean Paul: Schulmeisterlein Wutz" -->
 <!--#set var="title.window" value="$title" -->
 <!--#set var="title.url" value="/wutz/" -->
+<!--#include virtual="/_etc/cache/head--${page_type}-page=${page}&b=${b}&${QUERY_STRING}.shtml" -->
 
 <!--#set var="notranslate" value="true" -->
-
-<!--#set var="head_detail" value="/_etc/cache/head--${page_type}-page=${page}&b=${b}&${QUERY_STRING}.html" -->
 
 <!--#set var="version_file" value="/_etc/cache/${page_type}--version_index-b=${b}.html?r=${randomiser}" -->
 

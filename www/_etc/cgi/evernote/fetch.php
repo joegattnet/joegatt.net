@@ -40,15 +40,15 @@ $result = mysql_query($query);
 while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 //$latest_update_sequence = $row['update_sequence'];
     $latest_unix = $row['latest_unix']*1000;
-//    $latest = $row['latest'];
+    //$latest = $row['latest']; //hhh
     $latest_unix_deleted = $row['latest_unix_deleted']*1000;
-    //echo "Latest:$latest\n";
+    //echo "Latest:$latest\n";//hhh
     //echo "Latest:$latest_unix\n";
 }
 
 $search = new edam_notestore_NoteFilter();
 $search->notebookGuid = $notebookGuid;
-$search->ascending = true;
+$search->ascending = false;
 //$search->timeZone = "Europe/London";
 $result = $noteStore->findNotes($authToken, $search, 0, 99);
 $notesFound = $result->notes;
@@ -61,9 +61,10 @@ $url_queue = array();
 
 foreach ($notesFound as $note) {
   $date_modified=$note->updated;
+  $date_created=$note->created;
   $update_sequence=$note->updateSequenceNum;
 
-  if($date_modified>$latest_unix){
+  if($date_modified > $latest_unix || $date_created > $latest_unix){
 
 //  if($update_sequence>$latest_update_sequence){
     
@@ -77,7 +78,7 @@ foreach ($notesFound as $note) {
     $resources=$noteEdam->resources;
     $content=$noteEdam->content;
     $note_title=$noteEdam->title;
-    $date_created=$noteEdam->created;
+    //$date_created=$noteEdam->created;
     //$date_modified=$noteEdam->updated;
     $update_sequence=$noteEdam->updateSequenceNum;
     $content_hash=$noteEdam->contentHash;
@@ -97,6 +98,8 @@ foreach ($notesFound as $note) {
     $altitude=($altitude===null?0:$altitude);
     
     $note_publish = 0;
+    $note_preview = 0;
+    $note_list = 1;
     $latest = 1;
       
     mysql_query($query);
@@ -122,6 +125,10 @@ foreach ($notesFound as $note) {
 
         if($thisTagName == '__PUBLISH'){
           $note_publish = 1;
+        } else if($thisTagName == '__PREVIEW'){
+          $note_preview = 1;
+        } else if($thisTagName == '__NOLIST'){
+          $note_list = 0;
         } else if($thisTagName == '__HOLD'){
           //Although we are holding publication; tags etc are changed immediately
           //This should be changed
@@ -218,7 +225,7 @@ foreach ($notesFound as $note) {
       );
     }
     mysql_query($query);
-    $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s)",
+    $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,preview,list,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s, %s)",
         $note_guid,
         mysql_real_escape_string($note_title),
         mysql_real_escape_string($content),
@@ -235,6 +242,8 @@ foreach ($notesFound as $note) {
         mysql_real_escape_string($source_url),
         mysql_real_escape_string($source_application),
         $note_publish,
+        $note_preview,
+        $note_list,
         $latest
     );
     mysql_query($query);

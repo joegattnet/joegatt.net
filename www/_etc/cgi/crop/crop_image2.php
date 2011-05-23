@@ -18,8 +18,9 @@ include 'header.php';
     $aspectWidth = $_GET["aspectWidth"];
     $aspectHeight = $_GET["aspectHeight"];
     $imageFileName = $_GET["image"];
+    $imageExtension = $_GET["ext"];
 
-    $imageLocation = '../../../_etc/resources/raw/' . $_GET["image"] . '.' . $_GET["ext"];
+    $imageLocation = '../../../_etc/resources/raw/' . $imageFileName . '.' . $imageExtension;
 
     // GET UPLOADED IMAGE DIMENSIONS
     $cmd = "identify '" . $imageLocation . "' 2>/dev/null";
@@ -53,6 +54,7 @@ include 'header.php';
           <input type="hidden" class="hidden" name="imageWidth" id="imageWidth" value="<?php echo $dimensions['width'] ?>" />
           <input type="hidden" class="hidden" name="imageHeight" id="imageHeight" value="<?php echo $dimensions['height'] ?>" />
           <input type="hidden" class="hidden" name="imageFileName" id="imageFileName" value="<?php echo $imageFileName ?>" />
+          <input type="hidden" class="hidden" name="imageExtension" id="imageFileName" value="<?php echo $imageExtension ?>" />
           <input type="hidden" class="hidden" name="cropX" id="cropX" value="0" />
           <input type="hidden" class="hidden" name="cropY" id="cropY" value="0" />
           <input type="hidden" class="hidden" name="cropWidth" id="cropWidth" value="<?php echo $dimensions['width'] ?>" />
@@ -68,7 +70,7 @@ include 'header.php';
 
     <div id="crop">
       <div id="cropWrap">
-        <img src="../../../_etc/resources/cut/<?php  echo $imageFileName ?>-0-0_0-fw-<?php  echo $previewWidth ?>-0-0-0.jpg" alt="Image to crop" id="cropImage" width="<?php  echo $previewWidth ?>" />
+        <img src="../../../_etc/resources/cut/<?php  echo $imageFileName ?>-0-0_0-fw-<?php  echo $previewWidth ?>-0-0-0.<?php echo $imageExtension ?>" alt="Image to crop" id="cropImage" width="<?php  echo $previewWidth ?>" />
       </div>
     </div>
 

@@ -45,11 +45,14 @@
 
 <!--#set var="author" value="Gatt, Joe" -->
 <!--#set var="author_last_first" value="Gatt, Joe" -->
+<!--#set var="sitename" value="joegatt.net" -->
+<!--#set var="publisher" value="$sitename" -->
 <!--#set var="fbadmins" value="" -->
 <!--#set var="generator" value="nembrot.org" -->
 <!--#set var="description" value="A long anagram." -->
 <!--#set var="keywords" value="anagram,oulipo" -->
 <!--#set var="copyright" value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported" -->
+<!--#set var="copyright_url" value="http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode" -->
 <!--#set var="subject" value="Translation" -->
 
 <!--#if expr="$server=joegatt.net" -->
@@ -75,8 +78,6 @@
 <!--#set var="rss_url" value="joegatt-net.rss" -->
 
 <!--#set var="title.static" value="true" -->
-
-<!--#set var="head_detail" value="/_etc/includes/head_detail.shtml" -->
 
 <!--#set var="version_file" value="/_etc/includes/blank.html" -->
 

@@ -12,7 +12,7 @@ NB.Highlighter = {
   },
   linkify:function(s){
     return s.replace(
-        /"(\/_etc\/.*\.)(html|shtml|txt|htaccess|css|js|cgi|php)"/g,
+        /"(\/.*\.)(html|shtml|txt|htaccess|css|js|cgi|php)"/g,
         '"<a href="/code/www$1$2" class="source-file">$1$2</a>"'
       ).replace(
         /<span class="type">NB<\/span>.<span class="type">([a-zA-Z]*)<\/span>\.<span class="function">([a-z]*)<\/span>/g,

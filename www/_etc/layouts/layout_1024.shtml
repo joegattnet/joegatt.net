@@ -6,7 +6,7 @@
   <head>
     <!--#include virtual="/_etc/includes/head.shtml" -->       
   </head>     
-  <body id="<!--#echo var="section" -->_<!--#echo var="page" -->" class="ajax_large">
+  <body id="<!--#echo var="section" -->_<!--#echo var="page" -->" class="ajax_large">  
     <div id="container" class="container_12 clearfix">
       <div id="section" data-url="<!--#echo var="location" -->">
         <!--#include virtual="/_etc/layouts/section_${layout}.shtml" -->

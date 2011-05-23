@@ -4,3 +4,5 @@
 <!--#set var="path" value="/$section/" -->
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="http://$server$location" -->
+
+<!--#set var="tags" value="code" -->

@@ -63,22 +63,16 @@ formRead("get");
   $description = textTruncate($description,200);
 
   my $output = qq~
-    <title>$title$extra</title>
-    <meta name="description" content="$description" />
-    <meta name="OriginalPublicationDate" content="$page_last_modified" />
-    <meta name="keywords" content="anagram,Wutz,Oulipo,Walter Benjamin,Jean Paul" />
-    <meta name="og:title" content="$title"/>
-    <meta name="og:url" content="$canonical"/>
-    <meta name="og:image" content="http://$serverName/logo.png"/>
-    <meta name="og:description" content="$description"/>
-    <meta name="DC.Title" content="$title">
-    <meta name="DC.Description" content="$description">
-    <meta name="DC.Subject" content="Translation">
-    <link rel="canonical" href="$canonical" />
-    <link rel="first" href="$firstLink" title="$firstTitle" />
-    <link rel="prev" href="$prevLink" title="$prevTitle" />
-    <link rel="last" href="$lastLink" title="$lastTitle" />
-    <link rel="image_src" href="http://$server/logo.png"  />
+    <!--#set var="title.window" value="$title$extra" -->
+    <!--#set var="description" value="$description" -->
+    <!--#set var="date_published" value="$page_last_modified" -->
+    <!--#set var="canonical" value="$canonical" -->
+    <!--#set var="nav_first" value="$firstLink" -->
+    <!--#set var="nav_first_title" value="$firstTitle" -->
+    <!--#set var="nav_prev" value="$prevLink" -->
+    <!--#set var="nav_prev_title" value="$prevTitle" -->
+    <!--#set var="nav_last" value="$lastLink" -->
+    <!--#set var="nav_last_title" value="$lastTitle" -->
   ~;
 
 #Prefetching is registering double visits, upseting rememberme code
@@ -88,4 +82,4 @@ formRead("get");
 
 # ******************************************************************************
 
-cache_output("../../cache/head--enface-$ENV{\"QUERY_STRING\"}.html",$output);
+cache_output("../../cache/head--enface-$ENV{\"QUERY_STRING\"}.shtml",$output);

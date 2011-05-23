@@ -5,6 +5,9 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="http://$server$location" -->
 
+<!--#set var="keywords" value="anagram,Wutz,Oulipo,Walter Benjamin,Jean Paul" -->
+<!--#set var="subject" value="$keywords">
+
 <!--#set var="tool_help_default" value="true" -->
 <!--#set var="tool_colorize_default" value="false" -->
 

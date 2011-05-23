@@ -51,7 +51,7 @@ NB.Ajax = {
               }
             },
           	error: function(XMLHttpRequest,textStatus,errorThrown){
-               NB.Ajax._error(indDiv,textStatus, errorThrown);
+               NB.Ajax._error(indDiv, textStatus, errorThrown);
                if(errorThrown==330){
                 //See above
                 NB.Nav.track(1,'AJAX returned 330 - retrying.');
