@@ -1,0 +1,5 @@
+/www/_etc/archive/*
+/www/_etc/cache/*
+/www/_etc/resources/raw/*
+/www/_etc/cache/templates/*
+/www/_etc/cache/cut/*
