@@ -98,8 +98,7 @@ foreach ($notesFound as $note) {
     $altitude=($altitude===null?0:$altitude);
     
     $note_publish = 0;
-    $note_preview = 0;
-    $note_list = 1;
+    $note_type = 1;
     $latest = 1;
       
     mysql_query($query);
@@ -123,16 +122,20 @@ foreach ($notesFound as $note) {
          array_push($tagGuids,$thisTagParentGuid);
         }
 
-        if($thisTagName == '__PUBLISH'){
+        if($thisTagName == '__PREVIEW'){
           $note_publish = 1;
-        } else if($thisTagName == '__PREVIEW'){
-          $note_preview = 1;
+        } else if($thisTagName == '__PUBLISH'){
+          $note_publish = 2;
         } else if($thisTagName == '__NOLIST'){
-          $note_list = 0;
+          $note_type = 0; //Fragment
+        } else if($thisTagName == '_books'){
+          $note_type = 2; //Book
+        } else if($thisTagName == '__LINK'){
+          $note_type = 3; //Link
+        } else if($thisTagName == '__TOPIC'){
+          $note_type = 4; //Topic
         } else if($thisTagName == '__HOLD'){
-          //Although we are holding publication; tags etc are changed immediately
-          //This should be changed
-          $latest = 0;
+          $latest = 0; //Hold publication - tags, etc are still updated
         }
         
         $query = sprintf("REPLACE INTO tags (e_guid,e_guid_parent,name) VALUES ('%s','%s','%s')",
@@ -224,8 +227,13 @@ foreach ($notesFound as $note) {
           $note_guid
       );
     }
+    
+    #$note_title = strip_tags($note_title);
+    #$content = str_replace("</div>", "</div>/n", $content);
+    #$content = strip_tags($content, '<a><ul><li><h3>');
+    
     mysql_query($query);
-    $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,preview,list,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s, %s)",
+    $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",
         $note_guid,
         mysql_real_escape_string($note_title),
         mysql_real_escape_string($content),
@@ -242,8 +250,7 @@ foreach ($notesFound as $note) {
         mysql_real_escape_string($source_url),
         mysql_real_escape_string($source_application),
         $note_publish,
-        $note_preview,
-        $note_list,
+        $note_type,
         $latest
     );
     mysql_query($query);

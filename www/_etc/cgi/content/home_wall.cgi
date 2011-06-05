@@ -15,7 +15,7 @@ my $sth = $dbh->prepare(qq{
   FROM (resources,notes) JOIN _lookup
   ON (_lookup.check1 = notes.e_guid AND _lookup.check2 = resources.e_guid)
   WHERE latest=1 
-  AND notes.publish = 1
+  AND notes.publish >= ?
   AND notes.deleted <> 1
   AND _lookup.type = 1
   GROUP BY notes.e_guid
@@ -23,7 +23,7 @@ my $sth = $dbh->prepare(qq{
   LIMIT ?
 });
 
-$sth->execute($total);
+$sth->execute($notesThreshold, $total);
 
 $output = " <ul class=\"wall\">";
 

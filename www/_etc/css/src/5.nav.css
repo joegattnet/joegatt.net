@@ -465,18 +465,6 @@ display:block;
 color:#fff;
 }
 /*comment2*/
-.notes-list li {
-margin-bottom:20px;
-font-size:13px;
-font-family:Georgia,Palatino,"Palatino Linotype",serif;
-}
-.notes-list .meta {
-font-family:Tahoma,Arial,sans-serif;
-font-size:11px;
-}
-.notes-list .meta li {
-  margin-bottom:0;
-}
 #comments {
 margin-top:10px;
 }
@@ -499,7 +487,7 @@ top:0;
 
 #more {
 border-top:1px dashed #999;
-margin-top:35px;
+margin-top:15px;
 padding-top:15px;
 }
 

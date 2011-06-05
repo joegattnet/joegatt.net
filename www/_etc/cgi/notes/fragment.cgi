@@ -11,8 +11,8 @@ $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
   SELECT DISTINCT notes.e_guid 
   FROM notes,tags,_lookup
-  WHERE latest=1
-  AND notes.publish = 1
+  WHERE latest = 1
+  AND notes.publish >= ?
   AND notes.deleted <> 1
   AND check1=notes.e_guid AND check2=tags.e_guid
   AND ? = tags.name 
@@ -20,7 +20,7 @@ my $sth = $dbh->prepare(qq{
   DESC
   LIMIT 1
 });
-$sth->execute($tags);
+$sth->execute($notesThreshold, $tags);
 
 my ($note_e_guid) = $sth->fetchrow_array();
 

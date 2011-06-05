@@ -1,0 +1,62 @@
+[% IF showMaps %]
+  <div id="map"><!-- --></div>
+  <script>
+    NB.loaded_scripts.add(function(){
+      [% FOREACH resource IN resources %]
+        [% IF resource.latitude %]
+          var resource_latlng = new google.maps.LatLng([% resource.latitude %], [% resource.longitude %]);
+          var map_center = resource_latlng;
+        [% END %]
+      [% END %]
+      [% IF latitude %]
+        var note_latlng = new google.maps.LatLng([% latitude %], [% longitude %]);
+        var map_center = note_latlng;
+      [% END %]
+      var myOptions = {
+        zoom: 10,
+        center: map_center,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map"), myOptions);
+      var bounds = new google.maps.LatLngBounds();
+      [% IF latitude %]
+          var note_marker = new google.maps.Marker({
+            map:map,
+            draggable:false,
+            clickable:false,
+            title:'Note',
+            position: note_latlng
+          });
+          bounds.extend(note_latlng);
+          map.fitBounds(bounds);
+      [% END %]
+      [% FOREACH resource IN resources %]
+        [% IF resource.latitude %]
+          var resource_marker = new google.maps.Marker({
+            map:map,
+            draggable:false,
+            clickable:false,
+            title:'Note',
+            position: new google.maps.LatLng([% resource.latitude %], [% resource.longitude %])
+          });
+          bounds.extend(resource_marker);
+          map.fitBounds(bounds);
+        [% END %]
+      [% END %]
+    });
+  </script>
+  [% IF latitude %]
+    <div class="geo">
+     <span class="latitude">[% latitude %]</span>,  
+     <span class="longitude">[% longitude %]</span>
+    </div>
+  [% END %]
+  [% FOREACH resource IN resources %]
+    [% IF resource.latitude %]
+      <div class="geo">
+       <span class="latitude">[% resource.latitude %]</span>,  
+       <span class="longitude">[% resource.longitude %]</span>
+      </div>
+    [% END %]
+  [% END %]
+[% END %]

@@ -54,7 +54,9 @@
 <meta name="DC.Format" content="text/html">
 <meta name="DC.Language" content="en-GB">
 <meta name="DC.Rights" content="<!--#echo var="copyright" -->">
-<meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
+<!--#if expr="$fbadmins" -->
+  <meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
+<!--#endif -->
 
 <link rel="canonical" href="http://<!--#echo var="server" --><!--#echo var="canonical" -->" />
 <link rel="shortcut icon" href="<!--#echo var="favicon" -->" />

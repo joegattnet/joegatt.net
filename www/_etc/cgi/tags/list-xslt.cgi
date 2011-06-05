@@ -12,13 +12,30 @@ formRead("get");
 
 $range = 100 - $smallest;
 
-#We need to think through parent/child tags
-#We should make sure that all displayed tags also have notes with __PUBLISHED
-# and not __NOLIST attached to them
-#Also; this is double counting all versions; we need to group by note.guid too
+use strict;
+use DBI;
+use XML::Generator::DBI;
+use XML::Filter::SAX1toSAX2;
+use XML::Filter::XSLT;
+use XML::SAX::Writer;
 
+#my $dbh = DBI->connect(
+#   qw(DBI:vendor:database:host user pass),
+#   {RaiseError=>1},
+#);
 $dbh = connectDB();
-my $sth = $dbh->prepare(qq{
+
+my $writer    = XML::SAX::Writer->new();
+my $xsl_filt  = XML::Filter::XSLT->new(Handler => $writer);
+my $sax_filt  = XML::Filter::SAX1toSAX2->new(Handler => $xsl_filt);
+my $generator = XML::Generator::DBI->new(
+   Handler => $sax_filt,
+   dbh     => $dbh,
+);
+
+$xsl_filt->set_stylesheet_uri('../xslt/tags.list.xsl');
+
+$generator->prepare(qq{
   SELECT name,COUNT(*) AS score  
   FROM tags,notes,_lookup 
   WHERE latest=1 
@@ -32,7 +49,16 @@ my $sth = $dbh->prepare(qq{
   HAVING score >= ? 
   ORDER BY name
 });
-$sth->execute($notesThreshold, $min);
+$generator->execute($notesThreshold, $min);
+
+
+
+#We need to think through parent/child tags
+#We should make sure that all displayed tags also have notes with __PUBLISHED
+# and not __NOLIST attached to them
+#Also; this is double counting all versions; we need to group by note.guid too
+
+$dbh = connectDB();
 
 $highest = 0;
 while (my ($name,$score) = $sth->fetchrow_array()) {

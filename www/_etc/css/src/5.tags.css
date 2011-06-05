@@ -7,6 +7,7 @@ line-height:40px;
 #tag_list.cloud {
 font-size:40px;
 line-height:40px;
+margin-top:-20px;
 }
 
 #n_tags a, .meta a {
@@ -20,10 +21,10 @@ font-size:13px;
 margin-right:5px;
 }
 
-#n_tags li a:after,.meta li a[href*=tags]:after {
+#n_tags li a:after,.meta li a[href*="tags"]:after {
 content:",";
 }
 
-#n_tags li:last-child a:after,.meta li:last-child a[href*=tags]:after {
+#n_tags li:last-child a:after,.meta li:last-child a[href*="tags"]:after {
 content:"";
 }

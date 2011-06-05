@@ -1,20 +1,19 @@
-img[src*=16_9-wb-3-0] {width:220px;height:123px;margin-bottom:5px;}
-img[src*=16_9-wb-3-1] {width:218px;height:121px;border:solid 1px #999;margin-bottom:7px;}
+img[src*="16_9-wb-3-0"] {width:220px;height:123px;margin-bottom:5px;}
+img[src*="16_9-wb-3-1"] {width:218px;height:121px;border:solid 1px #999;margin-bottom:7px;}
 
-img[src*=16_9-wb-4-0],.wb-4-16_9 {width:300px;height:168px;margin-bottom:10px;}
-img[src*=16_9-wb-4-1] {width:298px;height:166px;border:solid 1px #999;margin-bottom:12px;}
+img[src*="16_9-wb-4-0"], .grid_5 #map {width:300px;height:168px;margin-bottom:10px;}
+img[src*="16_9-wb-4-1"] {width:298px;height:166px;border:solid 1px #999;margin-bottom:12px;}
 
-img[src*=16_9-wb-6-0] {width:460px;height:258px;margin-bottom:10px;}
-img[src*=16_9-wb-6-1] {width:458px;height:256px;border:solid 1px #999;margin-bottom:12px;}
+img[src*="16_9-wb-6-0"] {width:460px;height:258px;margin-bottom:10px;}
+img[src*="16_9-wb-6-1"] {width:458px;height:256px;border:solid 1px #999;margin-bottom:12px;}
 
-img[src*=16_9-wb-7-0] {width:540px;height:303px;margin-bottom:10px;}
-img[src*=16_9-wb-7-1] {width:538px;height:301px;border:solid 1px #999;margin-bottom:12px;}
+img[src*="16_9-wb-7-0"] {width:540px;height:303px;margin-bottom:10px;}
+img[src*="16_9-wb-7-1"] {width:538px;height:301px;border:solid 1px #999;margin-bottom:12px;}
 
-img[src*=16_9-wb-12-0] {width:940px;height:528px;margin-bottom:10px;}
-img[src*=16_9-wb-12-1] {width:938px;height:526px;border:solid 1px #999;margin-bottom:12px;}
+img[src*="16_9-wb-12-0"] {width:940px;height:528px;margin-bottom:10px;}
+img[src*="16_9-wb-12-1"] {width:938px;height:526px;border:solid 1px #999;margin-bottom:12px;}
 
-img[src*=10_3-wb-12-0] {width:940px;height:282px;margin-bottom:9px;}
-img[src*=10_3-wb-12-1] {width:940px;height:282px;border:solid 1px #999;margin-bottom:11px;}
+img[src*="10_3-wb-12-0"] {width:940px;height:282px;margin-bottom:9px;}
+img[src*="10_3-wb-12-1"] {width:940px;height:282px;border:solid 1px #999;margin-bottom:11px;}
 
-
-#home_index img[src*=16_9-wb-3-0] {margin-bottom:15px;}
+#home_index img[src*="16_9-wb-3-0"] {margin-bottom:15px;}

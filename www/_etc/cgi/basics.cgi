@@ -20,6 +20,7 @@ use CGI;
     $protectedloc = 'D://Documents/Websites/_db_passwords/joegatt-net/protected.txt';
 		$localhost = 1;
 		$dsn = 'DBI:mysql:live:localhost';
+    $notesThreshold = 1;
   } else {
     $db_pwfileloc = '/home/admin/_db_passwords/joegatt-net/live.txt';
     $saltfileloc = '/home/admin/_db_passwords/joegatt-net/salt.txt';
@@ -28,12 +29,14 @@ use CGI;
     $twitter_apisecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_api.txt';
     $protectedloc = '/home/admin/_db_passwords/joegatt-net/protected.txt';
 		$localhost = 0;
+    $notesThreshold = 2;
     if ($serverName eq 'test.joegatt.org') {
     	$debug = 1;
     	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
     }	elsif ($serverName =~ /joegatt\.org/) {
     	$debug = 1;
     	$dsn = 'DBI:mysql:joegatt-net-dev:localhost';
+      $notesThreshold = 1;
     } else {
     	$debug = 0;
       $dsn = 'DBI:mysql:joegatt-net-production:localhost';
@@ -202,17 +205,21 @@ sub quickDB {
 # ******************************************************************************
 
 sub textTruncate {
-my $string = $_[0];
-my $displaychrs = $_[1];
-my $isTitle = $_[2];
-if ($isTitle eq "true") {$string =~ s/(:|\,|\;| \- ).*//;}
-if (length($string) > $displaychrs) {
-$string = substr($string,0,($displaychrs-3));
-$string =~ s/ \w*$//;
-$string =~ s/\W$//g;
-$string .= "...";
-}
-return $string;
+  my $string = $_[0];
+  my $displaychrs = $_[1];
+  my $isTitle = $_[2];
+  if ($isTitle eq "true") {
+    $string =~ s/(:|\,|\;| \- ).*//;
+  }
+  if (length($string) > $displaychrs) {
+    $string = substr($string,0,($displaychrs-3));
+    $string =~ s/\<.*$//g;
+    $string =~ s/ \w*$//;
+    $string =~ s/\W$//g;
+    $string =~ s/\W$//g;
+    $string .= "...";
+  }
+  return $string;
 }
 
 # ******************************************************************************

@@ -1,0 +1,11 @@
+if(!$textonly){
+  $note_output = qq~
+    $images
+    $caption
+    $map
+    $video
+  ~;
+}
+$note_output .= qq~
+  $textWrapped
+~;

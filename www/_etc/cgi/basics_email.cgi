@@ -7,7 +7,7 @@ sub email_confirm_registration {
   my $code = $_[3];
   my $url = $_[4];
   $url =~ s/\/$//;
-  my $template = 'confirm_registration';
+  my $template = 'email.confirm_registration';
   my $subject = 'Confirm email';
   my $from_email = "$serverName <register>";
   
@@ -21,7 +21,7 @@ sub email_password_reset {
   my $code = $_[3];
   my $url = $_[4];
   $url =~ s/\/$//;
-  my $template = 'password_reset';
+  my $template = 'email.password_reset';
   my $subject = 'Password reset';
   my $from_email = "$serverName <register>";
   
@@ -43,7 +43,7 @@ sub send_email {
      
    use MIME::Lite::TT; 
    
-   $template_txt = $template.'.txt';
+   $template_txt = $template.'.tmpl';
 
    my %options; 
    $options{INCLUDE_PATH} = '../../../_etc/templates'; 
@@ -76,7 +76,7 @@ sub send_email_html {
    
 #   use MIME::Lite::TT::HTML; 
    
-#   $template_txt = $template.'.txt';
+#   $template_txt = $template.'.tmpl';
 #   $template_html = $template.'.html';
    
 #   my %options; 
