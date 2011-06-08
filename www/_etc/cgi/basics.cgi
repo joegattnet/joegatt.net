@@ -544,13 +544,15 @@ sub cache_output {
   $output = $_[1];
   
   if ($output eq ''){
-    $output = '&nbsp;';  
+    $output = '<span style="display:none">&nbsp;</span>';  
   }
   
   $location = untaint($location);
+#  $fullLocation = "http://$serverName/_etc/$location";
+#  $fullLocation =~ s/\.\.\/\.\.\///g;
 #  $location =~ s/(\&|\?)scope=([a-z]*)//;
   open CACHE, ">$location" or print "ERRROR: Cache file not opened: $location";
-  print CACHE $output;
+  print CACHE "$output";
   close CACHE;
   
   # If the call is coming from Apache, the content will also be sent to the browser.
@@ -560,6 +562,9 @@ sub cache_output {
   # mod_rewrite > mod_include > mod_deflate bug).
 
   if($cache_only ne 'true'){
+  #$serverName
+    #print "Location: $fullLocation\n\n";
+    #exit;
     print ("Content-Type: text/html; charset=UTF-8\n\n");
     print $output;
   }
@@ -655,10 +660,12 @@ sub linkifyPath {
 # ******************************************************************************
 
 sub tagLinkify {
+  use Encode;
   $tag = $_[0];
   $tagLink = lc($tag);
+  $tagLink = to_ascii(Encode::decode_utf8($tagLink));
   $tagLink =~ s/\W+/_/g;
-  $tagLink =~ s/^\W|\W$//g;
+  $tagLink =~ s/^_|_$//g;
   return $tagLink;
 }
 
