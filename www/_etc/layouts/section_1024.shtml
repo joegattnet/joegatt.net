@@ -1,4 +1,4 @@
-<div id="page" data-url="<!--#echo var="location" -->">
+<section id="page" data-url="<!--#echo var="location" -->">
   <!--#include virtual="page_${layout}.shtml" -->
   <!--#include virtual="/_etc/includes/common/debug_info.shtml" -->
-</div>
+</section>

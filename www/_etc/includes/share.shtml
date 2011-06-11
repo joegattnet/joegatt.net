@@ -1,25 +1,16 @@
-<h4>Share <span id="share_count"><!--#include virtual="/_etc/cache/common--share_count-id=${share_id}.html" --></span></h4>
-<ul id="n_share" class="nav_h" data-link="<!--#echo var="canonical" -->">
-	 <li><a class="bm digg" data-link="<!--#echo var="share_id" -->" title="Digg" href="http://digg.com/submit?title=<!--#echo var="title" -->&amp;url=<!--#echo var="canonical" -->">Digg</a></li>
-	 <li><a class="bm reddit" data-link="<!--#echo var="share_id" -->" title="Reddit" href="http://reddit.com/submit?title=<!--#echo var="title" -->&amp;url=<!--#echo var="canonical" -->">Reddit</a></li>
-	 <li><a class="bm stumbleupon" data-link="<!--#echo var="share_id" -->" title="StumbleUpon" href="http://www.stumbleupon.com/submit?title=<!--#echo var="title" -->&amp;url=<!--#echo var="canonical" -->">StumbleUpon</a></li>
-   <li class="bm twitter">
-     <a href="http://twitter.com/share" class="twitter-share-button" data-url="<!--#echo var="canonical" -->" data-count="horizontal">Tweet</a>
-     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-   </li>
-   <li class="bm fb-like">
-    <iframe src="http://www.facebook.com/plugins/like.php?href=<!--#echo var="canonical" -->%2F1&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=tahoma&amp;colorscheme=light&amp;height=21" scrolling="no" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true">
-    </iframe>
-   </li>
+<h4>Share<!--#if expr="$share == 'full'" --><span class="soften">/</span>Use<!--#endif --><span id="share_count" class="addthis_counter addthis_bubble_style"></span></h4>
+<ul id="n_share" class="nav_h">
+  <li class="addthis_toolbox addthis_default_style">
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <!--#if expr="$share == 'full'" -->
+      <a class="addthis_button_evernote"></a>
+      <a class="addthis_button_instapaper"></a>
+      <a class="addthis_button_readitlater"></a>
+    <!--#endif -->
+    <a class="addthis_button_email"></a>
+    <a class="addthis_button_compact"></a>   
+    <!-- a href="#">LaTex</a>
+    <a href="#">COinS</a -->
+  </li>
 </ul>
-
-<!--#if expr="1=0" -->
-   <fb:like href="<!--#echo var="canonical" -->" layout="button_count" action="like"></fb:like>
-	 <li><a class="bm friendfeed" data-link="<!--#echo var="share_id" -->" title="Friendfeed" href="http://friendfeed.com/?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">Facebook</a></li>
-	 <li><a class="bm delicious" data-link="<!--#echo var="share_id" -->" title="Delicious" href="http://www.delicious.com/post?title=<!--#echo var="title" -->&url=<!--#echo var="canonical" -->">Delicious</a></li>
-	 <li><a class="bm twitter" data-link="<!--#echo var="share_id" -->" title="Twitter" href="http://twitter.com/home?status=<!--#echo var="canonical" -->">Twitter</a></li>
-   <li><a class="bm google" data-link="<!--#echo var="share_id" -->" title="Google" href="http://www.google.com/bookmarks/mark?op=edit&title=<!--#echo var="title" -->&bkmk=<!--#echo var="canonical" -->">Google Bookmarks</a></li>
-	 <li><a class="bm mixx" data-link="<!--#echo var="share_id" -->" title="Mixx" href="http://www.mixx.com/submit?page_url=<!--#echo var="canonical" -->">Mixx</a></li>
-	 <li><a class="bm myspace" data-link="<!--#echo var="share_id" -->" title="MySpace" href="http://www.myspace.com/Modules/PostTo/Pages/?u=<!--#echo var="canonical" -->&t=<!--#echo var="title" -->">MySpace</a></li>
-   <li><a class="bm yahoo" data-link="<!--#echo var="share_id" -->" title="Yahoo" href="http://buzz.yahoo.com/submit/?Headline=<!--#echo var="title" -->&Summary=<!--#echo var="description" -->&submitAssetType=text&submitUrl=<!--#echo var="canonical" -->">Yahoo! My Web</a></li>
-<!--#endif -->

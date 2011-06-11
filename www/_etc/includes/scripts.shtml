@@ -1,4 +1,43 @@
-<!--#include virtual="/_etc/includes/scripts_3rdparty.shtml" -->
+<div id="fb-root"></div>
+<div id="en-root"></div>
+<div id="ne-root"></div>
+
+<!--#if expr="$external_facebook = true" -->
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({appId: '142214389156795', status: true, cookie: true, xfbml: true});
+    };
+    (function() {
+      var e = document.createElement('script');
+      e.type = 'text/javascript';
+      e.src = document.location.protocol + '//connect.facebook.net/en_GB/all.js';
+      e.async = true;
+      document.getElementById('fb-root').appendChild(e);
+    }());
+  </script>
+<!--#endif -->
+<!--#if expr="$external_twitter = true" -->
+  <script src="http://platform.twitter.com/anywhere.js?id=026ussCKYOuzzcZjSV7UQ"></script>
+<!--#endif -->
+
+<script>
+   NB.external = {
+    facebook: <!--#echo var="external_facebook" -->,
+    twitter: <!--#echo var="external_twitter" -->
+   }
+</script>
+<script>
+  (function() {
+    if(!'contentEditable' in document.body){
+      var e = document.createElement('script');
+      e.type = 'text/javascript';
+      e.src = '<!--#echo var="js_url" -->/_etc/min/?f=/_etc/javascript/lib/nicEdit-Skip.js';
+      e.async = true;
+      document.getElementById('ne-root').appendChild(e);
+    }
+  }());
+</script>
+
 <!--#if expr="$scripts_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/<!--#echo var="jquery_version" -->/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/<!--#echo var="jquery_ui_version" -->/jquery-ui.min.js"></script>
@@ -6,6 +45,10 @@
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_scripts.cgi"-->
 <!--#endif -->
+
+<!--#include virtual="/_etc/includes/google_analytics.shtml" -->
+<script src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <script>
   NB.root = "<!--#echo var="root" -->";

@@ -548,9 +548,6 @@ sub cache_output {
   }
   
   $location = untaint($location);
-#  $fullLocation = "http://$serverName/_etc/$location";
-#  $fullLocation =~ s/\.\.\/\.\.\///g;
-#  $location =~ s/(\&|\?)scope=([a-z]*)//;
   open CACHE, ">$location" or print "ERRROR: Cache file not opened: $location";
   print CACHE "$output";
   close CACHE;
@@ -562,9 +559,6 @@ sub cache_output {
   # mod_rewrite > mod_include > mod_deflate bug).
 
   if($cache_only ne 'true'){
-  #$serverName
-    #print "Location: $fullLocation\n\n";
-    #exit;
     print ("Content-Type: text/html; charset=UTF-8\n\n");
     print $output;
   }

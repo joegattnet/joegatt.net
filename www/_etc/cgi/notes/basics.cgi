@@ -169,10 +169,10 @@ sub printNote {
   }
 
   $textBriefClean = textTruncate(sanitiseText($text, 1), 350);
-  $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
-
+  $text =~ s/\n\n/\n/g;
   $text =~ s/\n/<\/p><p>/g;
   $text = "<p class=\"first\">$text</p>";
+  $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
     
   $sthNote->finish();
   $sthResources->finish();
@@ -244,7 +244,8 @@ sub sanitiseText {
 
   my $text = $_[0];
   my $totally = $_[1];
-
+  $text =~ s/\&nbsp\;/ /g;
+  $text =~ s/style=\"[^\"]*\"//g;
   if($totally){
     use HTML::Strip;
     my $hs = HTML::Strip->new();
@@ -252,8 +253,7 @@ sub sanitiseText {
     $hs->eof;  
   } else {
     #HTML::Strip does not allow exceptions
-    $text =~ s/\&nbsp\;/ /g;
-    $text =~ s/style=\"[^\"]*\"//g;
+    $text =~ s/<\/div>/<\/div>\n/g;
     $text =~ s/<a /XXaXX/g;
     $text =~ s/<\/a>/YYaYY/g;
     $text =~ s/<ul/XXulXX/g;
@@ -278,7 +278,7 @@ sub sanitiseText {
     $text =~ s/YYh3YY/<\/h3>/g;
   }
 
-  $text =~ s/\n\n/ /g;
+  #$text =~ s/\n\n/ /g;
   $text =~ s/  / /g;
   $text =~ s/^\s+//;
   $text =~ s/\s+$//;  

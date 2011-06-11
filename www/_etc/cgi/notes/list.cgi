@@ -77,10 +77,10 @@ sub getNotes {
     $output .= "<li>$this_note_output</li>";
     $notesCount++;
   }
-  #if ($header ne 'no') {
-    my $headerOutput = "<h4><a href=\"/$show/\">$showTitle</a> <span>($notesCount)</span></h4>";
-  #}
-  if ($notesCount!=0) {
+  if ($notesCount != 0) {
+    if ($header ne 'no') {
+      $headerOutput = "<h4><a href=\"/$show/\">$showTitle</a> <span>($notesCount)</span></h4>";
+    }
     $output = "$headerOutput<ul class=\"notes-list notestype-$show\">$output</ul>";
   }
   return $output;

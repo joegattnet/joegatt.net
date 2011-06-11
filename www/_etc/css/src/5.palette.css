@@ -12,6 +12,7 @@
  font-size:9px;
  font-family:Menlo,Monaco,Consolas,monospace;
  color:#666;
+ text-transform:uppercase;
 }
 
 .palette div p:first-child {
