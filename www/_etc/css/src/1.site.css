@@ -251,16 +251,16 @@ color:#333;
 }
 
 #title {
-    height:140px;
+    height:100px;
 }
 
 h1 {
   font-size:38px;
-  top:80px;
+  top:60px;
 }
 h2 {
   color:#999;
-    top:58px;
+    top:38px;
 }
 #title h2 a {
   color:#999;
@@ -270,7 +270,7 @@ h2 {
 }
 h3 {
   color:#454545;
-  top:139px;
+  top:119px;
 }
 
 /* yield **********************************************************************/

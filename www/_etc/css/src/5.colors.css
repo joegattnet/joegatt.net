@@ -29,15 +29,19 @@
 }
 
 .colophon h1 {
-  color:#f74b23;
+  color:#999999;
 }
 
 .tags h1 {
   color:#b32fd4;
 }
     
+.topics h1 {
+  color:#29cff3;
+}
+
 h1 .version {
-    left:515px;
-    display:none;
-    }
+  left:515px;
+  display:none;
+}
   

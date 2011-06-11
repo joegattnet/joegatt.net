@@ -1,7 +1,3 @@
-.section_notes h1 {
-  color:#336633;
-}
-    
 h1 .version {
   left:515px;
   display:none;
@@ -13,10 +9,10 @@ h1 .version {
 .notes-list h6:after {
   content: ": ";
 }
-iframe[src*="vimeo"],iframe[src*="youtube"],#notes embed,#notes object {
+iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
   background-color:#000;
 }
-#notes embed {
+.notes embed {
   background-color:#000;
   clear:both;
 }
@@ -82,9 +78,9 @@ blockquote:after {
   font-size:13px;
   font-family:Georgia,Palatino,"Palatino Linotype",serif;
 }
-#topics_index #content .notes-list li,
-#links_index #content .notes-list li,
-#bibliography_index #content .notes-list li {
+.topics #content .notes-list li,
+.links #content .notes-list li,
+.bibliography #content .notes-list li {
   margin-bottom:0;
 }
 .notes-list .meta {
