@@ -6,7 +6,7 @@
   <title></title>
   </head>
   <body>
-<script type="text/javascript">
+<script>
 //<![CDATA[
 	 var expandedSourceText = "'ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss')";
 	 expandedSourceText = expandedSourceText.replace('ä','ae').replace('ö','oe').replace('ü','ue').replace('ß','ss');

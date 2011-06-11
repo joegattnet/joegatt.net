@@ -1,4 +1,7 @@
 NB.Url = {
+  complete: function(u){
+    return location.protocol + '//' + location.host + u;
+  },
   isDoc: function(u){
     return /\.pdf$|\.doc$|\.zip$|\.odt$/.test(u);
   },

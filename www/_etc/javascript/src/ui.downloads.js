@@ -16,4 +16,4 @@ NB.Ui.downloads = function() {
 
 /*****************************************************************************/
   
-$('body').bind('content.loaded',NB.Ui.downloads);
+$('body').bind('content.loaded', NB.Ui.downloads);

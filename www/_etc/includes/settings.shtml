@@ -26,7 +26,7 @@
 
 <!--#set var="path" value="/" -->
 <!--#set var="location" value="$path" -->
-<!--#set var="canonical" value="http://$server$location" -->
+<!--#set var="canonical" value="$location" -->
 
 <!--#set var="favicon" value="http://a1.joegatt.net/favicon.ico" -->
 <!--#set var="iphoneicon" value="http://a1.joegatt.net/apple-touch-icon.png" -->
@@ -82,9 +82,6 @@
 <!--#set var="version_file" value="/_etc/includes/blank.html" -->
 
 <!--#set var="comments" value="true" -->
-<!--#set var="share" value="/_etc/includes/share.shtml" -->
-<!--#set var="clip" value="/_etc/includes/clip.shtml" -->
-<!--#set var="cite" value="false" -->
 
 <!--#set var="b" value="0" -->
 <!--#set var="p_max" value="0" -->

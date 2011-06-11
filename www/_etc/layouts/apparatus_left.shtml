@@ -1,16 +1,6 @@
 <!--#if expr="$share!=false" -->
   <div id="share">
-    <!--#include virtual="$share" -->
-  </div>
-<!--#endif -->    
-<!--#if expr="$clip!=false" -->
-  <div id="clip">
-    <!--#include virtual="$clip" -->
-  </div>
-<!--#endif -->    
-<!--#if expr="$cite!=false" -->
-  <div id="cite">
-    <!--#include virtual="$cite" -->
+    <!--#include virtual="/_etc/includes/share.shtml" -->
   </div>
 <!--#endif -->    
 <!--#if expr="$comments=true" -->

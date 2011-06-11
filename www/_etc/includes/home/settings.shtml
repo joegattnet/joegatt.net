@@ -3,4 +3,4 @@
 
 <!--#set var="path" value="/" -->
 <!--#set var="location" value="$path" -->
-<!--#set var="canonical" value="http://$server$location" -->
+<!--#set var="canonical" value="$location" -->

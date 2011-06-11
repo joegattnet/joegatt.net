@@ -2,15 +2,14 @@ NB.Nav.crumb = function(url){
 
     var p = NB.Url.p(url);
     var path = NB.Url.path(url);
+    //Should these be updated client-side? We are receiving them via initialise.
     NB.crumb.lastloaded = NB.Url.path(url);
     NB.crumb.category = '';
     NB.crumb.section = NB.Url.section(url);
     NB.crumb.page = NB.Url.page(url);
     NB.crumb.page_id = NB.crumb.section+'_'+NB.crumb.page;
     NB.crumb.path = NB.Url.dir(url);
-    NB.crumb.canonical = url;
-
-    $('.twitter-share-button').attr('data-url',url);
+    NB.crumb.canonical = NB.Url.complete(url);
 
     if(path==location.pathname){
       location.hash = '';
@@ -27,6 +26,7 @@ NB.Nav.crumb = function(url){
 
     NB.Nav.crumb.last(p,path);
   
+    $("link[rel='canonical']").attr('href', NB.crumb.canonical);
     document.title = NB.title_window + ((NB.chunk == 'page' || NB.chunk == 'paragraph')?' - ' + NB.chunk + ' ' + p:'');
 }
 

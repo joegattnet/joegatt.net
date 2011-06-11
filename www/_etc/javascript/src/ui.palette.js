@@ -1,16 +1,23 @@
 NB.Ui.palette = function(){
-  $('.palette div').each(function(){
-    var colorString = $(this).css('backgroundColor');
-    var colors = /([0-9]+)/.exec(colorString);
-    var html = "<p>R:  " + parseInt((100 * colors[0]) / 255) + "%</p>";
-      html += "<p>G:  " + parseInt((100 * colors[1]) / 255) + "%</p>";
-      html += "<p>B:  " + parseInt((100 * colors[2]) / 255) + "%</p>";
-      //html += "<p> " + colors + "</p>";
-      html += "<p>#f0f0f0</p>";
-    $(this).html(html);
+  $('.palette').not('.palettised').find('div').each(function(){
+    var e = $(this);
+    var colorHex = e.find('p').text();
+    e.css('backgroundColor', '#' + colorHex);
+    
+    var hexR = parseInt((parseInt(colorHex.substr(0, 2), 16) * 100)/255);
+    var hexG = parseInt((parseInt(colorHex.substr(2, 2), 16) * 100)/255);
+    var hexB = parseInt((parseInt(colorHex.substr(4, 2), 16) * 100)/255);
+    
+    var html = "";
+      html += "<p>&nbsp;R:&nbsp;&nbsp;" + hexR + "%</p>";
+      html += "<p>&nbsp;G:&nbsp;&nbsp;" + hexG + "%</p>";
+      html += "<p>&nbsp;B:&nbsp;&nbsp;" + hexB + "%</p>";
+      html += "<p>&nbsp;#" + colorHex + "</p>";
+      e.html(html);
   });
+  $('.palette').addClass('palettised');
 }
 
 /******************************************************************************/
 
-$('body').bind('content.loaded',NB.Ui.palette);
+$('body').bind('content.loaded', NB.Ui.palette);

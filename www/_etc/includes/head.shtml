@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
   //<![CDATA[
     if(location.hash.indexOf('pr-')!=-1){
       NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
@@ -25,25 +25,25 @@
 <title><!--#echo var="title.show" --></title>
 
 <!--#if expr="$generator" -->
-  <meta name="generator" content="<!--#if expr="generator" -->" />
+  <meta name="generator" content="<!--#if expr="generator" -->">
   <!--#endif -->
 <!--#if expr="$nocache=true" -->
-  <meta http-equiv="Cache" content="no-cache" />
-  <meta http-equiv="Expires" content="-1" />
+  <meta http-equiv="Cache" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
 <!--#else -->
   <meta http-equiv="Expires" content="mon, 27 sep 2010 14:30:00 GMT">
 <!--#endif -->
 <!--#if expr="$notranslate=true" -->
-  <meta name="google" value="notranslate" />
+  <meta name="google" value="notranslate">
 <!--#endif -->
 
 <meta name="description" content="<!--#echo var="description" -->"> 
-<meta name="keywords" content="<!--#echo var="keywords" -->"> 
+<meta name="keywords" content="<!--#echo var="tags" -->"> 
 <meta name="author" content="<!--#echo var="author" -->">
 
 <meta name="og:description" content="<!--#echo var="description" -->">
 <meta name="og:image" content="<!--#echo var="images_url" --><!--#echo var="shareicon" -->">
-<meta name="og:site_name" content="<!--#echo var="sitename" -->"/>
+<meta name="og:site_name" content="<!--#echo var="sitename" -->">
 
 <meta name="DC.Creator" content="<!--#echo var="author_last_first" -->">
 <meta name="DC.Title" content="<!--#echo var="title.show" -->">
@@ -55,50 +55,50 @@
 <meta name="DC.Language" content="en-GB">
 <meta name="DC.Rights" content="<!--#echo var="copyright" -->">
 <!--#if expr="$fbadmins" -->
-  <meta name="fb:admins" content="<!--#echo var="fbadmins" -->" /> 
+  <meta name="fb:admins" content="<!--#echo var="fbadmins" -->"> 
 <!--#endif -->
 
-<link rel="canonical" href="http://<!--#echo var="server" --><!--#echo var="canonical" -->" />
-<link rel="shortcut icon" href="<!--#echo var="favicon" -->" />
-<link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->" />
+<link rel="canonical" href="http://<!--#echo var="server" --><!--#echo var="canonical" -->">
+<link rel="shortcut icon" href="<!--#echo var="favicon" -->">
+<link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->">
 
 <!--#if expr="$copyright_url" -->
-  <link rel="copyright" href="<!--#echo var="copyright_url" -->" />
+  <link rel="copyright" href="<!--#echo var="copyright_url" -->">
 <!--#endif -->
 
 <!--#if expr="$nav_up" -->
-  <link rel="up" href="<!--#echo var="nav_up" -->" title="<!--#echo var="nav_up_title" -->" />
+  <link rel="up" href="<!--#echo var="nav_up" -->" title="<!--#echo var="nav_up_title" -->">
 <!--#endif -->
 <!--#if expr="$nav_first" -->
-  <link rel="first" href="<!--#echo var="nav_first" -->" title="<!--#echo var="nav_first_title" -->" />
+  <link rel="first" href="<!--#echo var="nav_first" -->" title="<!--#echo var="nav_first_title" -->">
 <!--#endif -->
 <!--#if expr="$nav_prev" -->
-  <link rel="prev" href="<!--#echo var="nav_prev" -->" title="<!--#echo var="nav_prev_title" -->" />
+  <link rel="prev" href="<!--#echo var="nav_prev" -->" title="<!--#echo var="nav_prev_title" -->">
 <!--#endif -->
 <!--#if expr="$nav_last" -->
-  <link rel="last" href="<!--#echo var="nav_last" -->" title="<!--#echo var="nav_last_title" -->" />
+  <link rel="last" href="<!--#echo var="nav_last" -->" title="<!--#echo var="nav_last_title" -->">
 <!--#endif -->
 
-<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->"  />
+<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->">
 
 <!--#if expr="$latitude1" -->
-  <meta name="geo.position" content="<!--#echo var="latitude1" -->; <!--#echo var="longitude1" -->" -->
-  <meta name="og:latitude" content="<!--#echo var="latitude1" -->" -->
-  <meta name="og:longitude" content="<!--#echo var="longitude1" -->" -->
+  <meta name="geo.position" content="<!--#echo var="latitude1" -->; <!--#echo var="longitude1" -->">
+  <meta name="og:latitude" content="<!--#echo var="latitude1" -->">
+  <meta name="og:longitude" content="<!--#echo var="longitude1" -->">
 <!--#endif -->
 
 <!--#if expr="$latitude2" -->
-  <meta name="geo.position" content="<!--#echo var="latitude" -->; <!--#echo var="longitude2" -->" -->
-  <meta name="og:latitude" content="<!--#echo var="latitude2" -->" -->
-  <meta name="og:longitude" content="<!--#echo var="longitude2" -->" -->
+  <meta name="geo.position" content="<!--#echo var="latitude2" -->; <!--#echo var="longitude2" -->">
+  <meta name="og:latitude" content="<!--#echo var="latitude2" -->">
+  <meta name="og:longitude" content="<!--#echo var="longitude2" -->">
 <!--#endif -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--#if expr="1=0" -->
-  <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->" />
+  <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->">
 <!--#endif -->
 <!--#if expr="$styles_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
-  <link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+  <link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->">
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
 <!--#endif -->
@@ -112,7 +112,8 @@
 //<![CDATA[
     var NB = {
         loaded: false,
-        pending_signedin_action:  false
+        pending_signedin_action:  false,
+        ga_code: '<!--#echo var="google_tracking_code" -->'
     };
     NB.timestamp = new Date().getTime();
     NB.p = {

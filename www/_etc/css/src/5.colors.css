@@ -1,0 +1,43 @@
+/*
+  #333333 - Grey, dark
+  #999999 - Grey
+  #d5d5d5 - Grey, light
+  #d4322f - Red
+  #f74b23 - Orange
+  #f3f129 - Yellow
+  #75d42f - Green
+  #86853a - Green, dark
+  #29cff3 - Cyan
+  #362fd4 - Blue
+  #336699 - Blue, dark
+  #b32fd4 - Purple
+*/
+
+.home h1 {
+  display:none;
+}
+
+.wutz h1 a {
+    color:#D61D00;
+    font-size:36px;
+    height:36px;
+    width:504px;
+    }
+
+.code h1 {
+  color:#29cff3;
+}
+
+.colophon h1 {
+  color:#f74b23;
+}
+
+.tags h1 {
+  color:#b32fd4;
+}
+    
+h1 .version {
+    left:515px;
+    display:none;
+    }
+  

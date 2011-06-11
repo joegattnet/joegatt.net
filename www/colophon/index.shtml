@@ -15,7 +15,7 @@
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->
 
-<!--#set var="yield" value="yield_1024_12.shtml" -->
-<!--#set var="content" value="/_etc/content/colophon/index.html" -->
+<!--#set var="yield" value="yield_1024_12_a.shtml" -->
+<!--#set var="content" value="/_etc/content/colophon/index.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

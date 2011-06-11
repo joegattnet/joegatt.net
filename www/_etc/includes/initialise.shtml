@@ -1,7 +1,8 @@
-<script type="text/javascript">
+<script>
 //<![CDATA[
-  var docBody = document.getElementsByTagName('body')[0];
-  docBody.setAttribute('id', '<!--#echo var="section" -->_<!--#echo var="page" -->');
+  //Put here so it kicks in immediately
+  //var docBody = document.getElementsByTagName('body')[0];
+  //docBody.setAttribute('id', '<!--#echo var="section" -->_<!--#echo var="page" -->');
   NB.crumb = {
     canonical: "<!--#echo var="canonical" -->",
     category: "<!--#echo var="category" -->",
@@ -16,7 +17,17 @@
 
   NB.title = "<!--#echo var="title" -->";
   NB.title_window = "<!--#echo var="title.window" -->";
+  NB.description = "<!--#echo var="description" -->";
   NB.chunk = "<!--#echo var="chunk" -->";
+  NB.image = "<!--#echo var="shareicon" -->";
+  <!--#if expr="$latitude1" -->
+    NB.latitude = "<!--#echo var="latitude1" -->";
+    NB.longitude = "<!--#echo var="longitude1" -->";
+  <!--#else -->
+    NB.latitude = "<!--#echo var="latitude2" -->";
+    NB.longitude = "<!--#echo var="longitude2" -->";
+  <!--#endif -->
+  
   NB.book = {
     id: <!--#echo var="b" -->
   }
@@ -32,10 +43,5 @@
   
   NB.layout = "<!--#echo var="layout" -->";
   NB.page_type = "<!--#echo var="page_type" -->";
-  
-//  NB.loaded_scripts.add(function(){
-//    NB.Highlighter.fetch('/<!--#echo var="section" -->/index.shtml');
-//  });
-  
 //]]>
 </script>

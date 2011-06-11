@@ -1,43 +1,45 @@
-<!--#include virtual="initialise.shtml" -->
-<!--#if expr="${title.static}=true" -->
-  <header>
-    <hgroup id="title">
-        <h1>
-          <!--#if expr="${title.url}" -->
-            <a href="<!--#echo var="title.url" -->" class="title-a"><!--#echo var="title" --></a>
-          <!--#else -->
-            <!--#echo var="title" -->
+<!--#include virtual="/_etc/includes/initialise.shtml" -->
+<section id="page" class="<!--#echo var="section" --> <!--#echo var="page" -->">
+  <!--#if expr="${title.static}=true" -->
+    <header>
+      <hgroup id="title">
+          <h1>
+            <!--#if expr="${title.url}" -->
+              <a href="<!--#echo var="title.url" -->"><!--#echo var="title" --></a>
+            <!--#else -->
+              <!--#echo var="title" -->
+            <!--#endif -->
+            <span class="version"><!--#include virtual="${version_file}"--></span>
+          </h1>
+          <!--#if expr="${title.super}" -->
+            <h2><a href="<!--#echo var="title.super.url" -->" class="title-super-a"><!--#echo var="title.super" --></a></h2>
           <!--#endif -->
-          <span class="version"><!--#include virtual="${version_file}"--></span>
-        </h1>
-        <!--#if expr="${title.super}" -->
-          <h2><a href="<!--#echo var="title.super.url" -->" class="title-super-a"><!--#echo var="title.super" --></a></h2>
-        <!--#endif -->
-        <!--#if expr="${title.sub}" -->
-          <h3><!--#echo var="title.sub" --></h2>
-        <!--#endif -->
-    </hgroup>
-  </header>
-<!--#endif -->
-<section id="yield" role="main" data-url="<!--#echo var="yield" -->">
-  <!--#include virtual="$yield"-->
+          <!--#if expr="${title.sub}" -->
+            <h3><!--#echo var="title.sub" --></h3>
+          <!--#endif -->
+      </hgroup>
+    </header>
+  <!--#endif -->
+  <section id="yield" role="main" data-url="<!--#echo var="yield" -->">
+    <!--#include virtual="$yield"-->
+  </section>
+  <!--#if expr="$help" -->
+    <aside id="help_main" class="padded clearfix" style="display:none;">
+      <p class="close tool"><a class="tool_help_extra" href="javascript:;" rel="help">close</a></p>
+      <!--#include virtual="$help"-->
+    </aside>
+  <!--#endif -->
+  <!--#if expr="$epigraph" -->
+    <aside id="epigraph">
+      <!--#include virtual="$epigraph"-->
+    </aside>
+  <!--#endif -->
+  <!--#if expr="$epigraph2" -->
+    <aside id="epigraph2">
+      <!--#include virtual="$epigraph2"-->
+    </aside>
+  <!--#endif -->
+  <nav id="hd">
+    <!--#include virtual="/_etc/includes/nav_top.shtml" -->
+  </nav>
 </section>
-<!--#if expr="$help" -->
-  <div id="help_main" class="padded clearfix" style="display:none;">
-    <p class="close tool"><a class="tool_help_extra" href="javascript:;" rel="help">close</a></p>
-    <!--#include virtual="$help"-->
-  </div>
-<!--#endif -->
-<!--#if expr="$epigraph" -->
-  <aside id="epigraph">
-    <!--#include virtual="$epigraph"-->
-  </aside>
-<!--#endif -->
-<!--#if expr="$epigraph2" -->
-  <aside id="epigraph2">
-    <!--#include virtual="$epigraph2"-->
-  </aside>
-<!--#endif -->
-<nav id="hd">
-  <!--#include virtual="/_etc/includes/top_nav.shtml" -->
-</nav>

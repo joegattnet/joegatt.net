@@ -10,7 +10,7 @@
 
 <!--#set var="path" value="/$section/" -->
 <!--#set var="location" value="$path$p" -->
-<!--#set var="canonical" value="http://$server$location" -->
+<!--#set var="canonical" value="$location" -->
 
 <!--#set var="title.super" value="Tags" -->
 <!--#set var="title.super.url" value="$path" -->
