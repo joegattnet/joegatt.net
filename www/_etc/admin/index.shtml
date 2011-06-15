@@ -6,9 +6,8 @@
 
 <!--#set var="title" value="Admin @ $SERVER_NAME" -->
 <!--#set var="title_url" value="/_etc/admin/" -->
-<!--#set var="version_file" value="/_etc/includes/admin/version.txt" -->
 
-<!--#set var="yield" value="yield_1024_10c_02t_05_07.shtml" -->
+<!--#set var="yield" value="yield_1024_10_02t_05_07.shtml" -->
 <!--#set var="content" value="/_etc/includes/admin/iframe.shtml" -->
 
 <!--#set var="rowname" value="results" -->

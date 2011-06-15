@@ -400,12 +400,12 @@ sub saveAnagramParagraph {
 
   $values_string = join(',', @jsarrayvalues);
 
-  $location = untaint("../../../_etc/cache/enface--anagram_table-b=$b.json");
+  $location = untaint("../../../_etc/cache/enface--anagram-b=$b.json");
   open ANAGRAM_TABLE,">$location" or die print "ERRROR: File not opened: $! $location";
   print ANAGRAM_TABLE "[$values_string]";
   close ANAGRAM_TABLE;
   
-  $location = untaint("../../../_etc/cache/enface--anagram_table-b=$b.html");
+  $location = untaint("../../../_etc/cache/enface--anagram-b=$b.html");
   open ANAGRAM_TABLE,">$location" or die print "ERRROR: File not opened: $! $location";
   print ANAGRAM_TABLE $anagram_table;
   print ANAGRAM_TABLE qq~
@@ -418,8 +418,9 @@ sub saveAnagramParagraph {
   ~;
   close ANAGRAM_TABLE;
   
+  #Remove - use client-side cloning
   $version_number = eval ("1 - 0.$anagram_total");
-  $location = untaint("../../../_etc/cache/enface--version_index-b=$b.html");
+  $location = untaint("../../../_etc/cache/enface--version-b=$b.html");
   open VERSION_NUMBER,">$location" or die print "ERRROR: File not opened: $! $location";
   print VERSION_NUMBER " $version_number";
   close VERSION_NUMBER;
@@ -546,6 +547,9 @@ sub cache_output {
   if ($output eq ''){
     $output = '<span style="display:none">&nbsp;</span>';  
   }
+  
+  #See .htaccess
+  #$location =~ s/\Wscope=[^\&\?\.]*//;
   
   $location = untaint($location);
   open CACHE, ">$location" or print "ERRROR: Cache file not opened: $location";

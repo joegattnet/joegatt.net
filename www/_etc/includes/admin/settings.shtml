@@ -5,8 +5,6 @@
 <!--#set var="location" value="/$section/" -->
 <!--#set var="canonical" value="$location" -->
 
-<!--#set var="version_file" value="${root}_etc/includes/blank.html" -->
-
 <!--#set var="tool_help_default" value="false" -->
 <!--#set var="comments" value="false" -->
 <!--#set var="share" value="false" -->

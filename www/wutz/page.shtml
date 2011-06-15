@@ -19,15 +19,15 @@
 
 <!--#set var="notranslate" value="true" -->
 
-<!--#set var="version_file" value="/_etc/cache/${page_type}--version_index-b=${b}.html?r=${randomiser}" -->
+<!--#set var="version" value="v0.7x" -->
 
 <!--#set var="help" value="/_etc/content/${section}/help_${page}.shtml" -->
 <!--#set var="toolbar_pinnable" value="true" -->
 
 <!--#set var="nav_end" value="true" -->
 
-<!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/content--${page_type}-b=${b}&p=${p}&p_max=${p_max}&scope=content.html" -->
+<!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
+<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&scope=content.html" -->
 <!--#set var="direct_content" value="true" -->
 <!--#set var="toolbar" value="/_etc/includes/${section}/toolbar.shtml" -->
 

@@ -61,7 +61,7 @@ NB.Versions = {
 			 	 NB.Ajax.html(
             'get',
             '#hidden',
-            NB.root+'_etc/cache/content--version_get-b='+NB.book.id+'&p='+NB.p.current+'&version='+(current_version+direction)+'.html',
+            NB.root+'_etc/cache/enface--version-b='+NB.book.id+'&p='+NB.p.current+'&version='+(current_version+direction)+'.html',
             '',
             true,
             null,

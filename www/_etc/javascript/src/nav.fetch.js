@@ -22,7 +22,7 @@ NB.Nav.fetch = function(url) {
   } else {
       //Does this create an unnecessary granularity and defeats caching?
       //var scope = (NB.Url.section(url) == NB.crumb.section)?'page':'section';
-      var scope = 'section';
+      var scope = 'page';
       NB.Ajax.html(
         'get',
         '#'+scope,

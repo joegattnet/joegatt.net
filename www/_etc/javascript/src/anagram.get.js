@@ -3,7 +3,7 @@ NB.Anagram.get = function(){
       NB.Anagram.anagram = NB.cache['_anagram'].data;
       NB.Nav.track(1,"Retrieved from NB.cache: _anagram.");
   } else {
-     $.getJSON('/_etc/cgi/content/anagram_get.cgi?b='+NB.book.id+'&jsoncallback=?', function(data) {
+     $.getJSON('/_etc/cgi/enface/anagram.cgi?b='+NB.book.id+'&jsoncallback=?', function(data) {
   	  NB.Ajax._done('#anagramometer');
       NB.Anagram.anagram = data.anagram;
       NB.Cache.add('_anagram',NB.Anagram.anagram);    

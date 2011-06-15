@@ -1,7 +1,7 @@
-<article id="content" class="grid_8 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
+<section id="content" class="grid_8 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
   <!--#include virtual="$content" -->
-</article>
-<nav id="toolbar" class="grid_4 omega">
-  <!--#include virtual="$toolbar" -->
-</nav>
+</section>
+<section class="grid_4 omega" data-url="<!--#echo var="content_right" -->">
+  <!--#include virtual="$content_right" -->
+</section>
 <!--#include virtual="$apparatus" -->

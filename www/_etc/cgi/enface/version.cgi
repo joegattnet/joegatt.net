@@ -41,4 +41,4 @@ $dbh->disconnect();
 
 # ******************************************************************************
 
-cache_output("../../cache/content--version_get-$ENV{\"QUERY_STRING\"}.html",$output);
+cache_output("../../cache/enface--version-$ENV{\"QUERY_STRING\"}.html",$output);

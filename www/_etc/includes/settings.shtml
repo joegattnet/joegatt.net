@@ -40,7 +40,7 @@
 
 <!--#set var="js_version" value="1-2" -->
 <!--#set var="css_version" value="1-1" -->
-<!--#set var="js_cachebuster" value="9" -->
+<!--#set var="js_cachebuster" value="1" -->
 <!--#set var="css_cachebuster" value="5" -->
 
 <!--#set var="author" value="Gatt, Joe" -->
@@ -69,6 +69,9 @@
   <!--#set var="images_url" value="" -->
 <!--#endif -->
 
+<!--#set var="api_key_facebook" value="142214389156795" -->
+<!--#set var="api_key_twitter" value="026ussCKYOuzzcZjSV7UQ" -->
+
 <!--#set var="external_facebook" value="true" -->
 <!--#set var="external_twitter" value="true" -->
 
@@ -79,14 +82,12 @@
 
 <!--#set var="title.static" value="true" -->
 
-<!--#set var="version_file" value="/_etc/includes/blank.html" -->
+<!--#set var="version" value="" -->
 
 <!--#set var="comments" value="true" -->
 
 <!--#set var="b" value="0" -->
 <!--#set var="p_max" value="0" -->
-
-<!--#set var="js_init" value=" " -->
 
 <!--#set var="apparatus" value="apparatus_1024_05_01_06.shtml" -->
 

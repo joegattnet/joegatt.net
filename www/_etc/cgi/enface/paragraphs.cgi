@@ -111,4 +111,4 @@ $output .= debug_info();
 
 # ******************************************************************************
 
-cache_output("../../cache/content--enface-".$ENV{"QUERY_STRING"}.".html",$output);
+cache_output("../../cache/enface--paragraphs-".$ENV{"QUERY_STRING"}.".html",$output);

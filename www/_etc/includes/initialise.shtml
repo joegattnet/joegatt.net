@@ -1,8 +1,4 @@
 <script>
-//<![CDATA[
-  //Put here so it kicks in immediately
-  //var docBody = document.getElementsByTagName('body')[0];
-  //docBody.setAttribute('id', '<!--#echo var="section" -->_<!--#echo var="page" -->');
   NB.crumb = {
     canonical: "<!--#echo var="canonical" -->",
     category: "<!--#echo var="category" -->",
@@ -27,21 +23,20 @@
     NB.latitude = "<!--#echo var="latitude2" -->";
     NB.longitude = "<!--#echo var="longitude2" -->";
   <!--#endif -->
-  
   NB.book = {
     id: <!--#echo var="b" -->
   }
+  NB.p = {
   <!--#if expr="$p=/^[0-9]+$/" -->
-    NB.p.current = <!--#echo var="p" -->;
-    NB.p.top = <!--#echo var="p" -->;
-    NB.p.max = <!--#echo var="p_max" -->;
+      current: <!--#echo var="p" -->,
+      top: <!--#echo var="p" -->,
+      max: <!--#echo var="p_max" -->
   <!--#else -->
-    NB.p.current = "<!--#echo var="p" -->";
-    NB.p.top = "<!--#echo var="p" -->";
-    NB.p.max = "<!--#echo var="p_max" -->";
+      current: "<!--#echo var="p" -->",
+      top: "<!--#echo var="p" -->",
+      max: "<!--#echo var="p_max" -->"
   <!--#endif -->
-  
+  }  
   NB.layout = "<!--#echo var="layout" -->";
   NB.page_type = "<!--#echo var="page_type" -->";
-//]]>
 </script>

@@ -19,7 +19,7 @@ var addthis_config = {
   data_ga_property: NB.ga_code,
   data_track_clickback: true,
   ui_click: true
-};
+}
 
 var addthis_share = {
   templates: {twitter: '{{title}}: {{url}}' }

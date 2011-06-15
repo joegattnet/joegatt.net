@@ -9,12 +9,14 @@
 
 return array(
      'js1-2' => array(
-//   '//_etc/javascript/lib/jquery-1.4.2.js',
+//   '//_etc/javascript/lib/jquery-ui-1.8.13.custom.min',
    '//_etc/javascript/lib/jquery.ass-array.js',
    '//_etc/javascript/lib/jquery.ba-hashchange.js',
    '//_etc/javascript/lib/jquery.rich-array.js',
    '//_etc/javascript/lib/jquery.rich-array2-extra.js',
    '//_etc/javascript/lib/jquery.timeago.js',
+   '//_etc/javascript/lib/jquery.metadata.js',
+   '//_etc/javascript/lib/jquery.mb.YTPlayer.js',
    '//_etc/libraries/jquery-syntax/public/jquery.syntax.js',
    '//_etc/libraries/jquery-syntax/public/jquery.syntax.cache.js',
 //   '//_etc/libraries/syntaxhighlighter/scripts/shCore.js',
@@ -108,6 +110,7 @@ return array(
    '//_etc/javascript/src/ui.height.js',
    '//_etc/javascript/src/ui.kill.js',
    '//_etc/javascript/src/ui.image.js',
+   '//_etc/javascript/src/ui.iframe.js',
    '//_etc/javascript/src/ui.panels.js',
    '//_etc/javascript/src/ui.palette.js',
    '//_etc/javascript/src/ui.pinnables.js',
@@ -115,6 +118,7 @@ return array(
    '//_etc/javascript/src/ui.stripes.js',
    '//_etc/javascript/src/ui.timeago.js',
    '//_etc/javascript/src/ui.versions.js',
+   '//_etc/javascript/src/ui.video.js',
    '//_etc/javascript/src/url.----------------.js',
    '//_etc/javascript/src/user.--------------.js',
    '//_etc/javascript/src/user.clear.js',
@@ -131,7 +135,8 @@ return array(
    '//_etc/javascript/src/user.signout.js',
    '//_etc/javascript/src/user.signup.js',
    '//_etc/javascript/src/utils.---------------.js',
-   '//_etc/javascript/src/versions.----------.js'
+   '//_etc/javascript/src/versions.----------.js',
+   '//_etc/javascript/src/zz.run.js'
    ),
      'css1-1' => array(
    '//_etc/css/lib/1.style-reset-html5-boilerplate.css',
@@ -156,6 +161,7 @@ return array(
    '//_etc/css/src/7.theme.css',
    '//_etc/css/lib/9.style-helpers-html5-boilerplate.css',
    '//_etc/css/lib/9.style-print-html5-boilerplate.css',
+   '//_etc/css/lib/mb.YTVPlayer.css',
    '//_etc/css/src/8.handheld-landscape.css',
    '//_etc/css/src/8.handheld-portrait.css',
    '//_etc/css/src/9.print.css'

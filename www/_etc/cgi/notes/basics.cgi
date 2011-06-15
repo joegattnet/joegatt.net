@@ -244,8 +244,9 @@ sub sanitiseText {
 
   my $text = $_[0];
   my $totally = $_[1];
-  $text =~ s/\&nbsp\;/ /g;
+  $text =~ s/\&nbsp\;|\n/ /g;
   $text =~ s/style=\"[^\"]*\"//g;
+  $text =~ s/  / /g;
   if($totally){
     use HTML::Strip;
     my $hs = HTML::Strip->new();

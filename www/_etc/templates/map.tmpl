@@ -1,11 +1,15 @@
 [% IF showMaps %]
   <div id="map"><!-- --></div>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script>
+    //Not enough - we need to know maps are loaded
+    //We can avoid finding centre first for resources. 
+    //Also only show map once it's extended.
     NB.loaded_scripts.add(function(){
+       var markers = 0;
       [% FOREACH resource IN resources %]
         [% IF resource.latitude %]
-          var resource_latlng = new google.maps.LatLng([% resource.latitude %], [% resource.longitude %]);
-          var map_center = resource_latlng;
+          var map_center = new google.maps.LatLng([% resource.latitude %], [% resource.longitude %]);
         [% END %]
       [% END %]
       [% IF latitude %]
@@ -13,7 +17,8 @@
         var map_center = note_latlng;
       [% END %]
       var myOptions = {
-        zoom: 10,
+        backgroundColor: '#EBE6DC',
+        zoom: 16,
         center: map_center,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
@@ -27,22 +32,26 @@
             title:'Note',
             position: note_latlng
           });
-          bounds.extend(note_latlng);
-          map.fitBounds(bounds);
+          markers++;
       [% END %]
       [% FOREACH resource IN resources %]
         [% IF resource.latitude %]
+          var resource_marker_position = new google.maps.LatLng([% resource.latitude %], [% resource.longitude %]);
           var resource_marker = new google.maps.Marker({
             map:map,
             draggable:false,
             clickable:false,
             title:'Note',
-            position: new google.maps.LatLng([% resource.latitude %], [% resource.longitude %])
+            position: resource_marker_position
           });
-          bounds.extend(resource_marker);
-          map.fitBounds(bounds);
+          markers++;
+          bounds.extend(resource_marker_position);
         [% END %]
       [% END %]
+      if(markers > 1){
+          bounds.extend(note_latlng);
+          map.fitBounds(bounds);
+      }
     });
   </script>
   [% IF latitude %]

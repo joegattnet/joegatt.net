@@ -16,8 +16,6 @@
 <!--#set var="b" value="1" -->
 <!--#set var="p_max" value="82" -->
 
-<!--#set var="epigraph" value="/_etc/content/wutz/epigraph_yourcenar.html" -->
-
 <!--#set var="notes" value="true" -->
 
 <!--#set var="tags" value="Wutz" -->

@@ -1,12 +1,10 @@
 <script>
-  //<![CDATA[
-    if(location.hash.indexOf('pr-')!=-1){
-      NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
-      location.hash='';
-    } else if (location.hash.indexOf('/')==1&&location.host+location.hash.substr(1)!=location.href){
-      location.replace(location.hash.substr(1));
-    }
-  //]]>
+if(location.hash.indexOf('pr-')!=-1){
+  NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
+  location.hash='';
+} else if (location.hash.indexOf('/')==1&&location.host+location.hash.substr(1)!=location.href){
+  location.replace(location.hash.substr(1));
+}
 </script>
 <meta charset="utf-8">
 
@@ -109,22 +107,13 @@
 <!--#endif -->
 <script src="<!--#echo var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr.custom.37903.js&amp;<!--#echo var="js_cachebuster" -->"></script>
 <script>
-//<![CDATA[
-    var NB = {
-        loaded: false,
-        pending_signedin_action:  false,
-        ga_code: '<!--#echo var="google_tracking_code" -->'
-    };
-    NB.timestamp = new Date().getTime();
-    NB.p = {
-    <!--#if expr="$p=/^[0-9]*$/" -->
-      top: <!--#echo var="p" -->,
-      current: <!--#echo var="p" -->
-    <!--#else -->
-      top: '<!--#echo var="p" -->',
-      current: '<!--#echo var="p" -->'
-    <!--#endif -->
-    }
-    <!--#include virtual="/_etc/javascript/src/_Prime.js"-->
-//]]>
+var NB = {
+  root: '<!--#echo var="root" -->',
+  debug: <!--#echo var="debug" -->,
+  loaded: false,
+  pending_signedin_action:  false,
+  timestamp: new Date().getTime(),
+  ga_code: '<!--#echo var="google_tracking_code" -->'
+}
+<!--#include virtual="/_etc/javascript/src/_Prime.js"-->
 </script>

@@ -33,7 +33,7 @@ if($extension eq 'cgi'){
 if($extension =~ /gif|png|jpg|jpeg/){
   $output .= qq~<img src="$file" />~;
 } else {
-  $output .= qq~<pre class="syntax $extension">\n$file_content\n</pre>~;
+  $output .= qq~<pre class="syntax $extension"><code> $file_content\n</code></pre>~;
 }
 
 cache_output("../../cache/code--files-$ENV{\"QUERY_STRING\"}.html",$output);

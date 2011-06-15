@@ -62,12 +62,12 @@ $('.suffix_1 .notes-list img[src*="-wb-4-0-"]').live('click',function(event){
   return false;
 });
 
-$('#notes_page img[src*="-wb-6-0-"],#notes_page img[src*="-fw-460-0-"]').live('click',function(event){
+$('.notes img[src*="-wb-6-0-"],.notes img[src*="-fw-460-0-"]').live('click',function(event){
   NB.Ui.image.open(event,'460px','258px','940px','528px',6,12,0,'12px','-480px','12px','#content .text',{marginTop:0},{marginTop:'540px'});
   return false;
 });
 
-$('#notes_page img[src*="-wb-7-0-"]').live('click',function(event){
+$('.notes img[src*="-wb-7-0-"]').live('click',function(event){
   NB.Ui.image.open(event,'540px','303px','940px','528px',7,12,0,'7px','-400px','12px','#content .text',{marginTop:0},{marginTop:'540px'});
   return false;
 });

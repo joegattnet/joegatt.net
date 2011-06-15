@@ -9,11 +9,7 @@
         <!--#if expr="$section!=home" -->
           <span class="a"><!--#echo var="title" --></span>
         <!--#endif -->
-        <span class="version">
-          <!--#if expr="$version_file" -->
-            <!--#include virtual="${version_file}"-->
-          <!--#endif -->
-        </span>
+        <span class="version"><!--#echo var="version"--></span>
       </li>
   		<li><span id="crumbs_chunk" style="display:none;" class="a"></span></li>
   		<li><span id="crumbs_chunk_version" style="display:none;" class="a"></span></li>

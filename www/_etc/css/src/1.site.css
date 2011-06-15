@@ -28,16 +28,6 @@ h1,h2,h3,h4,h5 {
 h1,h2,h3 {
 position:absolute;
 }
-h1 .version {
-position:absolute;
-top:-1px;
-color:#d5d5d5;
-font-family:Tahoma,Arial,sans-serif;;
-font-weight:normal;
-font-size:36px;
-letter-spacing:0;
-line-height:40px;
-}
 h2 {
     font-size:15px;
     text-transform:uppercase;
@@ -409,7 +399,7 @@ background:url(/_etc/images/ajax_error_small.gif) top right no-repeat;
 */
 
 .ajax_large {
-background:url(/_etc/images/ajax.gif) center 10px no-repeat;
+background:url("/_etc/images/ajax.gif") no-repeat scroll 475px 7px transparent;
 }
 
 .apparatus {

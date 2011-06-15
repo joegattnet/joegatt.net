@@ -1,4 +1,4 @@
-<section id="content" class="grid_5 suffix_2 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
+<section id="content" class="grid_6 suffix_1 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
   <!--#include virtual="$content" -->
 </section>
 <section class="grid_5 omega" data-url="<!--#echo var="content_right" -->">

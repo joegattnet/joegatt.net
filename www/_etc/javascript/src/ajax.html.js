@@ -28,7 +28,7 @@ NB.Ajax = {
             dataType: 'html',
             cache: cache,
             success: function(data) {
-              if(data==''){
+              if(data===''||data===undefined||data===null){
                 //Possibly a content encoding error - we risk a loop, of course
                 //Cache cgi now ensures a document is never empty;
                 NB.Nav.track(1,'AJAX returned null - retrying.');
@@ -101,7 +101,7 @@ NB.Ajax = {
     },
     _meta_load: function(url,loadUrl){
         $(window).scrollTop(0);
-        NB.Nav.crumb(loadUrl);
+        NB.Nav.crumb.load(loadUrl);
         var scope = url.indexOf('scope')>=0?url.match(/(scope=)([a-z]+)/)[2]:'minor';
         $('#'+scope).data('url', NB.Url.path(url));
         $('body').trigger(scope+'.loaded');

@@ -18,13 +18,13 @@
 
 <!--#include virtual="/_etc/cache/head--${page_type}-page=${page}&b=${b}&${QUERY_STRING}.shtml" -->
 
-<!--#set var="version_file" value="/_etc/cache/${section}--version_rc.html" -->
+<!--#set var="version" value="v0.7rc1" -->
 
 <!--#set var="nav_end" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/content--${page_type}-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest&scope=content.html" -->
+<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest&scope=content.html" -->
 <!--#set var="direct_content" value="false" -->
-<!--#set var="toolbar" value="/_etc/cache/notes--fragment-tags=_wutz_rc_panel.html" -->
+<!--#set var="content_right" value="/_etc/cache/notes--fragment-tags=_wutz_rc_panel.html" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

@@ -20,9 +20,9 @@
 
 <!--#set var="epigraph" value="" -->
 
-<!--#set var="yield" value="yield_1024_07_05_a.shtml" -->
+<!--#set var="yield" value="yield_1024_06_01s_05_a.shtml" -->
 <!--#set var="direct_content" value="false" -->
 <!--#set var="content" value="/_etc/cache/notes--fragment-tags=_code_index_left.html" -->
-<!--#set var="toolbar" value="/_etc/cache/notes--fragment-tags=_code_index_right.html" -->
+<!--#set var="content_right" value="/_etc/cache/notes--fragment-tags=_code_index_right.html" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

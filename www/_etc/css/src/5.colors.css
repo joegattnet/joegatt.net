@@ -19,10 +19,14 @@
 
 .wutz h1 a {
     color:#D61D00;
-    font-size:36px;
+    font-size:32px!important;
     height:36px;
     width:504px;
     }
+
+.bibliography h1 {
+  color:#f3f129;
+}
 
 .code h1 {
   color:#29cff3;
@@ -30,6 +34,14 @@
 
 .colophon h1 {
   color:#999999;
+}
+
+.links h1 {
+  color:#75d42f;
+}
+
+.notes h1 {
+  color:#86853a;
 }
 
 .tags h1 {
@@ -41,7 +53,7 @@
 }
 
 h1 .version {
-  left:515px;
+  color:#d5d5d5;
   display:none;
 }
   

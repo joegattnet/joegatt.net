@@ -1,43 +1,40 @@
-<div id="fb-root"></div>
-<div id="en-root"></div>
-<div id="ne-root"></div>
-
-<!--#if expr="$external_facebook = true" -->
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({appId: '142214389156795', status: true, cookie: true, xfbml: true});
-    };
-    (function() {
-      var e = document.createElement('script');
-      e.type = 'text/javascript';
-      e.src = document.location.protocol + '//connect.facebook.net/en_GB/all.js';
-      e.async = true;
-      document.getElementById('fb-root').appendChild(e);
-    }());
-  </script>
-<!--#endif -->
-<!--#if expr="$external_twitter = true" -->
-  <script src="http://platform.twitter.com/anywhere.js?id=026ussCKYOuzzcZjSV7UQ"></script>
-<!--#endif -->
-
+<div id="fb-root"><!-- --></div>
+<div id="en-root"><!-- --></div>
+<div id="ne-root"><!-- --></div>
+<div id="tw-root"><!-- --></div>
+<div id="at-root"><!-- --></div>
 <script>
-   NB.external = {
+  NB.external = {
     facebook: <!--#echo var="external_facebook" -->,
     twitter: <!--#echo var="external_twitter" -->
-   }
-</script>
-<script>
+  }
+  function loadAsyncScript(url,div) {
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.src = url;
+    e.async = true;
+    document.getElementById(div).appendChild(e);
+  };
+  window.fbAsyncInit = function() {
+    FB.init({appId: '<!--#echo var="api_key_facebook" -->', status: true, cookie: true, xfbml: true});
+  };
   (function() {
-    if(!'contentEditable' in document.body){
-      var e = document.createElement('script');
-      e.type = 'text/javascript';
-      e.src = '<!--#echo var="js_url" -->/_etc/min/?f=/_etc/javascript/lib/nicEdit-Skip.js';
-      e.async = true;
-      document.getElementById('ne-root').appendChild(e);
-    }
-  }());
+      if(NB.external.facebook){
+        loadAsyncScript(document.location.protocol + '//connect.facebook.net/en_GB/all.js','fb-root');
+      }
+      if(NB.external.twitter){
+        loadAsyncScript(document.location.protocol + '//platform.twitter.com/anywhere.js?id=<!--#echo var="api_key_twitter" -->','tw-root');
+      }
+      if(!'contentEditable' in document.body){
+        loadAsyncScript('<!--#echo var="js_url" -->/_etc/min/?f=//_etc/javascript/lib/nicEdit-Skip.js','ne-root');
+      }
+      loadAsyncScript('http://s7.addthis.com/js/250/addthis_widget.js','at-root');
+  })();      
+  var _gaq=[["_setAccount",NB.ga_code]];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+  g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+  s.parentNode.insertBefore(g,s)}(document,"script"));
 </script>
-
 <!--#if expr="$scripts_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/<!--#echo var="jquery_version" -->/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/<!--#echo var="jquery_ui_version" -->/jquery-ui.min.js"></script>
@@ -45,13 +42,3 @@
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_scripts.cgi"-->
 <!--#endif -->
-
-<!--#include virtual="/_etc/includes/google_analytics.shtml" -->
-<script src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-<script>
-  NB.root = "<!--#echo var="root" -->";
-  NB.debug = <!--#echo var="debug" -->;
-  <!--#echo var="js_init" -->
-</script>

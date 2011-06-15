@@ -3,7 +3,6 @@
       <!--#include virtual="$more" -->
   </div>
 <!--#endif -->
-
 <footer id="ft" class="grid_12 clearfix">
   <ul id="copyright" class="nav_h">
   		<li class="cc"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode" rel="license">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported licence</a></li>

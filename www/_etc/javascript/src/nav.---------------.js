@@ -14,12 +14,12 @@ NB.Nav = function(p) {
   $("meta[name*='latitude']").attr('content', NB.latitude);
   $("meta[name*='longitude']").attr('content', NB.longitude);
   //This is only doing one - we need one for images
-  NB.Ui.addthis();
+  //NB.Ui.addthis();
 }
 
 /***/
 
-$('body').bind('section.loaded',function(){
+$('body').bind('page.loaded',function(){
   NB.Cookie.write('v_'+NB.crumb.page,'true',NB.crumb.path);
 });
 

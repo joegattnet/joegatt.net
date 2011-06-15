@@ -445,6 +445,9 @@ background-color:#e5e5ee;
 border-bottom:1px dashed #FFFFFF;
 padding:0 5px 9px 5px;
 }
+#comments li:last-child {
+border-bottom:0;
+}
 #comments p {
 font-size:12px;
 }
