@@ -63,7 +63,7 @@ NB.Tools.colorize = {
 $('#container').delegate('#tool_colorize','click',NB.Tools.colorize.toggle);
 $('#container').delegate('.tool_colorize_extra','click',NB.Tools.colorize.toggle);
 
-NB.loaded_scripts.add(function(){
+NB.loaded_scripts.add(false, function(){
 	 if(NB.Cookie.read('tool_colorize_on') === 'true'){
      $('#yield').addClass('tool_colorize');
   	 $('#tool_colorize').addClass('on');

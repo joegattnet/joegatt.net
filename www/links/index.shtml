@@ -5,7 +5,6 @@
 <!--#set var="share_id" value="$section" -->
 <!--#set var="comments" value="false" -->
 
-<!--#set var="page_type" value="notes" -->
 <!--#set var="chunk" value="index" -->
 
 <!--#set var="title" value="Links" -->

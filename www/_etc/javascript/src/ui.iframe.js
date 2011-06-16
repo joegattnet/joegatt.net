@@ -1,12 +1,13 @@
+/*
 NB.Ui.iframe = function() {
-  $('iframe').not('.loaded').each(function(){
-     if($(this).data('src')){
-       $(this).attr('src', $(this).data('src'));
-       $(this).addClass('loaded');
+  $('iframe').each(function(){
+     if($(this).attr('src') == '' && $(this).data('url')){
+       $(this).attr('src', $(this).data('url'));
      }
   });
 }
 
-/******************************************************************************/
+/******************************************************************************
 
 $('body').bind('minor.loaded', NB.Ui.iframe);
+*/

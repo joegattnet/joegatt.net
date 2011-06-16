@@ -35,12 +35,12 @@
 <!--#set var="scripts_discrete" value="false" -->
 <!--#set var="styles_discrete" value="false" -->
 
-<!--#set var="jquery_version" value="1.5.2" -->
+<!--#set var="jquery_version" value="1.4.2" -->
 <!--#set var="jquery_ui_version" value="1.8.12" -->
 
 <!--#set var="js_version" value="1-2" -->
 <!--#set var="css_version" value="1-1" -->
-<!--#set var="js_cachebuster" value="1" -->
+<!--#set var="js_cachebuster" value="5" -->
 <!--#set var="css_cachebuster" value="5" -->
 
 <!--#set var="author" value="Gatt, Joe" -->
@@ -92,6 +92,7 @@
 <!--#set var="apparatus" value="apparatus_1024_05_01_06.shtml" -->
 
 <!--#set var="tags" value="false" -->
+<!--#set var="page_app" value="flat" -->
 
 <!--#set var="notes" value="false" -->
 <!--#set var="more" value="/_etc/includes/nav_more.shtml" -->

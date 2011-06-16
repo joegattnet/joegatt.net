@@ -18,7 +18,7 @@ NB.Tools.help = function(){
 $('#container').delegate('#tool_code','click',NB.Tools.help);
 $('#container').delegate('.tool_code_extra','click',NB.Tools.help);
 
-NB.loaded_scripts.add(function(){
+NB.loaded_scripts.add(false, function(){
 	 if(NB.Cookie.read('tool_code_on') === 'true'){
 		 $('#code').fadeIn(NB.SETTINGS.speed.normal,'easeInQuad');
      $('iframe, embed').hide();

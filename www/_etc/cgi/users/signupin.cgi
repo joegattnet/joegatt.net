@@ -544,7 +544,7 @@ print qq~
   </div>
   <script type="text/javascript">
   //<![CDATA[
-    NB.loaded_scripts.add(function(){
+    NB.loaded_scripts.add(false, function(){
       $jsstring
     });
   //]]>
@@ -556,7 +556,7 @@ $focus = "if(!jQuery.isEmptyObject(\$('#signupinform input[type=\"text\"]'))&&!\
 print qq~
   <script type="text/javascript">
   //<![CDATA[
-    NB.loaded_scripts.add(function(){
+    NB.loaded_scripts.add(false, function(){
       $focus
     });
   //]]>
@@ -567,7 +567,7 @@ if ($sent_alert ne '' and ($mode eq 'signingup' or $mode eq 'signingin')) {
   print qq~
   <script type="text/javascript">
   //<![CDATA[
-    NB.loaded_scripts.add(function(){
+    NB.loaded_scripts.add(false, function(){
       \$('#signupin').removeClass('panel_closed');
     });
   //]]>

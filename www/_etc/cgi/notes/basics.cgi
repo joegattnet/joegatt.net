@@ -134,7 +134,7 @@ sub printNote {
 
   if($title ne '' && $title ne 'Note Title' && $title =~ /quote\:/i && $title =~ /untitled/i && $textBriefClean !~ /$title/i){
     $title =~ s/[^\w]$//;
-  } elsif (!$isTopic) {
+  } elsif (!$isTopic && !$isLink) {
     $title = '';
   }
 
@@ -165,7 +165,7 @@ sub printNote {
     my $wiki = WWW::Wikipedia->new();
     my $entry = $wiki->search($title);
     $text .= $entry->text_basic();
-    $textBriefLinked = textTruncateLink($text, 350, false, "$sourceUrl", 'More');
+    $textBriefLinked = textTruncateLink($text, 200, false, "$source_url", 'More');
   }
 
   $textBriefClean = textTruncate(sanitiseText($text, 1), 350);
@@ -195,8 +195,6 @@ sub printNote {
         location => $location,
         section => $section,
 
-        title => $title,
-        titleMeta => $titleMeta,
         text => $text,
         textBriefClean => $textBriefClean,
         textBriefLinked => $textBriefLinked,

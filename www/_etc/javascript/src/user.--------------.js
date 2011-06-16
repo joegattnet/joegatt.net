@@ -10,7 +10,7 @@ NB.User = {
 
 /******************************************************************************/
 
-NB.loaded_scripts.add(function(){
+NB.loaded_scripts.add(false, function(){
 	NB.Ajax.html(
     'post',
     NB.User._container,

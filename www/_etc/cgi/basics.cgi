@@ -410,7 +410,7 @@ sub saveAnagramParagraph {
   print ANAGRAM_TABLE $anagram_table;
   print ANAGRAM_TABLE qq~
     <script type="text/javascript">
-    NB.loaded_scripts.add(function(){
+    NB.loaded_scripts.add(false, function(){
       NB.Anagram.anagram = [$values_string];
       NB.Cache.add('_anagram',NB.Anagram.anagram);
     });

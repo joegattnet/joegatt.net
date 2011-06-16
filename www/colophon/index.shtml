@@ -4,7 +4,6 @@
 <!--#set var="page" value="index" -->
 <!--#set var="share_id" value="$page" -->
 
-<!--#set var="page_type" value="index" -->
 <!--#set var="chunk" value="index" -->
 
 <!--#set var="title" value="Colophon" -->

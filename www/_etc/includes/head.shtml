@@ -113,7 +113,16 @@ var NB = {
   loaded: false,
   pending_signedin_action:  false,
   timestamp: new Date().getTime(),
-  ga_code: '<!--#echo var="google_tracking_code" -->'
+  keys: {
+    google_analytics: '<!--#echo var="google_tracking_code" -->',
+    facebook: '<!--#echo var="api_key_facebook" -->',
+    twitter: '<!--#echo var="api_key_twitter" -->'
+  }
+}
+NB.loaded.all = false;
+NB.external = {
+  facebook: <!--#echo var="external_facebook" -->,
+  twitter: <!--#echo var="external_twitter" -->
 }
 <!--#include virtual="/_etc/javascript/src/_Prime.js"-->
 </script>

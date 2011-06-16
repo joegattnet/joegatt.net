@@ -7,6 +7,7 @@
     <!--#include virtual="/_etc/includes/head.shtml" -->       
   </head>     
   <body>  
+    <!--#include virtual="/_etc/includes/scripts_external.shtml" -->
     <div id="container" class="container_12 ajax_large clearfix">
       <div id="page" data-url="<!--#echo var="/$section/$page" -->">
         <!--#include virtual="/_etc/layouts/page_${layout}.shtml" -->

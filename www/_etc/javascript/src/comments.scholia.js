@@ -61,7 +61,7 @@ NB.Comments.scholia = {
 /******************************************************************************/
 
 $('body').bind('signedin.user signedout.user', function(){
-  if(NB.crumb.page_type == 'enface'){
+  if(NB.crumb.page_app == 'enface'){
     NB.Comments.scholia.get(NB.p.current);
   }
 });

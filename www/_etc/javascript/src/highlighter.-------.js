@@ -38,7 +38,7 @@ NB.Highlighter = {
       var div = '#source';
       var script = '/_etc/cache/code--files-file=';
       file.replace(/\$\{?layout\}?/g, NB.layout);
-      file.replace(/\$\{?page_type\}?/g, NB.page_type);
+      file.replace(/\$\{?page_app\}?/g, NB.page_app);
       if(!nofollow && file.match(/index\~shtml$/)){
         file.replace(/\$\{?section\}?/g, filesection);
         NB.Nav.fetch(url.replace(/.*www/,'').replace('index.shtml',''));
