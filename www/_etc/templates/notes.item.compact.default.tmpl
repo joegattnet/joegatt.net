@@ -1,10 +1,7 @@
 [% FOREACH resource IN resources %]
    <a href="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-12-0-0-0.[% resource.ext %]">
-    <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-3-0-0-0.[% resource.ext %]">
+    <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-3-0-0-0.[% resource.ext %]" alt="[% IF caption %][% caption %][% ELSIF title %][% title %][% ELSE %][% textBriefClean %][% END %]" title="[% IF caption %][% caption %][% ELSIF title %][% title %][% ELSE %][% textBriefClean %][% END %]">
    </a>
-[% END %]
-[% IF caption %]
-  <p class="caption">[% caption %]</p>
 [% END %]
 [% PROCESS 'video.tmpl' vimeoWidth = 300, vimeoHeight= 225, youtubeWidth = 300, youtubeHeight = 225, dailymotionWidth = 300, dailymotionHeight = 225 %]
 [% IF quote %]

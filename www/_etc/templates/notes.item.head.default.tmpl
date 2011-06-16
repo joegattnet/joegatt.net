@@ -1,19 +1,4 @@
 <!--#set var="title" value="[% p %]" -->
-<!--#set var="title.window" value="[% titleMeta %]" -->
-<!--#set var="description" value="[% textBriefClean %]" -->
-<!--#set var="OriginalPublicationDate" value="[% date_iso8601 %]" -->
-<!--#set var="tags" value="[% tagsUrl %]" -->
-<!--#set var="canonical" value="/[% location %]/[% p %]" -->
-<!--#set var="nav_up" value="/[% location %]/" -->
-<!--#set var="nav_up_title" value="[% section %]" -->
-<!--#set var="shareicon" value="/_etc/resources/cut/[% resources.0.title %]-[% resources.0.rnd %]-0-sq-100-0-0-0.[% resources.0.ext %]" -->
-[% IF latitude %]
-  <!--#set var="latitude1" value="[% latitude %]" -->
-  <!--#set var="longitude1" value="[% longitude %]" -->
-[% END %]
-[% FOREACH resource IN resources %]
-  [% IF resource.latitude %]
-      <!--#set var="latitude2" value="[% resource.latitude %]" -->
-      <!--#set var="longitude2" value="[% resource.longitude %]" -->
-  [% END %]
-[% END %]
+<!--#set var="title.sub" value="[% title %]" -->
+<!--#set var="title.window" value="Notes: [% p %][% IF title!='' %]: [% title %][% END %]" -->
+[% PROCESS 'meta.tmpl' section='notes' %]

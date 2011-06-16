@@ -1,34 +1,22 @@
-[% IF title %]
-  <h3 class="inserted">[% title %]</h3>
-[% END %]
 <div class="grid_5 alpha">
-  [% IF quote %]
-    <blockquote>[% quote %]</blockquote>
-  [% END %]
-  [% IF attribution %]
-    <p class="attribution">[% attribution %]</p>
-  [% END %]
-  <div class="text">
-    [% text %]
+  <div class="book">
+    <p><strong>[% bookTitle %]</strong></p>
+    <p>[% authorSurname %], [% authorFirstName %]</p>
+    <p>[% publisherName %], [% publishedDate %]</p>
+    <p>ISBN [% isbn %]</p>
+  
+    [% IF translator %]
+      <p>Translated by [% translatorSurname %], [% translatorFirstName %]</p>
+    [% END %]
   </div>
   <div id="versions" class="meta">
-    <p>Version [% version %] (<abbr class="timeago" title="[% date_iso8601 %]">[% date_full %]</abbr>)</p>
+    <p>Version <span class="version-source">[% version %]</span> (<abbr class="timeago" title="[% date_iso8601 %]">[% date_full %]</abbr>)</p>
   </div>
   <div class="apparatus">
     <!--#include virtual="../../_etc/layouts/apparatus_left.shtml" -->
   </div>
 </div>
 <div class="grid_5 prefix_1 suffix_1 omega">
-  [% FOREACH resource IN resources %]
-     <a href="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-12-0-0-0.[% resource.ext %]">
-      <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-6-0-0-0.[% resource.ext %]">
-     </a>
-  [% END %]
-  [% IF caption %]
-    <p class="caption">[% caption %]</p>
-  [% END %]
-  [% PROCESS 'video.tmpl' vimeoWidth = 460, vimeoHeight= 260, youtubeWidth = 460, youtubeHeight = 260, dailymotionWidth = 460, dailymotionHeight = 245 %]
-  [% PROCESS 'map.tmpl' %]
   <div class="apparatus">
     <div id="tags">
       <!--#include virtual="../../_etc/cache/tags--tags-tags=[% tagsUrl %].html" -->

@@ -56,4 +56,7 @@ h1 .version {
   color:#d5d5d5;
   display:none;
 }
-  
+
+.vimeo-player, .dailymotion-player {
+  background-color: #000;
+}

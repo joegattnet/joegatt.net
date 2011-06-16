@@ -19,18 +19,14 @@
 
 @charset"UTF-8";
 
-.video-yt {
-  background-color:#000;
-  display:inline-block;
-  position:relative;
-  overflow:hidden;
-}
-
 .mb_YTVPlayer :focus {
 	outline: 0;
 }
-.mb_YTVPlayer{
-  display:inline-block;
+.video-yt, .mb_YTVPlayer{
+  background-color:#000;
+  display:block;
+  position:relative;
+  overflow:hidden;
   /*
   -moz-box-shadow:#000 1px 1px 5px;
   -webkit-box-shadow:#000 1px 1px 5px;

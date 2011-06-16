@@ -1,14 +1,14 @@
 [% IF vimeoId %]
-  <object width="[% vimeoWidth %]" height="[% vimeoHeight %]">
+  <object class="vimeo-player" width="[% vimeoWidth %]" height="[% vimeoHeight %]">
     <param name="allowfullscreen" value="true" />
     <param name="allowscriptaccess" value="always" />
     <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=[% vimeoId %]&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" />
-    <embed src="" data-src="http://vimeo.com/moogaloop.swf?clip_id=[% vimeoId %]&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="[% vimeoWidth %]" height="[% vimeoHeight %]"></embed>
+    <embed src="http://vimeo.com/moogaloop.swf?clip_id=[% vimeoId %]&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ffffff&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="[% vimeoWidth %]" height="[% vimeoHeight %]"></embed>
   </object>
 [% END %]
 [% IF youtubeId %]
-  <a href="http://www.youtube.com/watch?v=[% youtubeId %]" style="width:[% youtubeWidth %]px;height:[% youtubeHeight %]px" class="video-yt {opacity:1, ratio:'4/3', isBgndMovie:false, width:'[% youtubeWidth %]', quality:'hd720'}">[% title %]</a>
+  <a href="http://www.youtube.com/watch?v=[% youtubeId %]" style="width:[% youtubeWidth %]px;height:[% youtubeHeight %]px" class="video-yt {opacity:1, ratio:'4/3', isBgndMovie:false, width:[% youtubeWidth %]}">[% title %]</a>
 [% END %]
 [% IF dailymotionId %]
-  <iframe title="Dailymotion video player" class="dailymotion-player" type="text/html" width="[% dailymotionWidth %]" height="[% dailymotionHeight %]" src="" data-src="http://www.dailymotion.com/embed/video/[% dailymotionId %]"></iframe>
+  <iframe title="Dailymotion video player" class="dailymotion-player" type="text/html" width="[% dailymotionWidth %]" height="[% dailymotionHeight %]" src="http://www.dailymotion.com/embed/video/[% dailymotionId %]"></iframe>
 [% END %]

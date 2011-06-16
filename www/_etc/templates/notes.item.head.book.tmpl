@@ -1,1 +1,3 @@
-[% PROCESS 'notes.item.head.default.tmpl' %]
+<!--#set var="title" value="[% authorSurname %]: [% title %]" -->
+<!--#set var="title.window" value="Bibliography: [% authorSurname %]: [% bookTitle %]" -->
+[% PROCESS 'meta.tmpl' section='bibliography' %]

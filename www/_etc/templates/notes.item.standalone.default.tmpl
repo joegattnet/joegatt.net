@@ -1,6 +1,3 @@
-[% IF title %]
-  <h3 class="inserted">[% title %]</h3>
-[% END %]
 <div class="grid_5 alpha">
   [% IF quote %]
     <blockquote>[% quote %]</blockquote>
@@ -21,13 +18,13 @@
 <div class="grid_5 prefix_1 suffix_1 omega">
   [% FOREACH resource IN resources %]
      <a href="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-12-0-0-0.[% resource.ext %]">
-      <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-6-0-0-0.[% resource.ext %]">
+      <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-6-0-0-0.[% resource.ext %]" alt="[% IF caption %][% caption %][% ELSIF title %][% title %][% ELSE %][% textBriefClean %][% END %]">
      </a>
   [% END %]
   [% IF caption %]
     <p class="caption">[% caption %]</p>
   [% END %]
-  [% PROCESS 'video.tmpl' vimeoWidth = 460, vimeoHeight= 260, youtubeWidth = 460, youtubeHeight = 260, dailymotionWidth = 460, dailymotionHeight = 245 %]
+  [% PROCESS 'video.tmpl' vimeoWidth = 460, vimeoHeight= 345, youtubeWidth = 460, youtubeHeight = 345, dailymotionWidth = 460, dailymotionHeight = 345 %]
   [% PROCESS 'map.tmpl' %]
   <div class="apparatus">
     <div id="tags">
