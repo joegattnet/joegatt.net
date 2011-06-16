@@ -1,6 +1,8 @@
 NB.Ui.addthis = function(){
-  addthis.toolbox('.addthis_toolbox');
-  addthis.counter('#share_count');
+  NB.loaded_scripts.add(true, function() {
+    addthis.toolbox('.addthis_toolbox');
+    addthis.counter('#share_count');
+  });
 }
 
 /******************************************************************************/

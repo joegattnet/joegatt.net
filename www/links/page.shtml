@@ -6,7 +6,6 @@
 <!--#set var="clip_id" value="${section}_${p}" -->
 <!--#set var="comments_id" value="${section}_${p}" -->
 
-<!--#set var="page_type" value="note" -->
 <!--#set var="chunk" value="note" -->
 
 <!--#set var="books_id" value="$page" -->
@@ -22,7 +21,7 @@
 <!--#set var="title" value="Link $p" -->
 <!--#set var="title.window" value="Link $p" -->
 
-<!--#include virtual="/_etc/cache/head--${page_type}-${QUERY_STRING}.shtml" -->
+<!--#include virtual="/_etc/cache/head--note-${QUERY_STRING}.shtml" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
 <!--#set var="content" value="/_etc/cache/notes--page-p=${p}&mode=standalone&show=links.shtml" -->

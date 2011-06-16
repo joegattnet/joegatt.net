@@ -10,7 +10,6 @@
 
 <!--#set var="tags" value="$tags,_${section}_p$p" -->
 
-<!--#set var="page_type" value="index" -->
 <!--#set var="chunk" value="index" -->
 
 <!--#set var="title.super" value="Wutz" -->

@@ -26,7 +26,7 @@ $('window').one('scroll', function() {
 if(NB.Cookie.read('session_exit')){
   var href = NB.Cookie.read('session_exit');
   NB.Cookie.remove('session_exit');
-  NB.loaded_scripts.add(function(){
+  NB.loaded_scripts.add(false, function(){
     NB.Nav.track(2,'Exit - returned', encodeURIComponent(NB.Url.domain(href)), encodeURIComponent(href));
   });
 }
@@ -34,7 +34,7 @@ if(NB.Cookie.read('session_exit')){
 if(NB.Cookie.read('promo')){
   var promo = NB.Cookie.read('promo');
   NB.Cookie.remove('promo');
-  NB.loaded_scripts.add(function(){
+  NB.loaded_scripts.add(false, function(){
     NB.Nav.track(2,'Promo - referrer', promo);
   });
 }

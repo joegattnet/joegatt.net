@@ -13,7 +13,7 @@
 <p>If you continue to have problems please email <a href="mailto:webmaster@joegatt.net">webmaster@joegatt.net</a>.</p>
 
 <script>
-  NB.loaded_scripts.add(function(){
+  NB.loaded_scripts.add(false, function(){
     NB.Nav.track(2,"Error","<!--#echo var="message" -->");
   });
 </script>

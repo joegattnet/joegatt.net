@@ -95,7 +95,7 @@ if(!$static){
   $output .= qq~
   <script type="text/javascript">
   //<![CDATA[
-    NB.loaded_scripts.add(function(){
+    NB.loaded_scripts.add(false, function(){
       NB.Nav.track(0,'Loaded enface content - p$p');
       $versions_info
     });

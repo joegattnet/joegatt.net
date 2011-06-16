@@ -27,7 +27,7 @@ NB.User.twitter = {
 
 /******************************************************************************/
 
-jQuery(function() {
+NB.loaded_scripts.add(true, function() {
   if(NB.external.twitter){
     twttr.anywhere.config({callbackURL: 'http://'+location.host+'/twitter-signedin.html'});
     twttr.anywhere(function (T) {
@@ -43,6 +43,7 @@ jQuery(function() {
       });
     });
   }
+  //Is this the best way?
+  NB.User.twitter.button();
+  $('body').bind('minor.loaded', NB.User.twitter.button);
 });
-
-$('body').bind('minor.loaded', NB.User.twitter.button);

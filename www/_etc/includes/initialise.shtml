@@ -1,16 +1,15 @@
 <script>
+  NB.layout = "<!--#echo var="layout" -->";
   NB.crumb = {
     canonical: "<!--#echo var="canonical" -->",
     category: "<!--#echo var="category" -->",
     section: "<!--#echo var="section" -->",
     page: "<!--#echo var="page" -->",
     page_id: "<!--#echo var="section" -->_<!--#echo var="page" -->",
-    page_type: "<!--#echo var="page_type" -->",
+    page_app: "<!--#echo var="page_app" -->",
     path: "<!--#echo var="path" -->"
   };
-
   NB.tags = "<!--#echo var="tags" -->";
-
   NB.title = "<!--#echo var="title" -->";
   NB.title_window = "<!--#echo var="title.window" -->";
   NB.description = "<!--#echo var="description" -->";
@@ -37,6 +36,4 @@
       max: "<!--#echo var="p_max" -->"
   <!--#endif -->
   }  
-  NB.layout = "<!--#echo var="layout" -->";
-  NB.page_type = "<!--#echo var="page_type" -->";
 </script>

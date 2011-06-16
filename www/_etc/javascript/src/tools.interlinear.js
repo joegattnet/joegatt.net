@@ -60,7 +60,7 @@ NB.Tools.interlinear = {
 $('#container').delegate('#tool_interlinear','click',NB.Tools.interlinear.toggle);
 $('#container').delegate('.tool_interlinear_extra','click',NB.Tools.interlinear.toggle);
 
-NB.loaded_scripts.add(function(){
+NB.loaded_scripts.add(false, function(){
 	 if(NB.Cookie.read('tool_interlinear_on') === 'true'){
      NB.Tools.interlinear.on()
   	 $('#tool_interlinear').addClass('on');

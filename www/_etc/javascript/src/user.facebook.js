@@ -44,6 +44,6 @@ NB.User.facebook = {
 /******************************************************************************/
 
 if(NB.external.facebook){
-  NB.loaded_scripts.add(NB.User.facebook.check);
+  NB.loaded_scripts.add(true, NB.User.facebook.check);
   $('.fb-button').live('click',NB.User.facebook.clicked);
 }

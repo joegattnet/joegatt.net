@@ -1,9 +1,9 @@
 NB.App = {
   idling: function(){
     NB.App.focus = function(){return true;}, 
-    NB.Appblur = function(){return true;},
-    NB.Appkeyup = function(){return true;},
-    NB.Appreset = function(){return true;}
+    NB.App.blur = function(){return true;},
+    NB.App.keyup = function(){return true;},
+    NB.App.reset = function(){return true;}
     NB.Nav.track(1,'NB.App idling.');
   },
   events: function(){
@@ -19,7 +19,7 @@ NB.App = {
 /******************************************************************************/
 
 $('body').bind('content.loaded', function(){
-  if(NB.crumb.page_type == 'enface'){
+  if(NB.crumb.page_app == 'enface'){
     NB.Enface.invoke();
   } else {
     NB.Enface.invoked = false;
