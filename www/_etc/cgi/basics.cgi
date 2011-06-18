@@ -369,9 +369,18 @@ sub saveAnagramParagraph {
   my $sth = $dbh->prepare("$sql");
   $sth->execute();
 	$sth->finish();
+	
+  saveAnagram($b);
+}
+
+# ******************************************************************************
+
+sub saveAnagram {  
+
+  my $b = $_[0];
   
   # Update flat anagram ********************************************************
-  
+ 
   $sql = "SELECT label,SUM(count) FROM character_count WHERE book_id=? GROUP BY label";
   my $sth = $dbh->prepare("$sql");
   $sth->execute($b);
@@ -396,7 +405,7 @@ sub saveAnagramParagraph {
 
   $anagram_table .= "</tbody></table>";
   $anagram_total_comma = OOOcomma($anagram_total);
-  $anagram_table = "<div id=\"total_change\"><p id=\"total\">$anagram_total_comma</p><p id=\"change\"><!-- --></p></div><p id=\"alert\">Anagram status.</p><div class=\"tables clearfix\">$anagram_table</div>";
+  $anagram_table = "<div id=\"total_change\"><p id=\"total\" class=\"version-subtractive\">$anagram_total_comma</p><p id=\"change\"><!-- --></p></div><p id=\"alert\">Anagram status.</p><div class=\"tables clearfix\">$anagram_table</div>";
 
   $values_string = join(',', @jsarrayvalues);
 
@@ -419,11 +428,11 @@ sub saveAnagramParagraph {
   close ANAGRAM_TABLE;
   
   #Remove - use client-side cloning
-  $version_number = eval ("1 - 0.$anagram_total");
-  $location = untaint("../../../_etc/cache/enface--version-b=$b.html");
-  open VERSION_NUMBER,">$location" or die print "ERRROR: File not opened: $! $location";
-  print VERSION_NUMBER " $version_number";
-  close VERSION_NUMBER;
+  #$version_number = eval ("1 - 0.$anagram_total");
+  #$location = untaint("../../../_etc/cache/enface--version-b=$b.html");
+  #open VERSION_NUMBER,">$location" or die print "ERRROR: File not opened: $! $location";
+  #print VERSION_NUMBER " $version_number";
+  #close VERSION_NUMBER;
 
 #also print title's colour
 

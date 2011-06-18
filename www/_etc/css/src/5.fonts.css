@@ -54,17 +54,41 @@ h2,.DejaVuSansCondensedBold {
 	line-height:normal;
 }
 
-.colophon #content p.KleistFrakturRegular {
+.section-colophon #content p.KleistFrakturRegular {
   font-size:40px;
   line-height:40px;
 }
 
-.colophon #content p.DejaVuSansCondensed,
-.colophon #content p.DejaVuSansCondensedBold {
+.section-colophon #content p.DejaVuSansCondensed,
+.section-colophon #content p.DejaVuSansCondensedBold {
   font-size:24px;
   line-height:40px;
 }
 
 a,li,p {
 line-height:20px;
+}
+
+/* Header *********************************************************************/
+
+h1 {
+  font-size:32px;
+  top:60px;
+}
+h1 .version {
+  display:none;
+}
+
+h2 {
+    top:38px;
+}
+#title h2 a {
+  color:#999;
+}
+#title h2 a:hover {
+  color:#00c;
+}
+h3 {
+  color:#454545;
+  top:119px;
 }

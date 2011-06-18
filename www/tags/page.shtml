@@ -19,7 +19,7 @@
 <!--#include virtual="/_etc/cache/head--tag-${QUERY_STRING}.shtml" -->
 
 <!--#set var="yield" value="yield_1024_05_02s_05_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/notes--list-tags=${p}&template=compact.html" -->
+<!--#set var="content" value="/_etc/cache/notes--list-tags=${p}&template=compact&limit=99.html" -->
 <!--#set var="content_right" value="/_etc/cache/tags--list-template=cloud&min=1.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

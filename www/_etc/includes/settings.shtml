@@ -35,7 +35,7 @@
 <!--#set var="scripts_discrete" value="false" -->
 <!--#set var="styles_discrete" value="false" -->
 
-<!--#set var="jquery_version" value="1.4.2" -->
+<!--#set var="jquery_version" value="1.5.2" -->
 <!--#set var="jquery_ui_version" value="1.8.12" -->
 
 <!--#set var="js_version" value="1-2" -->

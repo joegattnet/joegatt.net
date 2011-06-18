@@ -22,7 +22,7 @@ NB.SETTINGS = {
     ['anagram', 1],
     ['enface', 5],
     ['scholia', 5],
-    ['comments',10]
+    ['comments' ,10]
   ],
   speed: {
     faster: 200,

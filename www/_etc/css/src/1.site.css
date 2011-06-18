@@ -244,25 +244,6 @@ color:#333;
     height:100px;
 }
 
-h1 {
-  font-size:38px;
-  top:60px;
-}
-h2 {
-  color:#999;
-    top:38px;
-}
-#title h2 a {
-  color:#999;
-}
-#title h2 a:hover {
-  color:#00c;
-}
-h3 {
-  color:#454545;
-  top:119px;
-}
-
 /* yield **********************************************************************/
 #yield {
   position:relative;

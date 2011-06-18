@@ -14,9 +14,9 @@ NB.Tools.interlinear = {
     $('.target','#content').css({position:'absolute',marginLeft:'390px'});
     $('.extra_out','#content').css({textAlign:'left'});
     $('#content').animate({marginTop:'-10px',marginBottom:'1.8em'},NB.S.speed.fast);
-    $('p','#content').animate({lineHeight:'50px'},NB.S.speed.slow);
+    $('p','#content').animate({lineHeight:'40px'},NB.S.speed.slow);
     $('.extra_out','#content').animate({left:'0',top:'0.65em'},NB.S.speed.fast);
-    $('.target','#content').animate({width:'460px',marginLeft:'80px',paddingTop:'1.85em'},NB.S.speed.slow);
+    $('.target','#content').animate({width:'460px',marginLeft:'80px',paddingTop:'20px'},NB.S.speed.slow);
     $('.source','#content').animate({width:'460px',marginLeft:'80px'},NB.S.speed.slow);
     $('.ends_epigraph','#content').animate({paddingLeft:'80px'},NB.S.speed.fast);
     $('.ends_section,.ends','#content').animate({paddingLeft:'240px'},NB.S.speed.fast);

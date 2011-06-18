@@ -117,7 +117,6 @@ return array(
    '//_etc/javascript/src/ui.screencover.js',
    '//_etc/javascript/src/ui.stripes.js',
    '//_etc/javascript/src/ui.timeago.js',
-   '//_etc/javascript/src/ui.versions.js',
    '//_etc/javascript/src/ui.video.js',
    '//_etc/javascript/src/url.----------------.js',
    '//_etc/javascript/src/user.--------------.js',

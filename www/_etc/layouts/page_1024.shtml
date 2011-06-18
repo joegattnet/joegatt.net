@@ -1,5 +1,5 @@
 <!--#include virtual="/_etc/includes/initialise.shtml" -->
-<section class="<!--#echo var="section" --> <!--#echo var="page" -->">
+<section class="section-<!--#echo var="section" --> page-<!--#echo var="section" -->-<!--#echo var="page" -->">
   <!--#if expr="${title.static}=true" -->
     <header>
       <hgroup id="title">

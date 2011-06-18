@@ -20,13 +20,14 @@ window.fbAsyncInit = function() {
     if(!'contentEditable' in document.body){
       NB.loadAsyncScript('/_etc/min/?f=//_etc/javascript/lib/nicEdit-Skip.js');
     }
-    NB.loadAsyncScript('http://s7.addthis.com/js/250/addthis_widget.js#async=1');
+    NB.loadAsyncScript('http://s7.addthis.com/js/250/addthis_widget.js');
 })();      
 var _gaq=[["_setAccount",NB.keys.google_analytics]];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
  s.parentNode.insertBefore(g,s)}(document,"script"));
  
-NB.loaded_scripts.add(true, function(){
-  addthis.init();
-});
+//NB.loaded_scripts.add(true, function(){
+//If we do #async on the url string
+//  addthis.init();
+//});

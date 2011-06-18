@@ -40,6 +40,15 @@ NB.Nav.crumb = {
     if(version != ''){
       $('.version').text('v' + version);
     }
+  },
+  version_chunk: function(){
+    var version = $('.version-chunk-source').text();
+    if(version != ''){
+      $('.version-chunk').text('v' + version);
+      $('.version-chunk').show();
+    } else {
+      $('.version-chunk').hide();
+    }
   }
 }
 

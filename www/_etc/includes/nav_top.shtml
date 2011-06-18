@@ -12,7 +12,7 @@
         <span class="version"><!--#echo var="version"--></span>
       </li>
   		<li><span id="crumbs_chunk" style="display:none;" class="a"></span></li>
-  		<li><span id="crumbs_chunk_version" style="display:none;" class="a"></span></li>
+  		<li><span class="version-chunk" style="display:none;" class="a"></span></li>
       <li><a id="tool_code" href="javascript:;">code</a></li>
   </ul>
 </div>

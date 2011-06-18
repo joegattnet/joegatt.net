@@ -1,7 +1,7 @@
 <div id="toolbar_top" class="<!--#if expr="$toolbar_pinnable = true" -->pinnable<!--#endif -->">
   <!--#if expr="$toolbar_pinnable=true" --><p class="pin"><a href="javascript:;" class="pin-a">pin</a></p><!--#endif -->
   <div id="anagramometer" class="separator clearfix stripe">
-    <!--#include virtual="/_etc/cache/enface--anagram_table-b=${b}.html?r=${randomiser}"-->      
+    <!--#include virtual="/_etc/cache/enface--anagram-b=${b}.html?r=${randomiser}"-->      
   </div>
   <!--#include virtual="/_etc/cache/common--navigator-pagefull=false&p_max=${p_max}&${QUERY_STRING}.html" -->      
   <div class="separator">

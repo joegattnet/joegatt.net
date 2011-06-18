@@ -39,9 +39,6 @@ display:block;
 text-indent:-9999px;
 text-align:left;
 }
-iframe.twitter-share-button {
-  width:92px!important;
-}
 #follow a#twitter-follow {
     background-position:-371px -191px;
     width:79px;
@@ -50,6 +47,17 @@ iframe.twitter-share-button {
 }
 #follow a#twitter-follow:hover {
     background-position:-371px -207px;
+}
+#crumbs span {
+  display:inline;
+}
+#crumbs .version {
+  padding-left:5px;
+}
+
+/*
+iframe.twitter-share-button {
+  width:92px!important;
 }
 #n_share li.fb-like, #n_share li.twitter {
   position:relative;
@@ -63,6 +71,7 @@ iframe.twitter-share-button {
   position:absolute!important;
   top:-15px!important;
 }
+*/
 /* downloads *********************************************************************/
 
 .dl {
@@ -387,6 +396,7 @@ margin-top:-3px;
 #tags h4, #tags ul {display:inline;}
 */
 /* comments *******************************************************************/
+
 #apparatus_page {
  margin-top:20px;
 }
@@ -492,57 +502,4 @@ top:0;
 border-top:1px dashed #999;
 margin-top:15px;
 padding-top:15px;
-}
-
-/***************************************************************************/
-
-a.bm {
-    background-position:-8px -350px;
-    width:16px;
-    height:16px;
-    text-indent:-9999px;
-    display:block;  
-}
-a#twitter-follow {
-    background-position:-8px -477px;
-}
-a.stumbleupon {
-    background-position:-8px -509px;
-}
-a.reddit {
-    background-position:-8px -541px;
-}
-a.mixx {
-    background-position:-8px -797px;
-}
-a.google {
-    background-position:-8px -701px;
-}
-a.digg {
-    background-position:-8px -349px;
-}
-a.delicious {
-    background-position:-8px -381px;
-}
-a.facebook {
-    background-position:-8px -637px;
-}
-a.friendfeed {
-    background-position:-8px -825px;
-}
-a.myspace {
-    background-position:-8px -605px;
-}
-a.yahoo {
-    background-position:-8px -446px;
-}
-a.technorati {
-    background-position:-8px -765px;
-}
-a.evernote {
-  display:block;
-  width:14px;
-  height:16px;
-  text-indent:-9999px;
-  background-position:-9px -572px;
 }

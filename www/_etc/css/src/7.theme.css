@@ -12,9 +12,6 @@ color:#f60;
 #n_share a:hover, #n_clip a:hover, #n_cite a:hover, #follow a:hover, a.external:hover {
   color:#2200d5!important;
 }
-h1 a {
-color:#00c;
-}
 
 /**************************************************************************/
 .a_arrows a:link,.a_arrows a:visited, .a_arrows span {

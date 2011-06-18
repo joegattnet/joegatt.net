@@ -129,7 +129,9 @@ foreach ($notesFound as $note) {
         } else if($thisTagName == '__NOLIST'){
           $note_type = 0; //Fragment
         } else if($thisTagName == '_books'){
-          $note_type = 2; //Book
+          //$note_type = 2;
+          $booksTagFound = true;
+          $expFound = true;
         } else if($thisTagName == '__LINK'){
           $note_type = 3; //Link
         } else if($thisTagName == '__TOPIC'){
@@ -155,6 +157,13 @@ foreach ($notesFound as $note) {
        $tagCounter++;
       }
     }
+    
+    if($booksTagFound && $expFound){
+      $note_type = 2;
+    }
+    $booksTagFound = false;
+    $expFound = false;
+
     
     for ($i=0; $i<sizeof($resources); $i++){
       $thisResourceGuid = $resources[$i]->guid;

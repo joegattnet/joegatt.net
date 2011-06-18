@@ -13,17 +13,16 @@ NB.Versions = {
 		    var showusername = (NB.User.id==NB.versions[pq][0]?'me':username);
 
         NB.Nav.track(2,'_trackPageview',NB.crumb.lastloaded==undefined?location.pathname:NB.crumb.lastloaded+(latest?'':'/v/'+q));
-
-        var crumbs_chunk_version = $('#crumbs_chunk_version');
-        if (!latest) {
-        	crumbs_chunk_version.text('v'+version);
-          crumbs_chunk_version.show();
-      	} else {
-          crumbs_chunk_version.hide();
-        }
-//        NB.Nav.track(2,'Enface', 'Version', 'v'+version+(latest?' (latest)':''), q);
+        
+// NB.Nav.track(2,'Enface', 'Version', 'v'+version+(latest?' (latest)':''), q);
 // NEXTREL        $('version_info_panel').update('<p>version '+version+(score>0?' &#x25b2;'+score:'')+'</p><p><a href="'+NB.root+'users.shtml?u='+user_id+'&b='+NB.book.id+'">'+username+'</a>, <span title="'+date+'">'+date_string+'</span></p>');
-        $('#version_info_panel').html('<p>&para; ' + NB.p.current + ' version '+version+(score>0?' &#x25b2;'+score:'')+'</p><p class="user-name user-'+username+'" data-username="'+username+'">'+showusername+', <span title="'+date+'">'+date_string+'</span></p>');
+        
+        var fullDescription = 'Paragraph ' + NB.p.current + ' version 0.' + version + ' score ' + (score>0?score:'');
+        
+        $('#version_info_panel').html('<p title="' + fullDescription + '">&para; ' + NB.p.current + ' v<span class="version-chunk-source">0.' + version + '</span>' + (score>0?' &#x25b2;'+score:'')+'</p><p class="user-name user-'+username+'" data-username="'+username+'">'+showusername+', <span title="'+date+'">'+date_string+'</span></p>');
+        
+        NB.Nav.crumb.version_chunk();
+        
         $('#versions_nav a').each(function(){
           $(this).unbind('click.versions');
         });
