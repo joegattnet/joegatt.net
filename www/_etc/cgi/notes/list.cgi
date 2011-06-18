@@ -4,11 +4,15 @@ require '../basics.cgi';
 require '../notes/basics.cgi';
 
 $template = 'list';
+$limit = 20;
+$offset = 0;
 
 formRead("get");
 
 if ($type eq 'fragment') {
   $type = 0;
+} elsif ($show eq 'notes') {
+  $type = 1;
 } elsif ($show eq 'bibliography') {
   $type = 2;
 } elsif ($show eq 'links') {
@@ -35,7 +39,7 @@ if($latest eq 'true'){
 
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
-  SELECT notes.e_guid,COUNT(*) AS score 
+  SELECT SQL_CALC_FOUND_ROWS notes.e_guid,COUNT(*) AS score 
   FROM notes,tags,_lookup 
   WHERE latest = 1
   AND notes.publish >= ?
@@ -45,6 +49,7 @@ my $sth = $dbh->prepare(qq{
   $tagsSQL 
   GROUP BY notes.e_guid 
   $order
+  LIMIT ? OFFSET ?
 });
 
 if ($type eq '') {
@@ -65,9 +70,9 @@ sub getNotes {
   my $showTitle = "\U$show";
 
   if ($latest eq 'true') {
-    $sth->execute($notesThreshold, $type);
+    $sth->execute($notesThreshold, $type, $limit, $offset);
   } else {
-    $sth->execute($notesThreshold, $type, $tags);
+    $sth->execute($notesThreshold, $type, $tags, $limit, $offset);
   }
 
   $notesCount = 0;
@@ -78,8 +83,13 @@ sub getNotes {
     $notesCount++;
   }
   if ($notesCount != 0) {
+    my $sth = $dbh->prepare(qq{
+      SELECT FOUND_ROWS()
+    });
+    $sth->execute();
+    my ($foundRowsReal) = $sth->fetchrow_array();
     if ($header ne 'no') {
-      $headerOutput = "<h4><a href=\"/$show/\">$showTitle</a> <span>($notesCount)</span></h4>";
+      $headerOutput = "<h4><a href=\"/$show/\">$showTitle</a> <span>($foundRowsReal)</span></h4>";
     }
     $output = "$headerOutput<ul class=\"notes-list notestype-$show\">$output</ul>";
   }

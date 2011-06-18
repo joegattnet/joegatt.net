@@ -134,7 +134,7 @@ sub printNote {
 
   if($title ne '' && $title ne 'Note Title' && $title =~ /quote\:/i && $title =~ /untitled/i && $textBriefClean !~ /$title/i){
     $title =~ s/[^\w]$//;
-  } elsif (!$isTopic && !$isLink) {
+  } elsif (!$isTopic && !$isLink && !$isBook) {
     $title = '';
   }
 
@@ -177,6 +177,12 @@ sub printNote {
   $sthNote->finish();
   $sthResources->finish();
   $sthTags->finish();
+
+  $version = "0.$version";
+
+  $source_url =~ /(http\:\/\/)([^\/]*)(.*)/;
+  $source_url_domain = $2;
+  $source_url_domain =~ s/^www\.|^en\.//g;
     
   #Process
     use Template;
@@ -215,6 +221,7 @@ sub printNote {
         
         source => $source,
         sourceUrl => $source_url,
+        sourceUrlDomain => $source_url_domain,
         longitude => $note_longitude,
         latitude => $note_latitude,
         date_iso8601 => $date_iso8601,

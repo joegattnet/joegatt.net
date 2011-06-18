@@ -1,1 +1,22 @@
-[% PROCESS 'notes.item.compact.default.tmpl' %]
+[% FOREACH resource IN resources %]
+   [% PROCESS 'image.tmpl' imageCols = 3 %]
+[% END %]
+[% PROCESS 'video.tmpl' vimeoWidth = 300, vimeoHeight= 225, youtubeWidth = 300, youtubeHeight = 225, dailymotionWidth = 300, dailymotionHeight = 225 %]
+[% IF quote %]
+  <blockquote[% IF sourceUrl %] cite="http://[% sourceUrl %]"[% END %]>[% quote %]</blockquote>
+[% END %]
+[% IF attribution %]
+  <p class="attribution">[% attribution %]</p>
+[% END %]
+[% IF title %]
+  <h6><a href="/[% location %]/[% p %]">[% title %]</a></h6>
+[% END %]
+[% textBriefLinked %]
+<ul class="meta nav_h">   
+  <li><a href="/notes/[% p %]">#[% p %]</a></li>
+  [% FOREACH tag IN tags %]
+    <li>
+      <a rel="tag" href="/tags/[% tag.link %]">[% tag.title %]</a>
+    </li>
+  [% END %]
+</ul>

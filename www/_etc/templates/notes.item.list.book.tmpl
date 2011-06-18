@@ -1,1 +1,8 @@
-[% PROCESS 'notes.item.compact.book.tmpl' %]
+<a href="/[% location %]/[% p %]" class="book">[% authorSurname %]: [% title %]</a>
+<ul class="meta nav_h">   
+  [% FOREACH tag IN tags %]
+    <li>
+      <a rel="tag" href="/tags/[% tag.link %]">[% tag.title %]</a>
+    </li>
+  [% END %]
+</ul>
