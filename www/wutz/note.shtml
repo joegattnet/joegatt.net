@@ -18,8 +18,6 @@
 <!--#set var="title" value="A Note on the Translation" -->
 <!--#set var="title.window" value="$title" -->
 
-<!--#set var="epigraph" value="" -->
-
 <!--#set var="yield" value="yield_1024_06_01s_05_a.shtml" -->
 <!--#set var="direct_content" value="false" -->
 <!--#set var="content" value="/_etc/cache/notes--fragment-tags=_wutz_note_left.html" -->

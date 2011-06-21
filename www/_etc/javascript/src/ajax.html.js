@@ -1,25 +1,27 @@
 NB.Ajax = {
-		html: function(formMethod,outDiv,url,params,cache,position,indDivIn,loadUrl,run) {
+		html: function(formMethod,outDiv,url,params,cache,position,indDivIn,loadPage,run) {
     		var current = $(outDiv).data('url')||'';
     		var urlFull = url+(params==''?'':'?'+params);
-        var key = NB.Url.path(url);
-		    NB.Nav.track(1,'<a href="/code/www/_etc/javascript/src/ajax.html.js" class="source-file">New Ajax</a>: ',current,urlFull);
+        var key = urlFull;
+        //NB.Url.path(url);
+		    NB.Nav.track(1,'New Ajax: ',current,urlFull,outDiv.id);
         var indDiv = indDivIn || outDiv;
     		NB.Nav.track(1,outDiv,current,urlFull==current, (NB.cache[key]!=undefined));
 		    if (cache && (key == current)){
-          NB.Nav.track(1,outDiv,"Not changed.");
+          NB.Nav.track(1,outDiv,"AAAAAAAAAAAAAAAA Url not changed.",url,outDiv.id);
 		      return;
         } else if(cache && (NB.cache[key]!=undefined)){
           NB.Ajax._update(outDiv,position,NB.cache[key].data);
           $(outDiv).html(NB.cache[key].data);
-          if(loadUrl){
-            NB.Ajax._meta_load(urlFull,loadUrl);
+          if(loadPage){
+            NB.Ajax._meta_load(urlFull,loadPage);
           } else {
              $('body').trigger('minor.loaded');
           }
           NB.Ajax._done(indDiv);
-          NB.Nav.track(1,"Retrieved from NB.cache:",outDiv);
+          NB.Nav.track(1,"BBBBBBBBBBBBBBBB Retrieved from NB.cache:",url,outDiv.id);
         } else {
+          console.log('CCCCCCCCCCCC FETCHING',url,outDiv.id);
           NB.Ajax._active(indDiv);
           $.ajax({
             type: formMethod,
@@ -32,18 +34,18 @@ NB.Ajax = {
                 //Possibly a content encoding error - we risk a loop, of course
                 //Cache cgi now ensures a document is never empty;
                 NB.Nav.track(1,'AJAX returned null - retrying.');
-                NB.Ajax.html(formMethod,outDiv,url,params,cache,position,indDiv,loadUrl);
+                NB.Ajax.html(formMethod,outDiv,url,params,cache,position,indDiv,loadPage);
               } else {
                 NB.Ajax._update(outDiv,position,data);
                 if(cache){
                   NB.Cache.add(urlFull,data);
                 }
                 NB.Ajax._done(indDiv);
-                if(loadUrl){
-                   NB.Ajax._meta_load(urlFull,loadUrl);
+                if(loadPage){
+                   NB.Ajax._meta_load(urlFull,loadPage);
                 } else {
                    $('body').trigger('minor.loaded');
-                   $(outDiv).data('url', url);
+                   $(outDiv).data('url', urlFull);
                 }
                 if(run){
                    run();
@@ -55,7 +57,7 @@ NB.Ajax = {
                if(errorThrown==330){
                 //See above
                 NB.Nav.track(1,'AJAX returned 330 - retrying.');
-                NB.Ajax.html(formMethod,outDiv,url,params,cache,position,indDiv,loadUrl);
+                NB.Ajax.html(formMethod,outDiv,url,params,cache,position,indDiv,loadPage);
                }
           	}
           });
@@ -91,19 +93,21 @@ NB.Ajax = {
           },1000);
     },
     _error: function(e,textStatus,errorThrown){
-          var j = j;
+          var j = $(e);
           j.unbind('.pause');
-  				j.switchClass('ajax_loading','ajax_error');
+//  				j.switchClass('ajax_loading','ajax_error');
+  				j.removeClass('ajax_loading');
+  				j.addClass('ajax_error');
   			  setTimeout(function(){
             j.removeClass('ajax_error');
           },5000);
   			  NB.Nav.track(0,'error','Ajax error:'+errorThrown,textStatus);
     },
-    _meta_load: function(url,loadUrl){
+    _meta_load: function(urlFull,loadPage){
         $(window).scrollTop(0);
-        NB.Nav.crumb.load(loadUrl);
-        var scope = url.indexOf('scope')>=0?url.match(/(scope=)([a-z]+)/)[2]:'minor';
-        $('#'+scope).data('url', NB.Url.path(url));
+        NB.Nav.crumb.load(loadPage);
+        var scope = urlFull.indexOf('scope')>=0?urlFull.match(/(scope=)([a-z]+)/)[2]:'minor';
+        $('#'+scope).data('url', urlFull);
         $('body').trigger(scope+'.loaded');
     }
 }

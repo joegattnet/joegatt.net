@@ -30,7 +30,9 @@ if ($exclude ne '') {
   $excludeSQL = "AND notes.e_guid NOT LIKE '".sprintf("%04x", $exclude)."%'";
 }
 
-if($latest eq 'true'){
+if ($latest eq 'true' && $type == 2) {
+  $order = "ORDER BY text";
+} elsif($latest eq 'true'){
   $order = "ORDER BY date_modified DESC";
 } else {
   $tagsSQL = "AND (tags.name REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";

@@ -12,6 +12,10 @@
 
 <!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
 
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="${path}${p}" -->
+<!--#set var="canonical" value="$location" -->
+
 <!--#set var="title" value="Jean Paul: Schulmeisterlein Wutz" -->
 <!--#set var="title.window" value="$title" -->
 <!--#set var="title.url" value="/wutz/" -->
@@ -25,6 +29,8 @@
 <!--#set var="toolbar_pinnable" value="true" -->
 
 <!--#set var="nav_end" value="true" -->
+
+<!--#set var="tags_hack" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
 <!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&scope=content.html" -->

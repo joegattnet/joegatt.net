@@ -7,7 +7,9 @@ NB.User.facebook = {
       if (response.session){
         NB.User.facebook.loggedin(response.session);
       } else {
-        $('.fb-button').switchClass('fb-logout','fb-login');
+//        $('.fb-button').switchClass('fb-logout','fb-login');
+  				$('.fb-button').removeClass('fb-logout');
+  				$('.fb-button').addClass('fb-login');
         $('.fb-button span').text('Log in');
       }
     });

@@ -1,7 +1,7 @@
 // brush: "html" aliases: []
 
-//	This file is part of the "jQuery.Syntax" project, and is licensed under the GNU AGPLv3.
-//	Copyright 2010 Samuel Williams. All rights reserved.
+//	This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
+//	Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
 //	See <jquery.syntax.js> for licensing details.
 
 Syntax.brushes.dependency('html', 'xml');
@@ -24,20 +24,20 @@ Syntax.register('html', function(brush) {
 	brush.push({
 		pattern: /((<\?php)([\s\S]*?)(\?>))/gm,
 		matches: Syntax.extractMatches(
-			{klass: 'php-tag', allow: ['operator', 'php-script']},
-			{klass: 'operator'},
+			{klass: 'php-tag', allow: ['keyword', 'php-script']},
+			{klass: 'keyword'},
 			{brush: 'php-script'},
-			{klass: 'operator'}
+			{klass: 'keyword'}
 		)
 	});
 	
 	brush.push({
-		pattern: /((<\?rb)([\s\S]*?)(\?>))/gm,
+		pattern: /((<\?rb?)([\s\S]*?)(\?>))/gm,
 		matches: Syntax.extractMatches(
-			{klass: 'ruby-tag', allow: ['operator', 'ruby']},
-			{klass: 'operator'},
+			{klass: 'ruby-tag', allow: ['keyword', 'ruby']},
+			{klass: 'keyword'},
 			{brush: 'ruby'},
-			{klass: 'operator'}
+			{klass: 'keyword'}
 		)
 	});
 	

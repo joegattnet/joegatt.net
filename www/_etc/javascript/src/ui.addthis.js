@@ -9,12 +9,7 @@ NB.Ui.addthis = function(){
 
 var addthis_config = {
   pubid: 'joegattnet',
-  // Would be good to use only the required css
-  //From these - lots of superfluous styling
-  //Then again, they are cached by other sites...
-  // http://s7.addthis.com/static/r07/counter60.css
-  // http://s7.addthis.com/static/r07/widget60.css
-  //ui_use_css: false,
+  ui_use_css: false,
   services_compact: 'facebook,twitter,evernote,instapaper,readitlater,email,more',
   services_expanded: 'wordpress,blogger,livejournal,delicious,digg,stumbleupon',
   services_exclude: 'print',

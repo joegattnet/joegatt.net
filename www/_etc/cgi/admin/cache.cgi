@@ -20,8 +20,9 @@ print qq~
     <h2>Cache manager</h2>
     <h3>$timestamp</h3>
       <form>
-        <input name="q" value="$q"/>
-        <input type="Submit"/>
+        <input name="q" value="$q">
+        <p><input type="checkbox" name="deleteOnly"> Delete only</p>
+        <input type="Submit">
       </form>
       ~;
       
@@ -29,7 +30,7 @@ print qq~
         print qq~
           Refreshing '$q' from cache...
         ~;
-        cache_refresh($q,1);
+        cache_refresh($q,1,($deleteOnly eq 'on'));
       }
       
       print qq~

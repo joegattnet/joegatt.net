@@ -87,7 +87,7 @@ color:#666666;
 position:absolute;
 top:0;
 right:0;
-margin-top:7px;
+/*margin-top:7px;*/
 }
 #version_info li {
 margin:0 0 0 2px;
@@ -103,6 +103,18 @@ padding-left:3px;
 #version_info a.disabled {
 cursor:default;
 }
+
+a#version_first.button {
+width:7px;
+background-position:-33px -283px;
+}
+a#version_first.button:hover {
+background-position:-33px -303px;
+}
+a#version_first.disabled, a#version_first.disabled:hover {
+background-position:-33px -293px;
+}
+
 a#version_previous.button {
 background-position:-13px -243px;
 }

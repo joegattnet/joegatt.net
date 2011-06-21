@@ -3,7 +3,7 @@
   <div id="anagramometer" class="separator clearfix stripe">
     <!--#include virtual="/_etc/cache/enface--anagram-b=${b}.html?r=${randomiser}"-->      
   </div>
-  <!--#include virtual="/_etc/cache/common--navigator-pagefull=false&p_max=${p_max}&${QUERY_STRING}.html" -->      
+  <!--#include virtual="/_etc/cache/common--navigator-pagefull=false&page=$page&p_max=${p_max}&${QUERY_STRING}.html" -->      
   <div class="separator">
     <div id="paragraphs_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
       <a href="#" class="ui-slider-handle ui-state-default ui-corner-all"></a>
@@ -12,6 +12,7 @@
   <div id="version_info">
     <div id="version_info_panel"><!-- --></div>
       <ul id="versions_nav" class="nav_h">
+        <li><a href="javascript:;" class="button disabled" id="version_first">First version</a></li>
         <li><a href="javascript:;" class="button disabled" id="version_previous">Previous version</a></li>
         <li><a href="javascript:;" class="button disabled" id="version_next">Next version</a></li>
         <li><a href="javascript:;" class="button disabled" id="version_latest">Latest version</a></li>
@@ -26,7 +27,7 @@
       <li><a href="javascript:;" id="tool_blackletter">Blackletter</a></li>
     </ul>
   </div>
-  <div id="scholia" class="navmodules panel" data-url="/_etc/cache/common--scholia-editable=false&u=0&b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
+  <div id="scholia" class="navmodules panel refresh" data-url="/_etc/cache/common--scholia-b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
     <!--#include virtual="/_etc/cache/common--scholia-b=${b}&p=${p}&page_id=${scholia_id}.html" -->
   </div>
 </div>

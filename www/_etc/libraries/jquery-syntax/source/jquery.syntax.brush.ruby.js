@@ -1,7 +1,7 @@
 // brush: "ruby" aliases: []
 
-//	This file is part of the "jQuery.Syntax" project, and is licensed under the GNU AGPLv3.
-//	Copyright 2010 Samuel Williams. All rights reserved.
+//	This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
+//	Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
 //	See <jquery.syntax.js> for licensing details.
 
 Syntax.lib.rubyStyleFunction = {pattern: /(?:def\s+|\.)([a-z_][a-z0-9_]+)/gi, matches: Syntax.extractMatches({klass: 'function'})};
@@ -14,12 +14,12 @@ Syntax.lib.rubyStyleSymbol = {pattern: /([:]?):\w+/g, klass: 'constant', matches
 }};
 
 Syntax.register('ruby', function(brush) {
-	var keywords = ["alias", "and", "begin", "break", "case", "class", "def", "define_method", "defined", "do", "each", "else", "elsif", "end", "ensure", "false", "for", "if", "in", "module", "new", "next", "nil", "not", "or", "raise", "redo", "rescue", "retry", "return", "self", "super", "then", "throw", "true", "undef", "unless", "until", "when", "while", "yield"];
+	var keywords = ["alias", "and", "begin", "break", "case", "class", "def", "define_method", "defined?", "do", "else", "elsif", "end", "ensure", "false", "for", "if", "in", "module", "next", "not", "or", "raise", "redo", "rescue", "retry", "return", "then", "throw", "undef", "unless", "until", "when", "while", "yield", "block_given?"];
 	
 	var operators = ["+", "*", "/", "-", "&", "|", "~", "!", "%", "<", "=", ">"];
-	var values = ["this", "true", "false", "nil"];
+	var values = ["self", "super", "true", "false", "nil"];
 	
-	var access = ["private", "public"];
+	var access = ["private", "protected", "public"];
 	
 	brush.push(access, {klass: 'access'});
 	brush.push(values, {klass: 'constant'});

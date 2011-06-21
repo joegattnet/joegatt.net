@@ -8,10 +8,9 @@ NB.Enface.focus = function(event){
       NB.Nav.track(0,'P:',p);
       NB.p.current = p;
       var new_path = NB.root+NB.crumb.section+'/'+p;
-      NB.Comments.scholia.get(p);
-      if(NB.p.current!=NB.p.top){
+//      if(NB.p.current!=NB.p.top){
         NB.Nav.refresh();
-      }
+//      }
       NB.Versions.display(j.data('id'));
       NB.Nav.slider(NB.p.current);
       NB.Nav.arrows(NB.p.current);

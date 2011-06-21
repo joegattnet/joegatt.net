@@ -52,3 +52,7 @@ h1 .version {
 .vimeo-player, .dailymotion-player {
   background-color: #000;
 }
+
+#content p.version {
+  background-color:#e7e7e7;
+}

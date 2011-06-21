@@ -3,8 +3,10 @@
   background:transparent url(/_etc/css/img/12_col_2.gif) -10px -4px;
 }
 
-.ft_colophon li {
-text-indent:-9999px;
+#ft_colophon li {
+  display:block;
+  overflow:hidden;
+  text-indent:-9999px;
 }
 
   

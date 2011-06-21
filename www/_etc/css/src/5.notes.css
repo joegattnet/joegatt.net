@@ -55,7 +55,7 @@ blockquote:after {
 }
 .details {
   text-indent:0;
-  font-size:8px;
+  font-size:11px;
 }
 
 .notes-list .book, .notes-list .link, .notes-list .topic, .notes-list .more {
@@ -73,9 +73,9 @@ blockquote:after {
   font-size:13px;
   font-family:Georgia,Palatino,"Palatino Linotype",serif;
 }
-.topics #content .notes-list li,
-.links #content .notes-list li,
-.bibliography #content .notes-list li {
+.section-topics #content .notes-list li,
+.section-links #content .notes-list li,
+.section-bibliography #content .notes-list li {
   margin-bottom:0;
 }
 .notes-list .meta {

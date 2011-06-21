@@ -1,20 +1,26 @@
 /* 
-	This file is part of the "jQuery.Syntax" project, and is licensed under the GNU AGPLv3.
-
-	Copyright 2010 Samuel Williams. All rights reserved.
-
+	This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
 	For more information, please see http://www.oriontransfer.co.nz/software/jquery-syntax
+	
+	Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
 
-	This program is free software: you can redistribute it and/or modify it under the terms
-	of the GNU Affero General Public License as published by the Free Software Foundation,
-	either version 3 of the License, or (at your option) any later version.
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
 
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-	without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-	See the GNU Affero General Public License for more details.
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
 
-	You should have received a copy of the GNU Affero General Public License along with this
-	program. If not, see <http://www.gnu.org/licenses/>.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
 */
 
 /*global Function: true, ResourceLoader: true, Syntax: true, alert: false, jQuery: true */
@@ -232,7 +238,7 @@ var Syntax = {
 	detectRoot: function () {
 		if (Syntax.root == null) {
 			// Initialize root based on current script path.
-			var scripts = $('script').filter(function(){
+			var scripts = jQuery('script').filter(function(){
 				return this.src.match(/jquery\.syntax/);
 			});
 
@@ -246,6 +252,14 @@ var Syntax = {
 					Syntax.root = root[0];
 				}
 			}
+		}
+	},
+	
+	log: function() {
+		if (console && console.log) {
+			console.log.apply(console, arguments);
+		} else {
+			alert(arguments.join(" "));
 		}
 	}
 };

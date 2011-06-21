@@ -10,8 +10,12 @@
 
 <!--#set var="tags" value="$tags,_${section}_p$p" -->
 
+<!--#set var="path" value="/$section/rc/" -->
+<!--#set var="location" value="${path}${p}" -->
+<!--#set var="canonical" value="$location" -->
+
 <!--#set var="title" value="Jean Paul: Schulmeisterlein Wutz" -->
-<!--#set var="title.window" value="$title rc1" -->
+<!--#set var="title.window" value="$title v0.7rc1" -->
 <!--#set var="title.url" value="/wutz/rc" -->
 <!--#set var="notranslate" value="true" -->
 
@@ -20,6 +24,8 @@
 <!--#set var="version" value="v0.7rc1" -->
 
 <!--#set var="nav_end" value="true" -->
+
+<!--#set var="tags_hack" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
 <!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest&scope=content.html" -->

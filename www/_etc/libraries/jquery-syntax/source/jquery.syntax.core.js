@@ -1,5 +1,5 @@
-//	This file is part of the "jQuery.Syntax" project, and is licensed under the GNU AGPLv3.
-//	Copyright 2010 Samuel Williams. All rights reserved.
+//	This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
+//	Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
 //	See <jquery.syntax.js> for licensing details.
 
 if (!RegExp.prototype.indexOf) {
@@ -155,7 +155,7 @@ Syntax.updateMatchesWithOffsets = function (matches, linearOffsets, text) {
 			end += linearOffsets[end];
 			
 			// Start, Length, Text
-			match.shift(linearOffsets[match.offset], end - offset, text);
+			match.adjust(linearOffsets[match.offset], end - offset, text);
 			
 			if (match.children.length > 0)
 				arguments.callee(match.children);
@@ -183,7 +183,7 @@ Syntax.extractMatches = function() {
 			}
 			
 			if (rule.debug) {
-				console.log("extractMatches", rule, index, match[index], match);
+				Syntax.log("extractMatches", rule, index, match[index], match);
 			}
 			
 			if (match[index].length > 0) {
@@ -225,7 +225,7 @@ Syntax.lib.cStyleComment = {pattern: /\/\*[\s\S]*?\*\//gm, klass: 'comment', all
 Syntax.lib.cppStyleComment = {pattern: /\/\/.*$/gm, klass: 'comment', allow: ['href']};
 Syntax.lib.perlStyleComment = {pattern: /#.*$/gm, klass: 'comment', allow: ['href']};
 
-Syntax.lib.perlStyleRegularExpressions = {pattern: /\B\/([^\/]|\\\/)*?\/[a-z]*(?=\s*[^\w\s'";\/])/g, klass: 'variable'};
+Syntax.lib.perlStyleRegularExpressions = {pattern: /\B\/([^\/]|\\\/)*?\/[a-z]*(?=\s*[^\w\s'";\/])/g, klass: 'constant'};
 
 Syntax.lib.cStyleFunction = {pattern: /([a-z_][a-z0-9_]*)\s*\(/gi, matches: Syntax.extractMatches({klass: 'function'})};
 Syntax.lib.camelCaseType = {pattern: /\b_*[A-Z][\w]*\b/g, klass: 'type'};
@@ -233,8 +233,8 @@ Syntax.lib.camelCaseType = {pattern: /\b_*[A-Z][\w]*\b/g, klass: 'type'};
 Syntax.lib.xmlComment = {pattern: /(&lt;|<)!--[\s\S]*?--(&gt;|>)/gm, klass: 'comment'};
 Syntax.lib.webLink = {pattern: /\w+:\/\/[\w\-.\/?%&=@:;#]*/g, klass: 'href'};
 
-Syntax.lib.hexNumber = {pattern: /0x[0-9a-fA-F]+/g, klass: 'constant'};
-Syntax.lib.decimalNumber = {pattern: /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/g, klass: 'constant'};
+Syntax.lib.hexNumber = {pattern: /\b0x[0-9a-fA-F]+/g, klass: 'constant'};
+Syntax.lib.decimalNumber = {pattern: /\b[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/g, klass: 'constant'};
 
 Syntax.lib.doubleQuotedString = {pattern: /"([^\\"\n]|\\.)*"/g, klass: 'string'};
 Syntax.lib.singleQuotedString = {pattern: /'([^\\'\n]|\\.)*'/g, klass: 'string'};
@@ -242,11 +242,11 @@ Syntax.lib.multiLineDoubleQuotedString = {pattern: /"([^\\"]|\\.)*"/g, klass: 's
 Syntax.lib.multiLineSingleQuotedString = {pattern: /'([^\\']|\\.)*'/g, klass: 'string'};
 Syntax.lib.stringEscape = {pattern: /\\./g, klass: 'escape', only: ['string']};
 
-Syntax.Match = function (offset, length, expr, value) {
+Syntax.Match = function (offset, length, expression, value) {
 	this.offset = offset;
 	this.endOffset = offset + length;
 	this.length = length;
-	this.expression = expr;
+	this.expression = expression;
 	this.value = value;
 	this.children = [];
 	this.parent = null;
@@ -255,7 +255,17 @@ Syntax.Match = function (offset, length, expr, value) {
 	this.next = null;
 };
 
-Syntax.Match.prototype.shift = function (offset, length, text) {
+// Shifts an entire tree forward or backwards.
+Syntax.Match.prototype.shift = function (offset, text) {
+	this.adjust(offset, null, text);
+	
+	for (var i = 0; i < this.children.length; i++) {
+		this.children[i].shift(offset, text)
+	}
+};
+
+// C the current match to have different offset and length.
+Syntax.Match.prototype.adjust = function (offset, length, text) {
 	this.offset += offset;
 	this.endOffset += offset;
 	
@@ -301,6 +311,11 @@ Syntax.Match.prototype.reduce = function (append, process) {
 	
 	for (var i = 0; i < this.children.length; i += 1) {
 		var child = this.children[i], end = child.offset;
+		
+		if (child.offset < this.offset) {
+			Syntax.log("Syntax Warning: Offset of child", child, "is before offset of parent", this);
+		}
+		
 		var text = this.value.substr(start - this.offset, end - start);
 		
 		append(text, container);
@@ -314,7 +329,7 @@ Syntax.Match.prototype.reduce = function (append, process) {
 	} else if (start < this.endOffset) {
 		append(this.value.substr(start - this.offset, this.endOffset - start), container);
 	} else if (start > this.endOffset) {
-		alert("Syntax Warning: Start position " + start + " exceeds end of value " + this.endOffset);
+		Syntax.log("Syntax Warning: Start position " + start + " exceeds end of value " + this.endOffset);
 	}
 	
 	if (process) {
@@ -364,15 +379,15 @@ Syntax.Match.prototype.canContain = function (match) {
 	return false;
 };
 
-Syntax.Match.prototype.canHaveChild = function (match) {
+Syntax.Match.prototype.canHaveChild = function(match) {
 	var only = match.expression.only;
 	
 	// This condition is fairly slow
-	if (match.expression.only) {
+	if (only) {
 		var cur = this;
 		
 		while (cur !== null) {
-			if (jQuery.inArray(cur.expression.klass, match.expression.only) !== -1) {
+			if (jQuery.inArray(cur.expression.klass, only) !== -1) {
 				return true;
 			}
 			
@@ -406,11 +421,24 @@ Syntax.Match.prototype._splice = function(i, match) {
 	}
 };
 
+// This function implements a full insertion procedure, and will break up the match to fit.
+// This operation is potentially very expensive, but is used to insert custom ranges into
+// the tree, if they are specified by the user. A custom <span> may cover multiple leafs in
+// the tree, thus naturally it needs to be broken up.
+// You should avoid using this function except in very specific cases.
+Syntax.Match.prototype.insert = function(match) {
+	if (!this.contains(match))
+		return null;
+	
+	return this._insert(match);
+}
+
 // This is not a general tree insertion function. It is optimised to run in almost constant
 // time, but data must be inserted in sorted order, otherwise you will have problems.
+// This function also ensures that matches won't be broken up unless absolutely necessary.
 Syntax.Match.prototype.insertAtEnd = function (match) {
 	if (!this.contains(match)) {
-		alert("Syntax Error: Child is not contained in parent node!");
+		Syntax.log("Syntax Error: Child is not contained in parent node!");
 		return null;
 	}
 	
@@ -423,41 +451,150 @@ Syntax.Match.prototype.insertAtEnd = function (match) {
 		var child = this.children[i];
 		
 		if (match.offset < child.offset) {
-			if (match.endOffset <= child.offset) {
-				// displacement = 'before'
-				return this._splice(i, match);
+			// Displacement: Before or LHS Overlap
+			// This means that the match has actually occurred before the last child.
+			// This is a bit of an unusual situation because the matches SHOULD be in
+			// sorted order.
+			// However, we are sure that the match is contained in this node. This situation
+			// sometimes occurs when sorting existing branches with matches that are supposed
+			// to be within that branch. When we insert the match into the branch, there are
+			// matches that technically should have been inserted afterwards.
+			// Normal usage should avoid this case, and this is best for performance.
+			if (match.force) {
+				return this._insert(match);
 			} else {
 				return null;
 			}
 		} else if (match.offset < child.endOffset) {
-			if (match.endOffset <= child.endOffset) {
-				// displacement = 'contains'
+			if (match.endOffset <= child.endOffset) { 
+				// Displacement: Contains
+				//console.log("displacement => contains");
 				var result = child.insertAtEnd(match);
 				return result;
 			} else {
-				// If a match overlaps a previous one, we ignore it.
-				return null;
+				// Displacement: RHS Overlap
+				if (match.force) {
+					return this._insert(match);
+				} else {
+					return null;
+				}
 			}
 		} else {
-			// displacement = 'after'
+			// Displacement: After
 			return this._splice(i+1, match);
 		}
 		
-		// Could not find a suitable placement
+		// Could not find a suitable placement: this is probably an error.
 		return null;
 	} else {
+		// Displacement: Contains [but currently no children]
 		return this._splice(0, match);
 	}
 };
 
-Syntax.Match.prototype.halfBisect = function(offset) {
-	if (offset > this.offset && offset < this.endOffset) {
-		return this.bisectAtOffsets([offset, this.endOffset]);
-	} else {
-		return null;
+// This insertion function is relatively complex because it is required to split the match over
+// several children.
+Syntax.Match.prototype._insert = function(match) {
+	if (this.children.length == 0)
+		return this._splice(0, match);
+	
+	for (var i = 0; i < this.children.length; i += 1) {
+		var child = this.children[i];
+		
+		// If the match ends before this child, it must be before it.
+		if (match.endOffset <= child.offset)
+			return this._splice(i, match);
+		
+		// If the match starts after this child, we continue.
+		if (match.offset >= child.endOffset)
+			continue;
+		
+		// There are four possibilities... 
+		// ... with the possibility of overlapping children on the RHS.
+		//           {------child------}   {---possibly some other child---}
+		//   |----------complete overlap---------|
+		//   |--lhs overlap--|
+		//             |--contains--|
+		//                       |--rhs overlap--|
+		
+		// First, the easiest case:
+		if (child.contains(match)) {
+			return child._insert(match);
+		}
+		
+		console.log("Bisect at offsets", match, child.offset, child.endOffset);
+		var parts = match.bisectAtOffsets([child.offset, child.endOffset]);
+		console.log("parts =", parts);
+		// We now have at most three parts
+		//           {------child------}   {---possibly some other child---}
+		//   |--[0]--|-------[1]-------|--[2]--|
+		
+		// console.log("parts", parts);
+		
+		if (parts[0]) {
+			this._splice(i, parts[0])
+		}
+		
+		if (parts[1]) {
+			child.insert(parts[1])
+		}
+		
+		// Continue insertion at this level with remainder.
+		if (parts[2]) {
+			match = parts[2]
+		} else {
+			return this;
+		}
 	}
-};
+	
+	// If we got this far, the match wasn't [completely] inserted into the list of existing children, so it must be on the end.
+	this._splice(this.children.length, match);
+}
 
+// This algorithm recursively bisects the tree at a given offset, but it does this efficiently by folding multiple bisections
+// at a time.
+// Splits:            /                /                   /
+// Tree:       |-------------------------Top-------------------------|
+//             |------------A--------------------|  |------C-------|
+//                         |-------B----------|
+// Step (1):
+// Split Top into 4 parts:
+//             |------/----------------/-------------------/---------|
+// For each part, check if there are any children that cover this part.
+// If there is a child, recursively call bisect with all splits.
+// Step (1-1):
+// Split A into parts:
+//             |------/-----A----------/---------|
+// For each part, check if there are any children that cover this part.
+// If there is a child, recursively call bisect with all splits.
+// Step (1-1-1):
+// Split B into parts:
+//                         |-------B---/------|
+// No children covered by split. Return array of two parts, B1, B2.
+// Step (1-2):
+// Enumerate the results of splitting the child and merge piece-wise into own parts
+//             |------/-----A----------/---------|
+//                         |------B1---|--B2--|
+// Finished merging children, return array of three parts, A1, A2, A3
+// Step (2):
+// Enumerate the results of splitting the child and merge piece-wise into own parts.
+//             |------/----------------/-------------------/---------|
+//             |--A1--|-------A2-------|----A3---|
+//                         |------B1---|--B2--|
+// Continue by splitting next child, C.
+// Once all children have been split and merged, return all parts, T1, T2, T3, T4.
+// The new tree:
+//             |--T1--|-------T2-------|--------T3---------|---T4---|
+//             |--A1--|-------A2-------|----A3---|  |--C1--|---C2--|
+//                         |------B1---|--B2--|
+//
+// The new structure is as follows:
+//		T1 <-	A1
+//		T2 <-	A2	<- B1
+//		T3 <-	A3	<-	B2
+//		   \-	C1
+//		T4 <- C2
+//
 Syntax.Match.prototype.bisectAtOffsets = function(splits) {
 	var parts = [], start = this.offset, prev = null, children = jQuery.merge([], this.children);
 	
@@ -471,12 +608,32 @@ Syntax.Match.prototype.bisectAtOffsets = function(splits) {
 		return a-b;
 	});
 	
+	// We build a set of top level matches by looking at each split point and
+	// creating a new match from the end of the previous match to the split point.
 	for (var i = 0; i < splits.length; i += 1) {
 		var offset = splits[i];
 		
-		if (offset < this.offset || offset > this.endOffset || (offset - start) == 0) {
+		// The split offset is past the end of the match, so there are no more possible
+		// splits.
+		if (offset > this.endOffset) {
 			break;
 		}
+		
+		// We keep track of null parts if the offset is less than the start
+		// so that things align up as expected with the requested splits.
+		if (
+			offset < this.offset // If the split point is less than the start of the match.
+			|| (offset - start) == 0 // If the match would have effectively zero length.
+		) {
+			parts.push(null); // Preserve alignment with splits.
+			start = offset;
+			continue;
+		}
+		
+		// Even if the previous split was out to the left, we align up the start
+		// to be at the start of the match we are bisecting.
+		if (start < this.offset)
+			start = this.offset;
 		
 		var match = new Syntax.Match(start, offset - start, this.expression);
 		match.value = this.value.substr(start - this.offset, match.length);
@@ -495,6 +652,9 @@ Syntax.Match.prototype.bisectAtOffsets = function(splits) {
 	splits.length = parts.length;
 	
 	for (var i = 0; i < parts.length; i += 1) {
+		if (parts[i] == null)
+			continue;
+		
 		var offset = splits[0];
 		
 		while (children.length > 0) {
@@ -513,6 +673,8 @@ Syntax.Match.prototype.bisectAtOffsets = function(splits) {
 				// children_parts are the bisected children which need to be merged with parts
 				// in a linear fashion
 				for (; j < children_parts.length; j += 1) {
+					if (children_parts[j] == null) continue; // Preserve alignment with splits.
+					
 					parts[i+j].children.push(children_parts[j]);
 				}
 				
@@ -527,7 +689,7 @@ Syntax.Match.prototype.bisectAtOffsets = function(splits) {
 	}
 	
 	if (children.length) {
-		alert("Syntax Error: Children nodes not consumed, " + children.length + " remaining!");
+		Syntax.log("Syntax Error: Children nodes not consumed", children.length, " remaining!");
 	}
 	
 	return parts;
@@ -540,7 +702,12 @@ Syntax.Match.prototype.split = function(pattern) {
 		splits.push(pattern.lastIndex);
 	}
 	
-	return this.bisectAtOffsets(splits);
+	var matches = this.bisectAtOffsets(splits);
+	
+	// Remove any null placeholders.
+	return jQuery.grep(matches, function(n,i){
+		return n;
+	});
 };
 
 Syntax.Brush = function () {
@@ -622,25 +789,30 @@ Syntax.Brush.prototype.push = function () {
 		if (rule.pattern && rule.pattern.global) {
 			this.rules.push(jQuery.extend({owner: this}, rule));
 		} else if (typeof(console) != "undefined") {
-			console.log("Syntax Error: Malformed rule: ", rule);
+			Syntax.log("Syntax Error: Malformed rule: ", rule);
 		}
 	}
 };
 
-Syntax.Brush.prototype.getMatchesForRule = function (text, expr, offset) {
+Syntax.Brush.prototype.getMatchesForRule = function (text, rule, offset) {
 	var matches = [], match = null;
 	
 	// Short circuit (user defined) function:
-	if (typeof expr.apply != "undefined") {
-		return expr.apply(text, expr, offset);
+	if (typeof rule.apply != "undefined") {
+		return rule.apply(text, rule, offset);
 	}
 	
-	// Traditional regular expression pattern extraction:
-	while((match = expr.pattern.exec(text)) !== null) {
-		if (expr.matches) {
-			matches = matches.concat(expr.matches(match, expr));
+	// Duplicate the pattern so that the function is reentrant.
+	var pattern = new RegExp;
+	pattern.compile(rule.pattern);
+	
+	while((match = pattern.exec(text)) !== null) {
+		if (rule.matches) {
+			matches = matches.concat(rule.matches(match, rule));
+		} else if (rule.brush) {
+			matches.push(Syntax.brushes[rule.brush].buildTree(match[0], match.index));
 		} else {
-			matches.push(new Syntax.Match(match.index, match[0].length, expr, match[0]));
+			matches.push(new Syntax.Match(match.index, match[0].length, rule, match[0]));
 		}
 	}
 	
@@ -650,8 +822,8 @@ Syntax.Brush.prototype.getMatchesForRule = function (text, expr, offset) {
 		}
 	}
 	
-	if (expr.debug) {
-		console.log("matches", matches);
+	if (rule.debug) {
+		Syntax.log("matches", matches);
 	}
 	
 	return matches;
@@ -667,14 +839,13 @@ Syntax.Brush.prototype.getMatches = function(text, offset) {
 	return matches;
 };
 
-Syntax.Brush.prototype.buildTree = function(text, offset, matches) {
+Syntax.Brush.prototype.buildTree = function(text, offset, additionalMatches) {
 	offset = offset || 0;
-	matches = matches || [];
 	
 	// Fixes code that uses \r\n for line endings. /$/ matches both \r\n, which is a problem..
 	text = text.replace(/\r/g, "");
 	
-	matches = matches.concat(this.getMatches(text, offset));
+	var matches = this.getMatches(text, offset);
 	
 	var top = new Syntax.Match(offset, text.length, {klass: this.allKlasses().join(" "), allow: '*', owner: this}, text);
 
@@ -683,6 +854,12 @@ Syntax.Brush.prototype.buildTree = function(text, offset, matches) {
 
 	for (var i = 0; i < matches.length; i += 1) {
 		top.insertAtEnd(matches[i]);
+	}
+	
+	if (additionalMatches) {
+		for (var i = 0; i < additionalMatches.length; i += 1) {
+			top.insert(additionalMatches[i], true);
+		}
 	}
 	
 	top.complete = true;

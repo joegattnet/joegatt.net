@@ -6,6 +6,10 @@ formRead("get");
 
 print ("Content-Type: text/plain\n\n");
 
+my $dbh = connectDB();
+saveAnagram($b);
+$dbh->disconnect();
+
 $location = untaint("../../../_etc/cache/enface--anagram-b=$b.json");
 open (ANAGRAM, $location) or die print "Can't open $location";
 my @lines = <ANAGRAM>;

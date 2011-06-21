@@ -17,7 +17,7 @@ $sth->execute($p, $version, $b);
 
 while (my ($target,$date_string,$date,$target_id,$score,$u,$user_name) = $sth->fetchrow_array()) {
 
-$versions_info .= "NB.versions['p$target_id'] = [$u,'$user_name',$score,'$date_string','$date',$version,false];\n";
+    $versions_info .= "NB.versions['p$target_id'] = [$u,'$user_name',$score,'$date_string','$date',$version,false];\n";
 
 	 	$output .= qq~
         <script type="text/javascript">

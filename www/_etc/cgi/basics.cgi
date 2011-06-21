@@ -405,7 +405,7 @@ sub saveAnagram {
 
   $anagram_table .= "</tbody></table>";
   $anagram_total_comma = OOOcomma($anagram_total);
-  $anagram_table = "<div id=\"total_change\"><p id=\"total\" class=\"version-subtractive\">$anagram_total_comma</p><p id=\"change\"><!-- --></p></div><p id=\"alert\">Anagram status.</p><div class=\"tables clearfix\">$anagram_table</div>";
+  $anagram_table = "<div id=\"total_change\"><p id=\"total\" class=\"version-source-subtractive\">$anagram_total_comma</p><p id=\"change\"><!-- --></p></div><p id=\"alert\">Anagram status.</p><div class=\"tables clearfix\">$anagram_table</div>";
 
   $values_string = join(',', @jsarrayvalues);
 
@@ -559,6 +559,12 @@ sub cache_output {
   
   #See .htaccess
   #$location =~ s/\Wscope=[^\&\?\.]*//;
+  #$location =s/\&ext\=([a-z]{2,4})//;
+  #$extension = $1;
+  #if ($extension eq ''){
+  #  $extension = 'shtml';
+  #)
+  #$location = "$location.$extension";
   
   $location = untaint($location);
   open CACHE, ">$location" or print "ERRROR: Cache file not opened: $location";
@@ -583,6 +589,7 @@ sub cache_output {
 sub cache_refresh {
   $identifier = $_[0];
   $feedback = $_[1];
+  $deleteOnly = $_[2];
   opendir(DIR, "../../../_etc/cache/");
   @files = grep(/$identifier/i,readdir(DIR));
   closedir(DIR);
@@ -607,7 +614,9 @@ sub cache_refresh {
   }
   $ua->agent("Mozilla/6.0");
   #*****************************************************************************
-
+  
+  $feedbackVerb = "Delet";
+  
   foreach $file (@files) {
     $cachefile = "../../../_etc/cache/$file";
     $cachefile = untaint($cachefile);
@@ -622,28 +631,33 @@ sub cache_refresh {
     } else {
       unlink($cachefile);
     }
-    #Priming cache
-    $url = "http://$serverName/_etc/cache/$file";
-    #$url =~ s/\&scope=[a-z]//;
-    my $req = new HTTP::Request GET => $url;
-    my $res = $ua->request($req);
-    if($file !~ /\.html$/){
-      #request xssi pages twice to refresh included includes
+    
+    if(!$deleteOnly){
+      $feedbackVerb = "Refresh";
+      #Priming cache
+      $url = "http://$serverName/_etc/cache/$file";
+      #$url =~ s/\&scope=[a-z]//;
+      my $req = new HTTP::Request GET => $url;
       my $res = $ua->request($req);
-    }
-    if ($debug){
-      if ($res->is_error) {
-        print "<p class='error'>Could not refresh cache: <a href='$url'>$url</a>".$res->is_error."|".$res->content."</p>";
+      if($file !~ /\.html$/){
+        #request xssi pages twice to refresh included includes
+        my $res = $ua->request($req);
       }
+      if ($debug){
+        if ($res->is_error) {
+          print "<p class='error'>Could not refresh cache: <a href='$url'>$url</a>".$res->is_error."|".$res->content."</p>";
+        }
+      }
+      
+      #*******
     }
-    #*******
     if ($feedback){
-      print "<p>Refreshing: <a href='$url'>$file</a></p>";
+      print "<p>${feedbackVerb}ing: <a href='$url'>$file</a></p>";
       $feedback_counter++;
     }
   }
     if ($feedback){
-      print "<p>Refreshed $feedback_counter files.</p>";
+      print "<p>${feedbackVerb}ed $feedback_counter files.</p>";
     }
 }
 

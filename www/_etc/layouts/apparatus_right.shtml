@@ -1,10 +1,27 @@
-<div id="tags" class="refresh" data-url="/_etc/cache/tags--tags-tags=<!--#echo var="tags" -->.html">
-  <!--#if expr="$tags!=false" -->
-    <!--#include virtual="/_etc/cache/tags--tags-tags=${tags}.html" -->
-  <!--#endif -->    
-</div>
-<div id="notes" class="refresh" data-url="/_etc/includes/wutz/tags_hack.shtml?p=<!--#echo var="p" -->" data-UNHACKEDurl="/_etc/cache/notes--list-tags=<!--#echo var="tags" -->.html">
-  <!--#if expr="$notes!=false" -->
-    <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->
-  <!--#endif -->
-</div>
+<!--#if expr="$tags_hack" -->
+
+    <div id="tags" class="refresh" data-url="/_etc/includes/tags_hack_tags.shtml?section=<!--#echo var="section" -->&p=<!--#echo var="p" -->">
+      <!--#if expr="$tags != false" -->
+        <!--#include virtual="/_etc/cache/tags--tags-tags=${tags}.html" -->
+      <!--#endif -->    
+    </div>
+    <div id="notes" class="refresh" data-url="/_etc/includes/tags_hack_notes.shtml?section=<!--#echo var="section" -->&p=<!--#echo var="p" -->">
+      <!--#if expr="$notes != false" -->
+        <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->
+      <!--#endif -->
+    </div>
+
+<!--#else -->
+  
+  <div id="tags" class="refresh" data-url="/_etc/cache/tags--tags-tags=<!--#echo var="tags" -->.html">
+    <!--#if expr="$tags != false" -->
+      <!--#include virtual="/_etc/cache/tags--tags-tags=${tags}.html" -->
+    <!--#endif -->    
+  </div>
+  <div id="notes" class="refresh" data-url="/_etc/cache/notes--list-tags=<!--#echo var="tags" -->.html">
+    <!--#if expr="$notes != false" -->
+      <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->
+    <!--#endif -->
+  </div>
+
+<!--#endif -->

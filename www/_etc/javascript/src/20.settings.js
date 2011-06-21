@@ -11,7 +11,7 @@ NB.SETTINGS = {
     amber: '#999999',
     neutral: '#999999',
     version_loading: '#eeeeee',
-    version_loaded: '#666666',
+    version_loaded: '#333333',
     stripe_odd: '#ddeeee',
     stripe_even: '#cceeee'
   },
