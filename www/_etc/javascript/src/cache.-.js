@@ -1,12 +1,14 @@
 NB.Cache = {
   add: function(key,data){
     if(key!=''&&key!=undefined){
-      key = NB.Url.path(key);
+      key = key;
+      //NB.Url.path(key);
       NB.cache[key] = {data: data, time: ((new Date()).getTime()-NB.timestamp)};
     }
   },
   remove: function(key){
-    key = NB.Url.path(key);
+    key = key;
+    //NB.Url.path(key);
     if(key!=''&&key.indexOf('_')!=0){
       if(key.indexOf('_etc/cache')==-1){
         var params = 'scope=section';
@@ -58,6 +60,15 @@ NB.Cache = {
         }
       }
   },
+  prime: function(){
+    NB.Nav.track(1,'Priming cache...');
+    $('.refresh').each(function(){
+      var url = $(this).data('url');
+      NB.Cache.add(url, $(this).html());
+      NB.Nav.track(0,'Primed:',url);
+    });
+    return true;
+  },
   prefetch: function(){
     //NB.Cache.prefetch_html();
     //NB.Cache.prefetch_etc/images();
@@ -72,3 +83,7 @@ NB.cache = [];
 NB.purging = setInterval('NB.Cache.purge();',NB.S.cron.purge);
 
 NB.purging = setInterval('NB.Cache.prefetch();',NB.S.cron.prefetch);
+
+NB.loaded_scripts.add(false, function(){
+  NB.Cache.prime();
+});

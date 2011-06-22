@@ -26,10 +26,16 @@ NB.Versions = {
         $('#versions_nav a').each(function(){
           $(this).unbind('click.versions');
         });
-        if (version==0) {
+        if (version==1) {
+          $('#version_first').bind('click.versions',NB.Tools.empty);
+          $('#version_first').addClass('disabled');
           $('#version_previous').bind('click.versions',NB.Tools.empty);
           $('#version_previous').addClass('disabled');
         } else {
+          $('#version_first').bind('click.versions',function(){
+            NB.Versions.get(q,version,1)
+          });
+          $('#version_first').removeClass('disabled');
           $('#version_previous').bind('click.versions',function(){
             NB.Versions.get(q,version,-1)
           });
@@ -42,11 +48,11 @@ NB.Versions = {
           $('#version_latest').addClass('disabled');
         } else {
           $('#version_next').bind('click.versions',function(){
-            NB.Versions.get(q,version,1)
+            NB.Versions.get(q,version,2)
           });
           $('#version_next').removeClass('disabled');
           $('#version_latest').bind('click.versions',function(){
-            NB.Versions.get(q,version,0)
+            NB.Versions.get(q,version,1)
           });
           $('#version_latest').removeClass('disabled');
         }

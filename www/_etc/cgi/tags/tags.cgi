@@ -10,7 +10,7 @@ formRead("get");
 
 $tagsCount = $#tags + 1;
 
-if($tags > 0){
+#if($tagsCount > 0){
   $output = qq~
     <h4><a href="/tags/">Tags</a> <span id="tags_count">($tagsCount)</span></h4>
     <ul id="n_tags" class="nav_h tags" href="">
@@ -25,7 +25,7 @@ if($tags > 0){
   }
   
   $output .= qq~</ul>~;
-}
+#}
 
 # ******************************************************************************
 
