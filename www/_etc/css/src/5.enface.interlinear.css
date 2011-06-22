@@ -1,0 +1,51 @@
+.interlinear .extra_out {
+    text-align:left;
+    left:0;
+    top:10px;
+  }
+.interlinear #content p {
+    line-height:40px;
+  }
+.interlinear .target {
+    top:0;
+    left:0;
+    position:absolute;
+    width:460px;
+    margin-left:80px;
+    padding-top:20px;
+  }
+.interlinear .source {
+    width:460px;
+    margin-left:80px;
+  }
+.interlinear .source p {
+    color:#660000;
+}
+.interlinear #scholia {
+  position:absolute;
+  top:0;
+  left:160px;
+}
+.interlinear .ends_epigraph {
+    padding-left:80px;
+  }
+.interlinear .ends_section,.interlinear .ends {
+    padding-left:240px;
+  }
+.interlinear #toolbar_top {
+  margin-left:-160px;
+  }
+.interlinear #nav_end_container {
+  position:relative;
+  height:54px;
+}
+.interlinear #nav_end_page {
+  position:absolute;
+  top:-50px;
+  left:-70px;
+}
+.interlinear #content {
+  margin-top:-10px;
+  margin-bottom:10px;
+}  
+  
