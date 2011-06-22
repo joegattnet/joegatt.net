@@ -14,45 +14,35 @@
 */
 
 .section-wutz h1 a {
-    color:#D3120F;
-    }
-
+	color: #D3120F;
+}
 .section-bibliography h1 {
-  color:#f3f129;
+	color: #f3f129;
 }
-
 .section-code h1 {
-  color:#29cff3;
+	color: #29cff3;
 }
-
 .section-colophon h1 {
-  color:#999999;
+	color: #999999;
 }
-
 .section-links h1 {
-  color:#75d42f;
+	color: #75d42f;
 }
-
 .section-notes h1 {
-  color:#86853a;
+	color: #86853a;
 }
-
 .section-tags h1 {
-  color:#b32fd4;
+	color: #b32fd4;
 }
-    
 .section-topics h1 {
-  color:#29cff3;
+	color: #29cff3;
 }
-
 h1 .version {
-  color:#d5d5d5;
+	color: #d5d5d5;
 }
-
-.vimeo-player, .dailymotion-player {
-  background-color: #000;
+.vimeo-player, .dailymotion-player, .youtube-player {
+	background-color: #000;
 }
-
 #content p.version {
-  background-color:#e7e7e7;
+	background-color: #e7e7e7;
 }
