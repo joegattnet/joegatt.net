@@ -124,5 +124,5 @@ NB.external = {
   facebook: <!--#echo var="external_facebook" -->,
   twitter: <!--#echo var="external_twitter" -->
 }
-<!--#include virtual="/_etc/javascript/src/_Prime.js"-->
+<!--#include virtual="/_etc/javascript/src/_Prime.js.txt"-->
 </script>
