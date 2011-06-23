@@ -39,7 +39,7 @@ use CGI;
       $notesThreshold = 1;
     } else {
     	$debug = 0;
-      $dsn = 'DBI:mysql:joegatt-net-production:localhost';
+      $dsn = 'DBI:mysql:joegatt-net-production-v2:localhost';
     }
 	}
 
