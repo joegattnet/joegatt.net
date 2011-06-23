@@ -115,8 +115,7 @@ AddType application/octet-stream safariextz
 FileETag None
 
 # ******************************************************************************
-
-RewriteEngine On
+# Rewrite engine is switched on by the cirtual server config
 
 #RewriteCond %{X-moz} ^prefetch
 #RewriteRule ^.* - [F]
