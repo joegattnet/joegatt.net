@@ -173,7 +173,7 @@ RewriteRule ^/?([a-z0-9]+)/([a-z0-9]+)/?$ /$1/$2.shtml?p=1 [L,QSA]
 
 #URLs
 RewriteRule ^/?$  /home/ [L]
-RewriteRule ^/?([a-z]+)/?$  $1/index.shtml [L]
+RewriteRule ^/?([a-z]+)/?$  /$1/index.shtml [L]
 #RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
 
 #RewriteCond %{REQUEST_URI} !^.*/c/.*$
