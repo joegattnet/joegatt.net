@@ -16,25 +16,24 @@ $sth = $dbh->prepare(qq{
 $sth->execute($p, $version, $b);
 
 while (my ($target,$date_string,$date,$target_id,$score,$u,$user_name) = $sth->fetchrow_array()) {
-
-    $versions_info .= "NB.versions['p$target_id'] = [$u,'$user_name',$score,'$date_string','$date',$version,false];\n";
-
-	 	$output .= qq~
-        <script type="text/javascript">
-        //<![CDATA[
-            var target_element = NB.Enface.get_target($p);
-//            if($direction==1&&\$('#tool_diffversions').hasClass('on')){
-//              \$(target_element).text(NB.String.diff.diffString(NB.String.strip(target_element.innerHTML.replace(/<del>.*?<\\/del>/g,''),"$target"));
-//            }else{
-              \$(target_element).text("$target");
-//            }
-            $versions_info
-            NB.Versions.display('$target_id');
-            \$(target_element).animate({color: NB.S.color.version_loaded},500);
-        //]]>
-        </script>
-		~;
+ 	$output .= qq~
+    NB.versions['p$target_id'] = {
+      userId: $u,
+      userName: '$user_name',
+      score: $score,
+      dateString: '$date',
+      date: '$date_string',
+      version: $version,
+      isLatest: false
+    }
+    var target_element = NB.Enface.get_target($p);
+    \$(target_element).text("$target");
+    NB.Versions.display('$target_id');
+    \$(target_element).animate({color: NB.S.color.version_loaded},500);
+	~;
 }
+
+$output = qq~<script>$output</script>~;
 
 $sth->finish();
 $dbh->disconnect();

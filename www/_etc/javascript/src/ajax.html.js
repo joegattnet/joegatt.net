@@ -8,7 +8,7 @@ NB.Ajax = {
         var indDiv = indDivIn || outDiv;
     		NB.Nav.track(1,outDiv,current,urlFull==current, (NB.cache[key]!=undefined));
 		    if (cache && (key == current)){
-          NB.Nav.track(1,outDiv,"AAAAAAAAAAAAAAAA Url not changed.",url,outDiv.id);
+          NB.Nav.track(1,outDiv,"Url not changed.",url,outDiv.id);
 		      return;
         } else if(cache && (NB.cache[key]!=undefined)){
           NB.Ajax._update(outDiv,position,NB.cache[key].data);
@@ -19,9 +19,9 @@ NB.Ajax = {
              $('body').trigger('minor.loaded');
           }
           NB.Ajax._done(indDiv);
-          NB.Nav.track(1,"BBBBBBBBBBBBBBBB Retrieved from NB.cache:",url,outDiv.id);
+          NB.Nav.track(1,"Retrieved from NB.cache:",url,outDiv.id);
         } else {
-          console.log('CCCCCCCCCCCC FETCHING',url,outDiv.id);
+          console.log('FETCHING',url,outDiv.id);
           NB.Ajax._active(indDiv);
           $.ajax({
             type: formMethod,

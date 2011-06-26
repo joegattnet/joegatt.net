@@ -1,4 +1,4 @@
-<img src="/_etc/resources/cut/village_of_the_damned_1995_jpg_0-0-10_3-wb-12-0-0-0.jpg">
+<img src="/_etc/resources/cut/tripleapotheosis-0-10_3-wb-12-0-0-0.jpg">
 
 <!--#if expr="$p=403" -->
   <p>Access to <span class="error"><!--#echo var="request" --></span> is forbidden.</p>
@@ -10,10 +10,10 @@
   <p>An error has occurred.</p>
 <!--#endif -->
 
-<p>If you continue to have problems please email <a href="mailto:webmaster@joegatt.net">webmaster@joegatt.net</a>.</p>
+<p>If you continue to have problems please email <a href="mailto:dev@joegatt.net">dev@joegatt.net</a>.</p>
 
 <script>
   NB.loaded_scripts.add(false, function(){
-    NB.Nav.track(2,"Error","<!--#echo var="message" -->");
+    NB.Nav.track(2,"Error","<!--#echo var="p" -->","<!--#echo var="request" -->");
   });
 </script>

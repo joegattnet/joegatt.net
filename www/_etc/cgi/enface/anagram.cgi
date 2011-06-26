@@ -6,7 +6,7 @@ formRead("get");
 
 print ("Content-Type: text/plain\n\n");
 
-#This file still does not observe caching conveention
+#This file still does not observe caching convention
 #it should run save anagram
 #cached json anagram is not being used
 #my $dbh = connectDB();
@@ -20,4 +20,4 @@ $load_anagram = "@lines";
 $load_anagram =~ s/\n//g;
 close (ANAGRAM);
 
-print qq~$jsoncallback({"anagram":$load_anagram})~;
+print qq~{"anagram":$load_anagram}~;

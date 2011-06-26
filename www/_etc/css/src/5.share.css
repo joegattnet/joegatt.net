@@ -7,7 +7,7 @@ h4 .soften {
   padding:0 2px;
 }
 
-.addthis_bubble_style {
+#n_share a, .addthis_bubble_style {
   background:none!important;
 }
 .addthis_button_expanded {

@@ -55,7 +55,18 @@ if(!$static){
 
 while (my ($source,$target,$found_p,$version,$date_string,$date,$target_id,$score,$u,$user_name) = $sth->fetchrow_array()) {
 
-  $versions_info .= "NB.versions['p$target_id'] = [$u,'$user_name',$score,'$date_string','$date',$version,true];";
+ 	$versions_info .= qq~
+    NB.versions['p$target_id'] = {
+      userId: $u,
+      userName: '$user_name',
+      score: $score,
+      dateString: '$date',
+      date: '$date_string',
+      version: $version,
+      isLatest: true
+    }
+	~;  
+
   $flattenedText = flattenText($source);
   $length = length($flattenedText);
 

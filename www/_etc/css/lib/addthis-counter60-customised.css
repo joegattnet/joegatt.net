@@ -154,17 +154,15 @@
 
 /* toolbox inline counter */
 .addthis_counter.addthis_bubble_style {
-    display: block;
+    display: inline;
     margin: 0 0 0 -2px;
     text-align: center;
     font-weight: bold;
     font-family: arial,helvetica,sans-serif;
     color: #000;
-
-    background: url(//s7.addthis.com/static/t00/tbc02.gif) no-repeat 0 -64px;
-    padding: 0 0 0 4px;
+    background: none;
+    padding: 0 10px 0 0;
     height:16px;
-    width: 32px !important; 
 }
 
 .addthis_counter.addthis_bubble_style a.addthis_button_expanded {

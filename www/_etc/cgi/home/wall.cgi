@@ -51,6 +51,8 @@ $output .= qq~
 $sth->finish();
 $dbh->disconnect();
 
+
 # ******************************************************************************
 
+cache_refresh('home--wall',0,0);
 cache_output("../../cache/home--wall-".$ENV{"QUERY_STRING"}.".html",$output);

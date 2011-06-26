@@ -151,9 +151,11 @@ foreach ($notesFound as $note) {
           $thisTagGuid
         );
         mysql_query($query);
-        array_push($url_queue,'http://'.SERVER_NAME.'/tags/'.strtolower($thisTagName));
-        echo "Tag added: $thisTagName ($thisTagGuid)\n";
+        if(!preg_match('/^_/i',$thisTagName){
+          array_push($url_queue,'http://'.SERVER_NAME.'/tags/'.strtolower($thisTagName));
+        }
         $cache_queue = cache_queue($cache_queue,'/-tags=.*\b'.$thisTagName.'\b/');
+        echo "Tag added: $thisTagName ($thisTagGuid)\n";
        $tagCounter++;
       }
     }
