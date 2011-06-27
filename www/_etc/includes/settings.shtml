@@ -28,9 +28,23 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="$location" -->
 
-<!--#set var="favicon" value="http://a1.joegatt.net/favicon.ico" -->
-<!--#set var="iphoneicon" value="http://a1.joegatt.net/apple-touch-icon.png" -->
-<!--#set var="shareicon" value="http://a1.joegatt.net/logo.png" -->
+<!--#if expr="$server=joegatt.net" -->
+  <!--#set var="google_tracking_code" value="UA-16898823-1" -->
+  <!--#set var="debug" value="false" -->
+  <!--#set var="js_url" value="http://a1.joegatt.org" -->
+  <!--#set var="css_url" value="http://a1.joegatt.org" -->
+  <!--#set var="images_url" value="http://a1.joegatt.org" -->
+<!--#else -->
+  <!--#set var="google_tracking_code" value="UA-1346274-1" -->
+  <!--#set var="debug" value="true" -->
+  <!--#set var="js_url" value="" -->
+  <!--#set var="css_url" value="" -->
+  <!--#set var="images_url" value="" -->
+<!--#endif -->
+
+<!--#set var="favicon" value="$images_url/favicon.ico" -->
+<!--#set var="iphoneicon" value="$images_url/apple-touch-icon.png" -->
+<!--#set var="shareicon" value="$images_url/logo.png" -->
 
 <!--#set var="scripts_discrete" value="false" -->
 <!--#set var="styles_discrete" value="false" -->
@@ -54,20 +68,6 @@
 <!--#set var="copyright" value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported" -->
 <!--#set var="copyright_url" value="http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode" -->
 <!--#set var="subject" value="Translation" -->
-
-<!--#if expr="$server=joegatt.net" -->
-  <!--#set var="google_tracking_code" value="UA-16898823-1" -->
-  <!--#set var="debug" value="false" -->
-  <!--#set var="js_url" value="http://a1.joegatt.org" -->
-  <!--#set var="css_url" value="http://a1.joegatt.org" -->
-  <!--#set var="images_url" value="http://a1.joegatt.org" -->
-<!--#else -->
-  <!--#set var="google_tracking_code" value="UA-1346274-1" -->
-  <!--#set var="debug" value="true" -->
-  <!--#set var="js_url" value="" -->
-  <!--#set var="css_url" value="" -->
-  <!--#set var="images_url" value="" -->
-<!--#endif -->
 
 <!--#set var="api_key_facebook" value="142214389156795" -->
 <!--#set var="api_key_twitter" value="026ussCKYOuzzcZjSV7UQ" -->

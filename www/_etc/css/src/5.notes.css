@@ -85,6 +85,13 @@ blockquote:after {
 .notes-list .meta li {
   margin-bottom:0;
 }
+.section-links .thumbnail {
+  width:218px;
+  border:1px solid #ccc;
+  clip:rect(0,220px,400px,0);
+  overflow:hidden;
+  position:absolute;
+}
 /*
 a[href*="http"] {
 background-color:red;

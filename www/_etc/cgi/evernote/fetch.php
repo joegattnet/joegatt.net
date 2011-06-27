@@ -14,9 +14,6 @@ $noteStore = new NoteStoreClient($noteStoreProtocol, $noteStoreProtocol);
 
 $notebooks = $noteStore->listNotebooks($authToken);
 
-//echo var_export($notebooks,1);
-//usleep(500);
-
 // Select Notebook *************************************************************
 
 foreach ($notebooks as $notebook) {
@@ -29,7 +26,6 @@ foreach ($notebooks as $notebook) {
 }
 
 //echo $notebook_update_sequence.'\n\n\n';
-//usleep(500);
 
 $con = connect_db();
 
@@ -54,7 +50,6 @@ $result = $noteStore->findNotes($authToken, $search, 0, 99);
 $notesFound = $result->notes;
 
 //echo var_export($result,1);
-//usleep(500);
 
 $cache_queue = array();
 $url_queue = array();
@@ -72,7 +67,6 @@ foreach ($notesFound as $note) {
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   
     //echo var_export($noteEdam,1);
-    //usleep(500);
     
     $tagGuids=$noteEdam->tagGuids;
     $resources=$noteEdam->resources;
@@ -151,7 +145,7 @@ foreach ($notesFound as $note) {
           $thisTagGuid
         );
         mysql_query($query);
-        if(!preg_match('/^_/i',$thisTagName){
+        if(!preg_match('/^_/i',$thisTagName)){
           array_push($url_queue,'http://'.SERVER_NAME.'/tags/'.strtolower($thisTagName));
         }
         $cache_queue = cache_queue($cache_queue,'/-tags=.*\b'.$thisTagName.'\b/');

@@ -2,6 +2,7 @@
 
 require_once('../src/php/createimage.php');
 require_once('../src/php/imagecachebuster.php');
+require_once('../src/php/outputimage.php');
 
 #$styles = '<link type="text/css" rel="stylesheet" href="css/imig.css" media="screen, projection" />';
 $scripts = '  <script src="lib/prototype.js" type="text/javascript"></script>
@@ -40,8 +41,8 @@ if(isset($_POST['imageFileName'])) {
   
     imagecopyresampled($dst, $src, 0, 0, $cropX, $cropY, $cropWidth, $cropHeight, $cropWidth, $cropHeight);
     
-    #outputimage($dst, $ext, $templateImageAuto, -1);
-    imagejpeg($dst, $destinationFile, -1);
+    outputimage($dst, $ext, $destinationFile, -1);
+    #imagejpeg($dst, $destinationFile, -1);
 
 ?>
 

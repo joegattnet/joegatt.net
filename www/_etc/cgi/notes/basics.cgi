@@ -36,7 +36,9 @@ sub printNote {
   my ($Id,$version,$type,$title,$text,$source,$source_url,$note_longitude,$note_latitude,$date_iso8601,$date_full) = $sthNote->fetchrow_array();
   
   my $sthResources = $dbh->prepare(qq{
-    SELECT DISTINCT resources.title, resources.rnd, resources.ext, resources.longitude, resources.latitude
+    SELECT DISTINCT resources.title, resources.rnd, resources.ext, resources.longitude, resources.latitude,
+      DATE_FORMAT(resources.date_created,'%Y-%m-%dT%H:%i:%sZ'),
+      DATE_FORMAT(resources.date_created,'%e %b %Y at %H:%i UTC') 
     FROM resources, notes, _lookup
     WHERE notes.e_guid = ?
     AND _lookup.type = 1
@@ -103,13 +105,15 @@ sub printNote {
   $tagsUrl = join(',', @tagsFetch);
   
   #Resources (images & binary files)
-  while (my ($resource_title,$rnd,$ext,$resource_longitude,$resource_latitude) = $sthResources->fetchrow_array()) {
+  while (my ($resource_title,$rnd,$ext,$resource_longitude,$resource_latitude,$date_iso8601,$date_full) = $sthResources->fetchrow_array()) {
     push @resources, {
       title => $resource_title,
       rnd => $rnd,
       ext => $ext,
       longitude => $resource_longitude,
-      latitude => $resource_latitude
+      latitude => $resource_latitude,
+      date_iso8601 => $date_iso8601,
+      date_full => $date_full
     };
   }
     
@@ -150,16 +154,21 @@ sub printNote {
       $quote = $1;
   }
 
+  $text =~ s/\&nbsp\;/ /g;
   if ($isBook) {
-     $text =~ /([^:]+): ?(.*?) \((.*?), ([\d]{4})\) ?isbn ?([\w]*)/mi;
+     $text =~ /([^:]+): ?(.*?) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)/i;
      $authorFullName = $1;
      $bookTitle = $2;
      $publisherName = $3;
      $publishedDate = $4;
      $isbn = $5;
-     $authorFullName =~ /(.*?), ?(.*?)/;
+     $authorFullName =~ /(.*?)\, *(.*?)/;
      $authorSurname = $1;
      $authorFirstName = $2;
+     $text =~ /\t\ra?n?s?l?a?t?o?r?\: *(.*)/i;
+     $translatorFullName =~ /(.*?)\, *(.*?)/;
+     $translatorSurname = $1;
+     $translatorFirstName = $2;
   } elsif ($isTopic) {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();
