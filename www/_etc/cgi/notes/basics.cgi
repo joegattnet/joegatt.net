@@ -44,6 +44,7 @@ sub printNote {
     AND _lookup.type = 1
     AND _lookup.check1 = notes.e_guid
     AND _lookup.check2 = resources.e_guid
+    ORDER BY _lookup.Id DESC
     LIMIT 1
   });
   $sthResources->execute($note_e_guid);

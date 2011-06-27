@@ -94,6 +94,8 @@ foreach ($notesFound as $note) {
     $note_publish = 0;
     $note_type = 1;
     $latest = 1;
+    
+    $imageTitle = '';
       
     mysql_query($query);
     $query = sprintf("DELETE _lookup WHERE check1='%s' AND (type=0 OR type=1)",
@@ -172,7 +174,7 @@ foreach ($notesFound as $note) {
       if($thisMime=='image/gif'){$ext = 'gif';}
       if($thisMime=='audio/mpeg'){$ext = 'mpg';}
       
-      if(isset($imageTitle)){
+      if(isset($imageTitle) && $imageTitle != ''){
         $imageTitle = str_replace(' ', '_', $imageTitle);
       } else {
         $imageTitle = preg_replace('/[^_\w]/', '_', $note_title);

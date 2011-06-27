@@ -1,6 +1,7 @@
 NB.Nav.refresh = function(){
   NB.Nav.track(0,'Refreshing elements...');
-  $('.refresh').each(function(){
+  //To prevent loading after page has changed
+  $('.page-' + NB.crumb.section + '-' + NB.crumb.page + ' .refresh').each(function(){
     var url = $(this).data('url');
     if(url){
       NB.Nav.track(0,'Refreshing:',url);
