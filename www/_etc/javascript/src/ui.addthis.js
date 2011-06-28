@@ -1,11 +1,31 @@
 NB.Ui.addthis = function(){
   NB.loaded_scripts.add(true, function() {
+    // Doesn't work: see http://www.addthis.com/forum/viewtopic.php?f=5&t=18767
+    // Only affects direct_content
+    //addthis_share = {
+    //  templates: {twitter: '{{title}}: {{url}}' },
+    //  url: NB.crumb.canonical,
+    //  title: NB.title,
+    //  description: NB.description
+    //}
     addthis.toolbox('.addthis_toolbox');
     addthis.counter('#share_count');
   });
 }
 
 /******************************************************************************/
+
+var addthis_share= {
+    shorteners : {
+        bitly : { 
+            username: 'joegattnet',
+            apiKey: 'R_394f906e44f9637b16d1adf22b0fae8a'
+        }
+    },
+    templates: {
+      twitter: '{{title}}: {{url}}'
+    }
+}
 
 var addthis_config = {
   pubid: 'joegattnet',
@@ -16,10 +36,6 @@ var addthis_config = {
   data_ga_property: NB.ga_code,
   data_track_clickback: true,
   ui_click: true
-}
-
-var addthis_share = {
-  templates: {twitter: '{{title}}: {{url}}' }
 }
 
 $('h4 .addthis_button_expanded').live('click', function(){return false;});

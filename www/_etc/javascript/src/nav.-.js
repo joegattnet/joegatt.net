@@ -14,11 +14,7 @@ NB.Nav = function(p) {
   $("meta[name*='latitude']").attr('content', NB.latitude);
   $("meta[name*='longitude']").attr('content', NB.longitude);
   //This is only doing one - we need one for images
-  
-  addthis_config.url = NB.crumb.canonical;
-  addthis_config.title = NB.title;
-  addthis_config.description = NB.description;
-  
+    
   NB.Ui.addthis();
 }
 
