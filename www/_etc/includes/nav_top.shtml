@@ -11,9 +11,9 @@
         <!--#endif -->
         <span class="version"><!--#echo var="version"--></span>
       </li>
-  		<li><span id="crumbs_chunk" style="display:none;" class="a"></span></li>
-  		<li><span class="version-chunk" style="display:none;" class="a"></span></li>
-      <li><a id="tool_code" href="javascript:;">code</a></li>
+  		<li style="display:none;"><span id="crumbs_chunk" class="a"></span></li>
+  		<li style="display:none;"><span class="version-chunk" class="a"></span></li>
+      <li><a id="tool_code" href="/code/">code</a></li>
   </ul>
 </div>
 <div id="nav_top_right" class="grid_2 suffix_2 omega">

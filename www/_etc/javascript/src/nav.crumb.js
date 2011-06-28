@@ -28,11 +28,11 @@ NB.Nav.crumb = {
   last: function(p,path){
     var last_crumb = $('#crumbs_chunk');
     if (NB.chunk == 'page' || NB.chunk == 'paragraph') {
-      last_crumb.show();
+      last_crumb.parent().show();
     	last_crumb.text(NB.chunk+' '+p);
     	last_crumb.attr('href',path);
   	} else {
-      last_crumb.hide();
+      last_crumb.parent().hide();
     }
   },
   version: function(){
@@ -45,9 +45,9 @@ NB.Nav.crumb = {
     var version = $('.version-chunk-source').text();
     if(version != ''){
       $('.version-chunk').text('v' + version);
-      $('.version-chunk').show();
+      $('.version-chunk').parent().show();
     } else {
-      $('.version-chunk').hide();
+      $('.version-chunk').parent().hide();
     }
   }
 }
