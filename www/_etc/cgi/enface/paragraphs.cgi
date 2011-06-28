@@ -83,17 +83,6 @@ while (my ($source,$target,$found_p,$version,$date_string,$date,$target_id,$scor
   
       if ($found_p eq $p_max) {
         $output .= qq~
-          <div class="grid_2 prefix_4 suffix_4 alpha omega ends_section"><div><!-- --></div></div>
-          <div class="grid_6 prefix_2 suffix_2 alpha omega ends_epigraph">
-            <div>
-            ~;
-              open (EPIGRAPH, "../../../_etc/content/wutz/epigraph_1corinthians.html");
-              my @lines = <EPIGRAPH>;
-              $output .= "@lines";
-              close (EPIGRAPH);
-              $output .= qq~
-            </div>
-          </div>
           <div class="grid_2 prefix_4 suffix_4 alpha omega ends"><div><!-- --></div></div>
         ~;
       }
