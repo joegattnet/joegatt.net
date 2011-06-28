@@ -7,7 +7,91 @@ ErrorDocument 403 /errors/403
 ErrorDocument 404 /errors/404
 ErrorDocument 500 /errors/500
 
-#Adapted from https://github.com/paulirish/html5-boilerplate/blob/master/.htaccess
+RewriteEngine On
+
+#RewriteCond %{X-moz} ^prefetch
+#RewriteRule ^.* - [F]
+
+RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
+RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
+
+#Only prevent running scripts & sub-pages & hotlinking (?)
+RewriteCond %{HTTP_REFERER} !joegatt
+#RewriteCond %{HTTP_HOST} joegatt [NC]
+RewriteCond %{REQUEST_URI} !resources/cut
+RewriteCond %{REQUEST_URI} !admin
+RewriteCond %{THE_REQUEST} !^/p/
+RewriteCond %{THE_REQUEST} !^/c/
+RewriteCond %{THE_REQUEST} _
+#RewriteRule ^.* - [F,NS,L]
+
+#Confirmations
+#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+
+#Redirect javascript errors
+RewriteRule ^(.*)/NaN/?$ $1/1
+RewriteRule ^(.*)/undefined/?$ $1/1
+
+#Minify
+RewriteRule ^/_etc/min/([a-z]=.*)  /_etc/min/index.php?$1  [L,NE]
+
+#Image-server
+RewriteCond %{REQUEST_URI} ^.*/_etc/resources/.*$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
+
+#Cache
+#This would remove scope and prevent duplicates
+#Also remove refresh, etc
+#RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
+#RewriteRule ^(.*)_etc/cache/(.*)(\&?scope=page)(.*\.s?html)$ $1_etc/cache/$2$4
+
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/php.*$
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)_etc\/cache\/php\-([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.php?$4 [T=application/x-httpd-php,L]
+
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4 [T=application/x-httpd-cgi,L]
+
+#Promos
+RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
+
+#Genericise these rules (And don't use page but rely on iteration - remove [L])
+RewriteRule ^/?tags/([_:a-zA-Z0-9]+)/?$ /tags/page.shtml?p=$1 [L,QSA]
+RewriteRule ^/?wutz/rc/([0-9]+)/?$ /wutz/rc.shtml?p=$1 [L,QSA]
+RewriteRule ^/?wutz/?$ /wutz/page.shtml?p=1 [L,QSA]
+RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
+RewriteRule ^/?([a-z0-9]+)/([a-z0-9]+)/?$ /$1/$2.shtml?p=1 [L,QSA]
+
+#URLs
+RewriteRule ^/?$  /home/ [L]
+RewriteRule ^/?([a-z]+)/?$  /$1/index.shtml [L]
+#RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
+
+#RewriteCond %{REQUEST_URI} !^.*/c/.*$
+#RewriteCond %{REQUEST_URI} !^.*/p/.*$
+#RewriteRule ^/?(.*)/([a-z0-9]+)/?$ /$1/$2.shtml [L]
+#RewriteRule ^/?(.*)/v([0-9]+)/?$ /$1?v=$2 [QSA]
+
+RewriteCond %{REQUEST_URI} !^.*/c/.*$
+RewriteCond %{REQUEST_URI} !^.*/p/.*$
+RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
+#RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
+
+RewriteCond %{REQUEST_URI} !^.*/c/.*$
+RewriteCond %{REQUEST_URI} !^.*/p/.*$
+RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
+RewriteRule ^/?(.*)/([a-zA-Z0-9]+)/?(.*)/?$ /$1/$2.shtml?p=$3 [L,QSA]
+
+#RewriteCond %{REQUEST_URI} !-s
+#RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404} 
+
+# ******************************************************************************
+# Adapted from https://github.com/paulirish/html5-boilerplate/blob/master/.htaccess
 
 <IfModule mod_setenvif.c>
   <IfModule mod_headers.c>
@@ -113,83 +197,3 @@ AddType application/octet-stream safariextz
 </IfModule>
 
 FileETag None
-
-# ******************************************************************************
-RewriteEngine On
-
-#RewriteCond %{X-moz} ^prefetch
-#RewriteRule ^.* - [F]
-
-RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
-RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
-
-#Only prevent running scripts & sub-pages & hotlinking (?)
-RewriteCond %{HTTP_REFERER} !joegatt
-#RewriteCond %{HTTP_HOST} joegatt [NC]
-RewriteCond %{REQUEST_URI} !resources/cut
-RewriteCond %{REQUEST_URI} !admin
-RewriteCond %{THE_REQUEST} !^/p/
-RewriteCond %{THE_REQUEST} !^/c/
-RewriteCond %{THE_REQUEST} _
-#RewriteRule ^.* - [F,NS,L]
-
-#Confirmations
-#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-
-#Redirect javascript errors
-RewriteRule ^(.*)/NaN/?$ $1/1
-RewriteRule ^(.*)/undefined/?$ $1/1
-
-#Minify
-RewriteRule ^/_etc/min/([a-z]=.*)  /_etc/min/index.php?$1  [L,NE]
-
-#Image-server
-RewriteCond %{REQUEST_URI} ^.*/_etc/resources/.*$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
-
-#Cache
-#This would remove scope and prevent duplicates
-#RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
-#RewriteRule ^(.*)_etc/cache/(.*)(\&?scope=page)(.*\.s?html)$ $1_etc/cache/$2$4
-RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
-RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4 [T=application/x-httpd-cgi,L]
-
-#Promos
-RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
-
-# ******************************************************************************
-
-#Genericise these rules (And don't use page but rely on iteration - remove [L])
-RewriteRule ^/?tags/([_:a-zA-Z0-9]+)/?$ /tags/page.shtml?p=$1 [L,QSA]
-RewriteRule ^/?wutz/rc/([0-9]+)/?$ /wutz/rc/page.shtml?p=$1 [L,QSA]
-RewriteRule ^/?wutz/?$ /wutz/page.shtml?p=1 [L,QSA]
-RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
-RewriteRule ^/?([a-z0-9]+)/([a-z0-9]+)/?$ /$1/$2.shtml?p=1 [L,QSA]
-
-#URLs
-RewriteRule ^/?$  /home/ [L]
-RewriteRule ^/?([a-z]+)/?$  /$1/index.shtml [L]
-#RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
-
-#RewriteCond %{REQUEST_URI} !^.*/c/.*$
-#RewriteCond %{REQUEST_URI} !^.*/p/.*$
-#RewriteRule ^/?(.*)/([a-z0-9]+)/?$ /$1/$2.shtml [L]
-#RewriteRule ^/?(.*)/v([0-9]+)/?$ /$1?v=$2 [QSA]
-
-RewriteCond %{REQUEST_URI} !^.*/c/.*$
-RewriteCond %{REQUEST_URI} !^.*/p/.*$
-RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
-#RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
-
-RewriteCond %{REQUEST_URI} !^.*/c/.*$
-RewriteCond %{REQUEST_URI} !^.*/p/.*$
-RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
-RewriteRule ^/?(.*)/([a-zA-Z0-9]+)/?(.*)/?$ /$1/$2.shtml?p=$3 [L,QSA]
-
-#RewriteCond %{REQUEST_URI} !-s
-#RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404} 

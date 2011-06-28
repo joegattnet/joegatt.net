@@ -1,0 +1,28 @@
+.rss {
+  position:relative;
+}
+.rss li {
+  margin-bottom:10px;
+}
+.rss p {
+  font-size:12px;
+}
+.rss a {
+  background:none!important;
+  padding-left:0!important;
+}
+.rss .details {
+  font-size:11px;
+}
+.rss a.feed {
+  position:absolute;
+  display:block;
+  top:3px;
+  right:0;
+  width:12px;
+  height:12px;
+  text-indent:-9999px;
+  background-position:-128px -361px!important;
+  background-image:url(/_etc/images/sprite-v13.png)!important;
+  /* This should not be necessary */
+}

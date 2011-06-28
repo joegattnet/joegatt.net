@@ -17,11 +17,10 @@
 <!--#set var="title" value="Code" -->
 <!--#set var="title.window" value="$title" -->
 
-<!--#set var="epigraph" value="" -->
+<!--#set var="yield" value="yield_1024_06_03_03_a.shtml" -->
 
-<!--#set var="yield" value="yield_1024_06_01s_05_a.shtml" -->
-<!--#set var="direct_content" value="false" -->
-<!--#set var="content" value="/_etc/cache/notes--fragment-tags=_code_index_left.html" -->
-<!--#set var="content_right" value="/_etc/cache/notes--fragment-tags=_code_index_right.html" -->
+<!--#set var="content" value="/_etc/cache/php-common--file_get-eu=github-readme-${git_branch}&refresh=10.html" -->
+<!--#set var="content_middle" value="/_etc/cache/php-common--rss_show-eu=github-commits-dev&title=github.com:joegatt.net:dev&refresh=10.html" -->
+<!--#set var="content_right" value="/_etc/cache/php-common--rss_show-eu=github-commits-master&title=github.com:joegatt.net:master&refresh=10.html" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

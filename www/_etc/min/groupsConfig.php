@@ -135,6 +135,7 @@ return array(
    '//_etc/css/src/5.notes.css',
    '//_etc/css/src/5.palette.css',
    '//_etc/css/src/5.promos.css',
+   '//_etc/css/src/5.rss.css',
    '//_etc/css/src/5.share.css',
    '//_etc/css/src/5.signupin.css',
    '//_etc/css/src/5.sitemap.css',
