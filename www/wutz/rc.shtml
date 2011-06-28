@@ -4,7 +4,7 @@
 <!--#set var="page" value="rc" -->
 <!--#set var="share_id" value="${section}_rc" -->
 <!--#set var="clip_id" value="${section}_rc_${p}" -->
-<!--#set var="comments_id" value="${section}_${page}" -->
+<!--#set var="comments_id" value="${section}_index" -->
 
 <!--#set var="chunk" value="paragraph" -->
 

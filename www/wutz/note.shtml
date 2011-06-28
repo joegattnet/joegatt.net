@@ -6,7 +6,7 @@
 
 <!--#set var="share_id" value="${section}_note" -->
 <!--#set var="clip_id" value="${section}_note_${p}" -->
-<!--#set var="comments_id" value="${section}_${page}" -->
+<!--#set var="comments_id" value="${section}_index" -->
 
 <!--#set var="tags" value="$tags,_${section}_p$p" -->
 
@@ -19,7 +19,7 @@
 <!--#set var="title.window" value="$title" -->
 
 <!--#set var="yield" value="yield_1024_06_01s_05_a.shtml" -->
-<!--#set var="direct_content" value="false" -->
+
 <!--#set var="content" value="/_etc/cache/notes--fragment-tags=_wutz_note_left.html" -->
 <!--#set var="content_right" value="/_etc/cache/notes--fragment-tags=_wutz_note_right.html" -->
 

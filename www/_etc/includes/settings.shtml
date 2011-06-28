@@ -34,12 +34,14 @@
   <!--#set var="js_url" value="http://a1.joegatt.org" -->
   <!--#set var="css_url" value="http://a1.joegatt.org" -->
   <!--#set var="images_url" value="http://a1.joegatt.org" -->
+  <!--#set var="git_branch" value="master" -->
 <!--#else -->
   <!--#set var="google_tracking_code" value="UA-1346274-1" -->
   <!--#set var="debug" value="true" -->
   <!--#set var="js_url" value="" -->
   <!--#set var="css_url" value="" -->
   <!--#set var="images_url" value="" -->
+  <!--#set var="git_branch" value="dev" -->
 <!--#endif -->
 
 <!--#set var="favicon" value="$images_url/favicon.ico" -->
@@ -90,6 +92,8 @@
 <!--#set var="p_max" value="0" -->
 
 <!--#set var="apparatus" value="apparatus_1024_05_01_06.shtml" -->
+
+<!--#set var="direct_content" value="false" -->
 
 <!--#set var="tags" value="false" -->
 <!--#set var="page_app" value="flat" -->
