@@ -4,3 +4,20 @@
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_scripts.cgi"-->
 <!--#endif -->
+<script>
+  //Loaded last so that it can take our config
+  //Now we can use jquery's async script
+  $.ajax({
+    url: "http://s7.addthis.com/js/250/addthis_widget.js",
+    dataType: 'script',
+    cache: true,
+    success: function(){
+      NB.Ui.addthis = function(){
+        NB.loaded_scripts.add(false, function() {
+          window.addthis.toolbox('.addthis_toolbox');
+          window.addthis.counter('#share_count');
+        });
+      }
+    }
+  });
+</script>

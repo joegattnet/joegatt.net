@@ -1,17 +1,4 @@
-NB.Ui.addthis = function(){
-  NB.loaded_scripts.add(true, function() {
-    // Doesn't work: see http://www.addthis.com/forum/viewtopic.php?f=5&t=18767
-    // Only affects direct_content
-    //addthis_share = {
-    //  templates: {twitter: '{{title}}: {{url}}' },
-    //  url: NB.crumb.canonical,
-    //  title: NB.title,
-    //  description: NB.description
-    //}
-    addthis.toolbox('.addthis_toolbox');
-    addthis.counter('#share_count');
-  });
-}
+NB.Ui.addthis = function(){};
 
 /******************************************************************************/
 
