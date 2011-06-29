@@ -9,7 +9,7 @@ body {
 	padding: 5px 0 10px 30px;
 	font-size: 62.5%;
 	line-height: 20px;
-	font-family: Tahoma, Arial, sans-serif;
+	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
 	background-color: #fff;
 	color: #4545454;
 }
@@ -21,51 +21,6 @@ body {
 	letter-spacing: 1px;
 }
 */
-h1, h2, h3 {
-	position: absolute;
-}
-h2 {
-	font-size: 15px;
-	text-transform: uppercase;
-	line-height: 20px;
-}
-h3 {
-	font-size: 15px;
-}
-#content h3 {
-	top: -60px;
-}
-h4 {
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 11px;
-	letter-spacing: 0;
-	color: #999;
-	margin-bottom: 10px;
-}
-h4 span {
-	font-weight: normal;
-}
-h4 a {
-	color: #999!important;
-}
-h4 a:hover {
-	color: #00c!important;
-}
-h5 {
-	font-size: 11px;
-	letter-spacing: 0;
-	font-weight: normal;
-}
-h6, h6 a {
-	font-size: 13px;
-	padding-right: 1px;
-	display: inline;
-	color: #111!important;
-}
-h6 a:hover {
-	color: #00c!important;
-}
 strong, .b {
 	font-weight: bold;
 }
@@ -164,19 +119,13 @@ section a[href^="http"] {
 section a[href^="http"]:hover {
 	background-position: -504px -423px;
 }
-#ft a[href^="http"] {
-  background-position: -504px -445px;
-  padding-left: 13px;
-}
-#ft a[href^="http"]:hover {
-	background-position: -504px -425px;
-}
+
 .pair {
 	position: relative;
 }
 .extra {
 	color: #a0a0a0;
-	font-family: Tahoma, Arial, sans-serif;
+	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 10px!important;
 	top: 0;
 }
@@ -201,7 +150,7 @@ section a[href^="http"]:hover {
 	font-family: Georgia, Palatino, "Palatino Linotype", serif;
 }
 span.neg {
-	color: #cc0000;
+	color: #D3120F;
 }
 span.pos {
 	color: #00cc00;
@@ -232,89 +181,13 @@ span.pos {
 #yield.tool_help_on {
 	margin-top: 216px;
 }
-/* content ********************************************************************/
-/*#content {
-	margin-top: 0.4em;
-}
-*/
-/* footer *********************************************************************/
-#ft {
-	border-top: 1px dashed #999;
-	margin-top: 23px;
-	color: #666;
-	padding-top: 10px;
-}
-#ft a {
-	color: #666;
-	background-position: -231px 2px;
-}
-#ft a:hover {
-	background-position: -451px -18px;
-	color: #00c;
-}
-#ft ul {
-	margin-top: 7px;
-	width: 100%;
-}
-#copyright li {
-	float: left
-}
-.cc, .cc a {
-	width: 85px;
-	height: 25px;
-	padding: 0;
-}
-.cc a {
-	text-indent: -9999px;
-	background-position: 0 -380px!important;
-	display: block;
-}
-#institutional {
-	text-align: right;
-}
+
 /* epigraph2 *********************************************************************/
 #epigraph2 {
 	margin-top: 1.45em;
 }
 /* scholia */
-#scholia textarea {
-	border: 1px dotted #999;
-	font-family: Tahoma, Arial, sans-serif;
-	font-size: 11px;
-	height: 48px;
-	padding: 0 1px;
-	margin-top: -1px;
-	line-height: 20px;
-	width: 134px;
-}
-#scholia input[type="submit"] {
-	margin-top: 6px!important;
-}
-#scholia li {
-	margin-bottom: 10px;
-}
-#scholia li a {
-	display: inline;
-	padding: 0;
-}
-#scholia .details {
-	color: #666;
-}
-#scholia #scholia_form {
-	display: none;
-}
-#scholia.editable #scholia_form {
-	display: block;
-}
-/* help ***********************************************************************/
-#help_main {
-	position: absolute;
-	height: 140px;
-	margin-bottom: 20px;
-	padding: 5px 0 10px 0;
-	top: 165px;
-	left: 0;
-}
+
 /* miscellaneous **************************************************************/
 /*=> jg_post.animate.ajax_loading {
 	background: url(/_etc/images/ajax_small.gif) top right no-repeat;
@@ -334,7 +207,7 @@ span.pos {
 */
 }
 /* overrides ******************************************************************/
-#title, #hd, #epigraph, #ft {
+#title, #hd, #epigraph, footer {
 	margin-left: 0;
 	margin-right: 0;
 }

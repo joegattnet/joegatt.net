@@ -9,7 +9,7 @@
   font-size:40px!important;
 }
 #n_tags a, .meta a {
-  font-family:Tahoma,Arial,serif;
+  font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
   font-size:11px;
 }
 #tags #n_tags a, #tags .meta a {

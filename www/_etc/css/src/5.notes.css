@@ -35,18 +35,18 @@ p.caption {
 
 blockquote {
   text-indent:0;
-  font-family:Arial,sans-serif;
-}
-blockquote:before {
-  content: "“";
-}
-blockquote:after {
-  content: "”";
+  font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+  font-size:12px;
+  color:#666;
+  padding:0 0 10px 19px;
+  border-left:1px dotted #d5d5d5;
+  margin-bottom:10px;
+  /*font-style:italic;*/
 }
 .caption, .attribution {
   text-indent:0;
   color:#666;
-  font-family:Arial,sans-serif;
+  font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
   display:block;
   font-size:8px;
 }
@@ -59,7 +59,7 @@ blockquote:after {
 }
 
 .notes-list .book, .notes-list .link, .notes-list .topic, .notes-list .more {
-  font-family:Arial,sans-serif;
+  font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
 }
 .notes-list .more {
   color:#999999;
@@ -67,19 +67,24 @@ blockquote:after {
 }
 .notes-list .author {
   font-weight:bold;
+  color:#447799;
+  /* Deviates from palette to soften the bold */
 }
-.notes-list li {
-  margin-bottom:20px;
-  font-size:13px;
-  font-family:Georgia,Palatino,"Palatino Linotype",serif;
+.notes-list a:hover .author {
+  color:#362fd4;
 }
 .section-topics #content .notes-list li,
 .section-links #content .notes-list li,
 .section-bibliography #content .notes-list li {
   margin-bottom:0;
 }
+#content .apparatus .notes-list > li {
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-family: Georgia,Palatino,"Palatino Linotype",serif;
+}
 .notes-list .meta {
-  font-family:Tahoma,Arial,sans-serif;
+  font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
   font-size:11px;
 }
 .notes-list .meta li {
@@ -92,18 +97,3 @@ blockquote:after {
   overflow:hidden;
   position:absolute;
 }
-/*
-a[href*="http"] {
-background-color:red;
-}
-a[href*="http"]:hover {
-background-color:green;
-}
-
-a[href*="wikipedia"] {
-background-color:yellow;
-}
-a[href*="wikipedia"]:hover {
-background-color:orange;
-}
-*/

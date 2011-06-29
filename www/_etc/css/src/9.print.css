@@ -1,4 +1,4 @@
 @media print {
-  #hd,#nav,#signupin_container,#ft,#help_main,#comments {display:none;}
+  #hd,#nav,#signupin_container,footer,#help_main,#comments {display:none;}
   #epigraph{position:relative;margin-top:20px;}
 }
