@@ -9,7 +9,7 @@ body {
 	padding: 5px 0 10px 30px;
 	font-size: 62.5%;
 	line-height: 20px;
-	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #fff;
 	color: #4545454;
 }
@@ -103,7 +103,7 @@ abbr[title], dfn[title] {
 }
 #content .text {
 	font-size: 14px;
-	font-family: Georgia, Palatino, "Palatino Linotype", serif;
+	font-family: Georgia, "Palatino Linotype", serif;
 	color: #333333;
 	text-indent: 20px;
 	text-align: justify;
@@ -125,7 +125,7 @@ section a[href^="http"]:hover {
 }
 .extra {
 	color: #a0a0a0;
-	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 10px!important;
 	top: 0;
 }
@@ -147,7 +147,7 @@ section a[href^="http"]:hover {
 /* colourisation */
 .text span {
 	font-size: 1em;
-	font-family: Georgia, Palatino, "Palatino Linotype", serif;
+	font-family: Georgia, "Palatino Linotype", serif;
 }
 span.neg {
 	color: #D3120F;

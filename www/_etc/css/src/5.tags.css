@@ -5,11 +5,10 @@
   display:inline-block;
   padding-right:5px;
   height:40px;
-  line-height:40px;
   font-size:40px!important;
 }
 #n_tags a, .meta a {
-  font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+  font-family:Tahoma, Geneva, sans-serif;
   font-size:11px;
 }
 #tags #n_tags a, #tags .meta a {

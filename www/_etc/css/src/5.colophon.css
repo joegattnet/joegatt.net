@@ -7,6 +7,10 @@
   display:block;
   overflow:hidden;
   text-indent:-9999px;
+  background:transparent url(/_etc/css/img/12_col_2.gif) -9999px 0 no-repeat;
+  font-size:12px;
 }
 
-  
+.fontstack {
+  margin-top:20px;
+}

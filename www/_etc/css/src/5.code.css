@@ -11,12 +11,12 @@
   position:absolute;
   top:0;
   margin-top:150px;
-  background-color:#eeeeee;
+  background-color:#d5d5d5;
   width:940px;
   height:auto;
-  color:#757575;
+  color:#333;
   line-height:20px!important;
-  border-bottom:1px dashed #ccc;
+  border-bottom:1px dashed #999;
 }
 
 #code .path {
@@ -38,7 +38,7 @@
 
 #track {
   height:500px;
-  color:#666;
+  color:#333;
   overflow:hidden;
 }
 
@@ -69,26 +69,26 @@ ol.syntax {
 #tool_code {
   background:none;
   padding:0;
-  color:#c0c0c0;
+  color:#d5d5d5;
   margin-left:0;
 }
 
 #tool_code:before {
   padding-right:2px;
-  color:#c0c0c0;
+  color:#d5d5d5;
 	content: "{";
 }
 
 #tool_code:after {
   padding-left:2px;
-  color:#c0c0c0;
+  color:#d5d5d5;
 	content: "}";
 }
 
 #tool_code.on, 
 #tool_code.on:before,
 #tool_code.on:after {
-  color:#666;
+  color:#999;
 }
 
 #tool_code:hover, 
@@ -97,37 +97,49 @@ ol.syntax {
 #tool_code:after:hover,
 #tool_code.on:before:hover, 
 #tool_code.on:after:hover  {
-  color:#00c;
+  color:#F74B23!important;
 }
 
 /*Syntax*/
 .syntax {
-  font-family: Menlo, Monaco, Consolas, monospace;
-  line-height: 1.5em; }
-  .syntax .function {
-    color: #362fd4!important; }
-  .syntax .keyword {
-    color: #f74b23!important; }
-  .syntax .access {
-    color: #75d42f!important;
-    font-weight: bold; }
-  .syntax .type {
-    color: #86853a!important;
-    font-weight: bold; }
-  .syntax .comment {
-    color: #999999!important;
-    font-style: italic; }
-  .syntax .string, .syntax .constant {
-    color: #f74b23!important; }
-  .syntax .string .escape {
-    color: #362fd4!important; }
-  .syntax .operator {
-    color: #f74b23!important; }
-  .syntax .href {
-    color: inherit!important;
-    border-bottom: 1px dotted #336699; }
-  .syntax .variable {
-    color: #336699!important; }
-  .syntax pre {
-    overflow: auto;
-    font-family: inherit; }
+	font-family: Menlo, Monaco, Consolas, monospace;
+	line-height: 1.5em;
+}
+.syntax .function {
+	color: #362fd4!important;
+}
+.syntax .keyword {
+	color: #f74b23!important;
+}
+.syntax .access {
+	color: #75d42f!important;
+	font-weight: bold;
+}
+.syntax .type {
+	color: #86853a!important;
+	font-weight: bold;
+}
+.syntax .comment {
+	color: #999999!important;
+	font-style: italic;
+}
+.syntax .string, .syntax .constant {
+	color: #f74b23!important;
+}
+.syntax .string .escape {
+	color: #362fd4!important;
+}
+.syntax .operator {
+	color: #f74b23!important;
+}
+.syntax .href {
+	color: inherit!important;
+	border-bottom: 1px dotted #336699;
+}
+.syntax .variable {
+	color: #336699!important;
+}
+.syntax pre {
+	overflow: auto;
+	font-family: inherit;
+}

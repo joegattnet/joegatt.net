@@ -7,7 +7,7 @@
 #total {
 	color: #999999;
 	display: inline-block;
-	font-family: "DejaVuSansCondensed", Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-family: "DejaVuSansCondensed", Tahoma, Geneva, sans-serif;
 	font-size: 39px;
 	line-height: 39px;
 	overflow: hidden;
@@ -81,10 +81,12 @@
 */
 }
 #version_info li {
-	margin: 0 0 0 2px;
+  display: inline-block;
+  height: 10px;
+  margin: 7px 0 0 2px;
 }
 #version_info a.button {
-	display: inline-block;
+	display: block;
 	width: 4px;
 	height: 7px;
 	background-position: -10px -100px;
