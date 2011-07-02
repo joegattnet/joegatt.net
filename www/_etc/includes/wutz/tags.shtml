@@ -81,3 +81,9 @@
 <!--#elif expr="$p = '81'" --><!--#set var="tags" value="W" -->
 <!--#elif expr="$p = '82'" --><!--#set var="tags" value="" -->
 <!--#endif -->
+
+<!--#if expr="$tags = ''" -->
+  <!--#set var="tags" value="_wutz_p${p}" -->
+<!--#else -->
+  <!--#set var="tags" value="_wutz_p${p},$tags" -->
+<!--#endif -->

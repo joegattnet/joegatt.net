@@ -16,7 +16,7 @@
 <!--#set var="title" value="$p" -->
 <!--#set var="title.window" value="Tags: $p" -->
 
-<!--#include virtual="/_etc/cache/head--tag-${QUERY_STRING}.shtml" -->
+<!--#include virtual="/_etc/cache/head--tags-p=${p}.shtml" -->
 
 <!--#set var="yield" value="yield_1024_05_02s_05_a.shtml" -->
 

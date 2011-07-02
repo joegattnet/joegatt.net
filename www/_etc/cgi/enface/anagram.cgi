@@ -9,9 +9,7 @@ print ("Content-Type: text/plain\n\n");
 #This file still does not observe caching convention
 #it should run save anagram
 #cached json anagram is not being used
-#my $dbh = connectDB();
-#saveAnagram($b);
-#$dbh->disconnect();
+saveAnagram($b);
 
 $location = untaint("../../../_etc/cache/enface--anagram-b=$b.json");
 open (ANAGRAM, $location) or die print "Can't open $location";

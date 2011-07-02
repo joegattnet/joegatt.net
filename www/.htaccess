@@ -44,18 +44,21 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
 
 #Cache
-#This would remove scope and prevent duplicates
-#Also remove refresh, etc
-#RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
-#RewriteRule ^(.*)_etc/cache/(.*)(\&?scope=page)(.*\.s?html)$ $1_etc/cache/$2$4
-
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/php.*$
 RewriteCond %{REQUEST_FILENAME} !-s
 RewriteRule ^(.*)_etc\/cache\/php\-([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.php?$4 [T=application/x-httpd-php,L]
 
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4$7 [T=application/x-httpd-cgi,L]
+
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/cache/$2--$3-$4$7.shtml [L]
+
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
 RewriteCond %{REQUEST_FILENAME} !-s
 RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4 [T=application/x-httpd-cgi,L]
+
 
 #Promos
 RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]

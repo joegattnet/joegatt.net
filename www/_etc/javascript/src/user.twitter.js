@@ -1,7 +1,7 @@
 NB.User.twitter = {
   loggedin: function(user){
     NB.Cookie.write('twuser',true);
-    $('#signupin_header_a').text('Logging in (Twitter)...');
+    $('#signupin_header_a').text('Twitter...');
     NB.Ajax.html(
       'post',
       NB.User._container,

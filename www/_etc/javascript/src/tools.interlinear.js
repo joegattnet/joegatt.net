@@ -15,7 +15,7 @@ NB.Tools.interlinear = {
     $('.extra_out','#content').css({textAlign:'left'});
     $('#content').animate({marginTop:'-10px',marginBottom:'1.8em'},NB.S.speed.fast);
     $('p','#content').animate({lineHeight:'40px'},NB.S.speed.slow);
-    $('.extra_out','#content').animate({left:'0',top:'0.65em'},NB.S.speed.fast);
+    $('.extra_out','#content').animate({left:'0',top:'0'},NB.S.speed.fast);
     $('.target','#content').animate({width:'460px',marginLeft:'80px',paddingTop:'20px'},NB.S.speed.slow);
     $('.source','#content').animate({width:'460px',marginLeft:'80px'},NB.S.speed.slow);
     $('.ends_epigraph','#content').animate({paddingLeft:'80px'},NB.S.speed.fast);
@@ -27,13 +27,13 @@ NB.Tools.interlinear = {
     $('.source p','#content').animate({
       color:NB.S.color.source
       },NB.S.speed.slower,function(){
-      $('#yield').addClass('interlinear');
+      //$('#yield').addClass('interlinear');
     });
   },
   off: function(){
     $('.extra_out','#content').css({textAlign:'right'});
-    $('.extra_out','#content').animate({left:'-35px',top:'0.65em'},NB.S.speed.fast);
-    $('#content').animate({marginTop:'20px',marginBottom:'0'},NB.S.speed.fast);
+    $('.extra_out','#content').animate({left:'-35px',top:'0'},NB.S.speed.fast);
+    $('#content').animate({marginTop:'0',marginBottom:'0'},NB.S.speed.fast);
     $('p','#content').animate({lineHeight:'20px'},NB.S.speed.slow);
     $('.target','#content').animate({width:'380px',marginLeft:'390px',paddingTop:'0'},NB.S.speed.slow,function(){
       $('.target','#content').css({position:'static',marginLeft:'10px'});

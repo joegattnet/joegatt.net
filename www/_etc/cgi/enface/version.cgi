@@ -27,7 +27,7 @@ while (my ($target,$date_iso8601,$date_full,$target_id,$score,$u,$user_name) = $
       userId: $u,
       userName: '$user_name',
       score: $score,
-      date_iso8601: '$date_iso8601';
+      date_iso8601: '$date_iso8601',
       date_full: '$date_full',
       version: $version,
       isLatest: false

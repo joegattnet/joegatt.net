@@ -28,7 +28,7 @@
 <!--#set var="tags_hack" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest&scope=content.html" -->
+<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest.html" -->
 <!--#set var="direct_content" value="false" -->
 <!--#set var="content_right" value="/_etc/cache/notes--fragment-tags=_wutz_rc_panel.html" -->
 

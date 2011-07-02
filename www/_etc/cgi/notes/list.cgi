@@ -80,8 +80,7 @@ sub getNotes {
   $notesCount = 0;
 
   while (my ($note_e_guid) = $sth->fetchrow_array()) {
-    $this_note_output = printNote($note_e_guid, $template);
-    $output .= "<li>$this_note_output</li>";
+    $output .= printNote($note_e_guid, $template);
     $notesCount++;
   }
   if ($notesCount != 0) {
