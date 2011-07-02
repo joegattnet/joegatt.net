@@ -26,6 +26,6 @@
 <!--#include virtual="/_etc/cache/head--notes-p=${p}.shtml" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
-<!--#set var="content" value="/_etc/cache/${section}--${page}-p=${p}&mode=standalone.shtml" -->
+<!--#set var="content" value="/_etc/cache/${section}--${page}-p=${p}.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

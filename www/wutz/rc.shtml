@@ -19,7 +19,7 @@
 <!--#set var="title.url" value="/wutz/rc" -->
 <!--#set var="notranslate" value="true" -->
 
-<!--#include virtual="/_etc/cache/head--enface-page=${page}&p=${p}&b=${b}&${QUERY_STRING}.shtml" -->
+<!--#include virtual="/_etc/cache/head--enface-page=${page}&p=${p}&b=${b}.shtml" -->
 
 <!--#set var="version" value="v0.7rc1" -->
 

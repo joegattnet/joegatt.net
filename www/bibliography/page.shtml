@@ -21,9 +21,9 @@
 <!--#set var="title" value="Book $p" -->
 <!--#set var="title.window" value="Book $p" -->
 
-<!--#include virtual="/_etc/cache/head--notes-${QUERY_STRING}.shtml" -->
+<!--#include virtual="/_etc/cache/head--notes-p=${p}.shtml" -->
 
 <!--#set var="yield" value="yield_1024_12.shtml" -->
-<!--#set var="content" value="/_etc/cache/notes--page-p=${p}&mode=standalone&show=bibliography.shtml" -->
+<!--#set var="content" value="/_etc/cache/notes--page-p=${p}.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

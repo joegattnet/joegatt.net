@@ -12,8 +12,8 @@
 <!--#set var="title.window" value="$title" -->
 
 <!--#set var="yield" value="yield_1024_05_02s_05_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&show=bibliography.html" -->
-<!--#set var="content_right" value="/_etc/cache/tags--list-template=simple&min=1&show=bibliography.shtml" -->
+<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&view=bibliography.html" -->
+<!--#set var="content_right" value="/_etc/cache/tags--list-template=simple&min=1&view=bibliography.shtml" -->
 
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->

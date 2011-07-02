@@ -11,15 +11,15 @@ formRead("get");
 
 if ($type eq 'fragment') {
   $type = 0;
-} elsif ($show eq 'notes') {
+} elsif ($view eq 'notes') {
   $type = 1;
-} elsif ($show eq 'bibliography') {
+} elsif ($view eq 'bibliography') {
   $type = 2;
-} elsif ($show eq 'links') {
+} elsif ($view eq 'links') {
   $type = 3;
-} elsif ($show eq 'topics') {
+} elsif ($view eq 'topics') {
   $type = 4;
-} elsif ($show eq 'content') {
+} elsif ($view eq 'content') {
   $type = 5;
 }
 
@@ -60,16 +60,16 @@ if ($type eq '') {
   $output .= getNotes(3, 'links', $latest);
   $output .= getNotes(4, 'topics', $latest);
 } else {
-  $output = getNotes($type, $show, $latest);
+  $output = getNotes($type, $view, $latest);
 }
 
 sub getNotes {
   my $type = $_[0];
-  my $show = $_[1]; 
+  my $view = $_[1]; 
   my $latest = $_[2];
   my $output = '';
 
-  my $showTitle = "\U$show";
+  my $viewTitle = "\U$view";
 
   if ($latest eq 'true') {
     $sth->execute($notesThreshold, $type, $limit, $offset);
@@ -90,9 +90,9 @@ sub getNotes {
     $sth->execute();
     my ($foundRowsReal) = $sth->fetchrow_array();
     if ($header ne 'no') {
-      $headerOutput = "<h4><a href=\"/$show/\">$showTitle</a> <span>($foundRowsReal)</span></h4>";
+      $headerOutput = "<h4><a href=\"/$view/\">$viewTitle</a> <span>($foundRowsReal)</span></h4>";
     }
-    $output = "$headerOutput<ul class=\"notes-list notestype-$show\">$output</ul>";
+    $output = "$headerOutput<ul class=\"notes-list notestype-$view\">$output</ul>";
   }
   return $output;
 }
