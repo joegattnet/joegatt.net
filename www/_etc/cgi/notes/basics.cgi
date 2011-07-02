@@ -1,5 +1,7 @@
 #!/usr/bin/perl -T
 
+#These functions should be moved to a MySQL stored procedure
+
 sub printNote {
 
   my $note_e_guid = $_[0];
@@ -102,7 +104,7 @@ sub printNote {
     }
   }
 
-  push @tagsFetch, '_notes_p'.$notesRef;
+  push @tagsFetch, '_notes_p'.$noteRef;
   $tagsUrl = join(',', @tagsFetch);
   
   #Resources (images & binary files)
@@ -250,7 +252,11 @@ sub printNote {
     my $TTinput = "notes.item.$template.$templateType.tmpl";
 
     $TTtemplate->process($TTinput, $TTvars, \$noteoutput) || die $TTtemplate->error();
-
+    
+    if($template eq 'list' or $template eq 'compact'){
+      $noteoutput = "<li about=\"/$location/$noteRef\">$noteoutput</li>";
+    }
+    
   return $noteoutput;
 
 }

@@ -36,10 +36,17 @@ while (my ($latest) = $sth->fetchrow_array()) {
 
 $allDates = join(",", @dates);
 
-$date_format = "DATE_FORMAT(target_text.date_created,' %e %b %H:%i')";
-
 my $sth = $dbh->prepare(qq{
-  SELECT source_text.text AS source,target_text.text AS target,target_text.p,version,$date_format,DATE_FORMAT(target_text.date_created,'%e %b %Y at %H:%i UTC'),target_text.Id,score,users.Id,username 
+  SELECT source_text.text AS source,
+  target_text.text AS target,
+  target_text.p,
+  version,
+  DATE_FORMAT(target_text.date_created,'%Y-%m-%dT%H:%i:%sZ'),
+  DATE_FORMAT(target_text.date_created,'%e %b %Y at %H:%i UTC'),
+  target_text.Id,
+  score,
+  users.Id,
+  username 
   FROM source_text,target_text,users 
   WHERE users.Id=target_text.user_id AND target_text.date_created IN ($allDates) AND source_text.p>=? AND source_text.book_id=? AND target_text.book_id=? AND source_text.p=target_text.p 
   GROUP BY p 
@@ -53,15 +60,15 @@ if(!$static){
   $appClass = " class=\"app\"";
 }
 
-while (my ($source,$target,$found_p,$version,$date_string,$date,$target_id,$score,$u,$user_name) = $sth->fetchrow_array()) {
+while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id,$score,$u,$user_name) = $sth->fetchrow_array()) {
 
  	$versions_info .= qq~
     NB.versions['p$target_id'] = {
       userId: $u,
       userName: '$user_name',
       score: $score,
-      dateString: '$date',
-      date: '$date_string',
+      date_iso8601: '$date_iso8601',
+      date_full: '$date_full',
       version: $version,
       isLatest: true
     }

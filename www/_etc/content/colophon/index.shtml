@@ -11,7 +11,6 @@
 <div class="grid_2">
   <h4>Client-side</h4>
   <ul>
-    <li><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></li>
     <li><a href="http://960.gs/">960 Grid System</a></li>
     <li><a href="http://jquery.com/">jQuery</a></li>
     <li><a href="http://jqueryui.com/">jQuery UI</a></li>
@@ -20,8 +19,12 @@
     <li><a href="http://plugins.jquery.com/project/hashchange/">jQuery Hashchange</a></li>
     <li><a href="http://timeago.yarp.com/">jQuery Timeago</a></li>
     <li><a href="https://github.com/pupunzi/jquery.mb.YTPlayer">jQuery mb.YTPlayer</a></li>
+    <li><a href="http://www.addthis.com/help/client-api">AddThis Client API</a></li>
+    <li><a href="http://developers.facebook.com/docs/reference/javascript/">Facebook JS SDK</a></li>
+    <li><a href="http://dev.twitter.com/doc">Twitter Anywhere</a></li>
     <li><a href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps JS API</a></li>
     <li><a href="http://nicedit.com/">NicEdit</a></li>
+    <li class="text">Pages are built in HTML, encoded in UTF-8.</li>
   </ul>
 </div>
 <div class="grid_2">
@@ -47,6 +50,10 @@
         <p class="DejaVuSansCondensedBold">Deja Vu Sans Condensed Bold</p>
         <p>By <a href="http://dejavu-fonts.org/">DejaVu Fonts</a> via <a href="http://www.fontsquirrel.com/fonts/DejaVu-Sans-Mono">Font Squirrel</a></p>
       </li>
+      <li class="fontstack">
+        <p>Body font stack: <a href="http://en.wikipedia.org/wiki/Georgia_(typeface)">Georgia</a>, <a href="http://en.wikipedia.org/wiki/Palatino">Palatino Linotype</a>, serif.</p>
+        <p>Default font stack: <a href="http://en.wikipedia.org/wiki/Tahoma_(typeface)">Tahoma</a>, <a href="http://en.wikipedia.org/wiki/Geneva_(typeface)">Geneva</a>, sans-serif.</p>
+      </li>
     </ul>
 </div>
 <section class="grid_12">
@@ -70,3 +77,6 @@
   <div class="grid_1"><p>336699</p></div>
   <div class="grid_1 omega"><p>b32fd4</p></div>
 </section>
+<aside class="meta grid_12" id="versions">
+    <p>Version <span class="version-source">0.1</span> (<abbr title="30 Jun 2011 at 00:26 UTC" class="timeago">30 Jun 00:26</abbr>)</p>
+</aside>

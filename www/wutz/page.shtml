@@ -34,7 +34,7 @@
 
 <!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
 <!--#set var="direct_content" value="true" -->
-<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&scope=content.html" -->
+<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}.html" -->
 <!--#set var="toolbar" value="/_etc/includes/${section}/toolbar.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

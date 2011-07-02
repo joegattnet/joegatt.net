@@ -24,7 +24,7 @@ NB.User.facebook = {
   loggedin: function(auth){
     var sig = auth.sig;
     var authstring = $.assArray.join($.assArray.sort($.assArray.without(auth,'sig')));
-    $('#signupin_header_a,.fb-button span').text('Logging in (Facebook)...');
+    $('#signupin_header_a,.fb-button span').text('Facebook...');
     FB.api("/me", function(response,auth) {
       NB.Cookie.write('fbuser',true);
       NB.Ajax.html(

@@ -268,6 +268,7 @@ sub saveAnagramParagraph {
   $sth->execute();
 	$sth->finish();
 	
+  $dbh->disconnect();
   saveAnagram($b);
 }
 
@@ -275,12 +276,13 @@ sub saveAnagramParagraph {
 
 sub saveAnagram {  
 
+	my $dbh = connectDB();
   my $b = $_[0];
   
   # Update flat anagram ********************************************************
  
-  $sql = "SELECT label,SUM(count) FROM character_count WHERE book_id=? GROUP BY label";
-  my $sth = $dbh->prepare("$sql");
+  my $sql = "SELECT label, SUM(count) FROM character_count WHERE book_id=? GROUP BY label";
+  my $sth = $dbh->prepare($sql);
   $sth->execute($b);
   
   $anagram_table = "<table><tbody>";
@@ -324,6 +326,8 @@ sub saveAnagram {
     </script>  
   ~;
   close ANAGRAM_TABLE;
+
+  $dbh->disconnect();
   
   #Remove - use client-side cloning
   #$version_number = eval ("1 - 0.$anagram_total");
@@ -455,14 +459,16 @@ sub cache_output {
     $output = '<span style="display:none">&nbsp;</span>';  
   }
   
-  #See .htaccess
-  #$location =~ s/\Wscope=[^\&\?\.]*//;
+  $location =~ s/(\&?)scope=([a-z]*?)//;
+  
   #$location =s/\&ext\=([a-z]{2,4})//;
   #$extension = $1;
   #if ($extension eq ''){
   #  $extension = 'shtml';
   #)
   #$location = "$location.$extension";
+  
+  print $location;
   
   $location = untaint($location);
   open CACHE, ">$location" or print "ERRROR: Cache file not opened: $location";
