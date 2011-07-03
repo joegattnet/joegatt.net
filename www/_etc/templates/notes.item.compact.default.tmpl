@@ -1,7 +1,7 @@
 [% FOREACH resource IN resources %]
    [% PROCESS 'image.tmpl' imageCols = 4 %]
 [% END %]
-[% PROCESS 'video.tmpl' vimeoWidth = 300, vimeoHeight= 225, youtubeWidth = 300, youtubeHeight = 225, dailymotionWidth = 300, dailymotionHeight = 225 %]
+[% PROCESS 'video.tmpl' vimeoWidth = 300, vimeoHeight = 230, youtubeWidth = 300, youtubeHeight = 230, dailymotionWidth = 300, dailymotionHeight = 230 %]
 [% IF quote %]
   <blockquote[% IF sourceUrl %] cite="http://[% sourceUrl %]"[% END %]>[% quote %]</blockquote>
 [% END %]

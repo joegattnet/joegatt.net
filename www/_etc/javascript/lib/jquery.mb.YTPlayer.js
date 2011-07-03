@@ -85,6 +85,9 @@
           }
           else
             data.height= data.ratio=="16/9" ? Math.ceil((9*data.width)/16):Math.ceil((3*data.width)/4);
+            //Round height to nearest 10px
+            data.height = Math.round(data.height/10) * 10;
+            //- Joe Gatt
 
           var videoWrapper="";
 

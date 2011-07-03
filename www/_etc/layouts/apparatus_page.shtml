@@ -9,7 +9,7 @@
       </div>
       <div id="nav_end_container" class="grid_5 omega">
         <!--#if expr="$nav_end=true" -->
-          <!--#include virtual="/_etc/cache/common--navigator-id=nav_end_page&goto=false&p_max=${p_max}&${QUERY_STRING}.html" -->
+          <!--#include virtual="/_etc/cache/common--navigator-id=nav_end_page&goto=false&pagefull=true&page=${page}&p_max=${p_max}&p=${p}.html" -->
         <!--#else -->
           &nbsp;
         <!--#endif -->

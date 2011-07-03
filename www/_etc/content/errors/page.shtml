@@ -3,7 +3,7 @@
 <!--#if expr="$p=403" -->
   <p>Access to <span class="error"><!--#echo var="request" --></span> is forbidden.</p>
 <!--#elif expr="$p=404" -->
-  <p>The page you were looking for - <span class="error"><!--#echo var="request" --></span> - was not found on this server.</p>
+  <p>The page you were looking for - <span class="error"><!--#echo var="request" --></span> - was not found.</p>
 <!--#elif expr="$p=500" -->
   <p>A server error has occurred.</p>
 <!--#else -->

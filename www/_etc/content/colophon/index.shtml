@@ -11,6 +11,7 @@
 <div class="grid_2">
   <h4>Client-side</h4>
   <ul>
+    <li><a href="http://www.w3.org/TR/html5/">HTML5</a>
     <li><a href="http://960.gs/">960 Grid System</a></li>
     <li><a href="http://jquery.com/">jQuery</a></li>
     <li><a href="http://jqueryui.com/">jQuery UI</a></li>
@@ -24,7 +25,6 @@
     <li><a href="http://dev.twitter.com/doc">Twitter Anywhere</a></li>
     <li><a href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps JS API</a></li>
     <li><a href="http://nicedit.com/">NicEdit</a></li>
-    <li class="text">Pages are built in HTML, encoded in UTF-8.</li>
   </ul>
 </div>
 <div class="grid_2">

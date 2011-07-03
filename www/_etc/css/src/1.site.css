@@ -176,15 +176,10 @@ span.pos {
 /* yield **********************************************************************/
 #yield {
 	position: relative;
-	margin-top: 26px;
+	margin-top: 20px;
 }
 #yield.tool_help_on {
-	margin-top: 216px;
-}
-
-/* epigraph2 *********************************************************************/
-#epigraph2 {
-	margin-top: 1.45em;
+	margin-top: 210px;
 }
 /* scholia */
 
@@ -213,16 +208,18 @@ span.pos {
 }
 /* ends ***********************************************************************/
 .ends_section, .ends_epigraph, .ends {
-	margin-top: 1.45em;
+	margin-top: 40px;
 }
 .ends_section div {
 	width: 140px;
 	height: 24px;
+	margin-bottom:6px;
 	background-position: -310px -229px;
 }
 .ends div {
 	width: 140px;
 	height: 57px;
+	margin-bottom:3px;
 	background-position: -310px -256px;
 }
 /* ajax ***********************************************************************/

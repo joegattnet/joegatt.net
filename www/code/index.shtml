@@ -20,7 +20,7 @@
 <!--#set var="yield" value="yield_1024_06_03_03_a.shtml" -->
 
 <!--#set var="content" value="/_etc/cache/php-common--file_get-eu=github-readme-${git_branch}&refresh=10.html" -->
-<!--#set var="content_middle" value="/_etc/cache/php-common--rss_show-eu=github-commits-dev&title=github.com:joegatt.net:dev&refresh=10.html" -->
-<!--#set var="content_right" value="/_etc/cache/php-common--rss_show-eu=github-commits-master&title=github.com:joegatt.net:master&refresh=10.html" -->
+<!--#set var="content_middle" value="/_etc/cache/php-common--rss_show-eu=github-commits-master&title=github.com:joegatt.net:master&refresh=10.html" -->
+<!--#set var="content_right" value="/_etc/cache/php-common--rss_show-eu=github-commits-dev&title=github.com:joegatt.net:dev&refresh=10.html" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

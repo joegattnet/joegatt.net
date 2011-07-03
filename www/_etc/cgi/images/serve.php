@@ -11,7 +11,7 @@ require_once("imagelocation.php");
 //Settings
 $columnWidths = array("wb" => 60, "if" => 100);
 $gutterWidths = array("wb" => 20, "if" => 10);
-$lineHeight = array("wb" => 20);
+$lineHeight = array("wb" => 10);
 
 // Get from url
 

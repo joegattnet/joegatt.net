@@ -1,5 +1,5 @@
 [% IF showMaps %]
-  <div id="map"><!-- --></div>
+  <div id="map[% p %]" class="map"><!-- --></div>
   <script>
     NB.loaded_scripts.add(true, function(){
        var markers = 0;
@@ -18,7 +18,7 @@
         center: map_center,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      var map = new google.maps.Map(document.getElementById("map"), myOptions);
+      var map = new google.maps.Map(document.getElementById("map[% p %]"), myOptions);
       var bounds = new google.maps.LatLngBounds();
       [% IF latitude %]
           var note_marker = new google.maps.Marker({

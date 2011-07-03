@@ -288,7 +288,7 @@ a.radio {
 	color: #333;
 	padding: 2px 0 0 8px;
 	position: absolute;
-	top: -26px;
+	top: -20px;
 	background-position: -453px -278px;
 }
 .navigator .goto:focus, .navigator .goto-focused {

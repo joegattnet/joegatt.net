@@ -4,7 +4,7 @@
   $externalUrls = array(
     "github-commits-master" => "http://github.com/joegattnet/joegatt.net/commits/master.atom",
     "github-commits-dev" => "http://github.com/joegattnet/joegatt.net/commits/dev.atom",
-    "addthis-rss-shared" => "http://q.addthis.com/feeds/1.0/shared.rss?domain=joegatt.net&pubid=joegattnet&period=month"
+    "addthis-rss-shared-month" => "http://q.addthis.com/feeds/1.0/shared.rss?domain=joegatt.net&pubid=joegattnet&period=month"
   );
 
   $url = $externalUrls[$_GET['eu']]; 

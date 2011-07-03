@@ -21,7 +21,7 @@ iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
   line-height:20px;
   margin:10px 0;
 }
-#map {
+.map {
   background-color:#EBE6DC;
 }
 .geo {
@@ -30,7 +30,7 @@ iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
 p.caption {
   font-size:11px!important;
   color:#666;
-  margin-top:-5px;
+  margin-top:-10px;
 }
 
 blockquote {

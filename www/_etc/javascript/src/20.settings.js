@@ -5,12 +5,12 @@ NB.SETTINGS = {
   },
   color: {
     text: '#333333',
-    source: '#660000',
-    ok: '#00cc00',
-    error: '#cc0000',
-    amber: '#999999',
+    source: '#990000',
+    ok: '#d3120f',
+    error: '#d3120f',
+    amber: '#f74b23',
     neutral: '#999999',
-    version_loading: '#eeeeee',
+    version_loading: '#d5d5d5',
     version_loaded: '#333333',
     stripe_odd: '#ddeeee',
     stripe_even: '#cceeee'
