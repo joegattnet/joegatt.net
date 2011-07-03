@@ -13,8 +13,11 @@ formRead("get");
   #also get book id?
   if($page eq 'index'){
     $title = "Jean Paul: Schulmeisterlein Wutz";
+    $orderSql = "ORDER BY date_created DESC";
   } else {
-    $title = "joegatt.net";
+    $title = "Jean Paul: Schulmeisterlein Wutz v0.7rc1";
+    $orderSql = "ORDER BY date_created";
+    $prefix = "$page/";
   }
 
 	$dbh = connectDB();
@@ -22,8 +25,8 @@ formRead("get");
     SELECT text,DATE_FORMAT(date_created,'%Y/%m/%d %T') 
     FROM target_text 
     WHERE p=? AND book_id=1 
-    ORDER BY date_created 
-    DESC LIMIT 1
+    $orderSql 
+    LIMIT 1
   });
   $sth->execute($p);
   ($description,$page_last_modified) = $sth->fetchrow_array();
@@ -36,28 +39,26 @@ formRead("get");
   
   if ($prevParagraph<1){
     $prevParagraph = 1;
-  } elsif ($nextParagraph>82) {
-    $nextParagraph = 82;
+  } elsif ($nextParagraph>$p_max) {
+    $nextParagraph = $p_max;
   }
 
-#82 and index.shtml should not be hardcoded
+  $canonical = "http://joegatt.net/wutz/$prefix";
 
-  if ($p==1) {
-    $canonical = "http://joegatt.net/wutz/";  
-  } else {
-    $canonical = "http://joegatt.net/wutz/$p";  
+  if ($p != 1) {
+    $canonical = "$canonical$p/";  
   }
 
-  $firstLink = "${root}wutz/1";
+  $firstLink = "${root}wutz/${prefix}1";
   $firstTitle = "$title - paragraph 1";
     
-  $prevLink = "${root}wutz/$prevParagraph";
-  $prevTitle = "$title - paragraph $prevParagraph";
+  $prevLink = "${root}wutz/${prefix}${prevParagraph}";
+  $prevTitle = "$title - paragraph ${prevParagraph}";
 
-  $nextLink = "${root}wutz/$nextParagraph";
-  $nextTitle = "$title - paragraph $nextParagraph";
+  $nextLink = "${root}wutz/${prefix}${nextParagraph}";
+  $nextTitle = "$title - paragraph ${nextParagraph}";
 
-  $lastLink = "${root}wutz/82";
+  $lastLink = "${root}wutz/${prefix}82";
   $lastTitle = "$title - paragraph 82";
   
   $description = textTruncate($description,200);

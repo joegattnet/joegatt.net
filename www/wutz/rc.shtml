@@ -17,9 +17,10 @@
 <!--#set var="title" value="Jean Paul: Schulmeisterlein Wutz" -->
 <!--#set var="title.window" value="$title v0.7rc1" -->
 <!--#set var="title.url" value="/wutz/rc" -->
-<!--#set var="notranslate" value="true" -->
 
-<!--#include virtual="/_etc/cache/head--enface-page=${page}&p=${p}&b=${b}.shtml" -->
+<!--#include virtual="/_etc/cache/head--enface-page=${page}&p=${p}&b=${b}&p_max=${p_max}.shtml" -->
+
+<!--#set var="notranslate" value="true" -->
 
 <!--#set var="version" value="v0.7rc1" -->
 
@@ -30,6 +31,7 @@
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
 <!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest.html" -->
 <!--#set var="direct_content" value="false" -->
-<!--#set var="content_right" value="/_etc/cache/notes--fragment-tags=_wutz_rc_panel.html" -->
+
+<!--#set var="content_right" value="/_etc/includes/${section}/toolbar_rc.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

@@ -154,3 +154,6 @@ del {
 	width: 138px;
 	border-left: 2px solid white;
 }
+.li-info input {
+  margin: 0!important;
+}

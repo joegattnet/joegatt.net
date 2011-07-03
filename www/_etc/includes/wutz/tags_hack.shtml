@@ -2,6 +2,6 @@
   <!--#set var="p" value="$1" -->
 <!--#endif -->
 
-<!--#include virtual="tags.shtml" -->
+<!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
 
 <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->

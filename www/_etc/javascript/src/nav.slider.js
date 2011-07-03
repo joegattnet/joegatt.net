@@ -19,7 +19,7 @@ NB.Nav.slider = function(p) {
       //Do function instead of this path+ui.value
       //crumb.path also includes p
           var value = Math.round(ui.value);
-          NB.Nav.fetch('/'+NB.crumb.section+'/'+value);
+          NB.Nav.fetch(NB.crumb.path+value);
           NB.Nav.track(2,'Navigator', 'Slider', 'Random-access', value);
           var this_slider = $(this).closest('.ui-slider');
           NB.Cookie.write(this_slider.attr('id')+'_left',this_slider.find('.ui-slider-handle').css('left'),NB.crumb.dir);

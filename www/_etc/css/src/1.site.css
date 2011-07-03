@@ -27,9 +27,11 @@ strong, .b {
 .i {
 	font-style: italic;
 }
+/*
 input {
 	margin-top: 10px;
 }
+*/
 input[type="text"], input[type="submit"] {
 	margin: 10px 0;
 }

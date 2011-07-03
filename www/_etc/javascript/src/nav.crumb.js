@@ -2,14 +2,15 @@ NB.Nav.crumb = {
   load: function(url){
     var p = NB.Url.p(url);
     var path = NB.Url.path(url);
-    //Should these be updated client-side? We are receiving them via initialise.
     NB.crumb.lastloaded = NB.Url.path(url);
-    NB.crumb.category = '';
-    NB.crumb.section = NB.Url.section(url);
-    NB.crumb.page = NB.Url.page(url);
-    NB.crumb.page_id = NB.crumb.section+'_'+NB.crumb.page;
-    NB.crumb.path = NB.Url.dir(url);
-    NB.crumb.canonical = NB.Url.complete(url);
+// These are written out by xssi
+// Tidy up - either remove them or fix them and remove xssi
+//    NB.crumb.category = '';
+//    NB.crumb.section = NB.Url.section(url);
+//    NB.crumb.page = NB.Url.page(url);
+//    NB.crumb.page_id = NB.crumb.section+'_'+NB.crumb.page;
+//    NB.crumb.path = NB.Url.dir(url);
+//    NB.crumb.canonical = NB.Url.complete(url);
     if(path==location.pathname){
       location.hash = '';
     } else {

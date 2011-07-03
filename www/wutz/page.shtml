@@ -19,7 +19,8 @@
 <!--#set var="title" value="Jean Paul: Schulmeisterlein Wutz" -->
 <!--#set var="title.window" value="$title" -->
 <!--#set var="title.url" value="/wutz/" -->
-<!--#include virtual="/_etc/cache/head--enface-page=${page}&p=${p}&b=${b}.shtml" -->
+
+<!--#include virtual="/_etc/cache/head--enface-page=${page}&b=${b}&p=${p}&p_max=${p_max}.shtml" -->
 
 <!--#set var="notranslate" value="true" -->
 

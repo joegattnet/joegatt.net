@@ -1,5 +1,5 @@
 NB.Nav.goto = function(){
-  NB.Nav.fetch('/'+NB.crumb.section+'/'+$(this).val());
+  NB.Nav.fetch(NB.crumb.path+$(this).val());
 }
 
 /******************************************************************************/
