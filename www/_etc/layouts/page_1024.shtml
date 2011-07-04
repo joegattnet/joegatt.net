@@ -26,7 +26,7 @@
   <!--#if expr="$help" -->
     <aside id="help_main" class="padded clearfix" style="display:none;">
       <p class="close tool"><a class="tool_help_extra" href="javascript:;" rel="help">close</a></p>
-      <!--#include virtual="$help"-->
+      <!--#include virtual="$help" -->
     </aside>
   <!--#endif -->
   <nav id="hd">

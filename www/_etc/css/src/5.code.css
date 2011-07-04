@@ -88,21 +88,21 @@ ol.syntax {
 #tool_code.on, 
 #tool_code.on:before,
 #tool_code.on:after {
-  color:#999;
+  color:#666;
 }
 
-#tool_code:hover, 
-#tool_code.on:hover, 
-#tool_code:before:hover, 
-#tool_code:after:hover,
-#tool_code.on:before:hover, 
-#tool_code.on:after:hover  {
+a#tool_code:hover, 
+a#tool_code.on:hover, 
+a#tool_code:before:hover, 
+a#tool_code:after:hover,
+a#tool_code.on:before:hover, 
+a#tool_code.on:after:hover  {
   color:#F74B23!important;
 }
 
 /*Syntax*/
 .syntax {
-	font-family: Menlo, Monaco, Consolas, monospace;
+	font-family: Menlo, Consolas, monospace;
 	line-height: 1.5em;
 }
 .syntax .function {

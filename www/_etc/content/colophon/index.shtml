@@ -51,8 +51,9 @@
         <p>By <a href="http://dejavu-fonts.org/">DejaVu Fonts</a> via <a href="http://www.fontsquirrel.com/fonts/DejaVu-Sans-Mono">Font Squirrel</a></p>
       </li>
       <li class="fontstack">
-        <p>Body font stack: <a href="http://en.wikipedia.org/wiki/Georgia_(typeface)">Georgia</a>, <a href="http://en.wikipedia.org/wiki/Palatino">Palatino Linotype</a>, serif.</p>
-        <p>Default font stack: <a href="http://en.wikipedia.org/wiki/Tahoma_(typeface)">Tahoma</a>, <a href="http://en.wikipedia.org/wiki/Geneva_(typeface)">Geneva</a>, sans-serif.</p>
+        <p>Body font stack is <a href="http://en.wikipedia.org/wiki/Georgia_(typeface)">Georgia</a>, <a href="http://en.wikipedia.org/wiki/Palatino">Palatino Linotype</a>, serif.</p>
+        <p>Default font stack is <a href="http://en.wikipedia.org/wiki/Tahoma_(typeface)">Tahoma</a>, <a href="http://en.wikipedia.org/wiki/Geneva_(typeface)">Geneva</a>, sans-serif.</p>
+        <p>Monospace font stack is <a href="http://en.wikipedia.org/wiki/Menlo_(typeface)">Menlo</a>, <a href="http://en.wikipedia.org/wiki/Consolas">Consolas</a>, monospace.
       </li>
     </ul>
 </div>
@@ -78,5 +79,5 @@
   <div class="grid_1 omega"><p>b32fd4</p></div>
 </section>
 <aside class="meta grid_12" id="versions">
-    <p>Version <span class="version-source">0.1</span> (<abbr title="30 Jun 2011 at 00:26 UTC" class="timeago">30 Jun 00:26</abbr>)</p>
+    <p>Version <span class="version-source">0.4</span> (<abbr title="2011-06-30T00:26:14Z" class="timeago">30 Jun 2011 at 00:26 UTC</abbr>)</p>
 </aside>

@@ -175,7 +175,7 @@ a.radio {
 }
 .pin .pin-a {
 	margin: 0;
-	background-position: -450px -242px;
+	background-position: -500px -242px;
 	display: block;
 	width: 10px;
 	height: 10px;
@@ -184,13 +184,13 @@ a.radio {
 	cursor: default;
 }
 .pin a.pin-a:hover {
-	background-position: -450px -262px;
+	background-position: -500px -262px;
 }
 .pinned .pin-a {
-	background-position: -450px -202px;
+	background-position: -500px -202px;
 }
 .pinned a.pin-a:hover {
-	background-position: -450px -222px;
+	background-position: -500px -222px;
 }
 .pinnable {
 	position: fixed;
@@ -347,7 +347,7 @@ a.radio {
 	padding-top: 10px;
 }
 #apparatus {
-	margin-top: 20px;
+/*	margin-top: 20px; */
 	position: absolute;
 	left: 0;
 	top: 0;
