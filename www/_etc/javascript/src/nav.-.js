@@ -21,7 +21,7 @@ NB.Nav = function(p) {
 /***/
 
 $('body').bind('page.loaded',function(){
-  NB.Cookie.write('v_'+NB.crumb.page,'true',NB.crumb.path);
+  NB.Cookie.write('v_'+NB.crumb.page_id,'true',NB.crumb.path);
 });
 
 $('body').bind('content.loaded',function(){
