@@ -73,9 +73,8 @@ NB.Versions = {
             p_element
          );
       } else {
-          //NB.Versions.unversion();
-          NB.App.reset(p_element);
-          NB.App.focus(p_element);
+          NB.Versions.unversion();
+          NB.App.reset($(p_element), true);
       }
     },
     unversion: function(){

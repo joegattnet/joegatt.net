@@ -11,8 +11,8 @@ NB.Enface.reset = function(e,focus){
     NB.Anagram.score = 0;
     NB.Anagram.dirty = false;
   }
-  //if(focus){
-  //  $(e).focus();
-  //}
+  if(focus){
+    $(e).focus();
+  }
   return e;
 }
