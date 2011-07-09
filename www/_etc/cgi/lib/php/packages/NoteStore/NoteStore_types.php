@@ -1243,6 +1243,813 @@ class edam_notestore_NoteList {
 
 }
 
+class edam_notestore_NoteMetadata {
+  static $_TSPEC;
+
+  public $guid = null;
+  public $title = null;
+  public $contentLength = null;
+  public $created = null;
+  public $updated = null;
+  public $updateSequenceNum = null;
+  public $notebookGuid = null;
+  public $tagGuids = null;
+  public $attributes = null;
+  public $largestResourceMime = null;
+  public $largestResourceSize = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'title',
+          'type' => TType::STRING,
+          ),
+        5 => array(
+          'var' => 'contentLength',
+          'type' => TType::I32,
+          ),
+        6 => array(
+          'var' => 'created',
+          'type' => TType::I64,
+          ),
+        7 => array(
+          'var' => 'updated',
+          'type' => TType::I64,
+          ),
+        10 => array(
+          'var' => 'updateSequenceNum',
+          'type' => TType::I32,
+          ),
+        11 => array(
+          'var' => 'notebookGuid',
+          'type' => TType::STRING,
+          ),
+        12 => array(
+          'var' => 'tagGuids',
+          'type' => TType::LST,
+          'etype' => TType::STRING,
+          'elem' => array(
+            'type' => TType::STRING,
+            ),
+          ),
+        14 => array(
+          'var' => 'attributes',
+          'type' => TType::STRUCT,
+          'class' => 'edam_type_NoteAttributes',
+          ),
+        20 => array(
+          'var' => 'largestResourceMime',
+          'type' => TType::STRING,
+          ),
+        21 => array(
+          'var' => 'largestResourceSize',
+          'type' => TType::I32,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['title'])) {
+        $this->title = $vals['title'];
+      }
+      if (isset($vals['contentLength'])) {
+        $this->contentLength = $vals['contentLength'];
+      }
+      if (isset($vals['created'])) {
+        $this->created = $vals['created'];
+      }
+      if (isset($vals['updated'])) {
+        $this->updated = $vals['updated'];
+      }
+      if (isset($vals['updateSequenceNum'])) {
+        $this->updateSequenceNum = $vals['updateSequenceNum'];
+      }
+      if (isset($vals['notebookGuid'])) {
+        $this->notebookGuid = $vals['notebookGuid'];
+      }
+      if (isset($vals['tagGuids'])) {
+        $this->tagGuids = $vals['tagGuids'];
+      }
+      if (isset($vals['attributes'])) {
+        $this->attributes = $vals['attributes'];
+      }
+      if (isset($vals['largestResourceMime'])) {
+        $this->largestResourceMime = $vals['largestResourceMime'];
+      }
+      if (isset($vals['largestResourceSize'])) {
+        $this->largestResourceSize = $vals['largestResourceSize'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteMetadata';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->title);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 5:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->contentLength);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 6:
+          if ($ftype == TType::I64) {
+            $xfer += $input->readI64($this->created);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 7:
+          if ($ftype == TType::I64) {
+            $xfer += $input->readI64($this->updated);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 10:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->updateSequenceNum);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 11:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->notebookGuid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 12:
+          if ($ftype == TType::LST) {
+            $this->tagGuids = array();
+            $_size105 = 0;
+            $_etype108 = 0;
+            $xfer += $input->readListBegin($_etype108, $_size105);
+            for ($_i109 = 0; $_i109 < $_size105; ++$_i109)
+            {
+              $elem110 = null;
+              $xfer += $input->readString($elem110);
+              $this->tagGuids []= $elem110;
+            }
+            $xfer += $input->readListEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 14:
+          if ($ftype == TType::STRUCT) {
+            $this->attributes = new edam_type_NoteAttributes();
+            $xfer += $this->attributes->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 20:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->largestResourceMime);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 21:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->largestResourceSize);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteMetadata');
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 1);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->title !== null) {
+      $xfer += $output->writeFieldBegin('title', TType::STRING, 2);
+      $xfer += $output->writeString($this->title);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->contentLength !== null) {
+      $xfer += $output->writeFieldBegin('contentLength', TType::I32, 5);
+      $xfer += $output->writeI32($this->contentLength);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->created !== null) {
+      $xfer += $output->writeFieldBegin('created', TType::I64, 6);
+      $xfer += $output->writeI64($this->created);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->updated !== null) {
+      $xfer += $output->writeFieldBegin('updated', TType::I64, 7);
+      $xfer += $output->writeI64($this->updated);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->updateSequenceNum !== null) {
+      $xfer += $output->writeFieldBegin('updateSequenceNum', TType::I32, 10);
+      $xfer += $output->writeI32($this->updateSequenceNum);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notebookGuid !== null) {
+      $xfer += $output->writeFieldBegin('notebookGuid', TType::STRING, 11);
+      $xfer += $output->writeString($this->notebookGuid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->tagGuids !== null) {
+      if (!is_array($this->tagGuids)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('tagGuids', TType::LST, 12);
+      {
+        $output->writeListBegin(TType::STRING, count($this->tagGuids));
+        {
+          foreach ($this->tagGuids as $iter111)
+          {
+            $xfer += $output->writeString($iter111);
+          }
+        }
+        $output->writeListEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->attributes !== null) {
+      if (!is_object($this->attributes)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('attributes', TType::STRUCT, 14);
+      $xfer += $this->attributes->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->largestResourceMime !== null) {
+      $xfer += $output->writeFieldBegin('largestResourceMime', TType::STRING, 20);
+      $xfer += $output->writeString($this->largestResourceMime);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->largestResourceSize !== null) {
+      $xfer += $output->writeFieldBegin('largestResourceSize', TType::I32, 21);
+      $xfer += $output->writeI32($this->largestResourceSize);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NotesMetadataList {
+  static $_TSPEC;
+
+  public $startIndex = null;
+  public $totalNotes = null;
+  public $notes = null;
+  public $stoppedWords = null;
+  public $searchedWords = null;
+  public $updateCount = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'startIndex',
+          'type' => TType::I32,
+          ),
+        2 => array(
+          'var' => 'totalNotes',
+          'type' => TType::I32,
+          ),
+        3 => array(
+          'var' => 'notes',
+          'type' => TType::LST,
+          'etype' => TType::STRUCT,
+          'elem' => array(
+            'type' => TType::STRUCT,
+            'class' => 'edam_notestore_NoteMetadata',
+            ),
+          ),
+        4 => array(
+          'var' => 'stoppedWords',
+          'type' => TType::LST,
+          'etype' => TType::STRING,
+          'elem' => array(
+            'type' => TType::STRING,
+            ),
+          ),
+        5 => array(
+          'var' => 'searchedWords',
+          'type' => TType::LST,
+          'etype' => TType::STRING,
+          'elem' => array(
+            'type' => TType::STRING,
+            ),
+          ),
+        6 => array(
+          'var' => 'updateCount',
+          'type' => TType::I32,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['startIndex'])) {
+        $this->startIndex = $vals['startIndex'];
+      }
+      if (isset($vals['totalNotes'])) {
+        $this->totalNotes = $vals['totalNotes'];
+      }
+      if (isset($vals['notes'])) {
+        $this->notes = $vals['notes'];
+      }
+      if (isset($vals['stoppedWords'])) {
+        $this->stoppedWords = $vals['stoppedWords'];
+      }
+      if (isset($vals['searchedWords'])) {
+        $this->searchedWords = $vals['searchedWords'];
+      }
+      if (isset($vals['updateCount'])) {
+        $this->updateCount = $vals['updateCount'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NotesMetadataList';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->startIndex);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->totalNotes);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::LST) {
+            $this->notes = array();
+            $_size112 = 0;
+            $_etype115 = 0;
+            $xfer += $input->readListBegin($_etype115, $_size112);
+            for ($_i116 = 0; $_i116 < $_size112; ++$_i116)
+            {
+              $elem117 = null;
+              $elem117 = new edam_notestore_NoteMetadata();
+              $xfer += $elem117->read($input);
+              $this->notes []= $elem117;
+            }
+            $xfer += $input->readListEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 4:
+          if ($ftype == TType::LST) {
+            $this->stoppedWords = array();
+            $_size118 = 0;
+            $_etype121 = 0;
+            $xfer += $input->readListBegin($_etype121, $_size118);
+            for ($_i122 = 0; $_i122 < $_size118; ++$_i122)
+            {
+              $elem123 = null;
+              $xfer += $input->readString($elem123);
+              $this->stoppedWords []= $elem123;
+            }
+            $xfer += $input->readListEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 5:
+          if ($ftype == TType::LST) {
+            $this->searchedWords = array();
+            $_size124 = 0;
+            $_etype127 = 0;
+            $xfer += $input->readListBegin($_etype127, $_size124);
+            for ($_i128 = 0; $_i128 < $_size124; ++$_i128)
+            {
+              $elem129 = null;
+              $xfer += $input->readString($elem129);
+              $this->searchedWords []= $elem129;
+            }
+            $xfer += $input->readListEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 6:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->updateCount);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NotesMetadataList');
+    if ($this->startIndex !== null) {
+      $xfer += $output->writeFieldBegin('startIndex', TType::I32, 1);
+      $xfer += $output->writeI32($this->startIndex);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->totalNotes !== null) {
+      $xfer += $output->writeFieldBegin('totalNotes', TType::I32, 2);
+      $xfer += $output->writeI32($this->totalNotes);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notes !== null) {
+      if (!is_array($this->notes)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('notes', TType::LST, 3);
+      {
+        $output->writeListBegin(TType::STRUCT, count($this->notes));
+        {
+          foreach ($this->notes as $iter130)
+          {
+            $xfer += $iter130->write($output);
+          }
+        }
+        $output->writeListEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->stoppedWords !== null) {
+      if (!is_array($this->stoppedWords)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('stoppedWords', TType::LST, 4);
+      {
+        $output->writeListBegin(TType::STRING, count($this->stoppedWords));
+        {
+          foreach ($this->stoppedWords as $iter131)
+          {
+            $xfer += $output->writeString($iter131);
+          }
+        }
+        $output->writeListEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->searchedWords !== null) {
+      if (!is_array($this->searchedWords)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('searchedWords', TType::LST, 5);
+      {
+        $output->writeListBegin(TType::STRING, count($this->searchedWords));
+        {
+          foreach ($this->searchedWords as $iter132)
+          {
+            $xfer += $output->writeString($iter132);
+          }
+        }
+        $output->writeListEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->updateCount !== null) {
+      $xfer += $output->writeFieldBegin('updateCount', TType::I32, 6);
+      $xfer += $output->writeI32($this->updateCount);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NotesMetadataResultSpec {
+  static $_TSPEC;
+
+  public $includeTitle = null;
+  public $includeContentLength = null;
+  public $includeCreated = null;
+  public $includeUpdated = null;
+  public $includeUpdateSequenceNum = null;
+  public $includeNotebookGuid = null;
+  public $includeTagGuids = null;
+  public $includeAttributes = null;
+  public $includeLargestResourceMime = null;
+  public $includeLargestResourceSize = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        2 => array(
+          'var' => 'includeTitle',
+          'type' => TType::BOOL,
+          ),
+        5 => array(
+          'var' => 'includeContentLength',
+          'type' => TType::BOOL,
+          ),
+        6 => array(
+          'var' => 'includeCreated',
+          'type' => TType::BOOL,
+          ),
+        7 => array(
+          'var' => 'includeUpdated',
+          'type' => TType::BOOL,
+          ),
+        10 => array(
+          'var' => 'includeUpdateSequenceNum',
+          'type' => TType::BOOL,
+          ),
+        11 => array(
+          'var' => 'includeNotebookGuid',
+          'type' => TType::BOOL,
+          ),
+        12 => array(
+          'var' => 'includeTagGuids',
+          'type' => TType::BOOL,
+          ),
+        14 => array(
+          'var' => 'includeAttributes',
+          'type' => TType::BOOL,
+          ),
+        20 => array(
+          'var' => 'includeLargestResourceMime',
+          'type' => TType::BOOL,
+          ),
+        21 => array(
+          'var' => 'includeLargestResourceSize',
+          'type' => TType::BOOL,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['includeTitle'])) {
+        $this->includeTitle = $vals['includeTitle'];
+      }
+      if (isset($vals['includeContentLength'])) {
+        $this->includeContentLength = $vals['includeContentLength'];
+      }
+      if (isset($vals['includeCreated'])) {
+        $this->includeCreated = $vals['includeCreated'];
+      }
+      if (isset($vals['includeUpdated'])) {
+        $this->includeUpdated = $vals['includeUpdated'];
+      }
+      if (isset($vals['includeUpdateSequenceNum'])) {
+        $this->includeUpdateSequenceNum = $vals['includeUpdateSequenceNum'];
+      }
+      if (isset($vals['includeNotebookGuid'])) {
+        $this->includeNotebookGuid = $vals['includeNotebookGuid'];
+      }
+      if (isset($vals['includeTagGuids'])) {
+        $this->includeTagGuids = $vals['includeTagGuids'];
+      }
+      if (isset($vals['includeAttributes'])) {
+        $this->includeAttributes = $vals['includeAttributes'];
+      }
+      if (isset($vals['includeLargestResourceMime'])) {
+        $this->includeLargestResourceMime = $vals['includeLargestResourceMime'];
+      }
+      if (isset($vals['includeLargestResourceSize'])) {
+        $this->includeLargestResourceSize = $vals['includeLargestResourceSize'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NotesMetadataResultSpec';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 2:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeTitle);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 5:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeContentLength);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 6:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeCreated);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 7:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeUpdated);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 10:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeUpdateSequenceNum);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 11:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNotebookGuid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 12:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeTagGuids);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 14:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeAttributes);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 20:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeLargestResourceMime);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 21:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeLargestResourceSize);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NotesMetadataResultSpec');
+    if ($this->includeTitle !== null) {
+      $xfer += $output->writeFieldBegin('includeTitle', TType::BOOL, 2);
+      $xfer += $output->writeBool($this->includeTitle);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeContentLength !== null) {
+      $xfer += $output->writeFieldBegin('includeContentLength', TType::BOOL, 5);
+      $xfer += $output->writeBool($this->includeContentLength);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeCreated !== null) {
+      $xfer += $output->writeFieldBegin('includeCreated', TType::BOOL, 6);
+      $xfer += $output->writeBool($this->includeCreated);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeUpdated !== null) {
+      $xfer += $output->writeFieldBegin('includeUpdated', TType::BOOL, 7);
+      $xfer += $output->writeBool($this->includeUpdated);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeUpdateSequenceNum !== null) {
+      $xfer += $output->writeFieldBegin('includeUpdateSequenceNum', TType::BOOL, 10);
+      $xfer += $output->writeBool($this->includeUpdateSequenceNum);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeNotebookGuid !== null) {
+      $xfer += $output->writeFieldBegin('includeNotebookGuid', TType::BOOL, 11);
+      $xfer += $output->writeBool($this->includeNotebookGuid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeTagGuids !== null) {
+      $xfer += $output->writeFieldBegin('includeTagGuids', TType::BOOL, 12);
+      $xfer += $output->writeBool($this->includeTagGuids);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeAttributes !== null) {
+      $xfer += $output->writeFieldBegin('includeAttributes', TType::BOOL, 14);
+      $xfer += $output->writeBool($this->includeAttributes);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeLargestResourceMime !== null) {
+      $xfer += $output->writeFieldBegin('includeLargestResourceMime', TType::BOOL, 20);
+      $xfer += $output->writeBool($this->includeLargestResourceMime);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeLargestResourceSize !== null) {
+      $xfer += $output->writeFieldBegin('includeLargestResourceSize', TType::BOOL, 21);
+      $xfer += $output->writeBool($this->includeLargestResourceSize);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class edam_notestore_NoteCollectionCounts {
   static $_TSPEC;
 
@@ -1318,17 +2125,17 @@ class edam_notestore_NoteCollectionCounts {
         case 1:
           if ($ftype == TType::MAP) {
             $this->notebookCounts = array();
-            $_size105 = 0;
-            $_ktype106 = 0;
-            $_vtype107 = 0;
-            $xfer += $input->readMapBegin($_ktype106, $_vtype107, $_size105);
-            for ($_i109 = 0; $_i109 < $_size105; ++$_i109)
+            $_size133 = 0;
+            $_ktype134 = 0;
+            $_vtype135 = 0;
+            $xfer += $input->readMapBegin($_ktype134, $_vtype135, $_size133);
+            for ($_i137 = 0; $_i137 < $_size133; ++$_i137)
             {
-              $key110 = '';
-              $val111 = 0;
-              $xfer += $input->readString($key110);
-              $xfer += $input->readI32($val111);
-              $this->notebookCounts[$key110] = $val111;
+              $key138 = '';
+              $val139 = 0;
+              $xfer += $input->readString($key138);
+              $xfer += $input->readI32($val139);
+              $this->notebookCounts[$key138] = $val139;
             }
             $xfer += $input->readMapEnd();
           } else {
@@ -1338,17 +2145,17 @@ class edam_notestore_NoteCollectionCounts {
         case 2:
           if ($ftype == TType::MAP) {
             $this->tagCounts = array();
-            $_size112 = 0;
-            $_ktype113 = 0;
-            $_vtype114 = 0;
-            $xfer += $input->readMapBegin($_ktype113, $_vtype114, $_size112);
-            for ($_i116 = 0; $_i116 < $_size112; ++$_i116)
+            $_size140 = 0;
+            $_ktype141 = 0;
+            $_vtype142 = 0;
+            $xfer += $input->readMapBegin($_ktype141, $_vtype142, $_size140);
+            for ($_i144 = 0; $_i144 < $_size140; ++$_i144)
             {
-              $key117 = '';
-              $val118 = 0;
-              $xfer += $input->readString($key117);
-              $xfer += $input->readI32($val118);
-              $this->tagCounts[$key117] = $val118;
+              $key145 = '';
+              $val146 = 0;
+              $xfer += $input->readString($key145);
+              $xfer += $input->readI32($val146);
+              $this->tagCounts[$key145] = $val146;
             }
             $xfer += $input->readMapEnd();
           } else {
@@ -1383,10 +2190,10 @@ class edam_notestore_NoteCollectionCounts {
       {
         $output->writeMapBegin(TType::STRING, TType::I32, count($this->notebookCounts));
         {
-          foreach ($this->notebookCounts as $kiter119 => $viter120)
+          foreach ($this->notebookCounts as $kiter147 => $viter148)
           {
-            $xfer += $output->writeString($kiter119);
-            $xfer += $output->writeI32($viter120);
+            $xfer += $output->writeString($kiter147);
+            $xfer += $output->writeI32($viter148);
           }
         }
         $output->writeMapEnd();
@@ -1401,10 +2208,10 @@ class edam_notestore_NoteCollectionCounts {
       {
         $output->writeMapBegin(TType::STRING, TType::I32, count($this->tagCounts));
         {
-          foreach ($this->tagCounts as $kiter121 => $viter122)
+          foreach ($this->tagCounts as $kiter149 => $viter150)
           {
-            $xfer += $output->writeString($kiter121);
-            $xfer += $output->writeI32($viter122);
+            $xfer += $output->writeString($kiter149);
+            $xfer += $output->writeI32($viter150);
           }
         }
         $output->writeMapEnd();
@@ -1622,15 +2429,15 @@ class edam_notestore_AdParameters {
         case 4:
           if ($ftype == TType::LST) {
             $this->impressions = array();
-            $_size123 = 0;
-            $_etype126 = 0;
-            $xfer += $input->readListBegin($_etype126, $_size123);
-            for ($_i127 = 0; $_i127 < $_size123; ++$_i127)
+            $_size151 = 0;
+            $_etype154 = 0;
+            $xfer += $input->readListBegin($_etype154, $_size151);
+            for ($_i155 = 0; $_i155 < $_size151; ++$_i155)
             {
-              $elem128 = null;
-              $elem128 = new edam_notestore_AdImpressions();
-              $xfer += $elem128->read($input);
-              $this->impressions []= $elem128;
+              $elem156 = null;
+              $elem156 = new edam_notestore_AdImpressions();
+              $xfer += $elem156->read($input);
+              $this->impressions []= $elem156;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -1647,17 +2454,17 @@ class edam_notestore_AdParameters {
         case 6:
           if ($ftype == TType::MAP) {
             $this->clientProperties = array();
-            $_size129 = 0;
-            $_ktype130 = 0;
-            $_vtype131 = 0;
-            $xfer += $input->readMapBegin($_ktype130, $_vtype131, $_size129);
-            for ($_i133 = 0; $_i133 < $_size129; ++$_i133)
+            $_size157 = 0;
+            $_ktype158 = 0;
+            $_vtype159 = 0;
+            $xfer += $input->readMapBegin($_ktype158, $_vtype159, $_size157);
+            for ($_i161 = 0; $_i161 < $_size157; ++$_i161)
             {
-              $key134 = '';
-              $val135 = '';
-              $xfer += $input->readString($key134);
-              $xfer += $input->readString($val135);
-              $this->clientProperties[$key134] = $val135;
+              $key162 = '';
+              $val163 = '';
+              $xfer += $input->readString($key162);
+              $xfer += $input->readString($val163);
+              $this->clientProperties[$key162] = $val163;
             }
             $xfer += $input->readMapEnd();
           } else {
@@ -1690,9 +2497,9 @@ class edam_notestore_AdParameters {
       {
         $output->writeListBegin(TType::STRUCT, count($this->impressions));
         {
-          foreach ($this->impressions as $iter136)
+          foreach ($this->impressions as $iter164)
           {
-            $xfer += $iter136->write($output);
+            $xfer += $iter164->write($output);
           }
         }
         $output->writeListEnd();
@@ -1712,10 +2519,10 @@ class edam_notestore_AdParameters {
       {
         $output->writeMapBegin(TType::STRING, TType::STRING, count($this->clientProperties));
         {
-          foreach ($this->clientProperties as $kiter137 => $viter138)
+          foreach ($this->clientProperties as $kiter165 => $viter166)
           {
-            $xfer += $output->writeString($kiter137);
-            $xfer += $output->writeString($viter138);
+            $xfer += $output->writeString($kiter165);
+            $xfer += $output->writeString($viter166);
           }
         }
         $output->writeMapEnd();
@@ -1836,14 +2643,14 @@ class edam_notestore_NoteEmailParameters {
         case 3:
           if ($ftype == TType::LST) {
             $this->toAddresses = array();
-            $_size139 = 0;
-            $_etype142 = 0;
-            $xfer += $input->readListBegin($_etype142, $_size139);
-            for ($_i143 = 0; $_i143 < $_size139; ++$_i143)
+            $_size167 = 0;
+            $_etype170 = 0;
+            $xfer += $input->readListBegin($_etype170, $_size167);
+            for ($_i171 = 0; $_i171 < $_size167; ++$_i171)
             {
-              $elem144 = null;
-              $xfer += $input->readString($elem144);
-              $this->toAddresses []= $elem144;
+              $elem172 = null;
+              $xfer += $input->readString($elem172);
+              $this->toAddresses []= $elem172;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -1853,14 +2660,14 @@ class edam_notestore_NoteEmailParameters {
         case 4:
           if ($ftype == TType::LST) {
             $this->ccAddresses = array();
-            $_size145 = 0;
-            $_etype148 = 0;
-            $xfer += $input->readListBegin($_etype148, $_size145);
-            for ($_i149 = 0; $_i149 < $_size145; ++$_i149)
+            $_size173 = 0;
+            $_etype176 = 0;
+            $xfer += $input->readListBegin($_etype176, $_size173);
+            for ($_i177 = 0; $_i177 < $_size173; ++$_i177)
             {
-              $elem150 = null;
-              $xfer += $input->readString($elem150);
-              $this->ccAddresses []= $elem150;
+              $elem178 = null;
+              $xfer += $input->readString($elem178);
+              $this->ccAddresses []= $elem178;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -1915,9 +2722,9 @@ class edam_notestore_NoteEmailParameters {
       {
         $output->writeListBegin(TType::STRING, count($this->toAddresses));
         {
-          foreach ($this->toAddresses as $iter151)
+          foreach ($this->toAddresses as $iter179)
           {
-            $xfer += $output->writeString($iter151);
+            $xfer += $output->writeString($iter179);
           }
         }
         $output->writeListEnd();
@@ -1932,9 +2739,9 @@ class edam_notestore_NoteEmailParameters {
       {
         $output->writeListBegin(TType::STRING, count($this->ccAddresses));
         {
-          foreach ($this->ccAddresses as $iter152)
+          foreach ($this->ccAddresses as $iter180)
           {
-            $xfer += $output->writeString($iter152);
+            $xfer += $output->writeString($iter180);
           }
         }
         $output->writeListEnd();

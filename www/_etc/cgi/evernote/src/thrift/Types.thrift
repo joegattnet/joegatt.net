@@ -32,6 +32,7 @@
 
 include "Limits.thrift"
 
+namespace as3 com.evernote.edam.type
 namespace java com.evernote.edam.type
 namespace csharp Evernote.EDAM.Type
 namespace py evernote.edam.type
@@ -357,20 +358,21 @@ struct Data {
  *       when processing images and PDF files to find text.
  *       If not set, then the 'preferredLanguage' will be used.
  *   </dd>
- * </dl>
  *
  * <dt>customerProfileId</dt>
  *   <dd>a numeric identified which provides a linkage between the user record
  *       and the direct credit card payment creditcard profile. 
  *   </dd>
- * </dl>
  *
  * <dt>educationalInstitution</dt>
  *   <dd>a flag indicating that the user is part of an educational institution which 
  *   makes them eligible for discounts on bulk purchases  
  *   </dd>
- * </dl>
- 
+ *
+ * <dt>businessAddress</dt>
+ *   <dd>A string recording the business address of a Sponsored Account user who has requested invoicing.
+ *   </dd>
+ * </dl> 
  */
 struct UserAttributes {
   1:  optional  string defaultLocationName,
@@ -399,7 +401,8 @@ struct UserAttributes {
   26: optional  string recognitionLanguage,
   27: optional  i64 customerProfileId,
   28: optional  string referralProof,
-  29: optional  bool educationalDiscount
+  29: optional  bool educationalDiscount,
+  30: optional  string businessAddress
 }
 
 /**
@@ -472,6 +475,12 @@ struct UserAttributes {
  *   <dd>The number number identifying the
  *   recurring subscription used to make the recurring charges.
  *   </dd>
+ * <dt>lastRequestedCharge</dt>
+ *   <dd>Date charge last attempted</dd>
+ * <dt>currency</dt>
+ *   <dd>ISO 4217 currency code</dd>
+ * <dt>unitPrice</dt>
+ *   <dd>charge in the smallest unit of the currency (e.g. cents for USD)</dd>
  * </dl>
  */
 struct Accounting {
@@ -490,7 +499,9 @@ struct Accounting {
   13: optional  Timestamp  premiumLockUntil,
   14: optional  Timestamp  updated,
   16: optional  string     premiumSubscriptionNumber,
-  17: optional  Timestamp  lastRequestedCharge
+  17: optional  Timestamp  lastRequestedCharge,
+  18: optional  string     currency,
+  19: optional  i32        unitPrice,
 }
 
 
@@ -879,6 +890,15 @@ struct Resource {
  *   <br/>
  *   Length:  EDAM_ATTRIBUTE_LEN_MIN - EDAM_ATTRIBUTE_LEN_MAX
  *   </dd>
+ *
+ * <dt>shareDate</dt>
+ *  <dd>The date and time when this note was directly shared via its own URL.
+ *  This is only set on notes that were individually shared, it's independent
+ *  of any notebook-level sharing of the containing notepbook.  This field
+ *  is treated as "read-only" for clients ... the server will ignore changes
+ *  to this field from an external client.
+ *  </dd>
+ *
  * </dl>
  */
 struct NoteAttributes {
@@ -889,7 +909,8 @@ struct NoteAttributes {
   13: optional  string author,  
   14: optional  string source,
   15: optional  string sourceURL,
-  16: optional  string sourceApplication
+  16: optional  string sourceApplication,
+  17: optional  Timestamp shareDate
 }
 
 
@@ -1302,6 +1323,10 @@ struct SavedSearch {
  *   ad should be displayed in the daily set of ads, relative to a base
  *   frequency of 1.0.  I.e. an ad with a frequency of 3.0 should be displayed
  *   three times more frequently than an ad with a frequency of 1.0.</dd>
+ *
+ *   <dt>openInTrunk</dt>
+ *   <dd>If true, the ad should be opened in the embedded Trunk window by 
+ *   clients with Trunk support.</dd>
  * </dl>
  */
 struct Ad {
@@ -1316,7 +1341,8 @@ struct Ad {
   9:  optional  binary image,
   10: optional  string imageMime,
   11: optional  string html,
-  12: optional  double displayFrequency
+  12: optional  double displayFrequency,
+  13: optional  bool openInTrunk
 }
 
 /**

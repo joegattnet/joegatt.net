@@ -33,6 +33,7 @@ include "Types.thrift"
 include "Errors.thrift"
 include "Limits.thrift"
 
+namespace as3 com.evernote.edam.notestore
 namespace java com.evernote.edam.notestore
 namespace csharp Evernote.EDAM.NoteStore
 namespace py evernote.edam.notestore
@@ -235,7 +236,8 @@ struct SyncChunk {
  *
  * <dt>words</dt>
  *   <dd>
- *   The string query containing keywords to match, if present.
+ *   If present, a search query string that will filter the set of notes to be returned.
+ *   Accepts the full search grammar documented in the Evernote API Overview.
  *   </dd>
  *
  * <dt>notebookGuid</dt>
@@ -340,6 +342,131 @@ struct NoteList {
   6: optional  i32 updateCount
 }
 
+/**
+ * This structure is used in the set of results returned by the
+ * findNotesMetadata function.  It represents the high-level information about
+ * a single Note, without some of the larger deep structure.  This allows
+ * for the information about a list of Notes to be returned relatively quickly
+ * with less marshalling and data transfer to remote clients.
+ * Most fields in this structure are identical to the corresponding field in
+ * the Note structure, with the exception of:
+ *
+ * <dl>
+  * <dt>largestResourceMime</dt>
+ *   <dd>If set, then this will contain the MIME type of the largest Resource
+ *   (in bytes) within the Note.  This may be useful, for example, to choose
+ *   an appropriate icon or thumbnail to represent the Note.
+ *   </dd>
+ *
+ * <dt>largestResourceSize</dt>
+ *  <dd>If set, this will contain the size of the largest Resource file, in
+ *  bytes, within the Note.  This may be useful, for example, to decide whether
+ *  to ask the server for a thumbnail to represent the Note.
+ *  </dd>
+ * </dl>
+ */
+struct NoteMetadata {
+  1:  required  Types.Guid guid,
+  2:  optional  string title,
+  5:  optional  i32 contentLength,  
+  6:  optional  Types.Timestamp created,
+  7:  optional  Types.Timestamp updated,
+  10: optional  i32 updateSequenceNum,
+  11: optional  string notebookGuid,  
+  12: optional  list<Types.Guid> tagGuids,
+  14: optional  Types.NoteAttributes attributes,
+  20: optional  string largestResourceMime,
+  21: optional  i32 largestResourceSize
+}
+
+/**
+ * This structure is returned from calls to the findNotesMetadata function to
+ * give the high-level metadata about a subset of Notes that are found to
+ * match a specified NoteFilter in a search.
+ * 
+ *<dl>
+ * <dt>startIndex</dt>
+ *   <dd>
+ *   The starting index within the overall set of notes.  This
+ *   is also the number of notes that are "before" this list in the set.
+ *   </dd>
+ *
+ * <dt>totalNotes</dt>
+ *   <dd>
+ *   The number of notes in the larger set.  This can be used
+ *   to calculate how many notes are "after" this note in the set.
+ *   (I.e.  remaining = totalNotes - (startIndex + notes.length)  )
+ *   </dd>
+ *
+ * <dt>notes</dt>
+ *   <dd>
+ *   The list of metadata for Notes in this range.  The set of optional fields
+ *   that are set in each metadata structure will depend on the 
+ *   NotesMetadataResultSpec provided by the caller when the search was
+ *   performed.  Only the 'guid' field will be guaranteed to be set in each
+ *   Note.
+ *   </dd>
+ *
+ * <dt>stoppedWords</dt>
+ *   <dd>
+ *   If the NoteList was produced using a text based search
+ *   query that included words that are not indexed or searched by the service,
+ *   this will include a list of those ignored words.
+ *   </dd>
+ *
+ * <dt>searchedWords</dt>
+ *   <dd>
+ *   If the NoteList was produced using a text based search
+ *   query that included viable search words or quoted expressions, this will
+ *   include a list of those words.  Any stopped words will not be included
+ *   in this list.
+ *   </dd>
+ *
+ * <dt>updateCount</dt>
+ *   <dd>
+ *   Indicates the total number of transactions that have
+ *   been committed within the account.  This reflects (for example) the
+ *   number of discrete additions or modifications that have been made to
+ *   the data in this account (tags, notes, resources, etc.).
+ *   This number is the "high water mark" for Update Sequence Numbers (USN)
+ *   within the account.
+ *   </dd>
+ * </dl>
+ */
+struct NotesMetadataList {
+  1:  required  i32 startIndex,
+  2:  required  i32 totalNotes,
+  3:  required  list<NoteMetadata> notes,
+  4:  optional  list<string> stoppedWords,
+  5:  optional  list<string> searchedWords,
+  6:  optional  i32 updateCount
+}
+
+/**
+ * This structure is provided to the findNotesMetadata function to specify
+ * the subset of fields that should be included in each NoteMetadata element
+ * that is returned in the NotesMetadataList.
+ * Each field on this structure is a boolean flag that indicates whether the
+ * corresponding field should be included in the NoteMetadata structure when
+ * it is returned.  For example, if the 'includeTitle' field is set on this
+ * structure when calling findNotesMetadata, then each NoteMetadata in the
+ * list should have its 'title' field set.
+ * If one of the fields in this spec is not set, then it will be treated as
+ * 'false' by the server, so the default behavior is to include nothing in
+ * replies (but the mandatory GUID)
+ */
+struct NotesMetadataResultSpec {
+  2:  optional  bool includeTitle,
+  5:  optional  bool includeContentLength,
+  6:  optional  bool includeCreated,
+  7:  optional  bool includeUpdated,
+  10: optional  bool includeUpdateSequenceNum,
+  11: optional  bool includeNotebookGuid,
+  12: optional  bool includeTagGuids,
+  14: optional  bool includeAttributes,
+  20: optional  bool includeLargestResourceMime,
+  21: optional  bool includeLargestResourceSize  
+}
 
 /**
  * A data structure representing the number of notes for each notebook
@@ -1178,9 +1305,10 @@ service NoteStore {
    *   pagination.
    *
    * @param maxNotes
-   *   The most notes to return in this query.  The service will
-   *   either return this many notes or the end of the notebook, whichever is
-   *   shorter.
+   *   The most notes to return in this query.  The service will return a set
+   *   of notes that is no larger than this number, but may return fewer notes
+   *   if needed.  The NoteList.totalNotes field in the return value will
+   *   indicate whether there are more values available after the returned set.
    *
    * @return
    *   The list of notes that match the criteria.
@@ -1206,6 +1334,115 @@ service NoteStore {
                      2: NoteFilter filter,
                      3: i32 offset,
                      4: i32 maxNotes)
+    throws (1: Errors.EDAMUserException userException,
+            2: Errors.EDAMSystemException systemException,
+            3: Errors.EDAMNotFoundException notFoundException),
+
+  /**
+   * Finds the position of a note within a sorted subset of all of the user's
+   * notes. This may be useful for thin clients that are displaying a paginated
+   * listing of a large account, which need to know where a particular note
+   * sits in the list without retrieving all notes first.
+   *
+   * @param authenticationToken
+   *   Must be a valid token for the user's account unless the NoteFilter
+   *   'notebookGuid' is the GUID of a public notebook.
+   *
+   * @param filter
+   *   The list of criteria that will constrain the notes to be returned.
+   *
+   * @param guid
+   *   The GUID of the note to be retrieved.
+   *
+   * @return
+   *   If the note with the provided GUID is found within the matching note
+   *   list, this will return the offset of that note within that list (where
+   *   the first offset is 0).  If the note is not found within the set of
+   *   notes, this will return -1.
+   *
+   * @throws EDAMUserException <ul>
+   *   <li> BAD_DATA_FORMAT "offset" - not between 0 and EDAM_USER_NOTES_MAX
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "maxNotes" - not between 0 and EDAM_USER_NOTES_MAX
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "NoteFilter.notebookGuid" - if malformed
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "NoteFilter.tagGuids" - if any are malformed
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "NoteFilter.words" - if search string too long
+   *   </li>
+   *
+   * @throws EDAMNotFoundException <ul>
+   *   <li> "Notebook.guid" - not found, by GUID
+   *   </li>
+   *   <li> "Note.guid" - not found, by GUID
+   *   </li>
+   * </ul>
+   */
+  i32 findNoteOffset(1: string authenticationToken,
+                     2: NoteFilter filter,
+                     3: Types.Guid guid)
+    throws (1: Errors.EDAMUserException userException,
+            2: Errors.EDAMSystemException systemException,
+            3: Errors.EDAMNotFoundException notFoundException),
+
+  /**
+   * Used to find the high-level information about a set of the notes from a
+   * user's account based on various criteria specified via a NoteFilter object.
+   * This should be used instead of 'findNotes' whenever the client doesn't
+   * really need all of the deep structure of every Note and Resource, but
+   * just wants a high-level list of information.  This will save time and
+   * bandwidth.
+   *
+   * @param authenticationToken
+   *   Must be a valid token for the user's account unless the NoteFilter
+   *   'notebookGuid' is the GUID of a public notebook.
+   *
+   * @param filter
+   *   The list of criteria that will constrain the notes to be returned.
+   *
+   * @param offset
+   *   The numeric index of the first note to show within the sorted
+   *   results.  The numbering scheme starts with "0".  This can be used for
+   *   pagination.
+   *
+   * @param maxNotes
+   *   The mximum notes to return in this query.  The service will return a set
+   *   of notes that is no larger than this number, but may return fewer notes
+   *   if needed.  The NoteList.totalNotes field in the return value will
+   *   indicate whether there are more values available after the returned set.
+   *
+   * @param resultSpec
+   *   This specifies which information should be returned for each matching
+   *   Note. The fields on this structure can be used to eliminate data that
+   *   the client doesn't need, which will reduce the time and bandwidth
+   *   to receive and process the reply.
+   *
+   * @return
+   *   The list of notes that match the criteria.
+   *
+   * @throws EDAMUserException <ul>
+   *   <li> BAD_DATA_FORMAT "offset" - not between 0 and EDAM_USER_NOTES_MAX
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "maxNotes" - not between 0 and EDAM_USER_NOTES_MAX
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "NoteFilter.notebookGuid" - if malformed
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "NoteFilter.tagGuids" - if any are malformed
+   *   </li>
+   *   <li> BAD_DATA_FORMAT "NoteFilter.words" - if search string too long
+   *   </li>
+   *
+   * @throws EDAMNotFoundException <ul>
+   *   <li> "Notebook.guid" - not found, by GUID
+   *   </li>
+   * </ul>
+   */
+  NotesMetadataList findNotesMetadata(1: string authenticationToken,
+                                      2: NoteFilter filter,
+                                      3: i32 offset,
+                                      4: i32 maxNotes,
+                                      5: NotesMetadataResultSpec resultSpec)
     throws (1: Errors.EDAMUserException userException,
             2: Errors.EDAMSystemException systemException,
             3: Errors.EDAMNotFoundException notFoundException),
@@ -2384,6 +2621,96 @@ service NoteStore {
                  2: NoteEmailParameters parameters)
     throws (1: Errors.EDAMUserException userException,
             2: Errors.EDAMNotFoundException notFoundException,
-            3: Errors.EDAMSystemException systemException)
+            3: Errors.EDAMSystemException systemException),
 
+  /**
+   * If this note is not already shared (via its own direct URL), then this
+   * will start sharing that note.  
+   * This will return the secret "Note Key" for this note that
+   * can currently be used in conjunction with the Note's GUID to gain direct
+   * read-only access to the Note.
+   * If the note is already shared, then this won't make any changes to the
+   * note, and the existing "Note Key" will be returned.  The only way to change
+   * the Note Key for an existing note is to stopSharingNote first, and then
+   * call this function.
+   *
+   * @param guid
+   *   The GUID of the note to be shared.
+   *
+   * @throws EDAMUserException <ul>
+   *   <li> BAD_DATA_FORMAT "Note.guid" - if the parameter is missing
+   *   </li>
+   *   <li> PERMISSION_DENIED "Note" - private note, user doesn't own
+   *   </li>
+   * </ul>
+   *
+   * @throws EDAMNotFoundException <ul>
+   *   <li> "Note.guid" - not found, by GUID
+   *   </li>
+   * </ul>
+   */
+  string shareNote(1: string authenticationToken,
+                   2: Types.Guid guid)
+    throws (1: Errors.EDAMUserException userException,
+            2: Errors.EDAMNotFoundException notFoundException,
+            3: Errors.EDAMSystemException systemException),
+
+  /**
+   * If this note is not already shared then this will stop sharing that note
+   * and invalidate its "Note Key", so any existing URLs to access that Note
+   * will stop working.
+   * If the Note is not shared, then this function will do nothing.
+   *
+   * @param guid
+   *   The GUID of the note to be un-shared.
+   *
+   * @throws EDAMUserException <ul>
+   *   <li> BAD_DATA_FORMAT "Note.guid" - if the parameter is missing
+   *   </li>
+   *   <li> PERMISSION_DENIED "Note" - private note, user doesn't own
+   *   </li>
+   * </ul>
+   *
+   * @throws EDAMNotFoundException <ul>
+   *   <li> "Note.guid" - not found, by GUID
+   *   </li>
+   * </ul>
+   */
+  void stopSharingNote(1: string authenticationToken,
+                       2: Types.Guid guid)
+    throws (1: Errors.EDAMUserException userException,
+            2: Errors.EDAMNotFoundException notFoundException,
+            3: Errors.EDAMSystemException systemException),
+  
+  /**
+   * Asks the service to produce an authentication token that can be used to
+   * access the contents of a single Note which was individually shared
+   * from someone's account.
+   * This authenticationToken can be used with the various other NoteStore
+   * calls to find and retrieve the Note and its directly-referenced children.
+   *
+   * @param guid
+   *   The GUID identifying this Note on this shard.
+   *
+   * @param noteKey
+   *   The 'noteKey' identifier from the Note that was originally created via
+   *   a call to shareNote() and then given to a recipient to access.
+   *
+   * @throws EDAMUserException <ul>
+   *   <li> PERMISSION_DENIED "Note" - the Note with that GUID is either not
+   *     shared, or the noteKey doesn't match the current key for this note
+   *   </li>
+   * </ul>
+   *
+   * @throws EDAMNotFoundException <ul>
+   *   <li> "guid" - the note with that GUID is not found
+   *   </li>
+   * </ul>
+   */
+  UserStore.AuthenticationResult
+    authenticateToSharedNote(1: string guid,
+                             2: string noteKey)
+    throws (1: Errors.EDAMUserException userException,
+            2: Errors.EDAMNotFoundException notFoundException,
+            3: Errors.EDAMSystemException systemException)
 }

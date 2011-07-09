@@ -13,7 +13,7 @@ $GLOBALS['edam_type_E_PrivilegeLevel'] = array(
   'PREMIUM' => 3,
   'MANAGER' => 7,
   'SUPPORT' => 8,
-  'ADmin' => 9,
+  'ADMIN' => 9,
 );
 
 final class edam_type_PrivilegeLevel {
@@ -21,13 +21,13 @@ final class edam_type_PrivilegeLevel {
   const PREMIUM = 3;
   const MANAGER = 7;
   const SUPPORT = 8;
-  const ADmin = 9;
+  const ADMIN = 9;
   static public $__names = array(
     1 => 'NORMAL',
     3 => 'PREMIUM',
     7 => 'MANAGER',
     8 => 'SUPPORT',
-    9 => 'ADmin',
+    9 => 'ADMIN',
   );
 }
 
@@ -236,6 +236,7 @@ class edam_type_UserAttributes {
   public $customerProfileId = null;
   public $referralProof = null;
   public $educationalDiscount = null;
+  public $businessAddress = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -356,6 +357,10 @@ class edam_type_UserAttributes {
           'var' => 'educationalDiscount',
           'type' => TType::BOOL,
           ),
+        30 => array(
+          'var' => 'businessAddress',
+          'type' => TType::STRING,
+          ),
         );
     }
     if (is_array($vals)) {
@@ -439,6 +444,9 @@ class edam_type_UserAttributes {
       }
       if (isset($vals['educationalDiscount'])) {
         $this->educationalDiscount = $vals['educationalDiscount'];
+      }
+      if (isset($vals['businessAddress'])) {
+        $this->businessAddress = $vals['businessAddress'];
       }
     }
   }
@@ -671,6 +679,13 @@ class edam_type_UserAttributes {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 30:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->businessAddress);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -843,6 +858,11 @@ class edam_type_UserAttributes {
       $xfer += $output->writeBool($this->educationalDiscount);
       $xfer += $output->writeFieldEnd();
     }
+    if ($this->businessAddress !== null) {
+      $xfer += $output->writeFieldBegin('businessAddress', TType::STRING, 30);
+      $xfer += $output->writeString($this->businessAddress);
+      $xfer += $output->writeFieldEnd();
+    }
     $xfer += $output->writeFieldStop();
     $xfer += $output->writeStructEnd();
     return $xfer;
@@ -869,6 +889,8 @@ class edam_type_Accounting {
   public $updated = null;
   public $premiumSubscriptionNumber = null;
   public $lastRequestedCharge = null;
+  public $currency = null;
+  public $unitPrice = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -937,6 +959,14 @@ class edam_type_Accounting {
           'var' => 'lastRequestedCharge',
           'type' => TType::I64,
           ),
+        18 => array(
+          'var' => 'currency',
+          'type' => TType::STRING,
+          ),
+        19 => array(
+          'var' => 'unitPrice',
+          'type' => TType::I32,
+          ),
         );
     }
     if (is_array($vals)) {
@@ -987,6 +1017,12 @@ class edam_type_Accounting {
       }
       if (isset($vals['lastRequestedCharge'])) {
         $this->lastRequestedCharge = $vals['lastRequestedCharge'];
+      }
+      if (isset($vals['currency'])) {
+        $this->currency = $vals['currency'];
+      }
+      if (isset($vals['unitPrice'])) {
+        $this->unitPrice = $vals['unitPrice'];
       }
     }
   }
@@ -1122,6 +1158,20 @@ class edam_type_Accounting {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 18:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->currency);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 19:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->unitPrice);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -1213,6 +1263,16 @@ class edam_type_Accounting {
     if ($this->lastRequestedCharge !== null) {
       $xfer += $output->writeFieldBegin('lastRequestedCharge', TType::I64, 17);
       $xfer += $output->writeI64($this->lastRequestedCharge);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->currency !== null) {
+      $xfer += $output->writeFieldBegin('currency', TType::STRING, 18);
+      $xfer += $output->writeString($this->currency);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->unitPrice !== null) {
+      $xfer += $output->writeFieldBegin('unitPrice', TType::I32, 19);
+      $xfer += $output->writeI32($this->unitPrice);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -2271,6 +2331,7 @@ class edam_type_NoteAttributes {
   public $source = null;
   public $sourceURL = null;
   public $sourceApplication = null;
+  public $shareDate = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -2307,6 +2368,10 @@ class edam_type_NoteAttributes {
           'var' => 'sourceApplication',
           'type' => TType::STRING,
           ),
+        17 => array(
+          'var' => 'shareDate',
+          'type' => TType::I64,
+          ),
         );
     }
     if (is_array($vals)) {
@@ -2333,6 +2398,9 @@ class edam_type_NoteAttributes {
       }
       if (isset($vals['sourceApplication'])) {
         $this->sourceApplication = $vals['sourceApplication'];
+      }
+      if (isset($vals['shareDate'])) {
+        $this->shareDate = $vals['shareDate'];
       }
     }
   }
@@ -2412,6 +2480,13 @@ class edam_type_NoteAttributes {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 17:
+          if ($ftype == TType::I64) {
+            $xfer += $input->readI64($this->shareDate);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -2463,6 +2538,11 @@ class edam_type_NoteAttributes {
     if ($this->sourceApplication !== null) {
       $xfer += $output->writeFieldBegin('sourceApplication', TType::STRING, 16);
       $xfer += $output->writeString($this->sourceApplication);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->shareDate !== null) {
+      $xfer += $output->writeFieldBegin('shareDate', TType::I64, 17);
+      $xfer += $output->writeI64($this->shareDate);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -3491,6 +3571,7 @@ class edam_type_Ad {
   public $imageMime = null;
   public $html = null;
   public $displayFrequency = null;
+  public $openInTrunk = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -3543,6 +3624,10 @@ class edam_type_Ad {
           'var' => 'displayFrequency',
           'type' => TType::DOUBLE,
           ),
+        13 => array(
+          'var' => 'openInTrunk',
+          'type' => TType::BOOL,
+          ),
         );
     }
     if (is_array($vals)) {
@@ -3581,6 +3666,9 @@ class edam_type_Ad {
       }
       if (isset($vals['displayFrequency'])) {
         $this->displayFrequency = $vals['displayFrequency'];
+      }
+      if (isset($vals['openInTrunk'])) {
+        $this->openInTrunk = $vals['openInTrunk'];
       }
     }
   }
@@ -3688,6 +3776,13 @@ class edam_type_Ad {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 13:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->openInTrunk);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -3759,6 +3854,11 @@ class edam_type_Ad {
     if ($this->displayFrequency !== null) {
       $xfer += $output->writeFieldBegin('displayFrequency', TType::DOUBLE, 12);
       $xfer += $output->writeDouble($this->displayFrequency);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->openInTrunk !== null) {
+      $xfer += $output->writeFieldBegin('openInTrunk', TType::BOOL, 13);
+      $xfer += $output->writeBool($this->openInTrunk);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

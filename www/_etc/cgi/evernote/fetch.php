@@ -30,23 +30,45 @@ foreach ($notebooks as $notebook) {
 $con = connect_db();
 
 $query = "SELECT unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
-//$query = "SELECT update_sequence FROM notes";
+//$query = "SELECT MAX(update_sequence) FROM notes";
 
 $result = mysql_query($query);
 while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-//$latest_update_sequence = $row['update_sequence'];
+    //$latest_update_sequence = $row['update_sequence'];
     $latest_unix = $row['latest_unix']*1000;
-    //$latest = $row['latest']; //hhh
+    $latest = $row['latest'];
     $latest_unix_deleted = $row['latest_unix_deleted']*1000;
     //echo "Latest:$latest\n";//hhh
     //echo "Latest:$latest_unix\n";
 }
 
+$query = "SELECT e_guid,update_sequence FROM `notes` WHERE latest=1";
+$result = mysql_query($query);
+while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+  $update_sequence_lookup[$row['e_guid']] = $row['update_sequence'];
+}
+
+//echo $update_sequence_lookup['aaf8cfb3-5ca0-46ca-8741-86ecd5102ff1'];
+
 $search = new edam_notestore_NoteFilter();
+
+$resultSpec = new edam_notestore_NotesMetadataResultSpec();
+$resultSpec->includeTitle =	false;	
+$resultSpec->includeContentLength =	true;	
+$resultSpec->includeCreated	= true;	
+$resultSpec->includeUpdated	= false;	
+$resultSpec->includeUpdateSequenceNum =	true;	
+$resultSpec->includeNotebookGuid =	false;	
+$resultSpec->includeTagGuids =	false;	
+$resultSpec->includeAttributes =	false;	
+$resultSpec->includeLargestResourceMime =	false;	
+$resultSpec->includeLargestResourceSize =	false;	
+
 $search->notebookGuid = $notebookGuid;
-$search->ascending = false;
+//$search->words = 'updated:20110101 -updated:20110701';
+//$search->ascending = false;
 //$search->timeZone = "Europe/London";
-$result = $noteStore->findNotes($authToken, $search, 0, 99);
+$result = $noteStore->findNotesMetadata($authToken, $search, 0, 500, $resultSpec);
 $notesFound = $result->notes;
 
 //echo var_export($result,1);
@@ -55,15 +77,20 @@ $cache_queue = array();
 $url_queue = array();
 
 foreach ($notesFound as $note) {
+  $note_guid=$note->guid;
   $date_modified=$note->updated;
   $date_created=$note->created;
   $update_sequence=$note->updateSequenceNum;
 
-  if($date_modified > $latest_unix || $date_created > $latest_unix){
+//print "$update_sequence > $latest_update_sequence ? /n";
+//print "($date_modified > $latest_unix || $date_created > $latest_unix)\n";
 
+print "$note_guid | $update_sequence_lookup[$note_guid] $update_sequence \n";
+
+    if($update_sequence_lookup[$note_guid] != $update_sequence){    
+//  if($date_modified > $latest_unix || $date_created > $latest_unix){
 //  if($update_sequence>$latest_update_sequence){
     
-    $note_guid=$note->guid;
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   
     //echo var_export($noteEdam,1);
@@ -95,12 +122,14 @@ foreach ($notesFound as $note) {
     $note_type = 1;
     $latest = 1;
     
+    $section = 'notes';
+    
     $imageTitle = '';
       
-    mysql_query($query);
     $query = sprintf("DELETE _lookup WHERE check1='%s' AND (type=0 OR type=1)",
       $note_guid
     );
+    mysql_query($query);
     
     if($tagGuids) {
       $tagCounter = 0;
@@ -123,15 +152,17 @@ foreach ($notesFound as $note) {
         } else if($thisTagName == '__PUBLISH'){
           $note_publish = 2;
         } else if($thisTagName == '__NOLIST'){
-          $note_type = 0; //Fragment
+          $note_type = 0;
         } else if($thisTagName == '_books'){
-          //$note_type = 2;
           $booksTagFound = true;
+        } else if($thisTagName == '_exp'){
           $expFound = true;
         } else if($thisTagName == '__LINK'){
-          $note_type = 3; //Link
+          $note_type = 3;
+          $section = 'links';
         } else if($thisTagName == '__TOPIC'){
-          $note_type = 4; //Topic
+          $note_type = 4;
+          $section = 'topics';
         } else if($thisTagName == '__HOLD'){
           $latest = 0; //Hold publication - tags, etc are still updated
         }
@@ -233,13 +264,14 @@ foreach ($notesFound as $note) {
       $query = sprintf("UPDATE notes SET latest=0 WHERE e_guid='%s' AND latest=1",
           $note_guid
       );
+      mysql_query($query);
     }
     
     #$note_title = strip_tags($note_title);
     #$content = str_replace("</div>", "</div>/n", $content);
     #$content = strip_tags($content, '<a><ul><li><h3>');
     
-    mysql_query($query);
+    //mysql_query($query);
     $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",
         $note_guid,
         mysql_real_escape_string($note_title),
@@ -265,10 +297,10 @@ foreach ($notesFound as $note) {
     if ($note_publish == 1 && $latest == 1){
       $eguid_dec = hexdec(substr($note_guid,0,4));
       $cache_queue = cache_queue_guid($cache_queue,$eguid_dec);
-      $url = 'http://'.SERVER_NAME.'/notes/'.$eguid_dec;
+      $url = 'http://'.SERVER_NAME.'/'.$section.'/'.$eguid_dec;
       array_push($url_queue,$url);
-      $url = 'http://'.SERVER_NAME.'/_etc/cache/notes--page-p='.$eguid_dec.'&mode=standalone.shtml';
-      array_push($url_queue,$url);
+      #$url = 'http://'.SERVER_NAME.'/_etc/cache/notes--page-p='.$eguid_dec.'.shtml';
+      #array_push($url_queue,$url);
     }
     echo "Note added: $note_title ($note_guid) - publish: $note_publish - $url\n";
     
@@ -323,6 +355,9 @@ if(sizeof($cache_queue)>0||sizeof($url_queue)>0){
   $temp = get_content('http://'.SERVER_NAME.'/');
   $temp = get_content('http://'.SERVER_NAME.'/tags/');
   $temp = get_content('http://'.SERVER_NAME.'/notes/');
+  $temp = get_content('http://'.SERVER_NAME.'/bibliography/');
+  $temp = get_content('http://'.SERVER_NAME.'/links/');
+  $temp = get_content('http://'.SERVER_NAME.'/topics/');
 }
 
 mysql_close($con);

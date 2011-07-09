@@ -236,7 +236,7 @@ class TSocket extends TTransport {
       $this->sendTimeoutSet_ = FALSE;
     }
     // This call does not obey stream_set_timeout values!
-    // $buf = @stream_get_etc/contents($this->handle_, $len);
+    // $buf = @stream_get_contents($this->handle_, $len);
 
     $pre = null;
     while (TRUE) {

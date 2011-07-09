@@ -28,6 +28,7 @@
  * collections that make up the EDAM data model.
  */
 
+namespace as3 com.evernote.edam.limits
 namespace java com.evernote.edam.limits
 namespace csharp Evernote.EDAM.Limits
 namespace py evernote.edam.limits
@@ -178,6 +179,9 @@ const string EDAM_COMMERCE_SERVICE_GIFT   = "Gift";
 const string EDAM_COMMERCE_SERVICE_TRIALPAY   = "TrialPay";
 const string EDAM_COMMERCE_SERVICE_TRIAL = "Trial";
 const string EDAM_COMMERCE_SERVICE_GROUP = "Group";
+const string EDAM_COMMERCE_SERVICE_CYBERSOURCE = "CYBERSRC";
+const string EDAM_COMMERCE_DEFAULT_CURRENCY_COUNTRY_CODE = "USD";
+
 /**
  * The minimum length of a user search query string in Unicode chars
  */
@@ -420,6 +424,18 @@ const i32    EDAM_USER_MAIL_LIMIT_DAILY_FREE = 50;
  * recipients, this counts as two emails.
  */
 const i32    EDAM_USER_MAIL_LIMIT_DAILY_PREMIUM = 200;
+
+/**
+ * The number of bytes of new data that may be uploaded to a Free user's
+ * account each month.
+ */
+const i64    EDAM_USER_UPLOAD_LIMIT_FREE = 62914560;
+
+/**
+ * The number of bytes of new data that may be uploaded to a Premium user's
+ * account each month.
+ */
+const i64    EDAM_USER_UPLOAD_LIMIT_PREMIUM = 1073741824;
 
 /**
  * Maximum total size of a Note that can be added to a Free account.

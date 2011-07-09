@@ -30,6 +30,7 @@
  * neutral data model into an appropriate form for storage on that client.
  */
 
+namespace as3 com.evernote.edam.error
 namespace java com.evernote.edam.error
 namespace csharp Evernote.EDAM.Error
 namespace py evernote.edam.error

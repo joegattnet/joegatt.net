@@ -31,6 +31,7 @@
 include "Types.thrift"
 include "Errors.thrift"
 
+namespace as3 com.evernote.edam.userstore
 namespace java com.evernote.edam.userstore
 namespace csharp Evernote.EDAM.UserStore
 namespace py evernote.edam.userstore
@@ -53,7 +54,7 @@ const i16 EDAM_VERSION_MAJOR = 1
  * Clients pass this to the service using UserStore.checkVersion at the
  * beginning of a session to confirm that they are not out of date.
  */
-const i16 EDAM_VERSION_MINOR = 17
+const i16 EDAM_VERSION_MINOR = 19
 
 
 /**
@@ -205,10 +206,8 @@ service UserStore {
    *
    * @return
    *   The result of the authentication.  If the authentication was successful,
-   *   the AuthenticationResult.user field will be set, but that User's
-   *   'attributes' will not be set.  To retrieve the full information about
-   *   the User, including its UserAttributes, make a separate call to
-   *   UserStore.getUser() with the authentication from this call.
+   *   the AuthenticationResult.user field will be set with the full information
+   *   about the User.
    *
    * @throws EDAMUserException <ul>
    *   <li> DATA_REQUIRED "username" - username is empty 
@@ -219,6 +218,7 @@ service UserStore {
    *   <li> INVALID_AUTH "consumerKey" - consumerKey is not authorized
    *   <li> INVALID_AUTH "consumerSecret" - consumerSecret is incorrect
    *   <li> PERMISSION_DENIED "User.active" - user account is closed
+   *   <li> PERMISSION_DENIED "User.tooManyFailuresTryAgainLater" - user has failed authentication too often
    * </ul>
    */
   AuthenticationResult authenticate(1: string username,

@@ -10,6 +10,6 @@ $GLOBALS['UserStore_CONSTANTS'] = array();
 
 $GLOBALS['UserStore_CONSTANTS']['EDAM_VERSION_MAJOR'] = 1;
 
-$GLOBALS['UserStore_CONSTANTS']['EDAM_VERSION_etc/minOR'] = 17;
+$GLOBALS['UserStore_CONSTANTS']['EDAM_VERSION_MINOR'] = 19;
 
 ?>

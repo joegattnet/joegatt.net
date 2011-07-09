@@ -9,7 +9,7 @@ include_once $GLOBALS['THRIFT_ROOT'].'/Thrift.php';
 include_once $GLOBALS['THRIFT_ROOT'].'/packages/UserStore/UserStore_types.php';
 
 interface UserStoreIf {
-  public function checkVersion($clientName, $edamVersionMajor, $edamVersionminor);
+  public function checkVersion($clientName, $edamVersionMajor, $edamVersionMinor);
   public function authenticate($username, $password, $consumerKey, $consumerSecret);
   public function refreshAuthentication($authenticationToken);
   public function getUser($authenticationToken);
@@ -27,18 +27,18 @@ class UserStoreClient implements UserStoreIf {
     $this->output_ = $output ? $output : $input;
   }
 
-  public function checkVersion($clientName, $edamVersionMajor, $edamVersionminor)
+  public function checkVersion($clientName, $edamVersionMajor, $edamVersionMinor)
   {
-    $this->send_checkVersion($clientName, $edamVersionMajor, $edamVersionminor);
+    $this->send_checkVersion($clientName, $edamVersionMajor, $edamVersionMinor);
     return $this->recv_checkVersion();
   }
 
-  public function send_checkVersion($clientName, $edamVersionMajor, $edamVersionminor)
+  public function send_checkVersion($clientName, $edamVersionMajor, $edamVersionMinor)
   {
     $args = new edam_userstore_UserStore_checkVersion_args();
     $args->clientName = $clientName;
     $args->edamVersionMajor = $edamVersionMajor;
-    $args->edamVersionminor = $edamVersionminor;
+    $args->edamVersionMinor = $edamVersionMinor;
     $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -323,7 +323,7 @@ class edam_userstore_UserStore_checkVersion_args {
 
   public $clientName = null;
   public $edamVersionMajor = 1;
-  public $edamVersionminor = 17;
+  public $edamVersionMinor = 19;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -337,7 +337,7 @@ class edam_userstore_UserStore_checkVersion_args {
           'type' => TType::I16,
           ),
         3 => array(
-          'var' => 'edamVersionminor',
+          'var' => 'edamVersionMinor',
           'type' => TType::I16,
           ),
         );
@@ -349,8 +349,8 @@ class edam_userstore_UserStore_checkVersion_args {
       if (isset($vals['edamVersionMajor'])) {
         $this->edamVersionMajor = $vals['edamVersionMajor'];
       }
-      if (isset($vals['edamVersionminor'])) {
-        $this->edamVersionminor = $vals['edamVersionminor'];
+      if (isset($vals['edamVersionMinor'])) {
+        $this->edamVersionMinor = $vals['edamVersionMinor'];
       }
     }
   }
@@ -390,7 +390,7 @@ class edam_userstore_UserStore_checkVersion_args {
           break;
         case 3:
           if ($ftype == TType::I16) {
-            $xfer += $input->readI16($this->edamVersionminor);
+            $xfer += $input->readI16($this->edamVersionMinor);
           } else {
             $xfer += $input->skip($ftype);
           }
@@ -418,9 +418,9 @@ class edam_userstore_UserStore_checkVersion_args {
       $xfer += $output->writeI16($this->edamVersionMajor);
       $xfer += $output->writeFieldEnd();
     }
-    if ($this->edamVersionminor !== null) {
-      $xfer += $output->writeFieldBegin('edamVersionminor', TType::I16, 3);
-      $xfer += $output->writeI16($this->edamVersionminor);
+    if ($this->edamVersionMinor !== null) {
+      $xfer += $output->writeFieldBegin('edamVersionMinor', TType::I16, 3);
+      $xfer += $output->writeI16($this->edamVersionMinor);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
