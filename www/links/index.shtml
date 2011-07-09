@@ -10,9 +10,8 @@
 <!--#set var="title" value="Links" -->
 <!--#set var="title.window" value="$title" -->
 
-<!--#set var="yield" value="yield_1024_05_02s_05_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&view=links.html" -->
-<!--#set var="content_right" value="/_etc/cache/tags--list-template=cloud&min=2.shtml" -->
+<!--#set var="yield" value="yield_1024_12_a.shtml" -->
+<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&alphabetical=true&view=links.html" -->
 
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->

@@ -6,10 +6,10 @@
   <head>
     <!--#include virtual="/_etc/includes/head.shtml" -->       
   </head>     
-  <body>  
+  <body itemscope itemtype="http://schema.org/WebPage">  
     <!--#include virtual="/_etc/includes/scripts_external.shtml" -->
     <div id="container" class="container_12 ajax_large clearfix">
-      <div id="page" data-url="<!--#echo var="/$section/$page" -->">
+      <div id="page" data-url="<!--#echo var="location" -->">
         <!--#include virtual="/_etc/layouts/page_${layout}.shtml" -->
       </div>
       <div id="code" class="draggable panel panel_closed escapable-panel" style="display:none;">

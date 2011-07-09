@@ -6,9 +6,9 @@ NB.SETTINGS = {
   color: {
     text: '#333333',
     source: '#990000',
-    ok: '#d3120f',
+    ok: '#75d42f',
     error: '#d3120f',
-    amber: '#f74b23',
+    amber: '#999999',
     neutral: '#999999',
     version_loading: '#d5d5d5',
     version_loaded: '#333333',

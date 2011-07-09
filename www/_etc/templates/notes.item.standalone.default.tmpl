@@ -1,11 +1,11 @@
 <div class="grid_5 alpha">
-  [% IF quote %]
-    <blockquote>[% quote %]</blockquote>
-  [% END %]
-  [% IF attribution %]
-    <p class="attribution">[% attribution %]</p>
-  [% END %]
   <div class="text">
+    [% IF quote %]
+      <blockquote>[% quote %]</blockquote>
+    [% END %]
+    [% IF attribution %]
+      <p class="attribution">[% attribution %]</p>
+    [% END %]
     [% text %]
   </div>
   <aside id="versions" class="meta">

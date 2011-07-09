@@ -1,11 +1,12 @@
 <div class="grid_5 alpha">
   [% IF text %]
-    <blockquote>[% text %]</blockquote>
+    <blockquote cite="[% sourceUrl %]">[% text %]</blockquote>
   [% END %]
-  <p><a href="[% sourceUrl %]">[% title %]</a></p>
+  <p><a href="[% sourceUrl %]" title="[% title %]">[% title %]</a></p>
+  <p class="domain">[% sourceUrlDomain %]</p>
   [% FOREACH resource IN resources %]
       <p class="details">Accessed: <abbr class="timeago" title="[% resource.date_iso8601 %]">[% resource.date_full %]</abbr>.</p>
-      <p class="clearfix"><img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-0_0-fw-220-2-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" class="thumbnail"></p>
+      <p class="clearfix"><a href="[% sourceUrl %]"><img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-1_2-wb-3-1-0-0.[% resource.ext %]" alt="Screenshot from [% sourceUrlDomain %]" class="thumbnail"></a></p>
   [% END %]
   <aside id="versions" class="meta">
     <p>Version <span class="version-source">[% version %]</span> (<abbr class="timeago" title="[% date_iso8601 %]">[% date_full %]</abbr>)</p>

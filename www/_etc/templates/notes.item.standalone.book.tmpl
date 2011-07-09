@@ -1,17 +1,18 @@
 <div class="grid_5 alpha">
-  <div class="book">
-    <p><strong>[% bookTitle %]</strong></p>
-    <p>[% authorFullName %]</p>
-    <p>[% publisherName %], [% publishedDate %]</p>
-    <p>ISBN [% isbn %]</p>  
+  <div class="book" itemscope itemtype="http://schema.org/Book">
+    <p itemprop="author">[% authorFullName %]</p>
+    <p itemprop="name"><strong>[% bookTitle %]</strong></p>
+    <p><span itemprop="publisher">[% publisherName %]</span>, <meta itemprop="publishDate" content="[% publishedDate %]-01-01">[% publishedDate %]</p>
+    <p class="isbn" itemprop="isbn">ISBN [% isbn %]</p>  
     [% IF translator %]
       <p>Translated by [% translatorFullName %]</p>
     [% END %]
     [% FOREACH resource IN resources %]
-        <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover">
+        <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" itemprop="image">
     [% END %]
   </div>
   <p><a href="http://www.worldcat.org/isbn/[% isbn %]">WorldCat entry for this book</a></p>
+  <p><a href="http://books.google.co.uk/books?vid=ISBN[% isbn %]">Google Books entry for this book</a></p>
   <aside id="versions" class="meta">
     <p>Version <span class="version-source">[% version %]</span> (<abbr class="timeago" title="[% date_iso8601 %]">[% date_full %]</abbr>)</p>
   </aside>

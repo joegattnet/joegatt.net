@@ -29,7 +29,7 @@ my $output = qq~
   <div$idString class="navigator by-$pChunk clearfix">
     <div>
   			<ul class="nav_h">
-    			 <li class="nav-li"><a href="1" rel="first" class="first" title="First $pChunk">First $pChunk</a></li>
+    			 <li class="nav-li"><a href="1" rel="first" title="First $pChunk">First $pChunk</a></li>
     			 <li class="nav-li"><a href="$previous" rel="prev" class="previous" title="Previous $pChunk">Previous $pChunk</a></li>
            ~;
            if($goto ne 'false'){

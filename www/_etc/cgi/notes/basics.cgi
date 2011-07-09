@@ -181,9 +181,12 @@ sub printNote {
   }
 
   $textBriefClean = textTruncate(sanitiseText($text, 1), 350);
+  $textBriefClean =~ s/\"/\'/g;
   $text =~ s/\n\n/\n/g;
   $text =~ s/\n/<\/p><p>/g;
-  $text = "<p class=\"first\">$text</p>";
+  if($text ne ''){
+    $text = "<p>$text</p>";
+  }
   $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
     
   $sthNote->finish();
@@ -192,8 +195,8 @@ sub printNote {
 
   $version = "0.$version";
 
-  $source_url =~ /(http\:\/\/)([^\/]*)(.*)/;
-  $source_url_domain = $2;
+  $source_url =~ /([a-z0-9]*\.[\.a-z]*)/;
+  $source_url_domain = $1;
   $source_url_domain =~ s/^www\.|^en\.//g;
     
   #Process

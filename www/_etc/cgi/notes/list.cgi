@@ -9,6 +9,24 @@ $offset = 0;
 
 formRead("get");
 
+$tags =~ s/\_/(( |[[:punct:]])+)/g;
+$tags =~ s/\,/|/g;
+
+if ($exclude ne '') {
+  $excludeSQL = "AND notes.e_guid NOT LIKE '".sprintf("%04x", $exclude)."%'";
+}
+
+if($alphabetical eq 'true' && $view eq 'bibliography') {
+  $order = "ORDER BY text, notes.title";
+}elsif ($alphabetical eq 'true'){
+  $order = "ORDER BY notes.title ASC, date_modified DESC";
+} elsif($latest eq 'true'){
+  $order = "ORDER BY date_modified DESC";
+} else {
+  $tagsSQL = "AND (tags.name REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";
+  $order = "ORDER BY score DESC, date_modified DESC";
+}
+
 if ($type eq 'fragment') {
   $type = 0;
 } elsif ($view eq 'notes') {
@@ -21,22 +39,6 @@ if ($type eq 'fragment') {
   $type = 4;
 } elsif ($view eq 'content') {
   $type = 5;
-}
-
-$tags =~ s/\_/(( |[[:punct:]])+)/g;
-$tags =~ s/\,/|/g;
-
-if ($exclude ne '') {
-  $excludeSQL = "AND notes.e_guid NOT LIKE '".sprintf("%04x", $exclude)."%'";
-}
-
-if ($latest eq 'true' && $type == 2) {
-  $order = "ORDER BY text";
-} elsif($latest eq 'true'){
-  $order = "ORDER BY date_modified DESC";
-} else {
-  $tagsSQL = "AND (tags.name REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";
-  $order = "ORDER BY score DESC,date_modified DESC";
 }
 
 $dbh = connectDB();
@@ -80,6 +82,8 @@ sub getNotes {
   $notesCount = 0;
 
   while (my ($note_e_guid) = $sth->fetchrow_array()) {
+    #This is very inefficient, of course. need to consolidate and send list
+    #directly to templates
     $output .= printNote($note_e_guid, $template);
     $notesCount++;
   }

@@ -23,6 +23,8 @@
     DEFINE("DATABASE","joegatt-net-dev");
   }
   
+  //PUT THESE UNDER /tmp ?
+  
   if (preg_match('/joegatt-net/',SERVER_NAME)) {
     require_once("D://Documents/Websites/_db_passwords/joegatt-net/passwords.php");
   } else {

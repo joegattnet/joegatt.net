@@ -1,5 +1,5 @@
 <div id="nav_top" class="grid_8 alpha">
-  <ul id="crumbs" class="nav_h a_arrows">
+  <ul id="crumbs" class="nav_h a_arrows" itemprop="breadcrumb">
   		<li><a href="<!--#echo var="root" -->">home</a></li>
   		<li id="crumbs_section"<!--#if expr="$chunk=index" --> style="display:none;"<!--#endif -->><a href="<!--#echo var="root" --><!--#echo var="section" -->/"><!--#echo var="section" --></a></li>
       <!--#if expr="1=0" -->

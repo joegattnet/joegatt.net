@@ -111,7 +111,7 @@ abbr[title], dfn[title] {
 	text-align: justify;
 	line-height: 20px;
 }
-#content #p_1 p, #content p.first {
+#content #p_1 p {
 	text-indent: 0;
 }
 section a[href^="http"] {
