@@ -13,7 +13,7 @@ NB.Enface.blur = function(event){
     if ((error_status==0&&score>0)||NB.User.level>1) {
      var new_version_number = '0.'+Math.pow(10,NB.Anagram.total.toString().length) - NB.Anagram.total;
      j.data('p_text',current_text_raw);
-     var pending = "NB.Ajax.html('post','#hidden','/_etc/cgi/enface/save.cgi','score="+score+"&score_total="+NB.Anagram.snap+"&username='+NB.User.name+'&user_level='+NB.User.level+'&u='+NB.User.id+'&b="+NB.book.id+"&p="+p+"&p_id="+e.id+"&version="+(NB.versions['p'+j.data('id')][5]+1)+"&text="+current_text+"',false);NB.Nav.track(2,'Enface', 'Saved', '+"+score+"', p);NB.Versions.display("+new_version_number+");NB.Enface.reset($('#"+e.id+"'),false);";
+     var pending = "NB.Ajax.html('post','#hidden','/_etc/cgi/enface/save.cgi','score="+score+"&score_total="+NB.Anagram.snap+"&username='+NB.User.name+'&user_level='+NB.User.level+'&u='+NB.User.id+'&b="+NB.book.id+"&p="+p+"&p_id="+e.id+"&version="+(NB.versions['p'+j.data('id')][5]+1)+"&text="+current_text+"',false);NB.Nav.track(2,'Enface', 'Saved', '+"+score+"', "+p+");NB.Versions.display("+new_version_number+");NB.Enface.reset($('#"+e.id+"'),false);";
      if (NB.User.id==0){
 		 	 NB.User.pending.add(pending,10);
        NB.User.popup('save your changes');
