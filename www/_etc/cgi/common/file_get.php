@@ -6,7 +6,8 @@
   );
 
   $url = $externalUrls[$_GET['eu']]; 
-  $output = file_get_contents($url); 
+  $output = file_get_contents($url);
+  $output = '<article class="' . $_GET['class'] . '">' . $output . '</article>';
 
   print $output;
 

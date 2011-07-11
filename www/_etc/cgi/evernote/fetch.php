@@ -66,7 +66,7 @@ $resultSpec->includeLargestResourceSize =	false;
 
 $search->notebookGuid = $notebookGuid;
 //$search->words = 'updated:20110101 -updated:20110701';
-//$search->ascending = false;
+$search->ascending = false;
 //$search->timeZone = "Europe/London";
 $result = $noteStore->findNotesMetadata($authToken, $search, 0, 500, $resultSpec);
 $notesFound = $result->notes;
@@ -87,9 +87,10 @@ foreach ($notesFound as $note) {
 
 print "$note_guid | $update_sequence_lookup[$note_guid] $update_sequence \n";
 
-    if($update_sequence_lookup[$note_guid] != $update_sequence){    
+//if(1==1){
+//    if($update_sequence_lookup[$note_guid] != $update_sequence){    
 //  if($date_modified > $latest_unix || $date_created > $latest_unix){
-//  if($update_sequence>$latest_update_sequence){
+  if($update_sequence>$latest_update_sequence){
     
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   

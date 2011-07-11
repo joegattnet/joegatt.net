@@ -1,9 +1,9 @@
 <p class="close tool panel_handle"><a class="tool_code_extra" href="javascript:;" rel="code">close</a></p>
-<div class="grid_7 alpha">
+<div class="grid_6 alpha">
   <!--#set var="code_file" value="|${section}|${page}~shtml" -->
   <div id="source" data-url="/_etc/cache/code--files-file=<!--#echo var="code_file" -->.html"><!--#include virtual="/_etc/cache/code--files-file=${code_file}.html" --></div>
 </div>
-<div class="grid_2">
+<div class="grid_3">
   <ul id="explorer">
     <!--#include virtual="/_etc/cache/code--folders-folder=www|${section}.html" -->
   </ul>

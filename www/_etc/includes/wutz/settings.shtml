@@ -4,6 +4,7 @@
 <!--#set var="path" value="/$section/" -->
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="$location" -->
+<!--#set var="share_url" value="$canonical" -->
 
 <!--#set var="keywords" value="anagram,Wutz,Oulipo,Walter Benjamin,Jean Paul" -->
 <!--#set var="subject" value="$keywords">

@@ -125,7 +125,7 @@ sub printNote {
      if ($text =~ s/http.*vimeo\.com.*?([0-9]+)// || $source_url =~ s/http.*vimeo\.com.*?([0-9]+)//) {
        $vimeoId = $1;
       }
-     if ($text =~ s/http.*youtube\.com\/watch\?v\=(\w+)// || $source_url =~ s/http.*youtube\.com\/watch\?v\=(\w+)//) {
+     if ($text =~ s/http.*youtube\.co..?\/watch\?v\=(\w+)// || $source_url =~ s/http.*youtube\.com\/watch\?v\=(\w+)//) {
        $youtubeId = $1;
      }
      if ($text =~ s/http.*dailymotion\.com\/video\/(\w+?)_// || $source_url =~ s/http.*dailymotion\.com\/video\/(\w+?)_//) {
@@ -172,12 +172,14 @@ sub printNote {
      $translatorFullName =~ /(.*?)\, *(.*?)/;
      $translatorSurname = $1;
      $translatorFirstName = $2;
-  } elsif ($isTopic) {
+  } elsif ($title && $title ne '' && $isTopic) {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();
     my $entry = $wiki->search($title);
-    $text .= $entry->text_basic();
-    $textBriefLinked = textTruncateLink($text, 200, false, "$source_url", 'More');
+    if($entry){
+      $text .= $entry->text_basic();
+      $textBriefLinked = textTruncateLink($text, 200, false, "$source_url", 'More');
+    }
   }
 
   $textBriefClean = textTruncate(sanitiseText($text, 1), 350);

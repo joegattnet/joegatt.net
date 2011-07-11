@@ -14,7 +14,6 @@
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->
 
-<!--#set var="yield" value="yield_1024_06_01s_05_a.shtml" -->
 <!--#set var="content" value="/_etc/content/privacy/cookie.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

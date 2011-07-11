@@ -591,6 +591,7 @@ sub tagLinkify {
   $tagLink = to_ascii(Encode::decode_utf8($tagLink));
   $tagLink =~ s/\W+/_/g;
   $tagLink =~ s/^_|_$//g;
+  #also fix date for books
   return $tagLink;
 }
 

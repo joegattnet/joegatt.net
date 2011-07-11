@@ -1,4 +1,4 @@
-h1, h2, h3 {
+h1, h2, #title h3 {
 	position: absolute;
 }
 h2 {
@@ -10,7 +10,20 @@ h3 {
 	font-size: 15px;
 }
 #content h3 {
-	top: -60px;
+	font-family:Tahoma,Geneva,sans-serif;
+	font-size: 11px;
+  font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0;
+	color: #666;
+	margin-bottom:10px;
+	text-indent:0;
+}
+#content h3 + p {
+  text-indent:0;
+}
+#content h3 ~ h3 {
+  margin-top:20px;
 }
 h4 {
 	font-weight: bold;
@@ -60,7 +73,7 @@ h2 {
 #title h2 a:hover {
   color:#00c;
 }
-h3 {
+#title h3 {
   color:#454545;
   top:119px;
 }
