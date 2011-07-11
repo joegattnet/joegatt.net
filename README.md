@@ -1,10 +1,10 @@
-<h4>Directory structure</h4>
+<h3>Directory structure</h3>
 <p>All real directories are under root; all other directories are inside /_etc.</p>
 
-<h4>URL rewrites</h4>
+<h3>URL rewrites</h3>
 <p>The .htaccess file redirects urls.</p>
 
-<h4>XSSI</h4>
+<h3>XSSI</h3>
 <p>Apache's XSSI-includes are used extensively</p>
 <ul>
   <li>They are fast and portable</li>
