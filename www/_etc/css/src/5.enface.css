@@ -157,3 +157,9 @@ del {
 .li-info input {
   margin: 2px 0 0 0!important;
 }
+#content .pair p {
+	text-indent: 20px;
+}
+#content #p_1 p {
+	text-indent: 0;
+}

@@ -17,7 +17,7 @@
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->
 
-<!--#set var="yield" value="yield_1024_12.shtml" -->
+<!--#set var="yield" value="yield_1024_12_a.shtml" -->
 <!--#set var="content" value="/_etc/cache/tags--list-template=cloud&min=1.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

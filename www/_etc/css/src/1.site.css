@@ -95,6 +95,10 @@ abbr[title], dfn[title] {
 /* content ********************************************************************/
 #content {
 	position: relative;
+	margin-bottom: 20px;
+}
+.text p, .text li {
+	font-size: 12px;
 }
 #content p, #content li {
 	font-size: 13px;
@@ -107,12 +111,22 @@ abbr[title], dfn[title] {
 	font-size: 14px;
 	font-family: Georgia, "Palatino Linotype", serif;
 	color: #333333;
-	text-indent: 20px;
 	text-align: justify;
 	line-height: 20px;
 }
-#content #p_1 p {
-	text-indent: 0;
+#content .text p + p {
+	text-indent: 20px;
+}
+#content .text ul {
+  list-style-type:square;
+  margin-left:14px
+}
+#content .text ol {
+  list-style-type:decimal;
+  margin-left:14px
+}
+#content .text li {
+  padding-left:6px;
 }
 section a[href^="http"] {
 	padding-left: 15px;
@@ -121,7 +135,12 @@ section a[href^="http"] {
 section a[href^="http"]:hover {
 	background-position: -504px -423px;
 }
-
+section .notes-list a[href^="http"] {
+	background-position: -504px -403px;
+}
+section .notes-list a[href^="http"]:hover {
+	background-position: -504px -426px;
+}
 .pair {
 	position: relative;
 }

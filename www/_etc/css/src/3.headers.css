@@ -9,20 +9,15 @@ h2 {
 h3 {
 	font-size: 15px;
 }
-#content h3 {
+.text h3 {
 	font-family:Tahoma,Geneva,sans-serif;
-	font-size: 11px;
+	font-size: 13px;
   font-weight: bold;
-	text-transform: uppercase;
 	letter-spacing: 0;
 	color: #666;
 	margin-bottom:10px;
-	text-indent:0;
 }
-#content h3 + p {
-  text-indent:0;
-}
-#content h3 ~ h3 {
+.text h3 ~ h3 {
   margin-top:20px;
 }
 h4 {
