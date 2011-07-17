@@ -101,5 +101,5 @@
 <!--#set var="notes" value="false" -->
 <!--#set var="more" value="/_etc/includes/nav_more.shtml" -->
 
-<!--#set var="yield" value="yield_1024_05_01p_05_01s_a.shtml" -->
+<!--#set var="yield" value="yield_1024_05_01p_06_a.shtml" -->
 <!--#set var="layout" value="1024" -->

@@ -53,12 +53,7 @@ $('.prefix_1 .notes-list img[src*="-wb-3-0-"], .prefix_1 .notes-list img[src*="-
 });
 
 $('.page-notes-index .notes-list img[src*="-wb-3-0-"], .page-tags-page .notes-list img[src*="-wb-3-0-"], #notes_index .notes-list img[src*="-fw-220-0-"], #tags_page .notes-list img[src*="-fw-220-0-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '220px', '120px', '540px', '300px', 3, 7, 0, 0, 0, 0);
-  return false;
-});
-
-$('.notes-list img[src*="-wb-4-0-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '300px', '170px', '540px', '300px', 4, 7, 0, 0, 0, 0);
+  NB.Ui.image.open(event, '220px', '120px', '460px', '260px', 3, 6, 0, 0, 0, 0);
   return false;
 });
 
@@ -71,31 +66,3 @@ $('.section-notes img[src*="-wb-7-0-"]').live('click', function (event) {
   NB.Ui.image.open(event, '540px', '300px', '940px', '530px', 7, 12, 0, '10px', '-400px', '10px', '#content .text', {marginTop:0}, {marginTop:'540px'});
   return false;
 });
-
-/*
-$('.prefix_1 .notes-list img[src*="-wb-3-1-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '218px', '121px', '538px', '301px', 3, 7, 0, '7px', '-80px', '7px');
-  return false;
-});
-
-$('#notes_index .notes-list img[src*="-wb-3-1-"], #tags_page .notes-list src*="-wb-3-1-"').live('click', function (event) {
-  NB.Ui.image.open(event, '218px', '121px', '538px', '301px', 3, 7, 0, '7px', 0, '7px');
-  return false;
-});
-
-$('.suffix_1 .notes-list img[src*="-wb-4-1-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '298px', '166px', '458px', '256px', 4, 6, 0, '12px', 0, '7px');
-  return false;
-});
-
-$('#notes_page img[src*="-wb-6-1-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '458px', '256px', '938px', '526px', 6, 12, 0, '12px', '-480px', '12px', '#content .text', {marginTop:0}, {marginTop:'540px'});
-  return false;
-});
-
-$('#notes_page img[src*="-wb-7-1-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '538px', '301px', '938px', '526px', 7, 12, 0, '7px', '-400px', '12px', '#content .text', {marginTop:0}, {marginTop:'540px'});
-  return false;
-});
-
-*/

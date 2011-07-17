@@ -1,4 +1,7 @@
 #tag_list.cloud {
+  margin-top:20px;
+}
+.page-notes-index #tag_list.cloud {
   margin-top:-10px;
 }
 #tag_list.cloud li {
