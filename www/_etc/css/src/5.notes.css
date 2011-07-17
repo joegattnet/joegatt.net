@@ -30,10 +30,8 @@ iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
 p.caption {
   font-size:11px!important;
   color:#666;
-  margin-top:-10px;
-  margin-bo:-10px;
+  margin-bottom:10px;
 }
-
 blockquote {
   font-family: Tahoma, Geneva, sans-serif;
   font-size:12px;

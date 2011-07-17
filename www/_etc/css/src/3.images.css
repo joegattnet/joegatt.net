@@ -54,9 +54,13 @@ img[src*="4_3-wb-2-1"] {
 	width: 138px;
 	height: 184px;
 }
-img[src*="-wb-"], .map {
+.map {
 	margin-bottom: 10px;
 }
-.notes-list a img[src*="-wb-"] {
-	margin-bottom: 0;
+a[href*='resources/cut'] + p,
+a[href*='resources/cut'] + ul.meta {
+margin-top:10px;
+}
+a[href*='resources/cut'] + p.caption {
+margin-top:0;
 }

@@ -1,116 +1,95 @@
 #container {
-  position:relative;
+	position: relative;
 }
-
 #code {
-  filter:alpha(opacity=85);
-  -moz-opacity:0.9;
-  -khtml-opacity: 0.9;
-  opacity: 0.9;
-  z-index:100;
-  position:absolute;
-  top:0;
-  margin-top:140px;
-  background-color:#d5d5d5;
-  width:940px;
-  height:auto;
-  color:#333;
-  line-height:20px!important;
-  border-bottom:1px dashed #999;
+	filter: alpha(opacity=85);
+	-moz-opacity: 0.9;
+	-khtml-opacity: 0.9;
+	opacity: 0.9;
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	margin-top: 140px;
+	background-color: #d5d5d5;
+	width: 940px;
+	height: auto;
+	color: #333;
+	line-height: 20px!important;
+	border-bottom: 1px dashed #999;
 }
-
 #code .path {
-  background-color:#ffffff;
+	background-color: #ffffff;
 }
-
 #source {
-  margin-top:-20px;
+	margin-top: -20px;
 }
-
 #explorer {
-  margin-top:-20px;
+	margin-top: -20px;
 }
-
 #explorer .path {
-  display:block;
-  width:380px;
+	display: block;
+	width: 380px;
 }
-
 #track {
-  height:500px;
-  color:#333;
-  overflow:hidden;
+	height: 500px;
+	color: #333;
+	overflow: hidden;
 }
-
-pre.syntax {}
-
-.github-link {}
-
+pre.syntax {
+}
+.github-link {
+}
 /* Overrides */
 .syntax-container {
-  padding:0!important;
-  margin-left: -50px!important;
+	padding: 0!important;
+	margin-left: -50px!important;
 }
-
 .syntax-container .toolbar {
-  display: none!important;
+	display: none!important;
 }
-
 ol.syntax li div.source {
-  border-left:0!important;
+	border-left: 0!important;
 }
-
 ol.syntax {
-  background-color:#ffffff!important;
-  border:0!important;
+	background-color: #ffffff!important;
+	border: 0!important;
 }
 #code a[href^="http://github.com"] {
-  background-position: -504px -445px;
-  padding-left: 13px;
-  margin-left:20px;
+	background-position: -504px -445px;
+	padding-left: 13px;
+	margin-left: 20px;
 	color: #666;
 }
 #code a[href^="http://github.com"]:hover {
 	background-position: -504px -425px;
-  color: #362fd4;
+	color: #362fd4;
 }
-
 /************/
-
 #tool_code {
-  background:none;
-  padding:0;
-  color:#d5d5d5;
-  margin-left:0;
+	background: none;
+	padding: 0;
+	color: #d5d5d5;
+	margin-left: 0;
 }
-
 #tool_code:before {
-  padding-right:2px;
-  color:#d5d5d5;
-	content: "{";
+	padding-right: 2px;
+	color: #d5d5d5;
+content: " {
+	";
 }
-
 #tool_code:after {
-  padding-left:2px;
-  color:#d5d5d5;
-	content: "}";
+	padding-left: 2px;
+	color: #d5d5d5;
+	content: "
 }
-
-#tool_code.on, 
-#tool_code.on:before,
-#tool_code.on:after {
-  color:#666;
+	";
 }
-
-a#tool_code:hover, 
-a#tool_code.on:hover, 
-a#tool_code:before:hover, 
-a#tool_code:after:hover,
-a#tool_code.on:before:hover, 
-a#tool_code.on:after:hover  {
-  color:#F74B23!important;
+#tool_code.on, #tool_code.on:before, #tool_code.on:after {
+	color: #666;
 }
-
+a#tool_code:hover, a#tool_code.on:hover, a#tool_code:before:hover, a#tool_code:after:hover, a#tool_code.on:before:hover, a#tool_code.on:after:hover {
+	color: #F74B23!important;
+}
 /*Syntax*/
 .syntax {
 	font-family: Menlo, Consolas, monospace;
