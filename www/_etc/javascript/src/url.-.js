@@ -49,11 +49,11 @@ NB.Url = {
   }, 
   p: function (u) {
       var url = NB.Url.path(u);
-      if (url === ''||url === '/') {
+      if (url === '' || url === '/') {
         var p = 0;
       } else {
-        var p = url.match(/[0-9] + /);
-        var p = (p === null?1:p[0]);
+        var p = url.match(/[0-9]+/);
+        var p = (p === null ? 1 : p[0]);
       }
       return parseInt(p);
   }, 
@@ -74,7 +74,7 @@ NB.Url = {
   }, 
   paramsUpdate: function (u) {
       var url = NB.Url.path(u);
-      return NB.Url.paramsSimplify(url).replace(/\bb=[0-9] + /, 'b=' + NB.book.id).replace(/\bp=[0-9] + /, 'p=' + NB.p.current).replace(/u=[0-9] + /, '\bu=' + NB.User.id);
+      return NB.Url.paramsSimplify(url).replace(/\bb=[0-9]+/, 'b=' + NB.book.id).replace(/\bp=[0-9]+/, 'p=' + NB.p.current).replace(/u=[0-9]+/, '\bu=' + NB.User.id);
   }, 
   paramsComplete: function (u) {
       var url = NB.Url.path(u);
