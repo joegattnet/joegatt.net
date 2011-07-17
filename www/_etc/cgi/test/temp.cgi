@@ -1,24 +1,38 @@
+#!/usr/bin/perl -T
+
 print ("Content-Type: text/html; charset=UTF-8\n\n");
 
-print "Ehe!<hr>";
+$text = qq~
+  quote:How do we know this is happening?[Benjamin]
+  tr:Frick, Grace
+~;
 
-use Digest::MD5 qw(md5 md5_hex md5_base64);
+if ($text =~ s/capt?i?o?n?\: *(.*?)$//i) {
+  $caption = $1;
+}
 
-$test .= "access_token=142214389156795|2.5I03kvKErVraxOfKam_HxQ__.3600.1286139600-787443975|ORkx_bHeVesbg89KwlxItkko_-o";
+if ($text =~ s/\[(.*?)\] *$//mi) {
+  $attribution = $1;
+}
 
-$test .= "base_domain=joegatt.org";
-$test .= "expires=1286139600";
-$test .= "secret=gYxTnr0H_iKqhl_ss_q1nA__";
-$test .= "session_key=2.5I03kvKErVraxOfKam_HxQ__.3600.1286139600-787443975";
-$test .= "uid=787443975";
+if ($text =~ s/quote\: *(.*?)$//mi) {
+    $quote = $1;
+}
 
-$test .= "";
+if ($text =~ s/tra?n?s?l?a?t?o?r?\: *(.*)$//mi){
+  $translator = $1;
+}
+$tag = "Yourcenar 1986: Memoirs of Hadrian";
+$tag =~ s/(.*) *(\d{4}):.*/$1 $2/;
 
-$result = md5_hex($test);
-$sig = "8808f9aba617451a1942a8163085e568";
-
-print "$result<br/>";
-
-print "$sig<br/><br/><br/>";
-
-print $result eq $sig;
+print qq~
+  Text: $text
+  <hr>
+  Attribution: $attribution
+  <hr>
+  Quote: $quote
+  <hr>
+  Translator: $translator
+  <hr>
+  Tag: $tag
+~;

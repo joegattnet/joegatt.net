@@ -1,8 +1,7 @@
 .debug div, .debug ul, .debug td, .debug th, .debug textarea, .debug input, .debug tr { 
 background-color:transparent!important;
 }
-.debug #container, 
-.debug .apparatus, .debug #apparatus {
+.debug #container {
 background:transparent url(/_etc/css/img/12_col_2.gif) -10px -4px!important;
 }
 .debug-info {

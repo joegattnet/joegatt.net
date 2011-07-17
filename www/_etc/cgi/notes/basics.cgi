@@ -14,6 +14,9 @@ sub printNote {
   my $youtubeId;
   my $vimeoId;
   my $dailymotionId;
+  my $authorFullName;
+  my $authorSurname;
+  my $authorFirstName;
   my @resources;
   my @tags;
   my $tagsUrl;
@@ -68,12 +71,9 @@ sub printNote {
     } elsif ($tagName eq '__FIXRATIO') {
       $imageFileSpecs = $imageFileSpecsForcedWidth;
     } elsif ($tagName !~ /_/) {
-      $tagLink = lc($tagName);
-      $tagLink =~ s/\W+|__/_/g;
       push @tagsFetch, $tagName;
       push @tags, {
-        title => $tagName,
-        link => $tagLink
+        listItem => tagListItem($tagName)
       }
     }    
   }
@@ -146,32 +146,40 @@ sub printNote {
   }
 
   if ($text =~ s/capt?i?o?n?\: *(.*?)$//i) {
-    $caption = textTruncate($1, 80);
+    #$caption = textTruncate($1, 80);
+    $caption = $1;
   }
 
   if ($text =~ s/\[(.*?)\] *$//i) {
-    $attribution = textTruncate($1, 80);
+    #$attribution = textTruncate($1, 80);
+    $attribution = $1;
   }
 
-  if ($text =~ s/quote\: *(.*?)$//i) {
+  if ($text =~ s/quote\: *(.*?)$//mi) {
       $quote = $1;
   }
 
   $text =~ s/\&nbsp\;/ /g;
   if ($isBook) {
-     $text =~ /([^:]+): ?(.*?) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)/i;
-     $authorFullName = $1;
-     $bookTitle = $2;
-     $publisherName = $3;
-     $publishedDate = $4;
-     $isbn = $5;
-     $authorFullName =~ /(.*?)\, *(.*?)/;
-     $authorSurname = $1;
-     $authorFirstName = $2;
-     $text =~ /\t\ra?n?s?l?a?t?o?r?\: *(.*)/i;
-     $translatorFullName =~ /(.*?)\, *(.*?)/;
-     $translatorSurname = $1;
-     $translatorFirstName = $2;
+     #$text =~ /([^:]+): ?(.*?) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
+     #$authorFullName = $1;
+     #$bookTitle = $2;
+     #$publisherName = $3;
+     #$publishedDate = $4;
+     #$isbn = $5;
+     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*?) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
+     
+     if($authorFullName =~ /(.*?)\, *(.*?)/){
+       $authorSurname = $1;
+       $authorFirstName = $2;
+     } else {
+       $authorSurname = $authorFullName;
+     }
+     $translatorFullName = $text =~ s/tra?n?s?l?a?t?o?r?\: *(.*)$//mi;
+     if($translatorFullName =~ /(.*?)\, *(.*?)/){
+      $translatorSurname = $1;
+      $translatorFirstName = $2;
+     }
   } elsif ($title && $title ne '' && $isTopic) {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();

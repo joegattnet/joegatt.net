@@ -15,8 +15,6 @@
 <ul class="meta nav_h">   
   <li><a href="/notes/[% p %]">#[% p %]</a></li>
   [% FOREACH tag IN tags %]
-    <li>
-      <a rel="tag" href="/tags/[% tag.link %]">[% tag.title %]</a>
-    </li>
+    [% tag.listItem %]
   [% END %]
 </ul>

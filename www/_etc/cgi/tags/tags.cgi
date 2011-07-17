@@ -17,11 +17,8 @@ $tagsCount = $#tags + 1;
   ~;
   
   foreach $tag (@tags){
-    $tagLink = tagLinkify($tag);
+    $output .= tagListItem($tag);
     $count++;
-    $output .= qq~
-      <li><a href="/tags/$tagLink" rel="tag">$tag</a></li>
-    ~;
   }
   
   $output .= qq~</ul>~;

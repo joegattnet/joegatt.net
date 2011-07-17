@@ -289,11 +289,11 @@ a.radio {
 	padding: 1px 0 0 2px;
 	position: absolute;
 	top: -20px;
-	background-position: -453px -278px;
+	background-position: -453px -273px;
 }
 .navigator .goto:focus, .navigator .goto-focused {
 	color: #00c;
-	background-position: -453px -298px;
+	background-position: -453px -293px;
 }
 .by-paragraph .li-info {
 	position: relative;

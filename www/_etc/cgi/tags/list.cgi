@@ -56,22 +56,20 @@ $ulTag = "<ul id=\"tag_list\" class=\"$template\">";
 
 $output = $ulTag;
 for my $i (0..$#tags) {
-  my $name = $tags[$i][0];
+  my $tag = $tags[$i][0];
   my $score = $tags[$i][1];
   my $scale = $tags[$i][2];
-  $tagLink = tagLinkify($name);
-  $tagLink =~ s/ /_/g;#sanitize tagLink
   if($template eq 'cloud'){
     my $reference = pluralize_regular('reference',$score);
     $fontsize = int($smallest + ((($scale-1)*$range)/$highest)) . '%';
-    $inline = " title=\"$score $reference\" style=\"font-size:$fontsize\"";
+    $inline = "title=\"$score $reference\" style=\"font-size:$fontsize\"";
   } else {
     $inline = "";
   }
   if($brackets){
-    $name = "$name ($score)";
+    $forceName = "$name ($score)";
   }
-  $output .= "<li><a href=\"/tags/$tagLink\"$inline rel=\"tag\">$name</a></li>";
+  $output .= tagListItem($tag, $inline, $forceName);
   if($cols>1 && (($i/$cols) == int($i/$cols))){
     $output .= "</ul>$ulTag";
   }

@@ -10,7 +10,7 @@
   z-index:100;
   position:absolute;
   top:0;
-  margin-top:150px;
+  margin-top:140px;
   background-color:#d5d5d5;
   width:940px;
   height:auto;
@@ -64,6 +64,17 @@ ol.syntax {
   background-color:#ffffff!important;
   border:0!important;
 }
+#code a[href^="http://github.com"] {
+  background-position: -504px -445px;
+  padding-left: 13px;
+  margin-left:20px;
+	color: #666;
+}
+#code a[href^="http://github.com"]:hover {
+	background-position: -504px -425px;
+  color: #362fd4;
+}
+
 /************/
 
 #tool_code {

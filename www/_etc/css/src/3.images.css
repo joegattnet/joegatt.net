@@ -55,8 +55,8 @@ img[src*="4_3-wb-2-1"] {
 	height: 184px;
 }
 img[src*="-wb-"], .map {
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 .notes-list a img[src*="-wb-"] {
-	margin-bottom: 5px;
+	margin-bottom: 0;
 }

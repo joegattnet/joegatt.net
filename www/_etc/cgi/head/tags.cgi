@@ -19,6 +19,8 @@ $sth->execute($tag);
 
 my ($tag_name) = $sth->fetchrow_array();
 
+  $tag_name = tagName($tag_name);
+
   my $output = qq~
     <!--#set var="title" value="$tag_name" -->
     <!--#set var="title.window" value="Tag: $tag_name" -->

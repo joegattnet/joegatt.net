@@ -15,7 +15,7 @@
     <!--#include virtual="../../_etc/layouts/apparatus_left.shtml" -->
   </div>
 </div>
-<div class="grid_5 prefix_1 suffix_1 omega">
+<div class="grid_6 prefix_1 omega">
   [% FOREACH resource IN resources %]
      <a href="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-12-0-0-0.[% resource.ext %]">
       <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-6-0-0-0.[% resource.ext %]" alt="[% IF caption %][% caption %][% ELSIF title %][% title %][% ELSE %][% textBriefClean %][% END %]">
@@ -30,7 +30,7 @@
     <div id="tags">
       <!--#include virtual="../../_etc/cache/tags--tags-tags=[% tagsUrl %].html" -->
     </div>
-    <div id="notes" class="grid_5 alpha omega">
+    <div id="notes" class="grid_5 suffix_1 alpha omega">
       <!--#include virtual="../../_etc/cache/notes--list-tags=[% tagsUrl %]&exclude=[% p %].html" -->
     </div>
   </div>

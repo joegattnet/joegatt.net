@@ -589,10 +589,45 @@ sub tagLinkify {
   $tag = $_[0];
   $tagLink = lc($tag);
   $tagLink = to_ascii(Encode::decode_utf8($tagLink));
-  $tagLink =~ s/\W+/_/g;
+  $tagLink =~ s/\s+|\W+/_/g;
   $tagLink =~ s/^_|_$//g;
-  #also fix date for books
+  #Should we only keep date for books?
   return $tagLink;
+}
+
+# ******************************************************************************
+
+sub tagName {
+  my $tag = $_[0];
+  $tag =~ s/(.*) *(\d{4}):.*/$1 $2/;
+  return $tag;
+}
+
+# ******************************************************************************
+
+sub tagListItem {
+  my $tag = $_[0];
+  my $inline = ' ' . $_[1];
+  my $forceName = $_[2];
+  my $tagLink = tagLinkify($tag);
+  my $tagFull = $tag;
+  my $listItem;
+  $tag = tagName($tag);
+  if($forceName && $forceName ne ''){
+    $name = $forceName;
+  } else {
+    $name = $tag;
+  }
+  if($tag eq $tagFull) {
+    $listItem = qq~
+      <li><a href="/tags/$tagLink"$inline rel="tag">$name</a></li>
+    ~;
+  } else {
+    $listItem = qq~
+      <li><a href="/tags/$tagLink"$inline title="$tagFull" rel="tag">$name</a></li>
+    ~;
+  }
+  return $listItem;
 }
 
 # ******************************************************************************

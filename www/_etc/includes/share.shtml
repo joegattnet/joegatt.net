@@ -6,13 +6,16 @@
 <ul id="n_share" class="nav_h">
   <li class="addthis_toolbox addthis_default_style">
     <a class="addthis_button_facebook" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
+    <!--#if expr="1=0" -->
+      <a class="addthis_button_google_plusone" g:plusone:size="small" g:plusone:count="false" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
+    <!--#endif -->
     <a class="addthis_button_twitter" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
     <!--#if expr="$share == 'full'" -->
       <a class="addthis_button_evernote" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
       <a class="addthis_button_instapaper" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
       <a class="addthis_button_readitlater" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
     <!--#endif -->
-    <a class="addthis_button_email" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
+    <a class="addthis_button_mailto" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>
     <a class="addthis_button_compact" addthis:url="http://<!--#echo var="server" --><!--#echo var="share_url" -->" addthis:title="<!--#echo var="title.window" -->"></a>   
     <!-- a href="#">LaTex</a>
     <a href="#">COinS</a -->

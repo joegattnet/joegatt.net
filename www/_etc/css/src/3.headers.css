@@ -53,14 +53,14 @@ h6 a:hover {
 }
 h1 {
   font-size:32px;
-  top:60px;
+  top:65px;
 }
 h1 .version {
   display:none;
 }
 
 h2 {
-    top:38px;
+    top:40px;
 }
 #title h2 a {
   color:#999;
@@ -70,5 +70,6 @@ h2 {
 }
 #title h3 {
   color:#454545;
-  top:119px;
+  font-weight:bold;
+  top:111px;
 }

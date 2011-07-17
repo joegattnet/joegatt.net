@@ -337,6 +337,10 @@ div.atclear {
 	background-position: 0 -361px;
 }
 
+.at15t_twitter, .addthis_button_google_plusone span {
+	background-position: -16px -361px;
+}
+
 .at15t_twitter, .addthis_button_twitter span {
 	background-position: -16px -361px;
 }
@@ -354,7 +358,8 @@ div.atclear {
 	background-position: -64px -361px;
 }
 
-.at15t_email, .addthis_button_email span {
+.at15t_email, .addthis_button_email span,
+.at15t_email, .addthis_button_mailto span {
 	background-position: -80px -361px;
 }
 
@@ -363,7 +368,7 @@ div.atclear {
 }
 
 #at16pc {
-  height:118px!important;
+  height:113px!important;
 }
 
 #at16ps {
@@ -393,7 +398,7 @@ div.atclear {
 }
 #at16pm {
 	background: #fff;
-	width: 298px;
+	width: 293px;
 /*	height: 380px; */
 	height: 160px;
 	text-align: left;
@@ -451,7 +456,7 @@ div.atclear {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 300px;
+	width: 295px;
 	padding: 10px;
 	margin: 0 auto;
 	margin-top: -185px;
@@ -743,7 +748,7 @@ a#at16pit {
 #at_feed {
 	display: none;
 	padding: 10px;
-	height: 300px;
+	height: 295px;
 }
 #at_feed span {
 	margin-bottom: 10px;
@@ -930,7 +935,7 @@ html>
 /**/
 body #at_email form #at16eatdr.abif {
 	top: 137px;
-	width: 278px!important;
+	width: 273px!important;
 }
 #at16eatdr a {
 	display: block;

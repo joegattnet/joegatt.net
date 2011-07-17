@@ -21,7 +21,7 @@ $file_content =~ s/>/&gt;/g;
 
 $linkifiedPath = linkifyPath('www'.$fileNav, '/code');
 
-$output = qq~<p class="path">$linkifiedPath <span class="github-link a_arrows"><a href="http://github.com/joegattnet/joegatt.net/blob/master/$fileNav">github</a></span></p>~;
+$output = qq~<p class="path">$linkifiedPath <a href="http://github.com/joegattnet/joegatt.net/blob/master/$fileNav">github</a></p>~;
 
 if($extension eq 'cgi'){
   $extension = 'perl5';

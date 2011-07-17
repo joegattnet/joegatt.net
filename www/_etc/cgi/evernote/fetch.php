@@ -29,12 +29,12 @@ foreach ($notebooks as $notebook) {
 
 $con = connect_db();
 
-$query = "SELECT unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
+$query = "SELECT MAX(update_sequence) AS update_sequence, unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
 //$query = "SELECT MAX(update_sequence) FROM notes";
 
 $result = mysql_query($query);
 while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    //$latest_update_sequence = $row['update_sequence'];
+    $latest_update_sequence = $row['update_sequence'];
     $latest_unix = $row['latest_unix']*1000;
     $latest = $row['latest'];
     $latest_unix_deleted = $row['latest_unix_deleted']*1000;
@@ -85,12 +85,12 @@ foreach ($notesFound as $note) {
 //print "$update_sequence > $latest_update_sequence ? /n";
 //print "($date_modified > $latest_unix || $date_created > $latest_unix)\n";
 
-print "$note_guid | $update_sequence_lookup[$note_guid] $update_sequence \n";
+//print "$note_guid | $update_sequence_lookup[$note_guid] $update_sequence \n";
 
 //if(1==1){
 //    if($update_sequence_lookup[$note_guid] != $update_sequence){    
-//  if($date_modified > $latest_unix || $date_created > $latest_unix){
-  if($update_sequence>$latest_update_sequence){
+  if($date_modified > $latest_unix || $date_created > $latest_unix){
+//  if($update_sequence>$latest_update_sequence){
     
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   

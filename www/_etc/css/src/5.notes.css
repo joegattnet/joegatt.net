@@ -31,6 +31,7 @@ p.caption {
   font-size:11px!important;
   color:#666;
   margin-top:-10px;
+  margin-bo:-10px;
 }
 
 blockquote {
@@ -81,6 +82,7 @@ blockquote {
 .notes-list .meta {
   font-family:Tahoma, Geneva, sans-serif;
   font-size:11px;
+  height:20px;
 }
 .section-links .thumbnail {
   width:218px;
