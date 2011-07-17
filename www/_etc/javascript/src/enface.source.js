@@ -1,3 +1,3 @@
-NB.Enface.source = function(e){
+NB.Enface.source = function (e) {
   return $('.source p', $(e).closest('.pair'));
 }

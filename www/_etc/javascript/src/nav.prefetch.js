@@ -1,5 +1,5 @@
 /*
-NB.Nav.prefetch = function(){
+NB.Nav.prefetch = function () {
   return;
 }
 

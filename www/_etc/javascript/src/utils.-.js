@@ -1,5 +1,5 @@
 NB.Utils = {
-  empty: function(){
+  empty: function () {
     return false;
   }  
 }

@@ -1,6 +1,6 @@
-NB.Ui.iframe = function() {
-  $('iframe').each(function(){
-     if($(this).attr('src') == '' && $(this).data('url')){
+NB.Ui.iframe = function () {
+  $('iframe').each(function () {
+     if ($(this).attr('src') === '' && $(this).data('url')) {
        $(this).attr('src', $(this).data('url'));
      }
   });

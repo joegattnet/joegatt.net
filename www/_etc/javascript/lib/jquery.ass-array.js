@@ -1,12 +1,12 @@
 jQuery.assArray = {
-  join: function(array,joiner) {
+  join: function(array, joiner) {
     var joiner = joiner || '';
     var temp = '';
     for(var i in array) {
         temp += i+ '='+ array[i] + joiner;
     }
-    return temp.substring(0,temp.length);
-  },
+    return temp.substring(0, temp.length);
+  }, 
   sort: function(array) {
     var keys = [];
     for (key in array) {
@@ -18,8 +18,8 @@ jQuery.assArray = {
       temp[keys[i]] = array[keys[i]];
     }
     return temp;
-  },
-  within: function(array,find) {
+  }, 
+  within: function(array, find) {
     var temp = {};
     for(var i in array) {
       if (i.match(find)) {
@@ -27,8 +27,8 @@ jQuery.assArray = {
       };
     }
     return temp;
-  },
-  without: function(array,find) {
+  }, 
+  without: function(array, find) {
     var temp = {};
     for(var i in array) {
       if (i.match(find)==null) {

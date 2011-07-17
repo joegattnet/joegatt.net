@@ -1,23 +1,23 @@
 NB.Ui.clip = {
-  evernote: function(){
+  evernote: function () {
     Evernote.doClip({
-      url: NB.crumb.canonical,
-      contentId:'content',
-      providerName:'joegatt.net',
+      url: NB.crumb.canonical, 
+      contentId:'content', 
+      providerName:'joegatt.net', 
       //select citation style in user settings
       //get year from console.log($('meta[name=OriginalPublicationDate]').attr('content')) OR thisYear
       //or rather - get these from js variables...
-      footer:'Gatt, J., 2010. Jean Paul: Schulmeisterlein Wutz. Available from http://joegatt.net/22 [Accessed 3 October 2010].',
+      footer:'Gatt, J., 2010. Jean Paul: Schulmeisterlein Wutz. Available from http://joegatt.net/22 [Accessed 3 October 2010].', 
       signature: NB.Ui.clip._signature
     });
     return false;
-  },
-  _signature: "Licensed under a <a href=\"http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode\">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported licence</a>."
+  }, 
+  _signature: "Licensed under a <a href=\"http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode\"> Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported licence</a> ."
 }
 
 /******************************************************************************/
 
-$('.evernote').live('click',NB.Ui.clip.evernote);
+$('.evernote').live('click', NB.Ui.clip.evernote);
 
  /*
 

@@ -17,16 +17,16 @@ NB.loaded_scripts = {
           }
         }
       }
-  },
-  _run:function(){},
+  }, 
+  _run:function(){}, 
   run: function(){
-    NB.Nav.track(1,'Running NB.loaded_scripts');
+    NB.Nav.track(1, 'Running NB.loaded_scripts');
     this._run();
     this._run = function(){};
-  },
-  _run_all:function(){},
+  }, 
+  _run_all:function(){}, 
   run_all: function(){
-    NB.Nav.track(1,'Running NB.loaded_scripts (All)');
+    NB.Nav.track(1, 'Running NB.loaded_scripts (All)');
     this._run_all();
     this._run_all = function(){};
   }

@@ -1,3 +1,3 @@
-NB.Ui.focus = function(q) {
+NB.Ui.focus = function (q) {
   return q;
 }

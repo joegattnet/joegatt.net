@@ -1,4 +1,4 @@
-NB.Ui.timeago = function() {
+NB.Ui.timeago = function () {
   $('abbr.timeago').timeago();
 }
 
