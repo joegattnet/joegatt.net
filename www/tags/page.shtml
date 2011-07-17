@@ -22,4 +22,5 @@
 
 <!--#set var="content_right" value="/_etc/cache/tags--list-template=cloud&min=1.shtml" -->
 
+<!--#set var="yield" value="yield_1024_05_01p_06_a.shtml" -->
 <!--#include virtual="/_etc/layouts/render.shtml" -->
