@@ -13,6 +13,8 @@ $columnWidths = array("wb" => 60, "if" => 100);
 $gutterWidths = array("wb" => 20, "if" => 10);
 $lineHeight = array("wb" => 10);
 
+$quality = array("jpg" => 60, "gif" => 100, "png" => 100);
+
 // Get from url
 
 $image = $_GET["imgfile"];
@@ -113,7 +115,7 @@ if (file_exists($outputLocation)){
   
   imagecopyresampled($outputImage, $template, 0, 0, $border, $border, $outputWidth, $outputHeight, $templateWidth, $templateHeight);
 
-  outputimage($outputImage, $ext, $outputLocation, -1);
+  outputimage($outputImage, $ext, $outputLocation, $quality[$ext]);
   
   if(imageprocess($outputLocation,$processing,$psettings)){
     $outputImage = createimage($outputLocation);
@@ -121,7 +123,7 @@ if (file_exists($outputLocation)){
 
 }
 
-outputimage($outputImage, $ext, null, -1);
+outputimage($outputImage, $ext, null, $quality[$ext]);
 
 imagedestroy($template);
 imagedestroy($outputImage);

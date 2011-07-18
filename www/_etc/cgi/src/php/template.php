@@ -52,7 +52,7 @@ function template($imageName,$rnd,$ext,$aspectWidth,$aspectHeight){
   
     imagecopyresampled($dst, $src, 0, 0, $original_x, $original_y, $templateWidth, $templateHeight, $templateWidth, $templateHeight);
     
-    outputimage($dst, $ext, $templateImageAuto, -1);
+    outputimage($dst, $ext, $templateImageAuto, 100);
   
   }
   
