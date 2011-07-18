@@ -1,0 +1,15 @@
+<!--#if expr="$QUERY_STRING = /url=([^&]+)/" -->
+  <!--#set var="url" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /src=([^&]+)/" -->
+  <!--#set var="src" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /alt=([^&]+)/" -->
+  <!--#set var="alt" value="$1" -->
+<!--#endif -->
+
+<div class="grid_12">
+  <a href="<!--#echo var="url" -->"><img src="/_etc/resources/cut/<!--#echo var="src" -->" alt="<!--#echo var="alt" -->"></a>
+</div>
