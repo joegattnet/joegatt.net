@@ -11,9 +11,9 @@ print ("Content-Type: text/html; charset=UTF-8\n\n");
 
 my $secret = get_password($facebooksecretloc);
 
-my $autheticated = (md5_hex("$authstring$secret") eq $sig);
+my $authenticated = (md5_hex("$authstring$secret") eq $sig);
 
-if ($autheticated == 1){
+if ($authenticated == 1){
 
   # ****************************************************************************
   
@@ -48,7 +48,7 @@ print qq~
     <p class="close panel_handle"><a href="javascript:;" onclick="NB.Ui.screencover.dismiss();">close</a></p>
 ~;
 
-if ($autheticated == 1){
+if ($authenticated == 1){
       print qq~
       <p id="signupin_header" class="fb-name"><a href="javascript:;" id="signupin_header_a" class="panel_handle">$fb_first_name $fb_last_name</a></p>
       <div id="signupin_panel" class="a_arrows panel_body">
@@ -58,7 +58,7 @@ if ($autheticated == 1){
           ~;
           } else {
           print qq~
-      <p id="signupin_header"><a href="javascript:;" id="signupin_header_a" class="panel_handle error">$autheticated Facebook Error</a></p>
+      <p id="signupin_header"><a href="javascript:;" id="signupin_header_a" class="panel_handle error">$authenticated Facebook Error</a></p>
       <div id="signupin_panel" class="a_arrows panel_body">
         <div>
           <p class="separator error">An error has occurred while trying to log into your Facebook account.</p>
