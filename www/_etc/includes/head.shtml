@@ -28,8 +28,6 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--#if expr="$nocache=true" -->
   <meta http-equiv="Cache" content="no-cache">
   <meta http-equiv="Expires" content="-1">
-<!--#else -->
-  <meta http-equiv="Expires" content="mon, 27 sep 2010 14:30:00 GMT">
 <!--#endif -->
 <!--#if expr="$notranslate=true" -->
   <meta name="google" value="notranslate">
@@ -48,8 +46,8 @@ if(location.hash.indexOf('pr-')!=-1){
 <meta name="DC.Description" content="<!--#echo var="description" -->">
 <meta name="DC.Subject" content="<!--#echo var="subject" -->">
 <meta name="DC.Publisher" content="<!--#echo var="publisher" -->">
-<meta name="DC.Type" content="Text">
-<meta name="DC.Format" content="text/html">
+<meta name="DC.Type" content="T">
+<meta name="DC.Format" content="t/html">
 <meta name="DC.Language" content="en-GB">
 <meta name="DC.Rights" content="<!--#echo var="copyright" -->">
 <!--#if expr="$fbadmins" -->
@@ -100,12 +98,17 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
 <!--#endif -->
+
+<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE6.css&amp;<!--#echo var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE7.css&amp;<!--#echo var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE8.css&amp;<!--#echo var="css_cachebuster" -->"><![endif]-->
+
 <!--#if expr="$server != /joegatt.net/" -->
-  <style type="text/css">
+  <style type="t/css">
     <!--#include virtual="/_etc/css/src/0.Debug.css"-->  
   </style>
 <!--#endif -->
-<script src="<!--#echo var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr.custom.37903.js&amp;<!--#echo var="js_cachebuster" -->"></script>
+<script src="<!--#echo var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr.custom.53524.js&amp;<!--#echo var="js_cachebuster" -->"></script>
 <script>
 var NB = {
   root: '<!--#echo var="root" -->',
@@ -124,5 +127,5 @@ NB.external = {
   facebook: <!--#echo var="external_facebook" -->,
   twitter: <!--#echo var="external_twitter" -->
 }
-<!--#include virtual="/_etc/javascript/src/_Prime.js.txt"-->
+<!--#include virtual="/_etc/javascript/src/0.Prime.js"-->
 </script>
