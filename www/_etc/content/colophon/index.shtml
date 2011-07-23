@@ -2,10 +2,11 @@
   <h4>Server-side</h4>
   <ul>
     <li><a href="http://www.ubuntu.com/server/">Ubuntu Server Edition</a></li>
-    <li><a href="http://httpd.apache.org/">Apache HTTP Server</a></li>
     <li><a href="http://www.mysql.com/">MySQL</a></li>
     <li><a href="http://www.perl.org/">Perl</a></li>
     <li><a href="http://www.php.net/">PHP</a></li>
+    <li><a href="http://httpd.apache.org/">Apache HTTP Server</a></li>
+    <li><a href="https://www.varnish-cache.org/">Varnish Cache</a></li>
   </ul>
 </div>
 <div class="grid_2">

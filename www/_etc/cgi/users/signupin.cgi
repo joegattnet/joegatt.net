@@ -420,7 +420,7 @@ if ($mode eq 'signin' or $mode eq 'signinerror') {
             <input type="submit" value="Log in" onclick="NB.Form.submit(this,'#signupin_container');return false;" />
         </fieldset>
       </form>
-      <p><a href="javascript:;" onclick="NB.User.password();">Forgot password?</a></p>
+      <p><a href="javascript:;" onclick="NB.User.password.reset();">Forgot password?</a></p>
       <p><a href="javascript:;" onclick="NB.User.signup();">Not yet registered?</a></p>
   ~;
 }
@@ -471,7 +471,7 @@ if ($mode eq 'signedin') {
   $formstring .= qq~
      $signedinextramessage
      <p>You are signed in.</p>
-     <p><a href="javascript:;" onclick="NB.User.password();">Change password</a></p>
+     <p><a href="javascript:;" onclick="NB.User.password.change();">Change password</a></p>
      <p><a href="javascript:;" onclick="NB.User.signout();">Sign out</a></p>
   ~;
   

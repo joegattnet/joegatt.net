@@ -11,5 +11,6 @@ NB.User.signedin = function (this_user_id, username, level, mode) {
   NB.Ui.screencover.hide();
   $(window).scrollTop(0);
   $('body').trigger('signedin.user');
+  NB.Cookie.write('user_id', this_user_id);
   NB.Nav.track(2, 'Signupin', 'Signed in', mode, 0);
 }

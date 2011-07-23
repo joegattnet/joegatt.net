@@ -17,14 +17,13 @@ return array(
    '//_etc/javascript/lib/jquery.timeago.js',
    '//_etc/javascript/lib/jquery.metadata.js',
    '//_etc/javascript/lib/jquery.mb.YTPlayer.js',
-//   '//_etc/javascript/lib/addthis_widget.js',
    '//_etc/libraries/jquery-syntax/public/jquery.syntax.js',
    '//_etc/libraries/jquery-syntax/public/jquery.syntax.cache.js',
-   '//_etc/javascript/src/00.jquery.custom.selectors.js',
-   '//_etc/javascript/src/01.jquery.custom.events.clickoutside.js',
-   '//_etc/javascript/src/10.constants.js',
-   '//_etc/javascript/src/20.settings.js',
-   '//_etc/javascript/src/30.text.js',
+   '//_etc/javascript/src/1.jquery.custom.selectors.js',
+   '//_etc/javascript/src/2.jquery.custom.events.clickoutside.js',
+   '//_etc/javascript/src/5.constants.js',
+   '//_etc/javascript/src/6.settings.js',
+   '//_etc/javascript/src/7.text.js',
    '//_etc/javascript/src/ajax.-.js',
    '//_etc/javascript/src/ajax.html.js',
    '//_etc/javascript/src/anagram.-.js',
@@ -154,7 +153,5 @@ return array(
    '//_etc/css/src/8.handheld-landscape.css',
    '//_etc/css/src/8.handheld-portrait.css',
    '//_etc/css/src/9.print.css'
-   ),
-   'cssie6fixes1-1' => array('//_etc/css/IE6.css'),
-   'cssie7fixes1-1' => array('//_etc/css/IE7.css')
+   )
 );
