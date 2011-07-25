@@ -29,7 +29,7 @@ $userStore = new UserStoreClient($userStoreProtocol, $userStoreProtocol);
 $versionOK =
   $userStore->checkVersion("PHP EDAMTest",
 			   $GLOBALS['UserStore_CONSTANTS']['EDAM_VERSION_MAJOR'],
-			   $GLOBALS['UserStore_CONSTANTS']['EDAM_VERSION_etc/minOR']);
+			   $GLOBALS['UserStore_CONSTANTS']['EDAM_VERSION_MINOR']);
 #print "Is my EDAM protocol version up to date?  " . $versionOK . "\n\n";
 if ($versionOK == 0) {
   echo "ERROR: Version not OK!\n";

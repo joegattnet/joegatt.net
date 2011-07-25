@@ -268,9 +268,9 @@ foreach ($notesFound as $note) {
       mysql_query($query);
     }
     
-    #$note_title = strip_tags($note_title);
-    #$content = str_replace("</div>", "</div>/n", $content);
-    #$content = strip_tags($content, '<a><ul><li><h3>');
+    //$note_title = strip_tags($note_title);
+    //$content = str_replace("</div>", "</div>/n", $content);
+    //$content = strip_tags($content, '<a><ul><li><h3>');
     
     //mysql_query($query);
     $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",
@@ -300,10 +300,12 @@ foreach ($notesFound as $note) {
       $cache_queue = cache_queue_guid($cache_queue,$eguid_dec);
       $url = 'http://'.SERVER_NAME.'/'.$section.'/'.$eguid_dec;
       array_push($url_queue,$url);
-      #$url = 'http://'.SERVER_NAME.'/_etc/cache/notes--page-p='.$eguid_dec.'.shtml';
-      #array_push($url_queue,$url);
+      //$url = 'http://'.SERVER_NAME.'/_etc/cache/notes--page-p='.$eguid_dec.'.shtml';
+      //array_push($url_queue,$url);
+      echo "Note added: $note_title ($note_guid) - publishing - $url\n";
+    } else {
+      echo "Note added: $note_title ($note_guid) - not publishing\n";
     }
-    echo "Note added: $note_title ($note_guid) - publish: $note_publish - $url\n";
     
   }
 }
@@ -363,7 +365,7 @@ if(sizeof($cache_queue)>0||sizeof($url_queue)>0){
 
 mysql_close($con);
 
-#echo "Done.\n";
+//echo "Done.\n";
 
 // *****************************************************************************
 
@@ -408,16 +410,28 @@ function cache_refresh($cache_queue,$servername ){
 
 function get_content($url){
     echo "Getting: $url\n";
+
+    //Purge Varnish
+    $chPurge = curl_init();
+    curl_setopt($chPurge, CURLOPT_URL, $url);
+    curl_setopt($chPurge, CURLOPT_CUSTOMREQUEST, "PURGE");
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     //curl_setopt ($ch, CURLOPT_HEADER, 0);
     if(SERVER_NAME != 'joegatt.net'){ 
     //echo "Password: $url\n";
       //Get these securely
+      curl_setopt($chPurge, CURLOPT_RETURNTRANSFER, 1); 
+      curl_setopt($chPurge, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+      curl_setopt($chPurge, CURLOPT_USERPWD, JGORG_CONNECT);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
       curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
       curl_setopt($ch, CURLOPT_USERPWD, JGORG_CONNECT);
     }
+    ob_start();
+    curl_exec($chPurge);
+    curl_close($chPurge);
     ob_start();
     curl_exec($ch);
     curl_close($ch);

@@ -541,11 +541,15 @@ sub cache_refresh {
       #Priming cache
       $url = "http://$serverName/_etc/cache/$file";
       #$url =~ s/\&scope=[a-z]//;
-      my $req = new HTTP::Request GET => $url;
-      my $res = $ua->request($req);
+      my $reqPurge = new HTTP::Request PURGE => $url;
+      my $reqGet = new HTTP::Request GET => $url;
+      my $res = $ua->request($reqPurge);
+      my $res = $ua->request($reqGet);
       if($file !~ /\.html$/){
-        #request xssi pages twice to refresh included includes
-        my $res = $ua->request($req);
+        #request xssi pages four times to refresh included includes
+        my $res = $ua->request($reqGet);
+        my $res = $ua->request($reqGet);
+        my $res = $ua->request($reqGet);
       }
       if ($debug){
         if ($res->is_error) {
