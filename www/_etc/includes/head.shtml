@@ -7,6 +7,7 @@ if(location.hash.indexOf('pr-')!=-1){
 }
 </script>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <!--#if expr="${title.window}" -->
   <!--#set var="title.show" value="${title.window}" -->
