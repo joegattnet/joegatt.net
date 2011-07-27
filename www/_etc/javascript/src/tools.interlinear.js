@@ -1,10 +1,6 @@
 NB.Tools.interlinear = {
   toggle: function () {
-    $('#tool_interlinear').toggleClass('on');
-    var on = $('#tool_interlinear').hasClass('on');
-    on ? NB.Tools.interlinear.on() :  NB.Tools.interlinear.off();
-  	NB.Cookie.write('tool_interlinear_on', on, NB.crumb.path);
-  	NB.Nav.track(2, 'Tools', (on?'on':'off'), 'tool_interlinear_on');
+    NB.Tools.toggle('interlinear') ? NB.Tools.interlinear.on() :  NB.Tools.interlinear.off();
   }, 
   on: function () {
     $('.target', '#content').css({position:'absolute', left:'0'});

@@ -1,7 +1,7 @@
 var tracker = 0;
 
 NB.Nav.track = function (mode, category, action, optional_label, optional_value) {
-  if (window.console) {
+  if (window.console && window.console.log) {
     console.log(mode, category, (action||''), (optional_label||''), (optional_value||0));
   }
   if (mode> 0) {

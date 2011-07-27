@@ -11,5 +11,5 @@
 <!--#endif -->
 
 <div class="grid_12">
-  <a href="<!--#echo var="url" -->"><img src="/_etc/resources/cut/<!--#echo var="src" -->" alt="<!--#echo var="alt" -->"></a>
+  <p><a href="<!--#echo var="url" -->"><img src="/_etc/resources/cut/<!--#echo var="src" -->" alt="<!--#echo var="alt" -->"></a></p>
 </div>

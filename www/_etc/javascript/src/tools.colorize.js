@@ -1,14 +1,7 @@
 NB.Tools.colorize = {
   toggle: function () {
-   $('#tool_colorize').toggleClass('on');
-    var e = NB.Enface.get_target(NB.p.current);
-     if ($('#tool_colorize').hasClass('on')) {
-        NB.Tools.colorize.colorize(e);
-     } else {
-        NB.Tools.colorize.undo(e);
-     }
-  	 NB.Cookie.write('tool_colorize_on', $('#tool_colorize').hasClass('on'), NB.crumb.path);
-  	 NB.Nav.track(2, 'Tools', ($('#tool_colorize').hasClass('on')?'on':'off'), 'tool_colorize');
+   var e = NB.Enface.get_target(NB.p.current);
+   NB.Tools.toggle('colorize') ? NB.Tools.colorize.colorize(e) : NB.Tools.colorize.undo(e);
   }, 
   on: function () {
     NB.Nav.track(1, 'Colorizer: on.');
@@ -23,15 +16,17 @@ NB.Tools.colorize = {
     });
   }, 
   colorize: function (e) {
-  NB.Nav.track(0, 'Tools.Colorize.do', e.id);
-    if ($('#tool_colorize').hasClass('on')) {
+    var status = NB.Tools.on('colorize');
+    NB.Nav.track(0, 'Tools.Colorize.do', e.attr('id'));
+    if (status) {
      NB.Ui.caret.restore();
      var j = $(e);
      var cached = NB.cache['_c' + j.data('p')];
      if (cached!=undefined) {
         j.html(cached.data);
-     } else {
-       var colorized = j.text().replace(/\w + /g, function (match) {
+    } else {
+    NB.Nav.track(0, 'COLORISING', e.attr('id'));
+       var colorized = j.text().replace(/\w+ /g, function (match) {
         var score = NB.Enface.word_score(match);
         if (score<0) {
           return '<span class="neg neg' + score + '" title="&#x25bc;' + (score*-1) + '"> ' + match + '</span> ';
@@ -50,7 +45,7 @@ NB.Tools.colorize = {
   }, 
   undo: function (e) {
     NB.Ui.caret.store();
-    NB.Nav.track(0, 'Tools.Colorize.undo', e.id);
+    NB.Nav.track(0, 'Tools.Colorize.undo', e);
     var j = $(e);
     j.text(j.text());
     j.removeClass('colorizer-ized');

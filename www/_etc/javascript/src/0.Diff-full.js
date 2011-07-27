@@ -24,19 +24,19 @@ NB.String.diff = {
   }, 
   
   diffString:function ( o, n ) {
-    o = o.replace(/\s + $/, '');
-    n = n.replace(/\s + $/, '');
+    o = o.replace(/\s+$/, '');
+    n = n.replace(/\s+$/, '');
   
-    var out = NB.String.diff.diff(o === "" ? [] : o.split(/\s + /), n === "" ? [] : n.split(/\s + /) );
+    var out = NB.String.diff.diff(o === "" ? [] : o.split(/\s+/), n === "" ? [] : n.split(/\s+/) );
     var str = "";
   
-    var oSpace = o.match(/\s + /g);
+    var oSpace = o.match(/\s+/g);
     if (oSpace === null) {
       oSpace = ["\n"];
     } else {
       oSpace.push("\n");
     }
-    var nSpace = n.match(/\s + /g);
+    var nSpace = n.match(/\s+/g);
     if (nSpace === null) {
       nSpace = ["\n"];
     } else {
@@ -78,18 +78,18 @@ NB.String.diff = {
   }, 
   
   diffString2:function ( o, n ) {
-    o = o.replace(/\s + $/, '');
-    n = n.replace(/\s + $/, '');
+    o = o.replace(/\s+$/, '');
+    n = n.replace(/\s+$/, '');
   
-    var out = NB.String.diff.diff(o === "" ? [] : o.split(/\s + /), n === "" ? [] : n.split(/\s + /) );
+    var out = NB.String.diff.diff(o === "" ? [] : o.split(/\s+/), n === "" ? [] : n.split(/\s+/) );
   
-    var oSpace = o.match(/\s + /g);
+    var oSpace = o.match(/\s+/g);
     if (oSpace === null) {
       oSpace = ["\n"];
     } else {
       oSpace.push("\n");
     }
-    var nSpace = n.match(/\s + /g);
+    var nSpace = n.match(/\s+/g);
     if (nSpace === null) {
       nSpace = ["\n"];
     } else {

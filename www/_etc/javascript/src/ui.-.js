@@ -11,7 +11,7 @@ $('body').bind('content.loaded', function () {
 
 $('body').bind('page.loaded', function () {
   $('body').trigger('content.loaded');
-  NB.Nav.track(1, 'Trigerred: page.loaded');
+//  NB.Nav.track(1, 'Trigerred: page.loaded');
 });
 
 $('body').bind('section.loaded', function () {

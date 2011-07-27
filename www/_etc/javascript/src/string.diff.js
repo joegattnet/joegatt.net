@@ -28,20 +28,20 @@ NB.String.diff = {
   
   diffString:function ( o, n ) {
 // Modified to indicate letters rather than words
-//    o = o.replace(/\s + $/, '');
-//    n = n.replace(/\s + $/, '');
+//    o = o.replace(/\s+$/, '');
+//    n = n.replace(/\s+$/, '');
   
-//    var out = NB.String.diff.diff(o === "" ? [] : o.split(/\s + /), n === "" ? [] : n.split(/\s + /) );
+//    var out = NB.String.diff.diff(o === "" ? [] : o.split(/\s+/), n === "" ? [] : n.split(/\s+/) );
     var out = NB.String.diff.diff(o === "" ? [] : o.toArray(), n === "" ? [] : n.split('') );
     var str = "";
   
-/*    var oSpace = o.match(/\s + /g);
+/*    var oSpace = o.match(/\s+/g);
     if (oSpace === null) {
       oSpace = ["\n"];
     } else {
       oSpace.push("\n");
     }
-    var nSpace = n.match(/\s + /g);
+    var nSpace = n.match(/\s+/g);
     if (nSpace === null) {
       nSpace = ["\n"];
     } else {

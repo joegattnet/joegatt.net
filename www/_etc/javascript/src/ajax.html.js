@@ -21,7 +21,6 @@ NB.Ajax = {
       NB.Ajax._done(indDiv);
       NB.Nav.track(1, "Retrieved from NB.cache:", url, outDiv.id);
     } else {
-      console.log('FETCHING', url, outDiv.id);
       NB.Ajax._active(indDiv);
       $.ajax({
         type: formMethod, 

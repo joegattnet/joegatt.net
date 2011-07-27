@@ -191,6 +191,7 @@ foreach ($notesFound as $note) {
     
     if($booksTagFound && $expFound){
       $note_type = 2;
+      $section = 'bibliography';
     }
     
     for ($i=0; $i<sizeof($resources); $i++){
@@ -337,7 +338,7 @@ foreach ($notesFound as $note) {
 }
 
 if(sizeof($cache_queue)>0||sizeof($url_queue)>0){
-  $cache_queue = cache_queue($cache_queue,'/cloud|notes.*latest=true/');
+  $cache_queue = cache_queue($cache_queue,'/cloud|latest=true.*' . $section . '/');
   $cache_queue = cache_queue($cache_queue,'/wall/');
 }
 

@@ -18,10 +18,10 @@ NB.SETTINGS = {
   form: {
     min_length: 6
   }, 
-  purge: [
-    ['anagram', 1], 
-    ['enface', 5], 
-    ['scholia', 5], 
+  expires: [
+    ['anagram', 10], 
+    ['enface', 10], 
+    ['scholia', 10], 
     ['comments', 10]
   ], 
   speed: {

@@ -52,8 +52,8 @@ NB.Cache = {
     var timeNow = new Date().getTime();
       if (NB.cache) {
         for (var i in NB.cache) {
-          for (var test=0, len=NB.S.purge.length;test<len;++test) {
-            if (i.match(NB.S.purge[test][0])!=null && (timeNow-NB.cache[i].time)> NB.S.purge[test][1]*60000) {
+          for (var test=0, len=NB.S.expires.length;test<len;++test) {
+            if (i.match(NB.S.expires[test][0])!=null && (timeNow-NB.cache[i].time)> NB.S.expires[test][1]*60000) {
               NB.Cache.remove(i);
             }
            }    

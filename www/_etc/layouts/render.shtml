@@ -1,4 +1,4 @@
-<!--#if expr="${QUERY_STRING}=/scope=page/" -->
+<!--#if expr="$scope = 'page'" -->
   <!--#include virtual="/_etc/layouts/page_${layout}.shtml" -->
 <!--#else -->
   <!--#include virtual="/_etc/layouts/layout_${layout}.shtml" -->
