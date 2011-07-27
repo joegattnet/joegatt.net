@@ -15,8 +15,6 @@
 <!--#set var="tags" value="false" -->
 
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
-<!--set var="content" value="/_etc/content/home/konichiwa-vimeo.html" -->
-<!--set var="content" value="/_etc/cache/notes--wall-cols=3&rows=1&refresh=60&archive=true.html" -->
 
 <!--#set var="content" value="/_etc/includes/home/still.shtml?src=untitled_note_0-0-10_3-wb-12-0-0-0.jpg&url=/wutz&alt=Schulmeisterlein Wutz" -->
 
