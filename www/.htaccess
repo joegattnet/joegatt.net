@@ -16,20 +16,20 @@ RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
 RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 
 #Only prevent running scripts & sub-pages & hotlinking (?)
-RewriteCond %{HTTP_REFERER} !joegatt
+#RewriteCond %{HTTP_REFERER} !joegatt
 #RewriteCond %{HTTP_HOST} joegatt [NC]
-RewriteCond %{REQUEST_URI} !resources/cut
-RewriteCond %{REQUEST_URI} !admin
-RewriteCond %{THE_REQUEST} !^/p/
-RewriteCond %{THE_REQUEST} !^/c/
-RewriteCond %{THE_REQUEST} _
+#RewriteCond %{REQUEST_URI} !resources/cut
+#RewriteCond %{REQUEST_URI} !admin
+#RewriteCond %{THE_REQUEST} !^/p/
+#RewriteCond %{THE_REQUEST} !^/c/
+#RewriteCond %{THE_REQUEST} _
 #RewriteRule ^.* - [F,NS,L]
 
 #Confirmations
 #RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
 #RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/?p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/?c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
 
 #Redirect javascript errors
 RewriteRule ^(.*)/NaN/?$ $1/1
@@ -80,9 +80,9 @@ RewriteRule ^/?([a-z]+)/?$  /$1/index.shtml [L]
 #RewriteRule ^/?(.*)/([a-z0-9]+)/?$ /$1/$2.shtml [L]
 #RewriteRule ^/?(.*)/v([0-9]+)/?$ /$1?v=$2 [QSA]
 
-RewriteCond %{REQUEST_URI} !^.*/c/.*$
-RewriteCond %{REQUEST_URI} !^.*/p/.*$
-RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
+#RewriteCond %{REQUEST_URI} !^.*/c/.*$
+#RewriteCond %{REQUEST_URI} !^.*/p/.*$
+#RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
 #RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 
 RewriteCond %{REQUEST_URI} !^.*/c/.*$
