@@ -89,8 +89,8 @@ foreach ($notesFound as $note) {
 
 //if(1==1){
 //    if($update_sequence_lookup[$note_guid] != $update_sequence){    
-  if($date_modified > $latest_unix || $date_created > $latest_unix){
-//  if($update_sequence>$latest_update_sequence){
+//  if($date_modified > $latest_unix || $date_created > $latest_unix){
+  if($update_sequence>$latest_update_sequence){
     
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   
@@ -124,8 +124,9 @@ foreach ($notesFound as $note) {
     $latest = 1;
     
     $section = 'notes';
-    
     $imageTitle = '';
+    $booksTagFound = false;
+    $expFound = false;
       
     $query = sprintf("DELETE _lookup WHERE check1='%s' AND (type=0 OR type=1)",
       $note_guid
@@ -191,9 +192,6 @@ foreach ($notesFound as $note) {
     if($booksTagFound && $expFound){
       $note_type = 2;
     }
-    $booksTagFound = false;
-    $expFound = false;
-
     
     for ($i=0; $i<sizeof($resources); $i++){
       $thisResourceGuid = $resources[$i]->guid;
@@ -295,7 +293,7 @@ foreach ($notesFound as $note) {
     );
     mysql_query($query);
     
-    if ($note_publish == 1 && $latest == 1){
+    if ($note_publish > 1 && $latest == 1){
       $eguid_dec = hexdec(substr($note_guid,0,4));
       $cache_queue = cache_queue_guid($cache_queue,$eguid_dec);
       $url = 'http://'.SERVER_NAME.'/'.$section.'/'.$eguid_dec;
