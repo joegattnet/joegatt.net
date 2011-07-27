@@ -13,7 +13,7 @@ $columnWidths = array("wb" => 60, "if" => 100);
 $gutterWidths = array("wb" => 20, "if" => 10);
 $lineHeight = array("wb" => 10);
 
-$quality = array("jpg" => 60, "gif" => 100, "png" => 100);
+$quality = array("jpg" => 60, "gif" => -1, "png" => -1);
 
 // Get from url
 
@@ -68,8 +68,8 @@ if (file_exists($outputLocation)){
   		break;
   	case 'fw': // Freeform - force width
   		$outputWidth = $columns;
-  	    $rawImage = imagelocation($imageName,'raw') . $imageName . '.' . $ext;
-        $size = getimagesize($rawImage);
+  	  $rawImage = imagelocation($imageName,'raw') . $imageName . '.' . $ext;
+      $size = getimagesize($rawImage);
       $outputHeight = ($size[1] * $outputWidth) / $size[0];
       $aspectWidth = 0;
       $aspectHeight = 0;
