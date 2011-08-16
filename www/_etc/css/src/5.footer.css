@@ -41,3 +41,6 @@ footer a[href^="http"]:hover {
 #institutional {
 	text-align: right;
 }
+#qr_code {
+  display:none;
+}
