@@ -16,6 +16,7 @@
 <!--#if expr="$notranslate=true" -->
   <meta name="google" value="notranslate" />
 <!--#endif -->
+<meta name="readability-verification" content="GYUCgpCnFASq7wVJqrgJYMSytz6ApjL4GD66STfG">
 
 <!--#include virtual="${head_detail}" -->
 
