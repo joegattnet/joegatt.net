@@ -55,6 +55,8 @@ if(location.hash.indexOf('pr-')!=-1){
   <meta name="fb:admins" content="<!--#echo var="fbadmins" -->"> 
 <!--#endif -->
 
+<meta name="readability-verification" content="<!--#echo var="readability_tracking_code" -->">
+
 <link rel="canonical" href="http://<!--#echo var="server" --><!--#echo var="canonical" -->">
 <link rel="shortcut icon" href="<!--#echo var="favicon" -->">
 <link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->">
