@@ -46,6 +46,8 @@
   <!--#set var="git_branch" value="dev" -->
 <!--#endif -->
 
+<!--#set var="readability_tracking_code" value="GYUCgpCnFASq7wVJqrgJYMSytz6ApjL4GD66STfG" -->
+
 <!--#set var="favicon" value="$images_url/favicon.ico" -->
 <!--#set var="iphoneicon" value="$images_url/apple-touch-icon.png" -->
 <!--#set var="shareicon" value="$images_url/logo.png" -->
