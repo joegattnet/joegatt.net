@@ -146,7 +146,7 @@ foreach ($notesFound as $note) {
         $thisTagNameSimple = strtolower($thisTagNameSimple);
         $thisTagNameSimple = iconv("UTF-8", "ASCII//TRANSLIT",$thisTagNameSimple);
         $thisTagNameSimple = preg_replace('/\W+/', '_', $thisTagNameSimple);
-        $thisTagNameSimple = preg_replace('/^_+|_+$/', '', $thisTagNameSimple);
+        $thisTagNameSimple = preg_replace('/_+$/', '', $thisTagNameSimple);
 
         $thisTagGuid = $thisTag->guid;
         $thisTagParentGuid = $thisTag->parentGuid;
