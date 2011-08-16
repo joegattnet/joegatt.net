@@ -41,7 +41,7 @@ RewriteRule ^/_etc/min/([a-z]=.*)  /_etc/min/index.php?$1  [L,NE]
 #Image-server
 RewriteCond %{REQUEST_URI} ^.*/_etc/resources/.*$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?imgfile=$1\.$9&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8 [T=application/x-httpd-cgi,PT,L]
+RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?img=$1&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8&ext=$9 [T=application/x-httpd-cgi,PT,L]
 
 #Cache
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/php.*$

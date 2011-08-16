@@ -19,6 +19,8 @@ sub printNote {
   my $authorFirstName;
   my @resources;
   my @tags;
+  my @tagsFetch;
+  my @tagsFetchLinks;
   my $tagsUrl;
   my $noteoutput;
   my $templateType = 'default';
@@ -33,8 +35,8 @@ sub printNote {
       DATE_FORMAT(date_modified,'%Y-%m-%dT%H:%i:%sZ'),
       DATE_FORMAT(date_modified,'%e %b %Y at %H:%i UTC') 
     FROM notes
-    WHERE e_guid = ? 
-    ORDER BY date_modified DESC
+    WHERE e_guid = ?
+    AND latest = 1 
     LIMIT 1
   });
   $sthNote->execute($note_e_guid,$note_e_guid);
@@ -61,7 +63,7 @@ sub printNote {
     AND _lookup.type = 0
     AND _lookup.check1 = notes.e_guid
     AND _lookup.check2 = tags.e_guid
-    ORDER BY tags.name
+    ORDER BY tags.name_simple
   });
   $sthTags->execute($note_e_guid);
 
@@ -72,6 +74,7 @@ sub printNote {
       $imageFileSpecs = $imageFileSpecsForcedWidth;
     } elsif ($tagName !~ /_/) {
       push @tagsFetch, $tagName;
+      push @tagsFetchLinks, tagLinkify($tagName);
       push @tags, {
         listItem => tagListItem($tagName)
       }
@@ -104,8 +107,8 @@ sub printNote {
     }
   }
 
-  push @tagsFetch, '_notes_p'.$noteRef;
-  $tagsUrl = join(',', @tagsFetch);
+  push @tagsFetchLinks, '_notes_p'.$noteRef;
+  $tagsUrl = join(',', @tagsFetchLinks);
   
   #Resources (images & binary files)
   while (my ($resource_title,$rnd,$ext,$resource_longitude,$resource_latitude,$date_iso8601,$date_full) = $sthResources->fetchrow_array()) {
@@ -161,13 +164,8 @@ sub printNote {
 
   $text =~ s/\&nbsp\;/ /g;
   if ($isBook) {
-     #$text =~ /([^:]+): ?(.*?) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
-     #$authorFullName = $1;
-     #$bookTitle = $2;
-     #$publisherName = $3;
-     #$publishedDate = $4;
-     #$isbn = $5;
-     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*?) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
+     #Add City
+     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
      
      if($authorFullName =~ /(.*?)\, *(.*?)/){
        $authorSurname = $1;
@@ -180,7 +178,7 @@ sub printNote {
       $translatorSurname = $1;
       $translatorFirstName = $2;
      }
-  } elsif ($title && $title ne '' && $isTopic) {
+  } elsif ($title && $title ne '' && $isTopic && $text eq '' && $quote eq '') {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();
     my $entry = $wiki->search($title);
@@ -213,6 +211,7 @@ sub printNote {
     use Template;
 
     my $TTconfig = {
+        ENCODING => 'utf8',
         INCLUDE_PATH => '../../templates',
         POST_CHOMP   => 1
     };

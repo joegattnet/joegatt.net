@@ -15,7 +15,7 @@ my $sth = $dbh->prepare(qq{
   AND notes.publish >= ?
   AND notes.deleted <> 1
   AND check1=notes.e_guid AND check2=tags.e_guid
-  AND ? = tags.name 
+  AND ? = tags.name_simple 
   ORDER BY date_modified 
   DESC
   LIMIT 1

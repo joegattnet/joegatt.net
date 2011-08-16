@@ -1,6 +1,6 @@
-<!--#if expr="$p = '1'" -->   <!--#set var="tags" value="" -->
-<!--#elif expr="$p = '2'" --> <!--#set var="tags" value="" -->
-<!--#elif expr="$p = '3'" --> <!--#set var="tags" value="" -->
+<!--#if expr="$p = '1'" -->   <!--#set var="tags" value="autodidacticism,library" -->
+<!--#elif expr="$p = '2'" --> <!--#set var="tags" value="cryptanalysis,esoteric translation,Pentecost" -->
+<!--#elif expr="$p = '3'" --> <!--#set var="tags" value="pareidolia,rorschach,tasseography" -->
 <!--#elif expr="$p = '4'" --> <!--#set var="tags" value="" -->
 <!--#elif expr="$p = '5'" --> <!--#set var="tags" value="" -->
 <!--#elif expr="$p = '6'" --> <!--#set var="tags" value="" -->
@@ -9,7 +9,7 @@
 <!--#elif expr="$p = '9'" --> <!--#set var="tags" value="" -->
 <!--#elif expr="$p = '10'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '11'" --><!--#set var="tags" value="" -->
-<!--#elif expr="$p = '12'" --><!--#set var="tags" value="Humiliations" -->
+<!--#elif expr="$p = '12'" --><!--#set var="tags" value="humiliations" -->
 <!--#elif expr="$p = '13'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '14'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '15'" --><!--#set var="tags" value="" -->
@@ -17,7 +17,7 @@
 <!--#elif expr="$p = '17'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '18'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '19'" --><!--#set var="tags" value="" -->
-<!--#elif expr="$p = '20'" --><!--#set var="tags" value="Jerome" -->
+<!--#elif expr="$p = '20'" --><!--#set var="tags" value="jerome" -->
 <!--#elif expr="$p = '21'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '22'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '23'" --><!--#set var="tags" value="" -->
@@ -37,7 +37,7 @@
 <!--#elif expr="$p = '37'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '38'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '39'" --><!--#set var="tags" value="" -->
-<!--#elif expr="$p = '40'" --><!--#set var="tags" value="Jerome" -->
+<!--#elif expr="$p = '40'" --><!--#set var="tags" value="jerome" -->
 <!--#elif expr="$p = '41'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '42'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '43'" --><!--#set var="tags" value="" -->
@@ -54,7 +54,7 @@
 <!--#elif expr="$p = '54'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '55'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '56'" --><!--#set var="tags" value="" -->
-<!--#elif expr="$p = '57'" --><!--#set var="tags" value="Jerome" -->
+<!--#elif expr="$p = '57'" --><!--#set var="tags" value="jerome" -->
 <!--#elif expr="$p = '58'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '59'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '60'" --><!--#set var="tags" value="" -->
@@ -78,7 +78,7 @@
 <!--#elif expr="$p = '78'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '79'" --><!--#set var="tags" value="" -->
 <!--#elif expr="$p = '80'" --><!--#set var="tags" value="" -->
-<!--#elif expr="$p = '81'" --><!--#set var="tags" value="W" -->
+<!--#elif expr="$p = '81'" --><!--#set var="tags" value="w" -->
 <!--#elif expr="$p = '82'" --><!--#set var="tags" value="" -->
 <!--#endif -->
 

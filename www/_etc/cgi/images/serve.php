@@ -15,9 +15,9 @@ $lineHeight = array("wb" => 10);
 
 $quality = array("jpg" => 60, "gif" => -1, "png" => -1);
 
-// Get from url
-
-$image = $_GET["imgfile"];
+$imageName = $_GET["img"];
+$ext = $_GET["ext"];
+$imageFile = $imageName . $ext;
 $rnd = $_GET["rnd"];
 $aspectRatio = $_GET["aspect"];
 $platform = $_GET["platform"];
@@ -25,9 +25,6 @@ $columns = $_GET["columns"];
 $border = $_GET["border"];
 $processing = $_GET["processing"];
 $psettings = $_GET["psettings"];
-
-$ext = substr(strrchr($image, '.'), 1);
-$imageName = substr($image, 0, strrpos($image, '.')); // get the file extension
 
 $outputLocation = imagelocation($imageName,'cut') . $imageName . '-' . $rnd . '-' . $aspectRatio . '-' . $platform . '-' . $columns  . '-' . $border . '-' . $processing . '-' . $psettings . '.' . $ext;
 

@@ -8,6 +8,9 @@
     [% END %]
     [% text %]
   </div>
+  [% IF sourceUrl %]
+    <p><a href="[% sourceUrl %]">[% sourceUrlDomain %]</a></p>
+  [% END %]
   <aside id="versions" class="meta">
     <p>Version <span class="version-source">[% version %]</span> (<abbr class="timeago" title="[% date_iso8601 %]">[% date_full %]</abbr>)</p>
   </aside>

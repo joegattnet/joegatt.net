@@ -100,8 +100,8 @@ foreach ($notesFound as $note) {
     $resources=$noteEdam->resources;
     $content=$noteEdam->content;
     $note_title=$noteEdam->title;
-    //$date_created=$noteEdam->created;
-    //$date_modified=$noteEdam->updated;
+    $date_created=$noteEdam->created;
+    $date_modified=$noteEdam->updated;
     $update_sequence=$noteEdam->updateSequenceNum;
     $content_hash=$noteEdam->contentHash;
   
@@ -140,6 +140,8 @@ foreach ($notesFound as $note) {
         $tag = $tagGuids[$tagCounter];
         $thisTag=$noteStore->getTag($authToken, $tag);
         $thisTagName = $thisTag->name;
+        $thisTagNameSimple = iconv("UTF-8", "ISO-8859-1//TRANSLIT",$thisTagName);
+        $thisTagNameSimple = strtolower(preg_replace('/^\W+|\W$/', '', preg_replace('/\W+/', '_', $thisTagNameSimple)));
         $thisTagGuid = $thisTag->guid;
         $thisTagParentGuid = $thisTag->parentGuid;
         
@@ -169,10 +171,11 @@ foreach ($notesFound as $note) {
           $latest = 0; //Hold publication - tags, etc are still updated
         }
         
-        $query = sprintf("REPLACE INTO tags (e_guid,e_guid_parent,name) VALUES ('%s','%s','%s')",
+        $query = sprintf("REPLACE INTO tags (e_guid,e_guid_parent,name,name_simple) VALUES ('%s','%s','%s','%s')",
           $thisTagGuid,
           $thisTagParentGuid,
-          mysql_real_escape_string($thisTagName)
+          mysql_real_escape_string($thisTagName),
+          mysql_real_escape_string($thisTagNameSimple)
         );
         mysql_query($query);
         $query = sprintf("REPLACE INTO _lookup (check1,check2) VALUES ('%s','%s')",
@@ -181,7 +184,7 @@ foreach ($notesFound as $note) {
         );
         mysql_query($query);
         if(!preg_match('/^_/i',$thisTagName)){
-          array_push($url_queue,'http://'.SERVER_NAME.'/tags/'.strtolower($thisTagName));
+          array_push($url_queue,'http://'.SERVER_NAME.'/tags/'.$thisTagNameSimple);
         }
         $cache_queue = cache_queue($cache_queue,'/-tags=.*\b'.$thisTagName.'\b/');
         echo "Tag added: $thisTagName ($thisTagGuid)\n";
@@ -270,12 +273,14 @@ foreach ($notesFound as $note) {
     //$note_title = strip_tags($note_title);
     //$content = str_replace("</div>", "</div>/n", $content);
     //$content = strip_tags($content, '<a><ul><li><h3>');
+    $content_textonly = strip_tags($content);
     
     //mysql_query($query);
-    $query = sprintf("REPLACE INTO notes (e_guid,title,text,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",
+    $query = sprintf("REPLACE INTO notes (e_guid,title,text,textonly,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",
         $note_guid,
         mysql_real_escape_string($note_title),
         mysql_real_escape_string($content),
+        mysql_real_escape_string($content_textonly),
         $date_created,
         $date_modified,
         $update_sequence,

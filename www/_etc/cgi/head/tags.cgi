@@ -7,12 +7,13 @@ formRead("get");
 
 $tag = $p;
 $tag =~ s/\_/%/g;
+$tag = "%$tag%";
 
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
   SELECT name
   FROM tags 
-  WHERE name LIKE ?
+  WHERE name_simple LIKE ?
   LIMIT 1
 });
 $sth->execute($tag);

@@ -9,7 +9,7 @@
   <body itemscope itemtype="http://schema.org/WebPage">  
     <!--#include virtual="/_etc/includes/scripts_external.shtml" -->
     <div id="container" class="container_12 ajax_large clearfix">
-      <div id="page" data-url="<!--#echo var="location" -->">
+      <div id="page" data-url="<!--#echo var="location" -->?scope=page" class="refresh">
         <!--#include virtual="/_etc/layouts/page_${layout}.shtml" -->
       </div>
       <div id="code" class="draggable panel panel_closed escapable-panel" style="display:none;">

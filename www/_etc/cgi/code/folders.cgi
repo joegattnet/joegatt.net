@@ -32,7 +32,7 @@ $linkifiedPath = linkifyPath($fullPath, '/code');
 
 #Use Template (and print directly?)
 
-$output .= "<li class=\"path\">$linkifiedPath <a href=\"http://github.com/joegattnet/joegatt.net/blob/master/$fileNav\">github</a></li>\n";
+$output .= "<li class=\"path\">$linkifiedPath <a href=\"http://github.com/joegattnet/joegatt.net/blob/$githubBranch/$fileNav\">github</a></li>\n";
 
 foreach $object (@folders) {
   if(!($object eq '..' and $folder eq 'www')){

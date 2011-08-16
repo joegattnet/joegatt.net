@@ -13,6 +13,7 @@ use CGI;
      	
 	if ($serverName =~ /joegatt-net/) {
     $db_pwfileloc = 'D://Documents/Websites/_db_passwords/joegatt-net/dev.txt';
+    $githubBranch = 'dev';
     $saltfileloc = 'D://Documents/Websites/_db_passwords/joegatt-net/salt.txt';
     $twitter_pwfileloc = 'D://Documents/Websites/_db_passwords/joegatt-net/twitter.txt';
     $facebooksecretloc = 'D://Documents/Websites/_db_passwords/joegatt-net/facebook.txt';
@@ -33,13 +34,16 @@ use CGI;
     if ($serverName eq 'test.joegatt.org') {
     	$debug = 1;
     	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
+      $githubBranch = 'dev';
     }	elsif ($serverName =~ /joegatt\.org/) {
     	$debug = 1;
     	$dsn = 'DBI:mysql:joegatt-net-dev:localhost';
       $notesThreshold = 1;
+      $githubBranch = 'dev';
     } else {
     	$debug = 0;
       $dsn = 'DBI:mysql:joegatt-net-production-v2:localhost';
+      $githubBranch = 'master';
     }
 	}
 

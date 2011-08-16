@@ -23,7 +23,7 @@ function template($imageName,$rnd,$ext,$aspectWidth,$aspectHeight){
       $originalHeight = $size[1];
     } else {
       #$rawImage = '../../../_etc/resources/raw/0/0/00.' . $ext;
-      $rawImage = '../../../_etc/resources/raw/00.' . $ext;
+      $rawImage = '../../../_etc/resources/raw/_blank.' . $ext;
       $originalWidth = 10000;
       $originalHeight = 10000;
     }
@@ -52,7 +52,7 @@ function template($imageName,$rnd,$ext,$aspectWidth,$aspectHeight){
   
     imagecopyresampled($dst, $src, 0, 0, $original_x, $original_y, $templateWidth, $templateHeight, $templateWidth, $templateHeight);
     
-    outputimage($dst, $ext, $templateImageAuto, 100);
+    outputimage($dst, $ext, $templateImageAuto, $quality[$ext]);
   
   }
   

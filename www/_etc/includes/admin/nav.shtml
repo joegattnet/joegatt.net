@@ -25,3 +25,12 @@
 <ul class="a_arrows">
 		<li><a href="/_etc/cgi/admin/email_users.cgi" target="<!--#echo var="rowname" -->">Email user(s)</a></li>
 </ul>
+<ul class="a_arrows">
+		<li><a href="/_etc/cgi/admin/info.php" target="<!--#echo var="rowname" -->">PHP info</a></li>
+		<li><a href="/_etc/cgi/admin/session_test.php" target="<!--#echo var="rowname" -->">PHP session test</a></li>
+</ul>
+<ul class="a_arrows">
+		<li><a href="/_etc/cgi/admin/adminer.php" target="_blank" -->">MySQL Adminer</a></li>
+		<li><a href="/_etc/cgi/admin/adminer_editor.php" target="_blank" -->">MySQL Adminer Editor</a></li>
+		<li><a href="http://joegatt.org/phpmyadmin" target="_blank" -->">MySQL phpMyAdmin</a></li>
+</ul>
