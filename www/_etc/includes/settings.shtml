@@ -22,10 +22,6 @@
   <!--#set var="u" value="$1" -->
 <!--#endif -->
 
-<!--#if expr="$QUERY_STRING = /scope=([a-zA-Z0-9]+)/" -->
-  <!--#set var="scope" value="$1" -->
-<!--#endif -->
-
 <!--#set var="path" value="/" -->
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="$location" -->
