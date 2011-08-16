@@ -1,6 +1,9 @@
 .notes-list h6 {
   font-weight:normal;
 }
+.notes-list h6 + p {
+  display:inline;
+}
 .notes-list h6:after {
   content: ": ";
 }
@@ -10,9 +13,6 @@ iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
 .notes embed {
   background-color:#333;
   clear:both;
-}
-.notes-list p.first {
-  display:inline;
 }
 .notes-list img, .notes-list embed, .notes-list iframe, .notes-list video {
   display:block;
