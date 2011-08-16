@@ -24,6 +24,7 @@ if($alphabetical eq 'true' && $view eq 'bibliography') {
 } elsif($latest eq 'true'){
   $order = "ORDER BY date_modified DESC";
 } else {
+#  $tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') LIKE CONCAT('%', ?, '%')) AND check1=notes.e_guid AND check2=tags.e_guid";
   $tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";
   $order = "ORDER BY score DESC, date_modified DESC";
 }

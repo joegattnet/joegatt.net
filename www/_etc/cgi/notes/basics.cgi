@@ -57,7 +57,7 @@ sub printNote {
   $sthResources->execute($note_e_guid);
 
   my $sthTags = $dbh->prepare(qq{
-    SELECT DISTINCT tags.name  
+    SELECT DISTINCT tags.name, tags.name_simple  
     FROM tags, notes, _lookup
     WHERE notes.e_guid = ?
     AND _lookup.type = 0
@@ -67,16 +67,17 @@ sub printNote {
   });
   $sthTags->execute($note_e_guid);
 
-  while (my ($tagName) = $sthTags->fetchrow_array()) {
+  while (my ($tagName, $tagLink) = $sthTags->fetchrow_array()) {
     if ($tagName eq '__SHOWMAPS') {
       $showMaps = 1;
     } elsif ($tagName eq '__FIXRATIO') {
       $imageFileSpecs = $imageFileSpecsForcedWidth;
     } elsif ($tagName !~ /_/) {
       push @tagsFetch, $tagName;
-      push @tagsFetchLinks, tagLinkify($tagName);
+#      push @tagsFetchLinks, tagLinkify($tagName);
+      push @tagsFetchLinks, $tagLink;
       push @tags, {
-        listItem => tagListItem($tagName)
+        listItem => tagListItem($tagName, $tagLink)
       }
     }    
   }
@@ -142,12 +143,6 @@ sub printNote {
   $title =~ s/\[.*$//;
   $text = sanitiseText($text, 0);
 
-  if($title ne '' && $title ne 'Note Title' && $title =~ /quote\:/i && $title =~ /untitled/i && $textBriefClean !~ /$title/i){
-    $title =~ s/[^\w]$//;
-  } elsif (!$isTopic && !$isLink && !$isBook) {
-    $title = '';
-  }
-
   if ($text =~ s/capt?i?o?n?\: *(.*?)$//i) {
     #$caption = textTruncate($1, 80);
     $caption = $1;
@@ -196,6 +191,12 @@ sub printNote {
     $text = "<p>$text</p>";
   }
   $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
+
+  if($title ne '' && $title ne 'Note Title' && $title !~ /quote\:/i && $title !~ /untitled/i && $textBriefClean !~ /$title/i){
+    $title =~ s/^\W+|\W+$//g;
+  } elsif (!$isTopic && !$isLink && !$isBook) {
+    $title = '';
+  }
     
   $sthNote->finish();
   $sthResources->finish();

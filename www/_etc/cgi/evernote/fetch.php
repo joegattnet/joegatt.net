@@ -140,8 +140,14 @@ foreach ($notesFound as $note) {
         $tag = $tagGuids[$tagCounter];
         $thisTag=$noteStore->getTag($authToken, $tag);
         $thisTagName = $thisTag->name;
-        $thisTagNameSimple = iconv("UTF-8", "ISO-8859-1//TRANSLIT",$thisTagName);
-        $thisTagNameSimple = strtolower(preg_replace('/^\W+|\W$/', '', preg_replace('/\W+/', '_', $thisTagNameSimple)));
+
+        $thisTagNameSimple = $thisTagName;
+        $thisTagNameSimple = preg_replace('/(.*) +(\d{4}[a-z]?):.*/', '$1 $2', $thisTagNameSimple);
+        $thisTagNameSimple = strtolower($thisTagNameSimple);
+        $thisTagNameSimple = iconv("UTF-8", "ASCII//TRANSLIT",$thisTagNameSimple);
+        $thisTagNameSimple = preg_replace('/\W+/', '_', $thisTagNameSimple);
+        $thisTagNameSimple = preg_replace('/^_+|_+$/', '', $thisTagNameSimple);
+
         $thisTagGuid = $thisTag->guid;
         $thisTagParentGuid = $thisTag->parentGuid;
         
@@ -274,6 +280,7 @@ foreach ($notesFound as $note) {
     //$content = str_replace("</div>", "</div>/n", $content);
     //$content = strip_tags($content, '<a><ul><li><h3>');
     $content_textonly = strip_tags($content);
+    $content_textonly = preg_replace('/^\W+|\W+$/', '', $content_textonly);
     
     //mysql_query($query);
     $query = sprintf("REPLACE INTO notes (e_guid,title,text,textonly,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",

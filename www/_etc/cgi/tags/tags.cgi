@@ -10,7 +10,7 @@ $tags = "XXX${tags}XXX";
 
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
-  SELECT DISTINCT name
+  SELECT DISTINCT name, name_simple
   FROM tags, notes, _lookup
   WHERE CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?
   AND latest=1 
@@ -25,8 +25,8 @@ my $sth = $dbh->prepare(qq{
 $sth->execute($tags, $notesThreshold);
 
 $count = 0;
-while (my ($tag) = $sth->fetchrow_array()) {
-    $outputTags .= tagListItem($tag);
+while (my ($tag, $tagLink) = $sth->fetchrow_array()) {
+    $outputTags .= tagListItem($tag, $tagLink);
     $count++;
 }
 

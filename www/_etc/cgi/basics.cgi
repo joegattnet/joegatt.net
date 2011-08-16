@@ -593,21 +593,22 @@ sub linkifyPath {
 # ******************************************************************************
 
 sub tagLinkify {
-  use Encode;
   $tag = $_[0];
-  $tagLink = lc($tag);
-  $tagLink = to_ascii(Encode::decode_utf8($tagLink));
-  $tagLink =~ s/\s+|\W+/_/g;
-  $tagLink =~ s/^_|_$//g;
+  #tag name should already be normalised via name_simple
+  #use Encode;
+  #$tag = lc($tag);
+  #$tag = to_ascii(Encode::decode_utf8($tagLink));
+  #$tag =~ s/\s+|\W+/_/g;
+  #$tag =~ s/^_|_$//g;
   #Should we only keep date for books?
-  return $tagLink;
+  return $tag;
 }
 
 # ******************************************************************************
 
 sub tagName {
   my $tag = $_[0];
-  $tag =~ s/(.*) *(\d{4}):.*/$1 $2/;
+  $tag =~ s/(.*) +(\d{4}[a-z]?):.*/$1 $2/;
   return $tag;
 }
 
@@ -615,9 +616,10 @@ sub tagName {
 
 sub tagListItem {
   my $tag = $_[0];
-  my $inline = ' ' . $_[1];
-  my $forceName = $_[2];
-  my $tagLink = tagLinkify($tag);
+  my $tagLink = $_[1];
+  my $inline = ' ' . $_[2];
+  my $forceName = $_[3];
+#  my $tagLink = tagLinkify($tag);
   my $tagFull = $tag;
   my $listItem;
   $tag = tagName($tag);

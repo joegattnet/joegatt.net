@@ -9,10 +9,10 @@
     page_app: "<!--#echo var="page_app" -->",
     path: "<!--#echo var="path" -->"
   };
-  NB.tags = "<!--#echo var="tags" -->";
-  NB.title = "<!--#echo var="title" -->";
-  NB.title_window = "<!--#echo var="title.window" -->";
-  NB.description = "<!--#echo var="description" -->";
+  NB.tags = "<!--#echo encoding="none" var="tags" -->";
+  NB.title = "<!--#echo encoding="none" var="title" -->";
+  NB.title_window = "<!--#echo encoding="none" var="title.window" -->";
+  NB.description = "<!--#echo encoding="none" var="description" -->";
   NB.chunk = "<!--#echo var="chunk" -->";
   NB.image = "<!--#echo var="shareicon" -->";
   <!--#if expr="$latitude1" -->

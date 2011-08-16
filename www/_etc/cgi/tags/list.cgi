@@ -20,7 +20,7 @@ $range = 100 - $smallest;
 
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
-  SELECT name,COUNT(*) AS score  
+  SELECT name, name_simple, COUNT(*) AS score  
   FROM tags,notes,_lookup 
   WHERE latest=1 
   AND NOT name LIKE '\\_%' 
@@ -35,7 +35,7 @@ my $sth = $dbh->prepare(qq{
 });
 $sth->execute($notesThreshold, $min);
 
-while (my ($name,$score) = $sth->fetchrow_array()) {
+while (my ($name, $link, $score) = $sth->fetchrow_array()) {
   if($score>$highest){
     #To cut off outliers (start with highest = 0)
     #$highest = int($score * 0.3);
@@ -44,7 +44,7 @@ while (my ($name,$score) = $sth->fetchrow_array()) {
   } else {
     $scale = $score;
   }
-  push(@tags, [$name, $score, $scale]);
+  push(@tags, [$name, $link, $score, $scale]);
 };
 
 $sth->finish();
@@ -57,8 +57,9 @@ $ulTag = "<ul id=\"tag_list\" class=\"$template\">";
 $output = $ulTag;
 for my $i (0..$#tags) {
   my $tag = $tags[$i][0];
-  my $score = $tags[$i][1];
-  my $scale = $tags[$i][2];
+  my $link = $tags[$i][1];
+  my $score = $tags[$i][2];
+  my $scale = $tags[$i][3];
   if($template eq 'cloud'){
     my $reference = pluralize_regular('reference',$score);
     $fontsize = int($smallest + ((($scale-1)*$range)/$highest)) . '%';
@@ -69,7 +70,7 @@ for my $i (0..$#tags) {
   if($brackets){
     $forceName = "$name ($score)";
   }
-  $output .= tagListItem($tag, $inline, $forceName);
+  $output .= tagListItem($tag, $link, $inline, $forceName);
   if($cols>1 && (($i/$cols) == int($i/$cols))){
     $output .= "</ul>$ulTag";
   }

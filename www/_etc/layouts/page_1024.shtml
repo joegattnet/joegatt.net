@@ -1,26 +1,26 @@
 <!--#include virtual="/_etc/includes/initialise.shtml" -->
-<section class="section-<!--#echo var="section" --> page-<!--#echo var="section" -->-<!--#echo var="page" -->">
+<section class="section-<!--#echo encoding="none" var="section" --> page-<!--#echo encoding="none" var="section" -->-<!--#echo encoding="none" var="page" -->">
   <!--#if expr="${title.static}=true" -->
     <header>
       <hgroup id="title">
           <h1>
             <!--#if expr="${title.url}" -->
-              <a href="<!--#echo var="title.url" -->"><!--#echo var="title" --></a>
+              <a href="<!--#echo encoding="none" var="title.url" -->"><!--#echo encoding="none" var="title" --></a>
             <!--#else -->
-              <!--#echo var="title" -->
+              <!--#echo encoding="none" var="title" -->
             <!--#endif -->
-            <span class="version"><!--#echo var="version"--></span>
+            <span class="version"><!--#echo encoding="none" var="version"--></span>
           </h1>
           <!--#if expr="${title.super}" -->
-            <h2><a href="<!--#echo var="title.super.url" -->" class="title-super-a"><!--#echo var="title.super" --></a></h2>
+            <h2><a href="<!--#echo encoding="none" var="title.super.url" -->" class="title-super-a"><!--#echo encoding="none" var="title.super" --></a></h2>
           <!--#endif -->
           <!--#if expr="${title.sub}" -->
-            <h3><!--#echo var="title.sub" --></h3>
+            <h3><!--#echo encoding="none" var="title.sub" --></h3>
           <!--#endif -->
       </hgroup>
     </header>
   <!--#endif -->
-  <article id="yield" role="main" data-url="<!--#echo var="yield" -->">
+  <article id="yield" role="main" data-url="<!--#echo encoding="none" var="yield" -->">
     <!--#include virtual="$yield"-->
   </article>
   <!--#if expr="$help" -->

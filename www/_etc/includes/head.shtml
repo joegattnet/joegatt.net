@@ -21,7 +21,7 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--#if expr="${title.sub}" -->
   <!--#set var="title.show" value="${title.show} - ${title.sub}" -->
 <!--#endif -->
-<title><!--#echo var="title.show" --></title>
+<title><!--#echo encoding="none" var="title.show" --></title>
 
 <!--#if expr="$generator" -->
   <meta name="generator" content="<!--#if expr="generator" -->">
@@ -34,101 +34,101 @@ if(location.hash.indexOf('pr-')!=-1){
   <meta name="google" value="notranslate">
 <!--#endif -->
 
-<meta name="description" content="<!--#echo var="description" -->"> 
-<meta name="keywords" content="<!--#echo var="tags" -->"> 
-<meta name="author" content="<!--#echo var="author" -->">
+<meta name="description" content="<!--#echo encoding="none" var="description" -->"> 
+<meta name="keywords" content="<!--#echo encoding="none" var="tags" -->"> 
+<meta name="author" content="<!--#echo encoding="none" var="author" -->">
 
-<meta name="og:description" content="<!--#echo var="description" -->">
-<meta name="og:image" content="<!--#echo var="images_url" --><!--#echo var="shareicon" -->">
-<meta name="og:site_name" content="<!--#echo var="sitename" -->">
+<meta name="og:description" content="<!--#echo encoding="none" var="description" -->">
+<meta name="og:image" content="<!--#echo encoding="none" var="images_url" --><!--#echo encoding="none" var="shareicon" -->">
+<meta name="og:site_name" content="<!--#echo encoding="none" var="sitename" -->">
 
-<meta name="DC.Creator" content="<!--#echo var="author_last_first" -->">
-<meta name="DC.Title" content="<!--#echo var="title.show" -->">
-<meta name="DC.Description" content="<!--#echo var="description" -->">
-<meta name="DC.Subject" content="<!--#echo var="subject" -->">
-<meta name="DC.Publisher" content="<!--#echo var="publisher" -->">
-<meta name="DC.Type" content="T">
-<meta name="DC.Format" content="t/html">
+<meta name="DC.Creator" content="<!--#echo encoding="none" var="author_last_first" -->">
+<meta name="DC.Title" content="<!--#echo encoding="none" var="title.show" -->">
+<meta name="DC.Description" content="<!--#echo encoding="none" var="description" -->">
+<meta name="DC.Subject" content="<!--#echo encoding="none" var="subject" -->">
+<meta name="DC.Publisher" content="<!--#echo encoding="none" var="publisher" -->">
+<meta name="DC.Type" content="Text">
+<meta name="DC.Format" content="text/html">
 <meta name="DC.Language" content="en-GB">
-<meta name="DC.Rights" content="<!--#echo var="copyright" -->">
+<meta name="DC.Rights" content="<!--#echo encoding="none" var="copyright" -->">
 <!--#if expr="$fbadmins" -->
-  <meta name="fb:admins" content="<!--#echo var="fbadmins" -->"> 
+  <meta name="fb:admins" content="<!--#echo encoding="none" var="fbadmins" -->"> 
 <!--#endif -->
 
-<meta name="readability-verification" content="<!--#echo var="readability_tracking_code" -->">
+<meta name="readability-verification" content="<!--#echo encoding="none" var="readability_tracking_code" -->">
 
-<link rel="canonical" href="http://<!--#echo var="server" --><!--#echo var="canonical" -->">
-<link rel="shortcut icon" href="<!--#echo var="favicon" -->">
-<link rel="apple-touch-icon" href="<!--#echo var="iphoneicon" -->">
+<link rel="canonical" href="http://<!--#echo encoding="none" var="server" --><!--#echo encoding="none" var="canonical" -->">
+<link rel="shortcut icon" href="<!--#echo encoding="none" var="favicon" -->">
+<link rel="apple-touch-icon" href="<!--#echo encoding="none" var="iphoneicon" -->">
 
 <!--#if expr="$copyright_url" -->
-  <link rel="copyright" href="<!--#echo var="copyright_url" -->">
+  <link rel="copyright" href="<!--#echo encoding="none" var="copyright_url" -->">
 <!--#endif -->
 
 <!--#if expr="$nav_up" -->
-  <link rel="up" href="<!--#echo var="nav_up" -->" title="<!--#echo var="nav_up_title" -->">
+  <link rel="up" href="<!--#echo encoding="none" var="nav_up" -->" title="<!--#echo encoding="none" var="nav_up_title" -->">
 <!--#endif -->
 <!--#if expr="$nav_first" -->
-  <link rel="first" href="<!--#echo var="nav_first" -->" title="<!--#echo var="nav_first_title" -->">
+  <link rel="first" href="<!--#echo encoding="none" var="nav_first" -->" title="<!--#echo encoding="none" var="nav_first_title" -->">
 <!--#endif -->
 <!--#if expr="$nav_prev" -->
-  <link rel="prev" href="<!--#echo var="nav_prev" -->" title="<!--#echo var="nav_prev_title" -->">
+  <link rel="prev" href="<!--#echo encoding="none" var="nav_prev" -->" title="<!--#echo encoding="none" var="nav_prev_title" -->">
 <!--#endif -->
 <!--#if expr="$nav_last" -->
-  <link rel="last" href="<!--#echo var="nav_last" -->" title="<!--#echo var="nav_last_title" -->">
+  <link rel="last" href="<!--#echo encoding="none" var="nav_last" -->" title="<!--#echo encoding="none" var="nav_last_title" -->">
 <!--#endif -->
 
-<link rel="image_src" href="<!--#echo var="images_url" --><!--#echo var="shareicon" -->">
+<link rel="image_src" href="<!--#echo encoding="none" var="images_url" --><!--#echo encoding="none" var="shareicon" -->">
 
 <!--#if expr="$latitude1" -->
-  <meta name="geo.position" content="<!--#echo var="latitude1" -->; <!--#echo var="longitude1" -->">
-  <meta name="og:latitude" content="<!--#echo var="latitude1" -->">
-  <meta name="og:longitude" content="<!--#echo var="longitude1" -->">
+  <meta name="geo.position" content="<!--#echo encoding="none" var="latitude1" -->; <!--#echo encoding="none" var="longitude1" -->">
+  <meta name="og:latitude" content="<!--#echo encoding="none" var="latitude1" -->">
+  <meta name="og:longitude" content="<!--#echo encoding="none" var="longitude1" -->">
 <!--#endif -->
 
 <!--#if expr="$latitude2" -->
-  <meta name="geo.position" content="<!--#echo var="latitude2" -->; <!--#echo var="longitude2" -->">
-  <meta name="og:latitude" content="<!--#echo var="latitude2" -->">
-  <meta name="og:longitude" content="<!--#echo var="longitude2" -->">
+  <meta name="geo.position" content="<!--#echo encoding="none" var="latitude2" -->; <!--#echo encoding="none" var="longitude2" -->">
+  <meta name="og:latitude" content="<!--#echo encoding="none" var="latitude2" -->">
+  <meta name="og:longitude" content="<!--#echo encoding="none" var="longitude2" -->">
 <!--#endif -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--#if expr="1=0" -->
-  <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo var="rss_title" -->" href="<!--#echo var="rss_url" -->">
+  <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo encoding="none" var="rss_title" -->" href="<!--#echo encoding="none" var="rss_url" -->">
 <!--#endif -->
 <!--#if expr="$styles_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
-  <link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->">
+  <link rel="stylesheet" href="<!--#echo encoding="none" var="css_url" -->/_etc/min/g=css<!--#echo encoding="none" var="css_version" -->&amp;<!--#echo encoding="none" var="css_cachebuster" -->">
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
 <!--#endif -->
 
-<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE6.css&amp;<!--#echo var="css_cachebuster" -->"><![endif]-->
-<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE7.css&amp;<!--#echo var="css_cachebuster" -->"><![endif]-->
-<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE8.css&amp;<!--#echo var="css_cachebuster" -->"><![endif]-->
+<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE6.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE7.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
 
 <!--#if expr="$server != /joegatt.net/" -->
   <style type="t/css">
     <!--#include virtual="/_etc/css/src/0.Debug.css"-->  
   </style>
 <!--#endif -->
-<script src="<!--#echo var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr.custom.53524.js&amp;<!--#echo var="js_cachebuster" -->"></script>
+<script src="<!--#echo encoding="none" var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
 <script>
 var NB = {
-  root: '<!--#echo var="root" -->',
-  debug: <!--#echo var="debug" -->,
+  root: '<!--#echo encoding="none" var="root" -->',
+  debug: <!--#echo encoding="none" var="debug" -->,
   loaded: false,
   pending_signedin_action:  false,
   timestamp: new Date().getTime(),
   keys: {
-    google_analytics: '<!--#echo var="google_tracking_code" -->',
-    facebook: '<!--#echo var="api_key_facebook" -->',
-    twitter: '<!--#echo var="api_key_twitter" -->'
+    google_analytics: '<!--#echo encoding="none" var="google_tracking_code" -->',
+    facebook: '<!--#echo encoding="none" var="api_key_facebook" -->',
+    twitter: '<!--#echo encoding="none" var="api_key_twitter" -->'
   }
 }
 NB.loaded.all = false;
 NB.external = {
-  facebook: <!--#echo var="external_facebook" -->,
-  twitter: <!--#echo var="external_twitter" -->
+  facebook: <!--#echo encoding="none" var="external_facebook" -->,
+  twitter: <!--#echo encoding="none" var="external_twitter" -->
 }
 <!--#include virtual="/_etc/javascript/src/0.Prime.js"-->
 </script>
