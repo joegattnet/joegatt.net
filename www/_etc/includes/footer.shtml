@@ -6,7 +6,7 @@
 <footer class="grid_12 clearfix">
   <ul id="copyright" class="nav_h">
   		<li class="cc"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode" rel="license">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported licence</a></li>
-  		<li class="source-org vcard copyright">Except where otherwise stated, all content on this site is <span class="byline author vcard">by <span class="fn">Joe Gatt</span></span> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported licence</a>.</li>
+  		<li class="source-org vcard copyright">Except where otherwise stated, all content on this site is <span class="byline author vcard">by <span class="fn">Joe Gatt</span></span>. It is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported licence</a>.</li>
   </ul>
   <p id="qr_code"><img alt="QR code for this page" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=http://<!--#echo var="server" --><!--#echo var="canonical" -->"></p>
   <h6 class="hidden"><a href="/colophon/">Colophon</a></h6>

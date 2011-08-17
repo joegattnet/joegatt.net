@@ -149,7 +149,7 @@ sub printNote {
     $caption = $1;
   }
 
-  if ($text =~ s/\[(.*?)\] *$//i) {
+  if ($text =~ s/attr?\: *(.*?)$//i) {
     #$attribution = textTruncate($1, 80);
     $attribution = $1;
   }
