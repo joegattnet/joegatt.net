@@ -5,4 +5,4 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="$location" -->
 
-<!--#set var="apparatus" value="apparatus_1024_04_05_03.shtml" -->
+<!--#set var="apparatus" value="/_etc/layouts/apparatus_1024_04_05_03.shtml" -->

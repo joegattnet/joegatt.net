@@ -12,6 +12,8 @@
 
 <p>If you continue to have problems please email <a href="mailto:dev@joegatt.net">dev@joegatt.net</a>.</p>
 
+<p>If you are a registered github.com user, you can also take the time to <a href="https://github.com/joegattnet/joegatt.net/issues/new">file a bug</a>.</p>
+
 <script>
   NB.loaded_scripts.add(false, function(){
     NB.Nav.track(2,"Error","<!--#echo var="p" -->","<!--#echo var="request" -->");

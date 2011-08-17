@@ -17,7 +17,7 @@
 <!--#set var="title" value="Code" -->
 <!--#set var="title.window" value="$title" -->
 
-<!--#set var="yield" value="yield_1024_05_01s_03_03_a.shtml" -->
+<!--#set var="yield" value="/_etc/includes/code/index.shtml" -->
 
 <!--#set var="content" value="/_etc/cache/php-common--file_get-eu=github-readme-${git_branch}&class=text&refresh=10.html" -->
 <!--#set var="content_middle" value="/_etc/cache/php-common--rss_show-eu=github-commits-master&title=github commits: master&refresh=10.html" -->

@@ -95,7 +95,7 @@
 <!--#set var="b" value="0" -->
 <!--#set var="p_max" value="0" -->
 
-<!--#set var="apparatus" value="apparatus_1024_05_01_06.shtml" -->
+<!--#set var="apparatus" value="/_etc/layouts/apparatus_1024_05_01_06.shtml" -->
 
 <!--#set var="direct_content" value="false" -->
 

@@ -15,14 +15,13 @@
   font-size:11px;
 }
 .rss a.feed {
-  position:absolute;
-  display:block;
-  top:3px;
-  right:0;
-  width:12px;
-  height:12px;
-  text-indent:-9999px;
-  background-position:-116px -361px!important;
-  background-image:url(/_etc/images/sprite-v14.png)!important;
-  /* This should not be necessary */
+  background-image: url("/_etc/images/sprite-v14.png") !important;
+  background-position: -116px -362px !important;
+  display: block;
+  height: 10px;
+  position: absolute;
+  right: 0;
+  text-indent: -9999px;
+  top: 5px;
+  width: 10px;
 }
