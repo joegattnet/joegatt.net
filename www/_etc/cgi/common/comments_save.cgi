@@ -25,7 +25,7 @@ $date_iso8601 = date_string_iso();
 print qq~
   <li id="added_comment" style="display:none;">
     <p><span class="order">$new_order</span>$text</p>
-    <p class="details"><span class="user-name" rel="$username">me</span>, <abbr class="timeago" title="$date_iso8601">$date_full</abbr></p>
+    <p class="details"><span class="user-name" rel="$username">me</span>, <time class="updated timeago" datetime="$date_iso8601" pubdate>$date_full</time></p>
   </li>
 ~;
 

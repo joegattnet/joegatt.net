@@ -15,7 +15,7 @@
   <p><a href="http://books.google.co.uk/books?vid=ISBN[% isbn %]">Google Books entry for this book</a></p>
   <p><a href="http://en.wikipedia.org/wiki/Special:BookSources/[% isbn %]">Wikipedia Book Sources for this book</a></p>
   <aside id="versions" class="meta">
-    <p>Version <span class="version-source">[% version %]</span> (<abbr class="timeago" title="[% date_iso8601 %]">[% date_full %]</abbr>)</p>
+    <p>Version <span class="version-source">[% version %]</span> (<time class="updated timeago" datetime="[% date_iso8601 %]" pubdate>[% date_full %]</time>)</p>
   </aside>
   <div class="apparatus">
     <!--#include virtual="../../_etc/layouts/apparatus_left.shtml" -->

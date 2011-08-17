@@ -1,5 +1,5 @@
 NB.Ui.timeago = function () {
-  $('abbr.timeago').timeago();
+  $('time.timeago').timeago();
 }
 
 /******************************************************************************/

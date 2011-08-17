@@ -80,7 +80,7 @@ while ($found>0 and $counter<=$#scholia){
   $output .= qq~
       <li>
         <p>$text</p>
-      	<p class="details">$usernameString, <abbr class="timeago" title="$date_iso8601">$date_full</abbr></p>
+      	<p class="details">$usernameString, <time class="updated timeago" datetime="$date_iso8601" pubdate>$date_full</time></p>
     	</li>
   ~;
 	 $counter++;
