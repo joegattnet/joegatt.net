@@ -138,9 +138,10 @@ sub printNote {
    }
 
   #Text
+  $title =~ s/(\[|\").*$//g;
+  $title =~ s/ ?\([^)]*$//g;
   $title = sanitiseText($title, 1);
-  $title =~ s/ \- Wikipedia\,.*//i;
-  $title =~ s/\[.*$//;
+  $title =~ s/ ?\- Wikipedia\,.*//i;
   $text = sanitiseText($text, 0);
 
   if ($text =~ s/capt?i?o?n?\: *(.*?)$//i) {
@@ -192,8 +193,8 @@ sub printNote {
   }
   $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
 
-  if($title ne '' && $title ne 'Note Title' && $title !~ /quote\:/i && $title !~ /untitled/i && $textBriefClean !~ /$title/i){
-    $title =~ s/^\W+|\W+$//g;
+  if($title ne '' && $text ne '' && $title !~ /(quote|cap|caption)\:/i && $title !~ /untitled|Note Title/i && $textBriefClean !~ /^($title)/i){
+    $title =~ s/^\s+|\s+$//g;
   } elsif (!$isTopic && !$isLink && !$isBook) {
     $title = '';
   }
