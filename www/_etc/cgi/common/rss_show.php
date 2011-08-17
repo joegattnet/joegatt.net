@@ -32,7 +32,7 @@
 
   foreach($xml->entry as $item) {
       $output .= '<li><p><a href="' . $item->link['href'] .'">' . $item->title . '</a></p>';
-      $output .= '<p class="details"><a href="' . $item->author->uri .'">' . $item->author->name .'</a>, <abbr title="' . $item->updated . '" class="timeago">' . $item->updated . '</abbr></p></li>';
+      $output .= '<p class="details"><a href="' . $item->author->uri .'">' . $item->author->name .'</a>, <time class="timeago" datetime="' . $item->updated . '">' . $item->updated . '</time></p></li>';
   }
   
   //filter joegatt.net (make relative)

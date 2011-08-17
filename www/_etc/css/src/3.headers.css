@@ -46,7 +46,7 @@ h6, h6 a {
 	font-size: 13px;
 	padding-right: 1px;
 	display: inline;
-	color: #111!important;
+	color: inherit!important;
 }
 h6 a:hover {
 	color: #00c!important;
@@ -69,7 +69,7 @@ h2 {
   color:#00c;
 }
 #title h3 {
-  color:#454545;
+  color:#757575;
   font-weight:bold;
   top:111px;
 }
