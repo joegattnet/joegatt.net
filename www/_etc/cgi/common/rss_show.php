@@ -20,7 +20,7 @@
   }
   
   $output = '<link rel="alternate" type="application/rss+xml" title="' . $original_title . '" href="' . $url . '">';
-  $output .= '<div class="rss"><h4><a href="' . $xml->link['href'] . '">' . $title . '</a></h4>';
+  $output .= '<div class="rss"><h4><a href="' . $xml->link['href'] . '">' . $title . '</a>';
   $output .= '<a href="' . $url . '" class="feed">' . $title . '</a></h4>';
   $output .= '<ul>';
 
@@ -32,7 +32,15 @@
 
   foreach($xml->entry as $item) {
       $output .= '<li><p><a href="' . $item->link['href'] .'">' . $item->title . '</a></p>';
-      $output .= '<p class="details"><a href="' . $item->author->uri .'">' . $item->author->name .'</a>, <time class="timeago" datetime="' . $item->updated . '">' . $item->updated . '</time></p></li>';
+      //Hack
+      if ($authorName){
+        $authorName = $item->author->name;
+        $authorUri = $item->author->uri;
+      } else {
+        $authorName = 'Joe Gatt';
+        $authorUri = 'https://github.com/joegattnet';
+      }
+      $output .= '<p class="details"><a href="' . $authorUri .'">' . $authorName .'</a>, <time class="timeago" datetime="' . $item->updated . '">' . $item->updated . '</time></p></li>';
   }
   
   //filter joegatt.net (make relative)

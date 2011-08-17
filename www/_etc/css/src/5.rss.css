@@ -14,14 +14,19 @@
 .rss .details {
   font-size:11px;
 }
+.rss h4 {
+padding-right:15px;
+position:relative;
+display:inline-block
+}
 .rss a.feed {
   background-image: url("/_etc/images/sprite-v14.png") !important;
-  background-position: -116px -362px !important;
+  background-position: -117px -363px !important;
   display: block;
-  height: 10px;
+  height: 9px;
   position: absolute;
   right: 0;
   text-indent: -9999px;
-  top: 5px;
-  width: 10px;
+  top: 6px;
+  width: 9px;
 }
