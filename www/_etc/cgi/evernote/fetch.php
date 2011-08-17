@@ -192,8 +192,8 @@ foreach ($notesFound as $note) {
         if(!preg_match('/^_/i',$thisTagName)){
           array_push($url_queue,'http://'.SERVER_NAME.'/tags/'.$thisTagNameSimple);
         }
-        $cache_queue = cache_queue($cache_queue,'/-tags=.*\b'.$thisTagName.'\b/');
-        echo "Tag added: $thisTagName ($thisTagGuid)\n";
+        $cache_queue = cache_queue($cache_queue,'/-tags=.*\b'.$thisTagNameSimple.'\b/');
+        echo "Tag added: $thisTagName ($thisTagNameSimple, $thisTagGuid)\n";
        $tagCounter++;
       }
     }
