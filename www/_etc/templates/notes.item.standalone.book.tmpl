@@ -2,11 +2,11 @@
   <div class="book" itemscope itemtype="http://schema.org/Book">
     <p itemprop="author">[% authorFullName %]</p>
     <p itemprop="name">[% bookTitle %]</p>
+    [% IF translatorFullName %]
+      <p>(translated by [% translatorFirstName %] [% translatorSurname %])</p>
+    [% END %]
     <p><span itemprop="publisher">[% publisherName %]</span>, <meta itemprop="publishDate" content="[% publishedDate %]-01-01">[% publishedDate %]</p>
     <p class="isbn" itemprop="isbn">ISBN [% isbn %]</p>  
-    [% IF translator %]
-      <p>Translated by [% translatorFullName %]</p>
-    [% END %]
     [% FOREACH resource IN resources %]
         <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" itemprop="image">
     [% END %]

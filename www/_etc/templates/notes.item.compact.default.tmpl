@@ -1,7 +1,7 @@
 [% PROCESS 'images.tmpl' imageCols = 3 %]
 [% PROCESS 'video.tmpl' vimeoWidth = 300, vimeoHeight = 230, youtubeWidth = 300, youtubeHeight = 230, dailymotionWidth = 300, dailymotionHeight = 230 %]
-[% IF quote %]
-  <blockquote[% IF sourceUrl %] cite="http://[% sourceUrl %]"[% END %]>[% quote %]</blockquote>
+[% IF quoteBriefLinked %]
+  <blockquote[% IF sourceUrl %] cite="http://[% sourceUrl %]"[% END %]>[% quoteBriefLinked %]</blockquote>
 [% END %]
 [% IF attribution %]
   <p class="attribution">[% attribution %]</p>

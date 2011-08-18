@@ -9,7 +9,11 @@ sub printNote {
   my $images;
   my $video;
   my $caption;
+  my $text;
+  my $textBriefLinked;
+  my $textBriefClean;
   my $quote;
+  my $quoteBriefLinked;
   my $attribution;
   my $youtubeId;
   my $vimeoId;
@@ -17,6 +21,9 @@ sub printNote {
   my $authorFullName;
   my $authorSurname;
   my $authorFirstName;
+  my $translatorFullName;
+  my $translatorSurname;
+  my $translatorFirstName;
   my @resources;
   my @tags;
   my @tagsFetch;
@@ -154,8 +161,9 @@ sub printNote {
     $attribution = $1;
   }
 
-  if ($text =~ s/quote\: *(.*?)$//mi) {
+  if ($text =~ s/quote\: *(.*?)$//i) {
       $quote = $1;
+      $quoteBriefLinked = textTruncateLink($quote, 350, false, "/$location/$noteRef", 'More');;
   }
 
   $text =~ s/\&nbsp\;/ /g;
@@ -163,16 +171,21 @@ sub printNote {
      #Add City
      ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
      
-     if($authorFullName =~ /(.*?)\, *(.*?)/){
+     if($authorFullName =~ /(.*?)\, *(.*?)$/){
        $authorSurname = $1;
        $authorFirstName = $2;
      } else {
        $authorSurname = $authorFullName;
      }
-     $translatorFullName = $text =~ s/tra?n?s?l?a?t?o?r?\: *(.*)$//mi;
-     if($translatorFullName =~ /(.*?)\, *(.*?)/){
-      $translatorSurname = $1;
-      $translatorFirstName = $2;
+     
+     if($text =~ s/tra?n?s?l?a?t?o?r?\: *(.*)$//i){
+       $translatorFullName = $1;
+       if($translatorFullName =~ /(.*?)\, *(.*?)$/){
+        $translatorSurname = $1;
+        $translatorFirstName = $2;
+       }
+     } else {
+        $translatorSurname = $translatorFullName;
      }
   } elsif ($title && $title ne '' && $isTopic && $text eq '' && $quote eq '') {
     use WWW::Wikipedia;
@@ -232,6 +245,7 @@ sub printNote {
         textBriefLinked => $textBriefLinked,
         caption => $caption,
         quote => $quote,
+        quoteBriefLinked => $quoteBriefLinked,
         attribution => $attribution,
 
         bookTitle => $bookTitle,
