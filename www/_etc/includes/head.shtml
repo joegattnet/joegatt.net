@@ -107,7 +107,7 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
 
 <!--#if expr="$server != /joegatt.net/" -->
-  <style type="t/css">
+  <style type="text/css">
     <!--#include virtual="/_etc/css/src/0.Debug.css"-->  
   </style>
 <!--#endif -->
