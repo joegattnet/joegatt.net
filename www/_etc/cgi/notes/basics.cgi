@@ -169,7 +169,7 @@ sub printNote {
   $text =~ s/\&nbsp\;/ /g;
   if ($isBook) {
      #Add City
-     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*) \( ?(.*?), ([\d]{4}) ?\) ?isbn ?([\w]*)$/mi;
+     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*) \( ?(.*?), ([\d\/]{4,9}) ?\) ?isbn ?([\w]*)$/mi;
      
      if($authorFullName =~ /(.*?)\, *(.*?)$/){
        $authorSurname = $1;
@@ -178,6 +178,11 @@ sub printNote {
        $authorSurname = $authorFullName;
      }
      
+     if($publishedDate =~ /([\d]{4})\/([\d]{4})$/){
+       $publishedDateOriginal = $1;
+       $publishedDate = $2;
+     }
+
      if($text =~ s/tra?n?s?l?a?t?o?r?\: *(.*)$//i){
        $translatorFullName = $1;
        if($translatorFullName =~ /(.*?)\, *(.*?)$/){
@@ -251,6 +256,7 @@ sub printNote {
         bookTitle => $bookTitle,
         publisherName => $publisherName,
         publishedDate => $publishedDate,
+        publishedDateOriginal => $publishedDateOriginal,
         isbn => $isbn,
         authorFullName => $authorFullName,
         authorSurname => $authorSurname,

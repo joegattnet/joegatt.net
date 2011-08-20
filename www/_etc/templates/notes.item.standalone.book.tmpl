@@ -6,7 +6,10 @@
       <p>(translated by [% translatorFirstName %] [% translatorSurname %])</p>
     [% END %]
     <p><span itemprop="publisher">[% publisherName %]</span>, <meta itemprop="publishDate" content="[% publishedDate %]-01-01">[% publishedDate %]</p>
-    <p class="isbn" itemprop="isbn">ISBN [% isbn %]</p>  
+    [% IF publishedDateOriginal %]
+      <p>(originally published in [% publishedDateOriginal %])</p>
+    [% END %]
+    <p class="isbn" itemprop="isbn">ISBN [% isbn %]</p>
     [% FOREACH resource IN resources %]
         <img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" itemprop="image">
     [% END %]
