@@ -1,0 +1,18 @@
+<section id="content" class="grid_5 suffix_1 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
+  <!--#include virtual="/_etc/cache/notes--fragment-tags=_code_intro.html" -->
+  <!--#include virtual="$content" -->
+</section>
+<section class="grid_3" data-url="<!--#echo var="content_middle" -->">
+  <div class="issues">
+    <h4>Issues</h4>
+    <ul>
+      <li><a href="https://github.com/joegattnet/joegatt.net/issues?labels=Bug%2CProduction&sort=created&direction=desc&state=open">Live bugs</a></li>
+      <li><a href="https://github.com/joegattnet/joegatt.net/issues?state=open">All issues</a></li>
+    </ul>
+  </div>
+  <!--#include virtual="$content_middle" -->
+</section>
+<section class="grid_3 omega" data-url="<!--#echo var="content_right" -->">
+  <!--#include virtual="$content_right" -->
+</section>
+<!--#include virtual="$apparatus" -->
