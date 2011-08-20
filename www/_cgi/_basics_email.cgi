@@ -9,7 +9,7 @@ sub email_confirm_registration {
   $url =~ s/\/$//;
   my $template = 'confirm_registration';
   my $subject = 'Confirm email';
-  my $from_email = "$serverName <register@joegatt.net>";
+  my $from_email = "$serverName <register>";
   
   send_email($template,$subject,$from_email,$to_email,$username,$user_id,$code,$url);
 }
@@ -23,7 +23,7 @@ sub email_password_reset {
   $url =~ s/\/$//;
   my $template = 'password_reset';
   my $subject = 'Password reset';
-  my $from_email = "$serverName <register@joegatt.net>";
+  my $from_email = "$serverName <register>";
   
   send_email($template,$subject,$from_email,$to_email,$username,$user_id,$code,$url);
 }

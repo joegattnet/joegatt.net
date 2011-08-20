@@ -3,6 +3,7 @@
 use utf8;
 use URI::Escape;
 use CGI::Cookie;
+use CGI;
 
 # ******************************************************************************
 
@@ -31,7 +32,7 @@ use CGI::Cookie;
     	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
     } else {
     	$debug = false;
-      $dsn = 'DBI:mysql:joegatt-net-production:localhost';
+      $dsn = 'DBI:mysql:joegatt-net-production-v1:localhost';
     }
 	}
 

@@ -16,10 +16,10 @@
 
 <!--#set var="path" value="/" -->
 <!--#set var="canonical" value="http://$server/" -->
-<!--#set var="scripts_version" value="3" -->
-<!--#set var="styles_version" value="5" -->
-<!--#set var="styles_post_version" value="2" -->
-<!--#set var="styles_print_version" value="2" -->
+<!--#set var="scripts_version" value="4" -->
+<!--#set var="styles_version" value="6" -->
+<!--#set var="styles_post_version" value="3" -->
+<!--#set var="styles_print_version" value="3" -->
 
 <!--#set var="favicon" value="${root}favicon.ico" -->
 <!--#set var="iphoneicon" value="${root}_images/iphoneicon.png" -->
