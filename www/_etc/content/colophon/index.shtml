@@ -81,5 +81,5 @@
   <div class="grid_1 omega"><p>b32fd4</p></div>
 </section>
 <aside class="meta grid_12" id="versions">
-    <p>Version <span class="version-source">0.4</span> (<abbr title="2011-06-30T00:26:14Z" class="timeago">30 Jun 2011 at 00:26 UTC</abbr>)</p>
+    <p>Version <span class="version-source">0.4</span> (<time datetime="2011-06-30T00:26:14Z" class="timeago" updated>30 Jun 2011 at 00:26 UTC</time>)</p>
 </aside>

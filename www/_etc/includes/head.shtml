@@ -96,7 +96,7 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--#if expr="1=0" -->
   <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo encoding="none" var="rss_title" -->" href="<!--#echo encoding="none" var="rss_url" -->">
 <!--#endif -->
-<!--#if expr="$styles_discrete=false||$server=joegatt.net||$server=test.joegatt.org" -->
+<!--#if expr="$styles_discrete=false||$server=/joegatt.net/||$server=test.joegatt.org" -->
   <link rel="stylesheet" href="<!--#echo encoding="none" var="css_url" -->/_etc/min/g=css<!--#echo encoding="none" var="css_version" -->&amp;<!--#echo encoding="none" var="css_cachebuster" -->">
 <!--#else -->
   <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
