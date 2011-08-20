@@ -45,6 +45,11 @@
 <!--#set var="css_cachebuster" value="4" -->
 <!--#set var="js_cachebuster" value="4" -->
 
+<!--#if expr="$server=/^v(\d)\./" -->
+  <!--#set var="css_cachebuster" value="4$1" -->
+  <!--#set var="js_cachebuster" value="4$1" -->
+<!--#endif -->
+
 <!--#set var="summary" value="A long anagram." -->
 <!--#set var="keywords" value="anagram,oulipo" -->
 
