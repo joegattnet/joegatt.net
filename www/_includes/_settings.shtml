@@ -42,8 +42,8 @@
 <!--#set var="js_version" value="1-1" -->
 <!--#set var="css_version" value="1-1" -->
 
-<!--#set var="css_cachebuster" value="3" -->
-<!--#set var="js_cachebuster" value="3" -->
+<!--#set var="css_cachebuster" value="4" -->
+<!--#set var="js_cachebuster" value="4" -->
 
 <!--#set var="summary" value="A long anagram." -->
 <!--#set var="keywords" value="anagram,oulipo" -->
