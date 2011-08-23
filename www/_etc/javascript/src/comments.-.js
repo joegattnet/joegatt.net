@@ -3,6 +3,7 @@ NB.Comments = {
     var form = $('#comments form');
     var comment = $('#comments textarea').val();
     $('#comments form input[name=p]').val(NB.p.top);
+    $('#comments form input[name=b]').val(NB.book.id);
 		 if (comment === ''||comment === NB.TEXT.prompt.add_comment) {
         alert(NB.TEXT.error.add_comment);
 		    NB.Nav.track(1, 'User Error', 'Add comment');

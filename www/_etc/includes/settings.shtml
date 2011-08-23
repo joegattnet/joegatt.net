@@ -16,6 +16,8 @@
 
 <!--#if expr="$QUERY_STRING = /b=([0-9]+)/" -->
   <!--#set var="b" value="$1" -->
+<!--#else -->
+  <!--#set var="b" value="0" -->
 <!--#endif -->
 
 <!--#if expr="$QUERY_STRING = /u=([a-zA-Z0-9]+)/" -->

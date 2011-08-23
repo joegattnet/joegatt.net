@@ -11,6 +11,7 @@ NB.Nav.crumb = {
 //    NB.crumb.page_id = NB.crumb.section + '_' + NB.crumb.page;
 //    NB.crumb.path = NB.Url.dir(url);
 //    NB.crumb.canonical = NB.Url.complete(url);
+    $('input[name=url]').val(url);
     if (path === location.pathname) {
       location.hash = '';
     } else {

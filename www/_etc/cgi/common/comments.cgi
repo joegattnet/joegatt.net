@@ -73,11 +73,13 @@ $output .= qq~
     <form action="/_etc/cgi/common/comments_save.cgi" method="post">
       <fieldset>
         <textarea name="text" class="focus_handle prompt_add_comment" id="new_comment">Add your comment here</textarea>
-    		<input type="hidden" name="page_id" value="$page_id" />
-    		<input type="hidden" name="p" />
-    		<input type="hidden" name="new_order" value="$new_order" />
-    		<input type="hidden" name="user_id" value="$u" />
- 		    <input type="submit" value="Submit" onmousedown="NB.Comments.add();" onclick="return false;" />
+    		<input type="hidden" name="page_id" value="$page_id">
+    		<input type="hidden" name="url">
+    		<input type="hidden" name="b">
+    		<input type="hidden" name="p">
+    		<input type="hidden" name="new_order" value="$new_order">
+    		<input type="hidden" name="user_id" value="$u">
+ 		    <input type="submit" value="Submit" onmousedown="NB.Comments.add();" onclick="return false;">
       </fieldset>
     </form>
 	</div>
