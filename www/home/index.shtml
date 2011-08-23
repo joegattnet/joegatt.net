@@ -17,7 +17,5 @@
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
 
 <!--#set var="content" value="/_etc/includes/home/still.shtml?src=the_naming_of_the_animals_2-0-10_3-wb-12-0-0-0.jpg&url=/wutz&alt=Schulmeisterlein Wutz" -->
-<!--set var="content" value="/_etc/includes/home/still.shtml?src=kunstformen1-0-10_3-wb-12-0-0-0.jpg&url=/wutz&alt=Schulmeisterlein Wutz" -->
-<!--set var="content" value="/_etc/content/home/konichiwa-vimeo.html" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

@@ -12,7 +12,7 @@
 <!--#set var="title.window" value="$title" -->
 
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&alphabetical=true&view=bibliography.html" -->
+<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&alphabetical=true&limit=999&view=bibliography.html" -->
 
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->
