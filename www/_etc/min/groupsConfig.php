@@ -150,6 +150,7 @@ return array(
    '//_etc/css/lib/addthis-widget60-customised.css',
    '//_etc/css/lib/addthis-counter60-customised.css',
    '//_etc/css/lib/mb.YTVPlayer.css',
+   '//_etc/css/src/8.handheld.css',
    '//_etc/css/src/8.handheld-landscape.css',
    '//_etc/css/src/8.handheld-portrait.css',
    '//_etc/css/src/9.print.css'
