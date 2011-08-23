@@ -133,13 +133,13 @@ sub printNote {
     
   #Videos
    if ($template ne 'head') {
-     if ($text =~ s/http.*vimeo\.com.*?([0-9]+)// || $source_url =~ s/http.*vimeo\.com.*?([0-9]+)//) {
+     if ($source_url =~ s/http.*vimeo\.com.*?([0-9]+)// || $text =~ s/http.*vimeo\.com.*?([0-9]+)//) {
        $vimeoId = $1;
       }
-     if ($text =~ s/http.*youtube\.co..?\/watch\?v\=(\w+)// || $source_url =~ s/http.*youtube\.com\/watch\?v\=(\w+)//) {
+     if ($source_url =~ s/http.*youtube\.com\/watch\?v\=([a-zA-Z0-9]+)// || $text =~ s/http.*youtube\.co..?\/watch\?v\=([a-zA-Z0-9]+)//) {
        $youtubeId = $1;
      }
-     if ($text =~ s/http.*dailymotion\.com\/video\/(\w+?)_// || $source_url =~ s/http.*dailymotion\.com\/video\/(\w+?)_//) {
+     if ($source_url =~ s/http.*dailymotion\.com\/video\/([^\_]+?)\_// || $text =~ s/http.*dailymotion\.com\/video\/([^\_]+?)\_//) {
        $dailymotionId = $1;
      }
    }
@@ -169,7 +169,7 @@ sub printNote {
   $text =~ s/\&nbsp\;/ /g;
   if ($isBook) {
      #Add City
-     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+): ?(.*) \( ?(.*?), ([\d\/]{4,9}) ?\) ?isbn ?([\w]*)$/mi;
+     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+?): ?(.+) ?\( ?(.+?), ([\d\/]{4,9}) ?\) ?isbn ?([\w]+)$/mi;
      
      if($authorFullName =~ /(.*?)\, *(.*?)$/){
        $authorSurname = $1;
@@ -181,6 +181,8 @@ sub printNote {
      if($publishedDate =~ /([\d]{4})\/([\d]{4})$/){
        $publishedDateOriginal = $1;
        $publishedDate = $2;
+     } else {
+       $publishedDateOriginal = $publishedDate;
      }
 
      if($text =~ s/tra?n?s?l?a?t?o?r?\: *(.*)$//i){
@@ -192,6 +194,12 @@ sub printNote {
      } else {
         $translatorSurname = $translatorFullName;
      }
+
+     if ($source_url !~ /gutenberg/ && $source_url !~ /wikisource\.org/ && $source_url !~ /archive\.org/) {
+       undef($source_url);
+      }
+
+
   } elsif ($title && $title ne '' && $isTopic && $text eq '' && $quote eq '') {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();
