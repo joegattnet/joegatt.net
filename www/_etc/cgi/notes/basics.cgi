@@ -136,7 +136,7 @@ sub printNote {
      if ($source_url =~ s/http.*vimeo\.com.*?([0-9]+)// || $text =~ s/http.*vimeo\.com.*?([0-9]+)//) {
        $vimeoId = $1;
       }
-     if ($source_url =~ s/http.*youtube\.com\/watch\?v\=([a-zA-Z0-9]+)// || $text =~ s/http.*youtube\.co..?\/watch\?v\=([a-zA-Z0-9]+)//) {
+     if ($source_url =~ s/http.*youtube\.co..?.?\/watch\?v\=(.+)// || $text =~ s/http.*youtube\.co..?.?\/watch\?v\=([^\"]+)//) {
        $youtubeId = $1;
      }
      if ($source_url =~ s/http.*dailymotion\.com\/video\/([^\_]+?)\_// || $text =~ s/http.*dailymotion\.com\/video\/([^\_]+?)\_//) {
