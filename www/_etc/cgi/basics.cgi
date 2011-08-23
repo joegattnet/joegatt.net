@@ -549,11 +549,15 @@ sub cache_refresh {
       my $reqGet = new HTTP::Request GET => $url;
       my $res = $ua->request($reqPurge);
       my $res = $ua->request($reqGet);
+      sleep 1;
       if($file !~ /\.html$/){
         #request xssi pages four times to refresh included includes
         my $res = $ua->request($reqGet);
+        sleep 1;
         my $res = $ua->request($reqGet);
+        sleep 1;
         my $res = $ua->request($reqGet);
+        sleep 1;
       }
       if ($debug){
         if ($res->is_error) {

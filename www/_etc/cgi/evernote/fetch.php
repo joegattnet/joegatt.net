@@ -367,10 +367,15 @@ if(sizeof($url_queue)>0){
 
 if(sizeof($cache_queue)>0||sizeof($url_queue)>0){
   $temp = get_content('http://'.SERVER_NAME.'/');
+  sleep(1);
   $temp = get_content('http://'.SERVER_NAME.'/tags/');
+  sleep(1);
   $temp = get_content('http://'.SERVER_NAME.'/notes/');
+  sleep(1);
   $temp = get_content('http://'.SERVER_NAME.'/bibliography/');
+  sleep(1);
   $temp = get_content('http://'.SERVER_NAME.'/links/');
+  sleep(1);
   $temp = get_content('http://'.SERVER_NAME.'/topics/');
 }
 
@@ -414,6 +419,7 @@ function cache_refresh($cache_queue,$servername ){
     echo "Deleted: $file\n";
     $url = 'http://'.$servername.'/_etc/cache/'.$file;
     $temp = get_content($url);
+    sleep(1);
   }
 }
 

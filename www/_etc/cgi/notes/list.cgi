@@ -9,9 +9,13 @@ $offset = 0;
 
 formRead("get");
 
-$tags =~ s/\_/(( |[[:punct:]])+)/g;
-$tags =~ s/\,/XXX|XXX/g;
-$tags = "XXX${tags}XXX";
+#$tags =~ s/\_/(( |[[:punct:]])+)/g;
+#$tags =~ s/\,/XXX|XXX/g;
+#$tags = "XXX${tags}XXX";
+
+$tagsCond = $tags;
+$tagsCond =~ s/\,/' OR tags.name_simple = '/g;
+$tagsCond = "tags.name_simple = '$tagsCond'";
 
 if ($exclude ne '') {
   $excludeSQL = "AND notes.e_guid NOT LIKE '".sprintf("%04x", $exclude)."%'";
@@ -25,7 +29,11 @@ if($alphabetical eq 'true' && $view eq 'bibliography') {
   $order = "ORDER BY date_modified DESC";
 } else {
 #  $tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') LIKE CONCAT('%', ?, '%')) AND check1=notes.e_guid AND check2=tags.e_guid";
-  $tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";
+  
+  $tagsSQL = "AND check1=notes.e_guid AND check2=tags.e_guid AND ($tagsCond)";
+  #$tagsSQL = "AND check1=notes.e_guid AND check2=tags.e_guid AND (CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?)";
+  #This is too slow
+  #$tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";
   $order = "ORDER BY score DESC, date_modified DESC";
 }
 
@@ -44,19 +52,33 @@ if ($type eq 'fragment') {
 }
 
 $dbh = connectDB();
-my $sth = $dbh->prepare(qq{
-  SELECT SQL_CALC_FOUND_ROWS notes.e_guid,COUNT(*) AS score 
-  FROM notes,tags,_lookup 
-  WHERE latest = 1
-  AND notes.publish >= ?
-  AND notes.deleted <> 1 
-  AND notes.type = ?
-  $excludeSQL 
-  $tagsSQL 
-  GROUP BY notes.e_guid 
-  $order
-  LIMIT ? OFFSET ?
-});
+
+if ($latest eq 'true'){
+  $sth = $dbh->prepare(qq{
+    SELECT SQL_CALC_FOUND_ROWS notes.e_guid 
+    FROM notes 
+    WHERE latest = 1
+    AND notes.publish >= ?
+    AND notes.deleted <> 1 
+    AND notes.type = ?
+    $order
+    LIMIT ? OFFSET ?
+  });
+} else {
+  $sth = $dbh->prepare(qq{
+    SELECT SQL_CALC_FOUND_ROWS notes.e_guid,COUNT(*) AS score 
+    FROM notes,tags,_lookup 
+    WHERE latest = 1
+    AND notes.publish >= ?
+    AND notes.deleted <> 1 
+    AND notes.type = ?
+    $excludeSQL 
+    $tagsSQL 
+    GROUP BY notes.e_guid 
+    $order
+    LIMIT ? OFFSET ?
+  });
+}
 
 if ($type eq '') {
   $output = getNotes(1, 'notes', $latest);
@@ -78,7 +100,7 @@ sub getNotes {
   if ($latest eq 'true') {
     $sth->execute($notesThreshold, $type, $limit, $offset);
   } else {
-    $sth->execute($notesThreshold, $type, $tags, $limit, $offset);
+    $sth->execute($notesThreshold, $type, $limit, $offset);
   }
 
   $notesCount = 0;
