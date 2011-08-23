@@ -9,9 +9,9 @@ $offset = 0;
 
 formRead("get");
 
-#$tags =~ s/\_/(( |[[:punct:]])+)/g;
-#$tags =~ s/\,/XXX|XXX/g;
-#$tags = "XXX${tags}XXX";
+#If we're just doing bibliography we should do dedicated ones like this
+#SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(textonly,':',1),',',1) AS authorSurname, title, CONV(SUBSTRING(e_guid,1,4), 16, 10) FROM notes WHERE type=2 AND latest=1 AND deleted<>1 ORDER BY authorSurname
+#And send it straight to a TT loop with saving location
 
 $tagsCond = $tags;
 $tagsCond =~ s/\,/' OR tags.name_simple = '/g;
@@ -28,12 +28,7 @@ if($alphabetical eq 'true' && $view eq 'bibliography') {
 } elsif($latest eq 'true'){
   $order = "ORDER BY date_modified DESC";
 } else {
-#  $tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') LIKE CONCAT('%', ?, '%')) AND check1=notes.e_guid AND check2=tags.e_guid";
-  
   $tagsSQL = "AND check1=notes.e_guid AND check2=tags.e_guid AND ($tagsCond)";
-  #$tagsSQL = "AND check1=notes.e_guid AND check2=tags.e_guid AND (CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?)";
-  #This is too slow
-  #$tagsSQL = "AND (CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?) AND check1=notes.e_guid AND check2=tags.e_guid";
   $order = "ORDER BY score DESC, date_modified DESC";
 }
 

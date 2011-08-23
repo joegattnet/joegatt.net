@@ -5,8 +5,6 @@ require '../notes/basics.cgi';
 
 formRead("get");
 
-$p_hex = sprintf("%04x", $p);
-
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
   SELECT DISTINCT notes.e_guid 
