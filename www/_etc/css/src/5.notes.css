@@ -8,8 +8,8 @@
   content: ": ";
 }
 iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
-  background-image:none;
-  background-color:#333;
+  background-image: none!important;
+  background-color: #333;
 }
 .notes embed {
   background-color:#333;
