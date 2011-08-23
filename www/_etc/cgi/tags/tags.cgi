@@ -7,6 +7,7 @@ formRead("get");
 $tags =~ s/\_/(( |[[:punct:]]|_)+)/g;
 $tags =~ s/\,/XXX|XXX/g;
 $tags = "XXX${tags}XXX";
+#See how it's now done in notes/list
 
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
