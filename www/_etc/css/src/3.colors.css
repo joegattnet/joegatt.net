@@ -3,10 +3,11 @@
 	color: #D3120F;
 }
 .section-bibliography h1, .section-bibliography .text h3 {
-	color: #f3f129;
+	/* Darker than palette */
+  color: #dfdd13;
 }
 .section-code h1, .section-code .text h3 {
-	color: #29cff3;
+	color: #22aecc;
 }
 .section-colophon h1, .section-colophon .text h3 {
 	color: #999999;
