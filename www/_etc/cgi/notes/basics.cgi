@@ -169,7 +169,7 @@ sub printNote {
   $text =~ s/\&nbsp\;/ /g;
   if ($isBook) {
      #Add City
-     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+?): ?(.+) ?\( ?(.+?), ([\d\/]{4,9}) ?\) ?isbn ?([\w]+)$/mi;
+     ($authorFullName, $bookTitle, $publisherName, $publishedDate, $isbn) = $text =~ /([^:]+?): ?(.+) ?\( ?(.+?)\, ([\d\/]{4,9}) ?\) ?isbn ?([\w]+)/mi;
      
      if($authorFullName =~ /(.*?)\, *(.*?)$/){
        $authorSurname = $1;

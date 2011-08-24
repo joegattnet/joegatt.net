@@ -112,6 +112,7 @@ abbr[title], dfn[title] {
 	font-family: Georgia, "Palatino Linotype", serif;
 	color: #333333;
 	text-align: justify;
+	text-justify: newspaper;
 	line-height: 20px;
 }
 #content .text p + p {
