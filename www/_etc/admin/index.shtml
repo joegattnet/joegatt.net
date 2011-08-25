@@ -4,10 +4,11 @@
 <!--#set var="page" value="admin" -->
 <!--#set var="page_file" value="index.shtml" -->
 
-<!--#set var="title" value="Admin @ $SERVER_NAME" -->
-<!--#set var="title_url" value="/_etc/admin/" -->
+<!--#set var="title" value="admin@${server}" -->
+<!--#set var="title.url" value="/_etc/admin/" -->
+<!--#set var="title.window" value="$title" -->
 
-<!--#set var="yield" value="yield_1024_10_02t_05_07.shtml" -->
+<!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
 <!--#set var="content" value="/_etc/includes/admin/iframe.shtml" -->
 
 <!--#set var="rowname" value="results" -->

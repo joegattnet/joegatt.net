@@ -6,8 +6,10 @@ $scripts = '  <script type="text/javascript" src="lib/prototype.js"></script>
 
 include 'header.php' ?>
 
-  <div class="info">
     <h1>Crop Images</h1>
+
+  <p>Show: <a href="index.php?show=">used</a> <a href="index.php?show=all">all</a> <a href="index.php?show=raw">raw</a></p>
+<hr style="float:none;clear:both;">
     <!--
     <p>The following is a demo of <a href="http://mondaybynoon.com/2007/01/22/crop-resize-with-javascript-php-and-imagemagick/">
     JavaScript Crop and Resize Images</a>.  Using a combination of <a href="http://www.php.net/">PHP</a>, 
@@ -19,23 +21,6 @@ include 'header.php' ?>
 
     <p>Current filesize limit is <strong>50k</strong>, you can change that as you see fit.</p>
     -->
-    <form action="crop_image2.php" method="post" name="imageUpload" id="imageUpload" enctype="multipart/form-data">
-    <fieldset>
-      <legend>Upload Image</legend>
-      <input type="hidden" class="hidden" name="max_file_size" value="50000" />
-      <div class="file">
-        <label for="image">Image</label>
-        <input type="file" name="image" id="image" />
-      </div>
-      <div id="submit">
-        <input class="submit" type="submit" name="submit" value="Upload" id="upload" />
-      </div>
-      <div class="hidden" id="wait">
-        <img src="images/wait.gif" alt="Please wait..." />
-      </div>
-    </fieldset>
-    </form>
-
   <ul style="clear:both;">
   <?php
   
@@ -80,8 +65,8 @@ include 'header.php' ?>
   ?>
   </ul>
 
-  <p>Show: <a href="index.php?show=">used</a> <a href="index.php?show=all">all</a> <a href="index.php?show=raw">raw</a></p>
+<hr style="float:none;clear:both;">
 
-  </div> <!-- /info -->
+  <p>Show: <a href="index.php?show=">used</a> <a href="index.php?show=all">all</a> <a href="index.php?show=raw">raw</a></p>
   
 <?php include 'footer.php' ?>

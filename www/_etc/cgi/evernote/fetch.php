@@ -209,6 +209,7 @@ foreach ($notesFound as $note) {
       $thisActive = $resources[$i]->active;
       $thisHash = $resources[$i]->data->bodyHash;
       
+      #Evernote could be sending the wrong MIME type
       if($thisMime=='image/jpeg'){$ext = 'jpg';}
       if($thisMime=='image/png'){$ext = 'png';}
       if($thisMime=='image/gif'){$ext = 'gif';}
@@ -235,7 +236,7 @@ foreach ($notesFound as $note) {
         $camera_make = $attributes->cameraMake;
         $camera_model = $attributes->cameraModel;
         $original_filename = $attributes->fileName;
-        
+                
         $resource_latitude=($resource_latitude===null?0:$resource_latitude);
         $resource_longitude=($resource_longitude===null?0:$resource_longitude);
         $resource_altitude=($resource_altitude===null?0:$resource_altitude);
@@ -243,6 +244,27 @@ foreach ($notesFound as $note) {
         $fp = fopen($filename, 'w');
         fwrite($fp, $data);
         fclose($fp);
+        
+        #Double-check that MIME is correct (see above)
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime_type = finfo_file($finfo, $filename);
+        finfo_close($finfo);
+        if($mime_type=='image/jpeg'){$newExt = 'jpg';}
+        if($mime_type=='image/png'){$newExt = 'png';}
+        if($mime_type=='image/gif'){$newExt = 'gif';}
+        if($mime_type=='audio/mpeg'){$newExt = 'mpg';}
+        if($newExt != $ext){
+          $ext = $newExt;
+          $filename = imagelocation($imageTitle,'raw') . $imageTitle . '.' . $ext;
+          $fp = fopen($filename, 'w');
+          fwrite($fp, $data);
+          fclose($fp);
+          echo "Mime-Type corrected for $filename\n";
+        }
+
+        #Evernote does send the correct MIME-type but the windows client converts
+        #anything pasted into it into a png
+        
         $query = sprintf("INSERT INTO resources (e_guid,title,rnd,ext,source_url,latitude,longitude,altitude,camera_make,camera_model,original_filename) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
             $thisResourceGuid,
             mysql_real_escape_string($imageTitle),

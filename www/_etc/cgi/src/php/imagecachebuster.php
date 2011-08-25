@@ -1,6 +1,6 @@
 <?php
 
-function imagecachebuster($imageName,$oldRnd,$newRnd,$aspectRatio){
+function imagecachebuster($imageName,$newRnd,$aspectRatio){
 
   if ($handle = opendir('../../../_etc/resources/cut')) {
     while (($file = readdir($handle)) !== false) {

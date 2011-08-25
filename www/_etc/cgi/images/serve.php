@@ -9,9 +9,9 @@ require_once("imageprocess.php");
 require_once("imagelocation.php");
 
 //Settings
-$columnWidths = array("wb" => 60, "if" => 100);
-$gutterWidths = array("wb" => 20, "if" => 10);
-$lineHeight = array("wb" => 10);
+$columnWidths = array("wb" => 60, "if" => 100, "fw" => 1, "th" => 1);
+$gutterWidths = array("wb" => 20, "if" => 10, "fw" => 1, "th" => 1);
+$lineHeight = array("wb" => 10, "if" => 1, "fw" => 1, "th" => 1);
 
 $quality = array("jpg" => 60, "gif" => -1, "png" => -1);
 

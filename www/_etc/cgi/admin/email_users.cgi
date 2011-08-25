@@ -3,11 +3,6 @@
 require '../basics.cgi';
 require '../basics_email.cgi';
 
-
-if(!$localhost){
-  require '../basics_email.cgi';
-}
-
 formRead("get");
 formRead("post");
 
@@ -26,7 +21,7 @@ print qq~
 print "<p>Sending email.....</p>";
 #send_email();#'webmaster\@joegatt.net','joe.gatt\@gmail.com','TEST<><><>',"Ehe\nEhe\n");
 
-send_email('password_reset','TEST EMAIL','testing@joegatt.net','jgx@joegatt.net','melodynelson','999','ABC','/wutz/1');
+send_email('email.password_reset','TEST EMAIL','testing@joegatt.net','jgx@joegatt.net','melodynelson','999','ABC','/wutz/1');
 
 print "<p>Email sent.</p>";
 

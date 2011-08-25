@@ -1,8 +1,6 @@
 <?php 
 
-$styles = '  <link type="text/css" rel="stylesheet" href="css/debug.css" media="screen, projection" />
-  <link type="text/css" rel="stylesheet" href="css/cropper.css" media="screen, projection" />
-  <link type="text/css" rel="stylesheet" href="css/imig.css" media="screen, projection" />
+$styles = '  <link type="text/css" rel="stylesheet" href="css/cropper.css" media="screen, projection" />
   <!--[if IE 6]><link type="text/css" rel="stylesheet" href="css/cropper_ie6.css" media="screen, projection" /><![endif]-->
   <!--[if lte IE 5]><link type="text/css" rel="stylesheet" href="css/cropper_ie5.css" media="screen, projection" /><![endif]-->';
 

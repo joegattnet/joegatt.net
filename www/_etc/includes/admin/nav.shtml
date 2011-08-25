@@ -19,6 +19,7 @@
   <ul id="n_a_other" class="toggle remember<!--#if expr="$HTTP_COOKIE=/n_a_other=true/" --> closed<!--#endif -->">
     <li class="header"><a href="javascript:;">Other</a></li>
 		<li><a href="/_etc/cgi/admin/cache.cgi" target="<!--#echo var="rowname" -->">Cache</a></li>
+		<li><a href="/_etc/cgi/evernote/fetch.php" target="<!--#echo var="rowname" -->">Evernote</a></li>
 		<li><a href="/_etc/cgi/crop/index.php" target="<!--#echo var="rowname" -->">Images</a></li>
 		<li><a href="/_etc/cgi/admin/error_log.cgi" target="<!--#echo var="rowname" -->">Error log</a></li>
 </ul>
@@ -30,7 +31,7 @@
 		<li><a href="/_etc/cgi/admin/session_test.php" target="<!--#echo var="rowname" -->">PHP session test</a></li>
 </ul>
 <ul class="a_arrows">
-		<li><a href="/_etc/cgi/admin/adminer.php" target="_blank" -->">MySQL Adminer</a></li>
-		<li><a href="/_etc/cgi/admin/adminer_editor.php" target="_blank" -->">MySQL Adminer Editor</a></li>
-		<li><a href="http://joegatt.org/phpmyadmin" target="_blank" -->">MySQL phpMyAdmin</a></li>
+		<li><a href="/_etc/cgi/admin/adminer.php" target="_blank">MySQL Adminer</a></li>
+		<li><a href="/_etc/cgi/admin/adminer_editor.php" target="_blank">MySQL Adminer Editor</a></li>
+		<li><a href="http://joegatt.org/phpmyadmin" target="_blank">MySQL phpMyAdmin</a></li>
 </ul>

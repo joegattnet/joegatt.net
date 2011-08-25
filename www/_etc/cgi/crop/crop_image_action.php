@@ -25,7 +25,7 @@ if(isset($_POST['imageFileName'])) {
   $cropHeight      = $_POST['cropHeight'] * $adjustPreview;
   $aspectWidth      = $_POST['aspectWidth'];
   $aspectHeight     = $_POST['aspectHeight'];
-  $oldRnd           = $_POST['rnd'];
+#  $oldRnd           = $_POST['rnd'];
   $newRnd = (rand()%99999);
   
   if($cropWidth == 0) { $cropWidth = $imageWidth; }
@@ -56,7 +56,7 @@ if(isset($_POST['imageFileName'])) {
      print "<p>Deleted from cache: $destinationFileAuto</p>";
   }
 
-  imagecachebuster($imageFileName,$oldRnd,$newRnd,$aspectWidth . '_' . $aspectHeight);
+  imagecachebuster($imageFileName,$newRnd,$aspectWidth . '_' . $aspectHeight);
 
   $preview1 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-wb-4-0-0-0.' . $imageExtension;
   $preview2 = '../../../_etc/resources/cut/' . $imageFileName . '-' . $newRnd . '-' . $aspectWidth . '_' . $aspectHeight . '-wb-7-0-0-0.' . $imageExtension;
