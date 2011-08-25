@@ -14,7 +14,7 @@ print qq~
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <title>Cache manager</title>
       <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-      <link rel="stylesheet" type="text/css" media="all" href="/_etc/css/src/Admin.css" />
+      <link rel="stylesheet" type="text/css" media="all" href="/_etc/css/src/0.Admin.css" />
     </head>
     <body class="admin">
     <h2>Cache manager</h2>
