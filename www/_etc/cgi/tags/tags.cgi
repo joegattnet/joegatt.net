@@ -4,16 +4,15 @@ require '../basics.cgi';
 
 formRead("get");
 
-$tags =~ s/\_/(( |[[:punct:]]|_)+)/g;
-$tags =~ s/\,/XXX|XXX/g;
-$tags = "XXX${tags}XXX";
-#See how it's now done in notes/list
+$tagsCond = $tags;
+$tagsCond =~ s/\,/' OR tags.name_simple = '/g;
+$tagsCond = "tags.name_simple = '$tagsCond'";
 
 $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
   SELECT DISTINCT name, name_simple
   FROM tags, notes, _lookup
-  WHERE CONCAT('XXX',tags.name_simple,'XXX') REGEXP ?
+  WHERE $tagsCond
   AND latest=1 
   AND NOT tags.name_simple LIKE '\\_%' 
   AND notes.publish >= ?
@@ -23,7 +22,7 @@ my $sth = $dbh->prepare(qq{
   AND check2=tags.e_guid
   ORDER BY tags.name_simple 
 });
-$sth->execute($tags, $notesThreshold);
+$sth->execute($notesThreshold);
 
 $count = 0;
 while (my ($tag, $tagLink) = $sth->fetchrow_array()) {

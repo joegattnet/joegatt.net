@@ -3,5 +3,7 @@
   [% FOREACH tag IN tags %]
     [% tag.listItem %]
   [% END %]
-  <li><a href="[% sourceUrl %]" title="[% sourceUrl %]">[% sourceUrlDomain %]</a></li>
+  [% IF sourceUrl %]
+    <li><a href="[% sourceUrl %]" title="[% sourceUrl %]">[% sourceUrlDomain %]</a></li>
+  [% END %]
 </ul>

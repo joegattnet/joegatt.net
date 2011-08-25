@@ -114,8 +114,6 @@ if(!$static){
 $sth->finish();
 $dbh->disconnect();
 
-$output .= debug_info();
-
 # ******************************************************************************
 
 cache_output("../../cache/enface--paragraphs-".$ENV{"QUERY_STRING"}.".html",$output);
