@@ -34,13 +34,13 @@ p.caption {
   margin-bottom:10px;
 }
 blockquote {
-  font-family: Tahoma, Geneva, sans-serif;
-  font-size:12px;
   color:#666;
-  padding:0 0 0 9px;
-  border-left:1px dashed #d5d5d5;
-  margin-bottom:10px;
-  /*font-style:italic;*/
+  font-style:italic;
+  font-size:12px;
+  /*margin-bottom:10px;*/
+  /*font-family: Tahoma, Geneva, sans-serif;*/
+  /*padding:0 0 0 9px;*/
+  /*border-left:1px dashed #b0b0b0;*/
 }
 figcaption, .attribution {
   color:#666;
