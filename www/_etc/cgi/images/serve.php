@@ -13,7 +13,7 @@ $columnWidths = array("wb" => 60, "if" => 100, "fw" => 1, "th" => 1);
 $gutterWidths = array("wb" => 20, "if" => 10, "fw" => 1, "th" => 1);
 $lineHeight = array("wb" => 10, "if" => 1, "fw" => 1, "th" => 1);
 
-$quality = array("jpg" => 60, "gif" => -1, "png" => -1);
+$quality = array("jpg" => -1, "gif" => -1, "png" => -1);
 
 $imageName = $_GET["img"];
 $ext = $_GET["ext"];
