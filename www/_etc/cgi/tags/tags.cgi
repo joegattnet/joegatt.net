@@ -12,14 +12,14 @@ $dbh = connectDB();
 my $sth = $dbh->prepare(qq{
   SELECT DISTINCT name, name_simple
   FROM tags, notes, _lookup
-  WHERE $tagsCond
-  AND latest=1 
-  AND NOT tags.name_simple LIKE '\\_%' 
+  WHERE check2=tags.e_guid
+  AND check1=notes.e_guid 
+  AND latest = 1
   AND notes.publish >= ?
   AND notes.deleted <> 1
   AND notes.type > 0
-  AND check1=notes.e_guid 
-  AND check2=tags.e_guid
+  AND ($tagsCond)
+  AND NOT tags.name_simple LIKE '\\_%' 
   ORDER BY tags.name_simple 
 });
 $sth->execute($notesThreshold);
