@@ -27,6 +27,9 @@
   display:block;
   position:relative;
   overflow:hidden;
+  background: none!important;
+  padding:0!important;
+  margin:0!important;
   /*
   -moz-box-shadow:#000 1px 1px 5px;
   -webkit-box-shadow:#000 1px 1px 5px;

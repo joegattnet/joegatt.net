@@ -34,6 +34,11 @@ function template($imageName,$rnd,$ext,$aspectWidth,$aspectHeight){
       $templateWidth = $originalWidth;
       $original_x = 0;
       $original_y = 0;
+    } else if ($originalHeight > $originalWidth * 2) {
+      $templateWidth = $originalWidth;
+      $templateHeight = ($originalWidth * $aspectHeight) / $aspectWidth;
+      $original_x = (($originalWidth - $templateWidth) / 3) * 2;
+      $original_y = 0;
     } else if ($originalHeight/$originalWidth > $aspectHeight/$aspectWidth) {
       $templateHeight = ($originalWidth * $aspectHeight) / $aspectWidth;
       $templateWidth = $originalWidth;

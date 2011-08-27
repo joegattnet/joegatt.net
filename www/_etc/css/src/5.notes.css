@@ -8,7 +8,9 @@
   content: ": ";
 }
 iframe[src*="vimeo"],iframe[src*="youtube"],.notes embed,.notes object {
-  background-image: none!important;
+  background: none!important;
+  padding:0!important;
+  margin:0!important;
   background-color: #333;
 }
 .notes embed {
@@ -70,10 +72,19 @@ figcaption {
 .notes-list a:hover .author {
   color:#362fd4;
 }
-.notes-list > li {
+.notes-list {
   margin-bottom: 20px;
+}
+.notes-list > li {
+  margin-bottom: 0;
   font-size: 13px;
   font-family: Georgia, "Palatino Linotype", serif;
+}
+.notestype-notes {
+  margin-bottom:0;
+}
+.notestype-notes > li  {
+  margin-bottom: 20px;
 }
 .notes-list > li p + p {
 	text-indent: 20px;
@@ -83,21 +94,33 @@ figcaption {
   font-size:11px;
   height:20px;
 }
-.section-links .thumbnail {
+.screenshot {
+  display:block;
   width:218px;
+  height:398px;
   border:1px solid #ccc;
+  position:relative;  
+  overflow:hidden;
+}
+.screenshot a {
+  background:none!important;
+  padding:none!important;
+}
+.screenshot img {
+  width:218px;
   clip:rect(0,220px,400px,0);
   overflow:hidden;
   position:absolute;
 }
 .page-links-page #content .details {
   padding:10px 0 15px 0;
-  color:#999;
+  color:#757575;
 } 
 .page-links-page #content .url {
   color:#75d42f;
 }
 
+.page-notes-index #content,
 .page-bibliography-index #content,
 .page-links-index #content,
 .page-topics-index #content {
@@ -105,6 +128,7 @@ figcaption {
 	-webkit-column-gap: 20px;
 	column-gap: 20px;
 }
+.page-notes-index #content,
 .page-bibliography-index #content,
 .page-links-index #content {
 	-moz-column-count: 3;
@@ -116,12 +140,6 @@ figcaption {
 	-webkit-column-count: 6;
 	column-count: 6;
 }
-.page-bibliography-index #content li,
-.page-links-index #content li ,
-.page-topics-index #content li {
-  margin-bottom:0px;
-}
-
 .book img {
   margin-top:15px;
 }

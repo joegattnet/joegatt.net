@@ -2,11 +2,10 @@
   [% IF text %]
     <blockquote cite="[% sourceUrl %]">[% text %]</blockquote>
   [% END %]
-  <p><a href="[% sourceUrl %]" title="[% title %]">[% title %]</a></p>
-  <p class="domain">[% sourceUrlDomain %]</p>
+  <p><a href="[% sourceUrl %]" title="[% title %]">[% title %]</a> (<span class="domain">[% sourceUrlDomain %]</span>)</p>
   [% FOREACH resource IN resources %]
       <p class="details">Accessed: <time class="timeago" datetime="[% resource.date_iso8601 %]">[% resource.date_full %]</time>.</p>
-      <p class="clearfix"><a href="[% sourceUrl %]"><img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-1_2-wb-3-1-0-0.[% resource.ext %]" alt="Screenshot from [% sourceUrlDomain %]" class="thumbnail"></a></p>
+      <p class="clearfix screenshot"><a href="[% sourceUrl %]"><img src="/_etc/resources/cut/[% resource.title %]-[% resource.rnd %]-1_2-wb-3-1-0-0.[% resource.ext %]" alt="Screenshot from [% sourceUrlDomain %]" title="[% sourceUrl %]"></a></p>
   [% END %]
   <aside id="versions" class="meta">
     <p>Version <span class="version-source">[% version %]</span> (<time class="updated timeago" datetime="[% date_iso8601 %]" pubdate>[% date_full %]</time>)</p>
