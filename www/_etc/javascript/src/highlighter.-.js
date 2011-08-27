@@ -30,6 +30,10 @@ NB.Highlighter = {
     var div, filesection, script, url;
     url = file;
     file = file.replace(
+      /\/_etc\/cache\/php\-(.*?)\-\-(.*?)\-.*/g, 
+      '/_etc/cgi/$1/$2.php'
+    );
+    file = file.replace(
       /\/_etc\/cache\/(.*?)\-\-(.*?)\-.*/g, 
       '/_etc/cgi/$1/$2.cgi'
     );
