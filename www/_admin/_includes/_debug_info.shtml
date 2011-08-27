@@ -1,6 +1,0 @@
-<!--#if expr="$debug=true" -->
-  <!--#config timefmt="%T %d.%m.%y" -->
-  <div class="debug-info clearfix">
-    <strong><!--#echo var="DOCUMENT_NAME"--> <!--#echo var="DATE_LOCAL"--></strong>
-  </div>
-<!--#endif -->

@@ -2,3 +2,6 @@ sitemap: http://joegatt.net/sitemap.xml
 
 User-agent: Fasterfox
 Disallow: /
+
+User-agent: *
+Disallow: _
