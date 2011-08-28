@@ -9,8 +9,8 @@ NB.Versions = {
         NB.Nav.track(2, '_trackPageview', NB.crumb.lastloaded === undefined?location.pathname:NB.crumb.lastloaded + (thisVersion.latest?'':'/v/' + q));
         
         var fullDescription = 'Paragraph ' + NB.p.current + ' version 0.' + thisVersion.version + ', score: ' + (thisVersion.score> 0?thisVersion.score:'');
-        var info = '<p title="' + fullDescription + '"> &para; ' + NB.p.current + ' v<span class="version-chunk-source"> 0.' + thisVersion.version + '</span> ' + (thisVersion.score> 0?' &#x25b2;' + thisVersion.score:'') + '</p> ';
-        info  += '<p class="user-name" data-username="' + thisVersion.userName + '"> ' + showUserName + ', <abbr title="' + thisVersion.date_iso8601 + '" class="timeago"> ' + thisVersion.date_full + '</abbr> </p> ';
+        var info = '<p title="' + fullDescription + '"> &para; ' + NB.p.current + ' v<span class="version-chunk-source"> 0.' + thisVersion.version + '</span> ' + (thisVersion.score> 0?' &#x25b2;' + thisVersion.score:'') + '</p>';
+        info  += '<p><span class="user-name" data-username="' + thisVersion.userName + '">' + showUserName + '</span>, <time datetime="' + thisVersion.date_iso8601 + '" class="timeago">' + thisVersion.date_full + '</time></p>';
         
         $('#version_info_panel').html(info);
         NB.Ui.timeago();
@@ -50,8 +50,10 @@ NB.Versions = {
           });
           $('#version_latest').removeClass('disabled');
         }
+        $('body').trigger('minor.loaded');
     }, 
     get:function (q, current_version, direction) {
+    console.log('VERSION',current_version);
       var pq = 'p' + q;
       var p_element = NB.Enface.get_target(NB.p.current);
       var getVersion = current_version + direction;
