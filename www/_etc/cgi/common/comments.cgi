@@ -52,7 +52,7 @@ while (my ($text,$found_user_id,$username,$score,$date_iso8601,$date_full) = $st
   $comments .= qq~
       <li>
         <p>$text</p>
-      	<p class="details"><span class="order">$order</span> $usernameString, <time class="updated timeago" datetime="$date_iso8601" pubdate>$date_full</time></p>
+      	<p class="details"><span class="order">$order</span> $usernameString, <time class="timeago" datetime="$date_iso8601">$date_full</time></p>
     	</li>
   ~;
   $order--;
