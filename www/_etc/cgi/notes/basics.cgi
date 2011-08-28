@@ -214,6 +214,7 @@ sub printNote {
   $textBriefClean =~ s/\"/\'/g;
   $text =~ s/\n\n/\n/g;
   $text =~ s/\n/<\/p><p>/g;
+  $text =~ s/http\:\/\/joegatt\.net\/?/\//g;
   if($text ne ''){
     $text = "<p>$text</p>";
   }

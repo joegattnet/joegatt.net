@@ -33,7 +33,7 @@
   foreach($xml->entry as $item) {
       $output .= '<li><p><a href="' . $item->link['href'] .'">' . $item->title . '</a></p>';
       //Hack
-      if ($authorName){
+      if (isset($authorName) && $authorName != ''){
         $authorName = $item->author->name;
         $authorUri = $item->author->uri;
       } else {

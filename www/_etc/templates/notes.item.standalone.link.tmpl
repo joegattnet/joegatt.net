@@ -1,7 +1,9 @@
 <div class="grid_5 alpha">
-  [% IF text %]
-    <blockquote cite="[% sourceUrl %]">[% text %]</blockquote>
-  [% END %]
+    <div class="text">
+      <blockquote cite="[% sourceUrl %]">
+        [% text %]
+      </blockquote>
+    </div>
   <p><a href="[% sourceUrl %]" title="[% title %]">[% title %]</a> (<span class="domain">[% sourceUrlDomain %]</span>)</p>
   [% FOREACH resource IN resources %]
       <p class="details">Accessed: <time class="timeago" datetime="[% resource.date_iso8601 %]">[% resource.date_full %]</time>.</p>

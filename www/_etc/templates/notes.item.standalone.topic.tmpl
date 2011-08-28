@@ -1,8 +1,10 @@
 <div class="grid_5 alpha">
   [% IF text %]
-    <blockquote>
-      [% text %]
-    </blockquote>
+    <div class="text">
+      <blockquote cite="[% sourceUrl %]">
+        [% text %]
+      </blockquote>
+    </div>
   [% END %]
   <p><a href="[% sourceUrl %]">Wikipedia: [% title %]</a></p>  
   <aside id="versions" class="meta">

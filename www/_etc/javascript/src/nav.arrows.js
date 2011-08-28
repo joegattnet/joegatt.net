@@ -2,9 +2,9 @@ NB.Nav.arrows = function (p) {
   p = parseInt(p);
   $('.navigator .goto').removeClass('goto-focused').val(p);
   if (p<=1) {
+    p=1;
     $('.navigator .first').closest('li').addClass('off');
     $('.navigator .previous').attr('href', NB.crumb.path + 1).closest('li').addClass('off');
-    p=1;
   } else {
     $('.navigator .first').closest('li').removeClass('off');
     $('.navigator .previous').attr('href', NB.crumb.path + (p-1)).closest('li').removeClass('off');
