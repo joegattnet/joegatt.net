@@ -1,51 +1,67 @@
-.interlinear .extra_out {
-	text-align: left;
-	left: 0;
-	top: 10px;
-}
-.interlinear #content p {
-	height: 40px;
-}
-.interlinear .target {
-	top: 0;
-	left: 0;
+#yield.interlinear #content .target {
 	position: absolute;
+	left: 0;
+}
+#yield.interlinear #content #nav_end_container {
+	position: relative;
+}
+#yield.interlinear #nav_end {
+	position: absolute;
+}
+#yield.interlinear #scholia {
+	position: absolute;
+	top: 444px;
+}
+#yield.interlinear #content .target {
+	position: absolute;
+	margin-left: 390px;
+}
+#yield.interlinear #content .extra_out {
+	text-align: left;
+}
+#yield.interlinear #content {
+	margin-top: -10px;
+	margin-bottom: 1.8em;
+}
+#yield.interlinear #content p {
+	line-height: 40px;
+}
+#yield.interlinear #content .extra_out {
+	left: 0;
+	top: 0;
+}
+#yield.interlinear #content .target {
 	width: 460px;
 	margin-left: 80px;
 	padding-top: 20px;
 }
-.interlinear .source {
+#yield.interlinear #content p.version {
+  opacity:0.5;
+}
+#yield.interlinear #content .source {
 	width: 460px;
 	margin-left: 80px;
 }
-.interlinear .source p {
-	color: #660000;
-}
-.interlinear #scholia {
-	position: absolute;
-	top: 0;
-	left: 160px;
-}
-.interlinear .ends_epigraph {
+#yield.interlinear #content .ends_epigraph {
 	padding-left: 80px;
 }
-.interlinear .ends_section, .interlinear .ends {
+#yield.interlinear #content .ends_section {
 	padding-left: 240px;
 }
-.interlinear #toolbar_top {
+#yield.interlinear #toolbar_top {
 	margin-left: -160px;
 }
-.interlinear #nav_end_container {
-	position: relative;
+#yield.interlinear #scholia {
+	left: 160px;
+	top: 0
+}
+#yield.interlinear #nav_end {
 	height: 54px;
 }
-.interlinear #nav_end_page {
-	position: absolute;
-	top: -50px;
-	left: -70px;
+#yield.interlinear #nav_end_page {
+	top: -15px;
+	left: 12px;
 }
-.interlinear #content {
-	margin-top: -10px;
-	margin-bottom: 10px;
+#yield.interlinear .source p {
+	color: #990000;
 }
-  
