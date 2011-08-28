@@ -131,6 +131,8 @@ return array(
    '//_etc/css/src/5.code.css',
    '//_etc/css/src/5.colophon.css',
    '//_etc/css/src/5.enface.css',
+   '//_etc/css/src/5.enface.interlinear.css',
+   '//_etc/css/src/5.help.css',
    '//_etc/css/src/5.footer.css',
    '//_etc/css/src/5.help.css',
    '//_etc/css/src/5.home.css',

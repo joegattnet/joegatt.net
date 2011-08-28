@@ -23,7 +23,7 @@ NB.Tools.interlinear = {
     $('.source p', '#content').animate({
       color:NB.S.color.source
       }, NB.S.speed.slower, function () {
-      //$('#yield').addClass('interlinear');
+      $('#yield').addClass('interlinear');
     });
   }, 
   off: function () {
@@ -46,7 +46,7 @@ NB.Tools.interlinear = {
     $('.source p', '#content').animate({
       color:NB.S.color.text
       }, NB.S.speed.slower, function () {
-      //$('#yield').removeClass('interlinear');
+      $('#yield').removeClass('interlinear');
     });
   }
 }
