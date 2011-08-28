@@ -6,7 +6,7 @@ NB.SETTINGS = {
   color: {
     text: '#333333', 
     source: '#990000', 
-    ok: '#4e9920', /* arker than palette */ 
+    ok: '#75d42f', 
     error: '#d3120f', 
     amber: '#f74b23', 
     neutral: '#999999', 
