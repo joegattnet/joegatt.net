@@ -20,7 +20,7 @@ NB.Anagram.letter = function (e, k) {
   j.data('dirty', true);
   key_colourised = NB.cache['_c' + j.data('p')];
   if (key_colourised !== undefined) {
-    NB.Cache.remove();
+    NB.Cache.remove(key_colourised);
   }
   p = j.data('p');
   before = NB.Anagram.anagram[letter];
