@@ -102,16 +102,16 @@ if(location.hash.indexOf('pr-')!=-1){
   <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
 <!--#endif -->
 
-<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE6.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
-<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE7.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
-<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=//_etc/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_etc/css/src/0.IE6.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_etc/css/src/0.IE7.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_etc/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
 
 <!--#if expr="$server != /joegatt.net/" -->
   <style type="text/css">
     <!--#include virtual="/_etc/css/src/0.Debug.css"-->  
   </style>
 <!--#endif -->
-<script src="<!--#echo encoding="none" var="js_url" -->/_etc/min/f=//_etc/javascript/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
+<script src="<!--#echo encoding="none" var="js_url" -->/_etc/min/f=/_etc/javascript/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
 <script>
 var NB = {
   root: '<!--#echo encoding="none" var="root" -->',
