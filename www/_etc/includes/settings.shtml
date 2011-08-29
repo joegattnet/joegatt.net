@@ -65,6 +65,11 @@
 <!--#set var="js_cachebuster" value="0.9" -->
 <!--#set var="css_cachebuster" value="0.6" -->
 
+<!--#if expr="$server = /^v(\d)\./" -->
+  <!--#set var="css_cachebuster" value="$css_cachebuster$1" -->
+  <!--#set var="js_cachebuster" value="$js_cachebuster$1" -->
+<!--#endif -->
+
 <!--#set var="author" value="Gatt, Joe" -->
 <!--#set var="author_last_first" value="Gatt, Joe" -->
 <!--#set var="sitename" value="joegatt.net" -->
