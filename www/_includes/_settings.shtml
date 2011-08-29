@@ -34,9 +34,9 @@
 <!--#else -->
   <!--#set var="google_tracking_code" value="UA-1346274-1" -->
   <!--#set var="debug" value="true" -->
-  <!--#set var="js_url" value="" -->
-  <!--#set var="css_url" value="" -->
-  <!--#set var="images_url" value="" -->
+  <!--#set var="js_url" value="http://$server" -->
+  <!--#set var="css_url" value="http://$server" -->
+  <!--#set var="images_url" value="http://$server" -->
 <!--#endif -->
 
 <!--#set var="js_version" value="1-1" -->
