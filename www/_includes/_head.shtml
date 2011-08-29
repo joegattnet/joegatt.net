@@ -38,12 +38,12 @@
 <!--#endif -->
 
 <!--#if expr="$server = /joegatt.net/||$server=test.joegatt.org" -->
-   <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_min/g=css<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+   <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_min/g=css<!--#echo var="css_version" -->&<!--#echo var="css_cachebuster" -->" />
    <!--#if expr="$HTTP_USER_AGENT = /MSIE/ && ($HTTP_USER_AGENT!=/MSIE 7/ && $HTTP_USER_AGENT!=/MSIE 8/)" -->
-     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_min/g=cssie6fixes<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_min/g=cssie6fixes<!--#echo var="css_version" -->&<!--#echo var="css_cachebuster" -->" />
    <!--#endif -->
    <!--#if expr="$HTTP_USER_AGENT = /MSIE 7/" -->
-     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_min/g=cssie7fixes<!--#echo var="css_version" -->&amp;<!--#echo var="css_cachebuster" -->" />
+     <link rel="stylesheet" type="text/css" media="all" href="<!--#echo var="css_url" -->/_min/g=cssie7fixes<!--#echo var="css_version" -->&<!--#echo var="css_cachebuster" -->" />
    <!--#endif -->
 <!--#else -->
   <!--#include virtual="_discrete_styles.shtml"-->  
