@@ -1,4 +1,3 @@
 <div id="page">
   <!--#include virtual="_page_${layout}.shtml"-->
-  <!--#include virtual="../_includes/_debug_info.shtml"-->
 </div>
