@@ -4,7 +4,7 @@
 <!--#config timefmt="%H%M%S" -->
 <!--#set var="randomiser" value="$REMOTE_ADDR$DATE_LOCAL"-->
 
-<!--#set var="nocache" value="true"-->
+<!--#set var="nocache" value="false"-->
 
 <!--#if expr="$server=/dev\./" -->
   <!--#set var="subdomain" value="dev." -->
