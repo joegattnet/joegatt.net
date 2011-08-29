@@ -17,10 +17,10 @@ RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 #RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^http://[^\/]*joegatt.*$
 #RewriteCond %{HTTP_HOST} ^joegatt.net$ [NC]
-RewriteCond %{REQUEST_URI} !admin
-RewriteCond %{REQUEST_URI} !concordance
-RewriteCond %{REQUEST_URI} !redirect
-RewriteCond %{THE_REQUEST} _
+#RewriteCond %{REQUEST_URI} !admin
+#RewriteCond %{REQUEST_URI} !concordance
+#RewriteCond %{REQUEST_URI} !redirect
+#RewriteCond %{THE_REQUEST} _
 #RewriteRule ^.* - [F,NS,L]
 
 #MINIFY
