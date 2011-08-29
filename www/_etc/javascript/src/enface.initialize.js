@@ -10,4 +10,5 @@ NB.Enface.initialize = function (p) {
 		 NB.Anagram.origArray[p + i] = j.text().toLowerCase().split('');
 		});
   NB.Enface.get_target(p).focus();
+  NB.Anagram.total_update();
 }
