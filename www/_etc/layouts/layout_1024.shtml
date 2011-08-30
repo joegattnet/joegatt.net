@@ -1,8 +1,4 @@
-<!doctype html>
-<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+<html class="no-js" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
   <head>
     <!--#include virtual="/_etc/includes/head.shtml" -->       
   </head>     

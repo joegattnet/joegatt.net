@@ -1,3 +1,9 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+
 <!--#set var="server" value="$SERVER_NAME" -->
 <!--#set var="root" value="/" -->
 
