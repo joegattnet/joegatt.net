@@ -31,6 +31,9 @@ RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 RewriteRule ^(.*)/?p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
 RewriteRule ^(.*)/?c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
 
+#Admin interface
+RewriteRule ^/?admin/?$ /_etc/admin/index.shtml [L]
+
 #Redirect javascript errors
 RewriteRule ^(.*)/NaN/?$ $1/1
 RewriteRule ^(.*)/undefined/?$ $1/1
@@ -169,3 +172,8 @@ AddType application/octet-stream safariextz
 </IfModule>
 
 FileETag None
+
+<IfModule pagespeed_module>
+ModPagespeed off
+#ModPagespeedEnableFilters collapse_whitespace
+</IfModule>
