@@ -4,7 +4,9 @@
 <!--#set var="canonical" value="/[% location %]/[% p %]" -->
 <!--#set var="nav_up" value="/[% location %]/" -->
 <!--#set var="nav_up_title" value="[% section %]" -->
-<!--#set var="shareicon" value="/_etc/resources/cut/[% resources.0.title %]-[% resources.0.rnd %]-0-sq-100-0-0-0.[% resources.0.ext %]" -->
+[% IF resources %]
+  <!--#set var="shareicon" value="/_etc/resources/cut/[% resources.0.title %]-[% resources.0.rnd %]-0-sq-100-0-0-0.[% resources.0.ext %]" -->
+[% END %]
 [% IF showMaps %]
   [% IF latitude %]
     <!--#set var="latitude1" value="[% latitude %]" -->
