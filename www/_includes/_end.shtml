@@ -1,5 +1,5 @@
 <!--#if expr="$server = /joegatt.net/||$server=test.joegatt.org" -->
-  <script src="<!--#echo var="js_url" -->/_min/g=js<!--#echo var="js_version" -->&amp;<!--#echo var="js_cachebuster" -->"></script>
+  <script src="<!--#echo var="js_url" -->/_min/index.phpg=js<!--#echo var="js_version" -->&amp;<!--#echo var="js_cachebuster" -->"></script>
 <!--#else -->
   <!--#include virtual="_discrete_scripts.shtml"-->
 <!--#endif -->
