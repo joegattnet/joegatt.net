@@ -1,5 +1,6 @@
 /* iPhone doe snot detect @media handheld */
 @media screen and (max-device-width:900px) {
+/*
   body {
   	padding: 5px;
   	-webkit-text-size-adjust: none;
@@ -41,6 +42,7 @@
   	font-style: italic;
   	padding-left: 0;
   }
+*/
 }
 /* Retina display */
 @media screen and (-webkit-min-device-pixel-ratio: 2) {

@@ -52,8 +52,14 @@ $('.prefix_1 .notes-list img[src*="-wb-3-0-"], .prefix_1 .notes-list img[src*="-
   return false;
 });
 
-$('.page-notes-index .notes-list img[src*="-wb-3-0-"], .page-tags-page .notes-list img[src*="-wb-3-0-"], #notes_index .notes-list img[src*="-fw-220-0-"], #tags_page .notes-list img[src*="-fw-220-0-"]').live('click', function (event) {
+/* $('.page-notes-index .notes-list img[src*="-wb-3-0-"], */
+$('.page-tags-page .notes-list img[src*="-wb-3-0-"], #notes_index .notes-list img[src*="-fw-220-0-"], #tags_page .notes-list img[src*="-fw-220-0-"]').live('click', function (event) {
   NB.Ui.image.open(event, '220px', '120px', '460px', '260px', 3, 6, 0, 0, 0, 0);
+  return false;
+});
+
+$('.page-notes-index .notes-list img[src*="-wb-3-0-"]').live('click', function (event) {
+  NB.Ui.image.open(event, '220px', '120px', '300px', '170px', 3, 4, 0, 0, 0, 0);
   return false;
 });
 

@@ -1,14 +1,9 @@
-<!doctype html>
+<!--#if expr="$QUERY_STRING = /scope=([a-zA-Z0-9]+)/" --><!--#set var="scope" value="$1" --><!--#else --><!doctype html>
 <!--[if lt IE 7 ]> <html class="no-js ie6" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-
-<!--#set var="server" value="$SERVER_NAME" -->
-<!--#set var="root" value="/" -->
-
-<!--#config timefmt="%H%M%S" -->
-<!--#set var="randomiser" value="$REMOTE_ADDR$DATE_LOCAL" -->
+<!--#endif -->
 
 <!--#if expr="$server = /([a-zA-Z0-9]+)\.joegatt/" -->
   <!--#set var="subdomain" value="$1" -->
@@ -30,9 +25,11 @@
   <!--#set var="u" value="$1" -->
 <!--#endif -->
 
-<!--#if expr="$QUERY_STRING = /scope=([a-zA-Z0-9]+)/" -->
-  <!--#set var="scope" value="$1" -->
-<!--#endif -->
+<!--#config timefmt="%H%M%S" -->
+<!--#set var="randomiser" value="$REMOTE_ADDR$DATE_LOCAL" -->
+
+<!--#set var="server" value="$SERVER_NAME" -->
+<!--#set var="root" value="/" -->
 
 <!--#set var="path" value="/" -->
 <!--#set var="location" value="$path" -->
