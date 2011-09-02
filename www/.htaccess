@@ -173,6 +173,8 @@ AddType application/octet-stream safariextz
 
 FileETag None
 
-<IfModule pagespeed_module>
-  ModPagespeedEnableFilters collapse_whitespace
-</IfModule>
+#<Location />
+#  AddOutputFilterByType SUBSTITUTE text/html
+#  Substitute s/\n//
+#</Location>
+
