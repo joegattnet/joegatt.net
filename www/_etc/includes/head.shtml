@@ -99,19 +99,19 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--#if expr="$styles_discrete=false||$server=/joegatt.net/||$server=test.joegatt.org" -->
   <link rel="stylesheet" href="<!--#echo encoding="none" var="css_url" -->/_etc/min/g=css<!--#echo encoding="none" var="css_version" -->&amp;<!--#echo encoding="none" var="css_cachebuster" -->">
 <!--#else -->
-  <!--#include virtual="/_etc/cgi/common/discrete_styles.cgi"-->  
+  <!--#include virtual="/_etc/exe/common/discrete_styles.pl"-->  
 <!--#endif -->
 
-<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_etc/css/src/0.IE6.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
-<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_etc/css/src/0.IE7.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
-<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_etc/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_assets/css/src/0.IE6.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_assets/css/src/0.IE7.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
+<!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_etc/min/f=/_assets/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
 
 <!--#if expr="$server != /joegatt.net/" -->
   <style type="text/css">
-    <!--#include virtual="/_etc/css/src/0.Debug.css"-->  
+    <!--#include virtual="/_assets/css/src/0.Debug.css"-->  
   </style>
 <!--#endif -->
-<script src="<!--#echo encoding="none" var="js_url" -->/_etc/min/f=/_etc/javascript/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
+<script src="<!--#echo encoding="none" var="js_url" -->/_etc/min/f=/_assets/js/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
 <script>
 var NB = {
   root: '<!--#echo encoding="none" var="root" -->',
@@ -130,5 +130,5 @@ NB.external = {
   facebook: <!--#echo encoding="none" var="external_facebook" -->,
   twitter: <!--#echo encoding="none" var="external_twitter" -->
 }
-<!--#include virtual="/_etc/javascript/src/0.Prime.js"-->
+<!--#include virtual="/_assets/js/src/0.Prime.js"-->
 </script>

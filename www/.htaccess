@@ -28,8 +28,8 @@ RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 #Confirmations
 #RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
 #RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-RewriteRule ^(.*)/?p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-RewriteRule ^(.*)/?c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/cgi/users/signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/?p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/exe/users/signupin_redirect_full.pl?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/?c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/exe/users/signupin_redirect_full.pl?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
 
 #Admin interface
 RewriteRule ^/?admin/?$ /_etc/admin/index.shtml [L]
@@ -42,25 +42,25 @@ RewriteRule ^(.*)/undefined/?$ $1/1
 RewriteRule ^/_etc/min/([a-z]=.*)  /_etc/min/index.php?$1  [L,NE]
 
 #Image-server
-RewriteCond %{REQUEST_URI} ^.*/_etc/resources/.*$
+RewriteCond %{REQUEST_URI} ^.*/_assets/images/.*$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^_etc/resources/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/cgi\/images\/serve.php?img=$1&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8&ext=$9 [T=application/x-httpd-cgi,PT,L]
+RewriteRule ^_assets/images/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/exe\/images\/serve.php?img=$1&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8&ext=$9 [T=application/x-httpd-cgi,PT,L]
 
 #Cache
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/php.*$
 RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)_etc\/cache\/php\-([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.php?$4 [T=application/x-httpd-php,L]
+RewriteRule ^(.*)_etc\/cache\/php\-([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/exe/$2/$3.php?$4 [T=application/x-httpd-php,L]
 
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
 RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4$7 [T=application/x-httpd-cgi,L]
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/exe/$2/$3.pl?$4$7 [T=application/x-httpd-cgi,L]
 
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
 RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/cache/$2--$3-$4$7.shtml [L]
 
 RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
 RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/cgi/$2/$3.cgi?$4 [T=application/x-httpd-cgi,L]
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/exe/$2/$3.pl?$4 [T=application/x-httpd-cgi,L]
 
 
 #Promos
