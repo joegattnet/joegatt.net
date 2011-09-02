@@ -119,7 +119,9 @@ figcaption {
 .page-links-page #content .url {
   color:#75d42f;
 }
-
+/* 
+IE9 does not support this
+Also, wrapping can leave widows/orphans
 .page-notes-index #content,
 .page-bibliography-index #content,
 .page-links-index #content,
@@ -140,6 +142,8 @@ figcaption {
 	-webkit-column-count: 6;
 	column-count: 6;
 }
+*/
+
 .book img {
   margin-top:15px;
 }

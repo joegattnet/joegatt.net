@@ -15,6 +15,6 @@
 <!--#set var="tags" value="false" -->
 
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
-<!--#set var="content" value="/_etc/content/colophon/index.shtml" -->
+<!--#set var="content" value="/_etc/cache/php-common--file_get-eu=github-readme-${git_branch}&class=text&refresh=10.html" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->

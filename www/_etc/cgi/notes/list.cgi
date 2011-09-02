@@ -50,7 +50,7 @@ $dbh = connectDB();
 
 if ($latest eq 'true'){
   $sth = $dbh->prepare(qq{
-    SELECT SQL_CALC_FOUND_ROWS notes.e_guid 
+    SELECT notes.e_guid 
     FROM notes 
     WHERE latest = 1
     AND notes.publish >= ?
@@ -61,7 +61,7 @@ if ($latest eq 'true'){
   });
 } else {
   $sth = $dbh->prepare(qq{
-    SELECT SQL_CALC_FOUND_ROWS notes.e_guid,COUNT(*) AS score 
+    SELECT notes.e_guid, COUNT(*) AS score 
     FROM notes,tags,_lookup 
     WHERE latest = 1
     AND notes.publish >= ?
@@ -99,25 +99,45 @@ sub getNotes {
   }
 
   $notesCount = 0;
+  $notesFound = $sth->rows;
+  if ($limit > $notesFound) {
+    $limit = $notesFound;
+  }
 
-  while (my ($note_e_guid) = $sth->fetchrow_array()) {
-    #This is very inefficient, of course. need to consolidate and send list
-    #directly to templates
-    $output .= printNote($note_e_guid, $template);
-    $notesCount++;
+  if ($cols ne ''){
+    $colLength = int(($limit/$cols)+ 0.999);
+    $colCount = 0;
+    $colNum = 1;
+    $gridWidth = 12 / $cols;
+    $grid = " grid_$gridWidth";
+    while (my ($note_e_guid, $count_found) = $sth->fetchrow_array()) {
+      $output .= printNote($note_e_guid, $template);
+      $notesCount++;
+      $colCount++;
+      if ($colCount == $colLength) {
+        $colNum++;
+        $colCount = 0;
+        if ($colNum == $cols){
+          $omega .= " omega";
+        }
+        $output .= "</ul><ul class=\"notes-list notestype-$view$omega$grid\">";
+      }
+    }
+  } else {
+    while (my ($note_e_guid, $count_found) = $sth->fetchrow_array()) {
+      #This is very inefficient, of course. need to consolidate and send list
+      #directly to templates
+      $output .= printNote($note_e_guid, $template);
+      $notesCount++;
+    }
   }
   if ($notesCount != 0) {
-    #my $sth = $dbh->prepare(qq{
-    #  SELECT FOUND_ROWS()
-    #});
-    #$sth->execute();
-    #my ($foundRowsReal) = $sth->fetchrow_array();
     if ($header ne 'no') {
       #Groups etc seems to screw up FOUND_ROWS so not using $foundRowsReal
       #Also see http://www.mysqlperformanceblog.com/2007/08/28/to-sql_calc_found_rows-or-not-to-sql_calc_found_rows/
       $headerOutput = "<h4><a href=\"/$view/\">$viewTitle</a> <span>($notesCount)</span></h4>";
     }
-    $output = "$headerOutput<ul class=\"notes-list notestype-$view\">$output</ul>";
+    $output = "$headerOutput<ul class=\"notes-list notestype-$view$grid alpha\">$output</ul>";
   }
   return $output;
 }
