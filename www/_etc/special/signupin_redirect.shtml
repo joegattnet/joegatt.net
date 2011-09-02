@@ -5,6 +5,6 @@
     <title>joegatt.net - redirecting...</title>
   </head>     
   <body>
-        <!--#include virtual="/_etc/cgi/users/signupin_redirect.cgi?${QUERY_STRING}" -->
+        <!--#include virtual="/_etc/exe/users/signupin_redirect.pl?${QUERY_STRING}" -->
   </body>
 </html>

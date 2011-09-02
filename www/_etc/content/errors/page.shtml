@@ -1,4 +1,4 @@
-<img src="/_etc/resources/cut/tripleapotheosis-0-10_3-wb-12-0-0-0.jpg">
+<img src="/_assets/images/cut/tripleapotheosis-0-10_3-wb-12-0-0-0.jpg">
 
 <!--#if expr="$p=403" -->
   <p>Access to <span class="error"><!--#echo var="request" --></span> is forbidden.</p>

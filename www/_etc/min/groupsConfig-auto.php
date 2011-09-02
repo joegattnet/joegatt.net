@@ -26,7 +26,7 @@ if ($handle = opendir('../javascript/src')) {
   }
 }
 
-$stylesRoot = '//_etc/css/';
+$stylesRoot = '//_assets/css/';
 $styles = array();
 
 if ($handle = opendir('../css/lib')) {
@@ -48,7 +48,7 @@ if ($handle = opendir('../css/src')) {
 return array(
      'js1-2' => $scripts,
      'css1-1' => $styles,
-     'cssprint1-1' => array('//_etc/css/src/Print.css'),
-     'cssie6fixes1-1' => array('//_etc/css/src/IE6.css'),
-     'cssie7fixes1-1' => array('//_etc/css/src/IE7.css')
+     'cssprint1-1' => array('//_assets/css/src/Print.css'),
+     'cssie6fixes1-1' => array('//_assets/css/src/IE6.css'),
+     'cssie7fixes1-1' => array('//_assets/css/src/IE7.css')
 );

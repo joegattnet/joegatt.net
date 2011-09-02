@@ -1,4 +1,5 @@
 <!--#if expr="$scope = 'page'" -->
+  <script src="<!--#echo encoding="none" var="js_url" -->/_etc/min/f=/_assets/js/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
   <!--#include virtual="/_etc/layouts/page_${layout}.shtml" -->
 <!--#else -->
   <!--#include virtual="/_etc/layouts/layout_${layout}.shtml" -->
