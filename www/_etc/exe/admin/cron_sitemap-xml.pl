@@ -89,7 +89,7 @@ $gen->execute_one($sql4, ['http://joegatt.net/colophon/', 'daily', '0.5']);
 
 $gen->execute_one($sql4, ['http://joegatt.net/wutz/', 'daily', '0.8']);
 $gen->execute_one($sql1, ['http://joegatt.net/wutz/', 'daily', '0.8', 1]);
-$gen->execute_one($sql4, ['http://joegatt.net/wutz/rc/', 'daily', '0.9']);
+$gen->execute_one($sql4, ['http://joegatt.net/wutz/rc', 'daily', '0.9']);
 $gen->execute_one($sql1, ['http://joegatt.net/wutz/rc/', 'daily', '0.9', 1]);
 
 $gen->post_execute();
