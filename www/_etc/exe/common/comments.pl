@@ -77,6 +77,7 @@ $output .= qq~
     		<input type="hidden" name="url">
     		<input type="hidden" name="b">
     		<input type="hidden" name="p">
+    		<input type="hidden" name="version">
     		<input type="hidden" name="new_order" value="$new_order">
     		<input type="hidden" name="user_id" value="$u">
  		    <input type="submit" value="Submit" onmousedown="NB.Comments.add();" onclick="return false;">

@@ -11,9 +11,9 @@ if ($text ne ''){
   $text = cleanText($text);
   my $dbh = connectDB();
   my $sth = $dbh->prepare(qq{
-    INSERT INTO comments (text,date_created,user_id,page_id,url,p,book_id) VALUES (?,UTC_TIMESTAMP(),?,?,?,?,?)
+    INSERT INTO comments (text, date_created, user_id, page_id, url, p, book_id, version) VALUES (?,UTC_TIMESTAMP(),?,?,?,?,?,?)
   });
-  $sth->execute($text, $user_id, $page_id, $url, $p, $b);
+  $sth->execute($text, $user_id, $page_id, $url, $p, $b, $version);
   $sth->finish();
   $dbh->disconnect();
 }

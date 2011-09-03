@@ -41,12 +41,14 @@ NB.Nav.crumb = {
     var version = $('.version-source').text();
     if (version != '') {
       $('.version').text('v' + version);
+      $('input[name=version]').val(version);
     }
   }, 
   version_chunk: function () {
     var version = $('.version-chunk-source').text();
     if (version != '') {
       $('.version-chunk').text('v' + version);
+      $('input[name=version]').val(version);
       $('.version-chunk').parent().show();
     } else {
       $('.version-chunk').parent().hide();
