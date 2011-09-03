@@ -2,7 +2,7 @@
 
 require '../basics.pl';
 
-$min = 0;
+$min = 1;
 $smallest = 32;
 $template = 'simple';
 $cols = 1;
