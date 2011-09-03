@@ -11,7 +11,7 @@
 <!--#set var="title.window" value="$title" -->
 
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&latest=true&limit=999&cols=2&view=links.html" -->
+<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&alphabetical=true&latest=true&limit=999&cols=2&view=links.html" -->
 
 <!--#set var="clip" value="false" -->
 <!--#set var="tags" value="false" -->
