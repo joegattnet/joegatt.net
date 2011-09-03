@@ -65,12 +65,28 @@ NB.Ajax = {
   		return false;
     }, 
     _update: function (outDiv, position, data) {
-      if (position === 'top') {
-        $(outDiv).prepend(data);
-      } else if (position === 'bottom') {
-        $(outDiv).append(data);
+      if($.browser.msie && $.browser.version < 9){
+        //This should do feature sniffing but Modernizr does not specifically
+        //indicate that it has replaced HTML5 tags (rather than css)
+        data = innerShiv(data, false);
+        if (position === 'top') {
+          $(outDiv).prepend(data);
+        } else if (position === 'bottom') {
+          $(outDiv).append(data);
+        } else {
+          $(outDiv).html(data);
+        }
+        $('script', outDiv).each(function (){
+            eval($(this).text());
+        });
       } else {
-        $(outDiv).html(data);
+        if (position === 'top') {
+          $(outDiv).prepend(data);
+        } else if (position === 'bottom') {
+          $(outDiv).append(data);
+        } else {
+          $(outDiv).html(data);
+        }
       }
     }, 
     _pause: function () {

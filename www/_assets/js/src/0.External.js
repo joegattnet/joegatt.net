@@ -18,7 +18,7 @@ window.fbAsyncInit = function() {
       NB.loadAsyncScript('http://platform.twitter.com/anywhere.js?id=' + NB.keys.twitter);
     }
     if(!'contentEditable' in document.body){
-      NB.loadAsyncScript('/_etc/min/?f=//_assets/js/lib/nicEdit-Skip.js');
+      NB.loadAsyncScript('/_etc/min/?f=/_assets/js/lib/nicEdit-Skip.js');
     }
 })();      
 var _gaq=[["_setAccount", NB.keys.google_analytics]];
