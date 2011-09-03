@@ -19,6 +19,7 @@ return array(
    '//_assets/js/lib/jquery.mb.YTPlayer.js',
    '//_assets/js/lib/jquery-syntax/public/jquery.syntax.js',
    '//_assets/js/lib/jquery-syntax/public/jquery.syntax.cache.js',
+   '//_assets/js/lib/innershiv.js',
    '//_assets/js/src/1.jquery.custom.selectors.js',
    '//_assets/js/src/2.jquery.custom.events.clickoutside.js',
    '//_assets/js/src/5.constants.js',

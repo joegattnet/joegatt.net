@@ -1,29 +1,29 @@
 @font-face {
 	font-family: 'KleistFrakturRegular';
-	src: url('/_etc/fonts/kleist-fraktur-webfont.eot');
-	src: local('☺'), url('/_etc/fonts/kleist-fraktur-webfont.woff') format('woff'), 
-  url('/_etc/fonts/kleist-fraktur-webfont.ttf') format('truetype'), 
-  url('/_etc/fonts/kleist-fraktur-webfont.svg#webfontROn0JVd8') format('svg');
+	src: url('/_assets/fonts/kleistfraktur/kleist-fraktur-webfont.eot');
+	src: local('☺'), url('/_assets/fonts/kleistfraktur/kleist-fraktur-webfont.woff') format('woff'), 
+  url('/_assets/fonts/kleistfraktur/kleist-fraktur-webfont.ttf') format('truetype'), 
+  url('/_assets/fonts/kleistfraktur/kleist-fraktur-webfont.svg#webfontROn0JVd8') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'DejaVuSansCondensed';
-	src: url('/_etc/fonts/DejaVuSans-webfont.eot');
-	src: local('☺'), url('/_etc/fonts/DejaVuSans-webfont.woff') format('woff'), 
-  url('/_etc/fonts/DejaVuSans-webfont.ttf') format('truetype'), 
-  url('/_etc/fonts/DejaVuSans-webfont.svg#webfontDSbtRiqx') format('svg');
+	src: url('/_assets/fonts/dejavu/DejaVuSans-webfont.eot');
+	src: local('☺'), url('/_assets/fonts/dejavu/DejaVuSans-webfont.woff') format('woff'), 
+  url('/_assets/fonts/dejavu/DejaVuSans-webfont.ttf') format('truetype'), 
+  url('/_assets/fonts/dejavu/DejaVuSans-webfont.svg#webfontDSbtRiqx') format('svg');
   font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'DejaVuSansCondensedBold';
-	src: url('/_etc/fonts/DejaVuSansCondensedBold-webfont.eot');
-	src: local('☺'), url('/_etc/fonts/DejaVuSansCondensedBold-webfont.woff') format('woff'), 
-  url('/_etc/fonts/DejaVuSansCondensedBold-webfont.ttf') format('truetype'), 
-  url('/_etc/fonts/DejaVuSansCondensedBold-webfont.svg#webfontvelIGLyw') format('svg');
+	src: url('/_assets/fonts/dejavu/DejaVuSansCondensedBold-webfont.eot');
+	src: local('☺'), url('/_assets/fonts/dejavu/DejaVuSansCondensedBold-webfont.woff') format('woff'), 
+  url('/_assets/fonts/dejavu/DejaVuSansCondensedBold-webfont.ttf') format('truetype'), 
+  url('/_assets/fonts/dejavu/DejaVuSansCondensedBold-webfont.svg#webfontvelIGLyw') format('svg');
 	font-weight: bold;
 	font-style: normal;
 }
