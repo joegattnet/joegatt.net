@@ -30,7 +30,7 @@ use CGI;
     $twitter_apisecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_api.txt';
     $protectedloc = '/home/admin/_db_passwords/joegatt-net/protected.txt';
 		$localhost = 0;
-    $notesThreshold = 1;
+    $notesThreshold = 2;
     if ($serverName eq 'test.joegatt.org') {
     	$debug = 1;
     	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
