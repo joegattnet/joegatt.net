@@ -99,7 +99,7 @@ sub getNotes {
   }
 
   $notesCount = 0;
-  $notesFound = $sth->rows;
+  $notesFound = $sth->rows + 1;
   if ($limit > $notesFound) {
     $limit = $notesFound;
   }
