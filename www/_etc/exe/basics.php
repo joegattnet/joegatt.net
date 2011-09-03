@@ -11,8 +11,8 @@
   //}
   DEFINE("SERVER_NAME","dropbox.joegatt.org");
 
-  if (SERVER_NAME == 'joegatt.net') {
-    DEFINE("DATABASE","joegatt-net-production");
+  if (SERVER_NAME == 'joegatt.net' || SERVER_NAME == 'v2.joegatt.net') {
+    DEFINE("DATABASE","joegatt-net-production-v2");
   } else if (preg_match('/joegatt-net/',SERVER_NAME)) {
     DEFINE("DATABASE","live");
   } else if (SERVER_NAME == 'test.joegatt.org') {

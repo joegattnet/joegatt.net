@@ -1,41 +1,30 @@
-<div class="grid_7 alpha">
-  <h4>Wutz</h4>
+<div class="grid_5 alpha">
   <ul>
-    <li><a href="/wutz/rc/">Jean Paul: Schulmeisterlein Wutz 0.7 rc1</a></li>
+    <li><a href="/wutz/rc">Jean Paul: Schulmeisterlein Wutz 0.7 rc1</a></li>
     <li><a href="/wutz/">Jean Paul: Schulmeisterlein Wutz</a></li>
   </ul>
 </div>
-<!--#if expr="1=0" -->
-<div class="grid_3">
-  <h4>More Translation</h4>
-  <ul>
-    <li><a href="/nimrod/">Nimrod</a></li>
-    <li><a href="/catholicon140/">Catholicon 140</a></li>
-    <li><a href="/melancholy/">The Peculiar Melancholy of Nations</a></li>
-  </ul>
-</div>
-<!--#endif -->
 <div class="grid_2">
-  <h4>More</h4>
   <ul>
     <li><a href="/notes/">Notes</a></li>
-    <li><a href="/links/">Links</a></li>
-    <li><a href="/bibliography/">Bibliography</a></li>
+    <li><a href="/tags/">Tags</a></li>
   </ul>
 </div>
 <div class="grid_2">
-  <h4>&nbsp;</h4>
   <ul>
-    <li><a href="/tags/">Tags</a></li>
+    <li><a href="/links/">Links</a></li>
     <li><a href="/topics/">Topics</a></li>
+  </ul>
+</div>
+<div class="grid_2">
+  <ul>
+    <li><a href="/bibliography/">Bibliography</a></li>
     <li><a href="/code/">Code</a></li>
   </ul>
 </div>
 <div class="grid_1 omega">
-  <h4>Etc</h4>
   <ul>
     <li><a href="/colophon/">Colophon</a></li>
-    <!-- li><a href="/privacy/">Privacy</a></li -->
     <li><a href="mailto:info@joegatt.net">Contact</a></li>
   </ul>
 </div>

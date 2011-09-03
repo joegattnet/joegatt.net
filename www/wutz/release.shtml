@@ -32,6 +32,6 @@
 <!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest.html" -->
 <!--#set var="direct_content" value="false" -->
 
-<!--#set var="content_right" value="/_etc/includes/${section}/toolbar_rc.shtml" -->
+<!--#set var="content_right" value="/_etc/includes/${section}/toolbar_release.shtml" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->
