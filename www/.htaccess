@@ -39,7 +39,7 @@ RewriteRule ^(.*)/NaN/?$ $1/1
 RewriteRule ^(.*)/undefined/?$ $1/1
 
 #Minify
-RewriteRule ^/_etc/min/([a-z]=.*)  /_etc/min/index.php?$1  [L,NE]
+RewriteRule ^(.*)_(assets|etc)/min/([a-z]=.*)  $1_etc/min/index.php?$3  [L,NE]
 
 #Image-server
 RewriteCond %{REQUEST_URI} ^.*/_assets/images/.*$
