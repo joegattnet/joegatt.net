@@ -142,6 +142,11 @@ section .notes-list a[href^="http"] {
 section .notes-list a[href^="http"]:hover {
 	background-position: -504px -425px;
 }
+a[href*="joegatt.org"] {
+  background-image:none!important;
+  padding-left:0!important;
+}
+
 /******************/
 .al_right {
 	text-align: right;
