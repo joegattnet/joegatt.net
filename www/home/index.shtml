@@ -16,6 +16,6 @@
 
 <!--#set var="yield" value="yield_1024_12_a.shtml" -->
 
-<!--#set var="content" value="/_etc/includes/home/still.shtml?src=the_naming_of_the_animals_2-0-10_3-wb-12-0-0-0.jpg&url=/wutz&version=0.3&date=4 Sep 2011 at 21:36&dateIso=2011-09-04T21:36:11Z&alt=The Naming of the Animals 2" -->
+<!--#set var="content" value="/_etc/includes/home/still.shtml?src=kunstformen_3_0-0-10_3-wb-12-0-0-0.jpg&url=/wutz&version=0.3&date=4 Sep 2011 at 21:36&dateIso=2011-09-04T21:36:11Z&alt=Kunstformen 3" -->
 
 <!--#include virtual="/_etc/layouts/render.shtml" -->
