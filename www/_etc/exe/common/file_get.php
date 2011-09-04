@@ -1,8 +1,8 @@
 <?php
   #genericise
   $externalUrls = array(
-    "github-readme-master" => "https://raw.github.com/joegattnet/joegatt.net/master/README.html",
-    "github-readme-dev" => "https://raw.github.com/joegattnet/joegatt.net/dev/README.html"
+    "github-readme-master" => "https://raw.github.com/joegattnet/joegatt.net/master/README.md",
+    "github-readme-dev" => "https://raw.github.com/joegattnet/joegatt.net/dev/README.md"
   );
 
   $url = $externalUrls[$_GET['eu']]; 
