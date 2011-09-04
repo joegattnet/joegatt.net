@@ -289,7 +289,8 @@ sub printNote {
                 
         resources => \@resources,
         tags => \@tags,
-        tagsUrl => $tagsUrl
+        tagsUrl => $tagsUrl,
+        imageServer => $imageServer
     };
     
     my $TTinput = "notes.item.$template.$templateType.tmpl";
