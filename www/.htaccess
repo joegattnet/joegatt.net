@@ -15,6 +15,12 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
 RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 
+#Scope
+#RewriteRule ^(.*)-scope/(.*)$ $1?scope=$2 [QSA]
+
+#Code
+RewriteRule ^/?code/www(.*)$ http://github.com/joegattnet/joegatt.net/blob/master/www$1 [R=302]
+
 #Only prevent running scripts & sub-pages & hotlinking (?)
 #RewriteCond %{HTTP_REFERER} !joegatt
 #RewriteCond %{HTTP_HOST} joegatt [NC]
@@ -71,7 +77,6 @@ RewriteRule ^/?tags/([_:a-zA-Z0-9]+)/?$ /tags/page.shtml?p=$1 [L,QSA]
 RewriteRule ^(.*)wutz/rc/?$ $1wutz/release.shtml?p=$1 [L,QSA]
 RewriteRule ^(.*)wutz/rc/([0-9]+)/?$ $1wutz/release.shtml?p=$2 [L,QSA]
 RewriteRule ^/?wutz/?$ /wutz/page.shtml?p=1 [L,QSA]
-RewriteRule ^(.*)code/www/.*$ $1code/ [L,QSA]
 RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 RewriteRule ^/?([a-z0-9]+)/([a-z0-9]+)/?$ /$1/$2.shtml?p=1 [L,QSA]
 
