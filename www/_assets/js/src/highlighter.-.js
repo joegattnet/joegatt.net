@@ -47,6 +47,7 @@ NB.Highlighter = {
       if (!nofollow && file.match(/index\~shtml$/)) {
         file.replace(/\$\{?section\}?/g, filesection);
         NB.Nav.fetch(url.replace(/.*www/, '').replace('index.shtml', ''));
+        return false;
       }
     } else {
       div = '#explorer';
