@@ -1,0 +1,20 @@
+<html class="no-js" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+  <head>
+    <!--#include virtual="/_etc/includes/head.shtml" -->       
+  </head>     
+  <body itemscope itemtype="http://schema.org/WebPage">  
+    <!--#include virtual="/_etc/includes/scripts_external.shtml" -->
+    <div id="container" class="container_12 ajax_large clearfix">
+      <div id="page" data-url="<!--#echo var="location" -->?scope=page" class="refresh">
+        <!--#include virtual="/_etc/layouts/page_${layout}.shtml" -->
+      </div>
+      <div id="code" class="draggable panel panel_closed escapable-panel" style="display:none;">
+        <!--#include virtual="/_etc/includes/code.shtml" -->
+      </div>
+      <aside id="signupin_container"></aside>
+      <div id="screen_cover" style="display:none;"><!-- --></div>
+    </div>
+    <div id="hidden" class="hidden"><!-- --></div>
+    <!--#include virtual="/_etc/includes/scripts.shtml" -->
+  </body>
+</html>

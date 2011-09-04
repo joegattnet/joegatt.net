@@ -1,0 +1,23 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/tags/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$section" -->
+<!--#set var="comments" value="false" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path$p" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="chunk" value="index" -->
+
+<!--#set var="title" value="Tags" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+
+<!--#set var="yield" value="yield_1024_12_a.shtml" -->
+<!--#set var="content" value="/_etc/cache/tags--list-template=cloud&min=1.shtml" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

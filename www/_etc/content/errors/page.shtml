@@ -1,0 +1,21 @@
+<img src="/_assets/images/cut/tripleapotheosis-0-10_3-wb-12-0-0-0.jpg">
+
+<!--#if expr="$p=403" -->
+  <p>Access to <span class="error"><!--#echo var="request" --></span> is forbidden.</p>
+<!--#elif expr="$p=404" -->
+  <p>The page you were looking for - <span class="error"><!--#echo var="request" --></span> - does not exist.</p>
+<!--#elif expr="$p=500" -->
+  <p>A server error has occurred.</p>
+<!--#else -->
+  <p>An error has occurred.</p>
+<!--#endif -->
+
+<p>If you continue to have problems please email <a href="mailto:dev@joegatt.net">dev@joegatt.net</a>.</p>
+
+<p>If you are a registered github.com user, you can also take the time to <a href="https://github.com/joegattnet/joegatt.net/issues/new">file a bug</a>.</p>
+
+<script>
+  NB.loaded_scripts.add(false, function(){
+    NB.Nav.track(2,"Error","<!--#echo var="p" -->","<!--#echo var="request" -->");
+  });
+</script>

@@ -1,0 +1,31 @@
+<article id="content" class="grid_10 row_<!--#echo var="rowname" --> alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
+  <!--#include virtual="$content" -->
+</article>
+<nav id="toolbar" class="grid_2 omega">
+  <!--#if expr="$toolbar_pinnable=true" -->
+    <div class="pinnable">
+      <p class="pin"><a href="javascript:;" class="pin-a">pin</a></p>
+      <!--#include virtual="$toolbar" -->
+    </div>
+  <!--#else -->
+      <!--#include virtual="$toolbar" -->
+  <!--#endif -->
+</nav>
+
+<!--#set var="rowname" value="$rowname2" -->
+
+<article id="content" class="grid_10 row_<!--#echo var="rowname" --> alpha" data-url="<!--#echo var="content" -->">
+  <!--#include virtual="$content" -->
+</article>
+<nav id="toolbar" class="grid_2 omega">
+  <!--#if expr="$toolbar_pinnable=true" -->
+    <div class="pinnable">
+      <p class="pin"><a href="javascript:;" class="pin-a">pin</a></p>
+      <!--#include virtual="$toolbar" -->
+    </div>
+  <!--#else -->
+      <!--#include virtual="$toolbar" -->
+  <!--#endif -->
+</nav>
+
+<!--#include virtual="$apparatus" -->

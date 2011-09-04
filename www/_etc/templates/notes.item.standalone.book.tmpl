@@ -1,0 +1,41 @@
+<div class="grid_5 alpha">
+  <div class="book" itemscope itemtype="http://schema.org/Book">
+    <p itemprop="author">[% authorFullName %]</p>
+    <p itemprop="name">[% bookTitle %]</p>
+    [% IF translatorFullName %]
+      <p>(translated by [% translatorFirstName %] [% translatorSurname %])</p>
+    [% END %]
+    <p><span itemprop="publisher">[% publisherName %]</span>, <meta itemprop="publishDate" content="[% publishedDate %]-01-01">[% publishedDate %]</p>
+    [% IF publishedDateOriginal != publishedDate %]
+      <p>(originally published in [% publishedDateOriginal %])</p>
+    [% END %]
+    <p class="isbn" itemprop="isbn">ISBN [% isbn %]</p>
+    [% FOREACH resource IN resources %]
+        <img src="[% imageServer %]/_assets/images/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" itemprop="image">
+    [% END %]
+  </div>
+  <ul>
+    <li><a href="http://www.worldcat.org/isbn/[% isbn %]">WorldCat entry for this book</a></li>
+    <li><a href="http://books.google.co.uk/books?vid=ISBN[% isbn %]">Google Books entry for this book</a></li>
+    <li><a href="http://en.wikipedia.org/wiki/Special:BookSources/[% isbn %]">Wikipedia Book Sources for this book</a></li>
+  [% IF sourceUrl %]
+    <li><a href="[% sourceUrl %]">Full text (different edition[% IF translatorFullName %] and translator[% END %])</a></li>
+  [% END %]
+  </ul>
+  <aside id="versions" class="meta">
+    <p>Version <span class="version-source">[% version %]</span> (<time class="updated timeago" datetime="[% date_iso8601 %]" pubdate>[% date_full %]</time>)</p>
+  </aside>
+  <div class="apparatus">
+    <!--#include virtual="../../_etc/layouts/apparatus_left.shtml" -->
+  </div>
+</div>
+<div class="grid_5 prefix_1 suffix_1 omega">
+  <div class="apparatus">
+    <div id="tags">
+      <!--#include virtual="../../_etc/cache/tags--tags-tags=[% tagsUrl %].html" -->
+    </div>
+    <div id="notes" class="grid_5 alpha omega">
+      <!--#include virtual="../../_etc/cache/notes--list-tags=[% tagsUrl %]&exclude=[% p %].html" -->
+    </div>
+  </div>
+</div>

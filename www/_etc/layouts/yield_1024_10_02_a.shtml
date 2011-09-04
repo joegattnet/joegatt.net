@@ -1,0 +1,7 @@
+<section id="content" class="grid_10 alpha<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
+  <!--#include virtual="$content" -->
+</section>
+<section class="grid_2 omega" data-url="<!--#echo var="content_right" -->">
+  <!--#include virtual="$content_right" -->
+</section>
+<!--#include virtual="$apparatus" -->

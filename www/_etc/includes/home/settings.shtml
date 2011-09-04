@@ -1,0 +1,6 @@
+<!--#set var="category" value="projects" -->
+<!--#set var="section" value="home" -->
+
+<!--#set var="path" value="/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="$location" -->

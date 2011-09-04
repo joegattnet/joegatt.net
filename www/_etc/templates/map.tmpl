@@ -1,0 +1,67 @@
+[% IF showMaps %]
+  <div id="map[% p %]" class="map"><!-- --></div>
+  <script>
+    NB.loaded_scripts.add(true, function(){
+       var markers = 0;
+      [% FOREACH resource IN resources %]
+        [% IF resource.latitude %]
+          var map_center = new google.maps.LatLng([% resource.latitude %], [% resource.longitude %]);
+        [% END %]
+      [% END %]
+      [% IF latitude %]
+        var note_latlng = new google.maps.LatLng([% latitude %], [% longitude %]);
+        var map_center = note_latlng;
+      [% END %]
+      var myOptions = {
+        backgroundColor: '#EBE6DC',
+        zoom: 16,
+        center: map_center,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map[% p %]"), myOptions);
+      var bounds = new google.maps.LatLngBounds();
+      [% IF latitude %]
+          var note_marker = new google.maps.Marker({
+            map:map,
+            draggable:false,
+            clickable:false,
+            title:'Note',
+            position: note_latlng
+          });
+          markers++;
+      [% END %]
+      [% FOREACH resource IN resources %]
+        [% IF resource.latitude %]
+          var resource_marker_position = new google.maps.LatLng([% resource.latitude %], [% resource.longitude %]);
+          var resource_marker = new google.maps.Marker({
+            map:map,
+            draggable:false,
+            clickable:false,
+            title:'Note',
+            position: resource_marker_position
+          });
+          markers++;
+          bounds.extend(resource_marker_position);
+        [% END %]
+      [% END %]
+      if(markers > 1){
+          bounds.extend(note_latlng);
+          map.fitBounds(bounds);
+      }
+    });
+  </script>
+  [% IF latitude %]
+    <div class="geo">
+     <span class="latitude">[% latitude %]</span>,  
+     <span class="longitude">[% longitude %]</span>
+    </div>
+  [% END %]
+  [% FOREACH resource IN resources %]
+    [% IF resource.latitude %]
+      <div class="geo">
+       <span class="latitude">[% resource.latitude %]</span>,  
+       <span class="longitude">[% resource.longitude %]</span>
+      </div>
+    [% END %]
+  [% END %]
+[% END %]

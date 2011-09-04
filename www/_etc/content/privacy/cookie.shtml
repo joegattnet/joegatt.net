@@ -1,0 +1,22 @@
+<h4>Cookie</h4>
+
+<p>This is the information stored by this website as a document cookie:</p>
+
+<div class="stripe">
+<script>
+
+  var cookie = document.cookie;
+  
+  cookie = cookie.replace(/=/g,'</td><td>');
+  cookie = cookie.replace(/;/g,'</td></tr><tr><td>');
+  cookie = ('<table><tr><td>'+cookie+'</td></tr></table>');
+  
+  document.write(cookie);
+
+</script>
+
+</div>
+
+<form>
+  <button text="forget me">
+</form>

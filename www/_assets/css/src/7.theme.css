@@ -1,0 +1,48 @@
+a:link, a:visited {
+color:#369;
+text-decoration:none;
+}
+a:active, a:hover {
+color:#00c;
+}
+.header a:active, .header a:hover, .tool a:active, .tool a:hover, 
+#signupin_header a:hover, a.panel_handle:hover {
+color:#f60;
+}
+#n_share a:hover, #n_clip a:hover, #n_cite a:hover, #follow a:hover, a.external:hover {
+  color:#2200d5!important;
+}
+
+/**************************************************************************/
+.a_arrows a:link,.a_arrows a:visited, .a_arrows span {
+color:#666;
+}
+.a_arrows a:hover,.a_arrows a:active {
+color:#00c;
+}
+#hd {
+color:#666;
+border-bottom:1px dashed #999;
+}
+.fb_button_text {
+color:#fff!important;
+}
+/* EPIGRAPH ***************************************************************/
+#epigraph, #epigraph, #epigraph2, #epigraph2, .ends_epigraph {
+font-style:italic;
+color:#666;
+}
+
+/* NAV ************************************************************************/
+#nav_site {}
+#nav_section {}
+#nav_site a, #nav_section a {}
+.navmodules ul {}
+#nav {}
+
+/* SIGNUPIN *******************************************************************/
+#signupin_panel {
+background-color:#fff;
+border: 1px dashed #999;
+border-top:none;
+}

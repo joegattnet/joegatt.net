@@ -1,0 +1,39 @@
+<script>
+  NB.layout = "<!--#echo var="layout" -->";
+  NB.crumb = {
+    canonical: "<!--#echo var="canonical" -->",
+    category: "<!--#echo var="category" -->",
+    section: "<!--#echo var="section" -->",
+    page: "<!--#echo var="page" -->",
+    page_id: "<!--#echo var="section" -->_<!--#echo var="page" -->",
+    page_app: "<!--#echo var="page_app" -->",
+    path: "<!--#echo var="path" -->"
+  };
+  NB.tags = "<!--#echo encoding="none" var="tags" -->";
+  NB.title = "<!--#echo encoding="none" var="title" -->";
+  NB.title_window = "<!--#echo encoding="none" var="title.window" -->";
+  NB.description = "<!--#echo encoding="none" var="description" -->";
+  NB.chunk = "<!--#echo var="chunk" -->";
+  NB.image = "<!--#echo var="shareicon" -->";
+  <!--#if expr="$latitude1" -->
+    NB.latitude = "<!--#echo var="latitude1" -->";
+    NB.longitude = "<!--#echo var="longitude1" -->";
+  <!--#else -->
+    NB.latitude = "<!--#echo var="latitude2" -->";
+    NB.longitude = "<!--#echo var="longitude2" -->";
+  <!--#endif -->
+  NB.book = {
+    id: <!--#echo var="b" -->
+  }
+  NB.p = {
+  <!--#if expr="$p=/^[0-9]+$/" -->
+      current: <!--#echo var="p" -->,
+      top: <!--#echo var="p" -->,
+      max: <!--#echo var="p_max" -->
+  <!--#else -->
+      current: "<!--#echo var="p" -->",
+      top: "<!--#echo var="p" -->",
+      max: "<!--#echo var="p_max" -->"
+  <!--#endif -->
+  }  
+</script>

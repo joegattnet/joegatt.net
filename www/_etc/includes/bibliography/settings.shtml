@@ -1,0 +1,8 @@
+<!--#set var="category" value="apparatus" -->
+<!--#set var="section" value="bibliography" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="notes" value="true" -->

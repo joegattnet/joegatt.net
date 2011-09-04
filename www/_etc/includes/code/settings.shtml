@@ -1,0 +1,8 @@
+<!--#set var="category" value="info" -->
+<!--#set var="section" value="code" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="tags" value="code" -->

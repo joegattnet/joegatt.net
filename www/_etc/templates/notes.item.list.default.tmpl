@@ -1,0 +1,18 @@
+[% PROCESS 'images.tmpl' imageCols = 3 %]
+[% PROCESS 'video.tmpl' vimeoWidth = 300, vimeoHeight = 230, youtubeWidth = 300, youtubeHeight = 230, dailymotionWidth = 300, dailymotionHeight = 230 %]
+[% IF quoteBriefLinked %]
+  <blockquote[% IF sourceUrl %] cite="http://[% sourceUrl %]"[% END %]>[% quoteBriefLinked %]</blockquote>
+[% END %]
+[% IF attribution %]
+  <p class="attribution">[% attribution %]</p>
+[% END %]
+[% IF title != '' %]
+  <h6><a href="/[% location %]/[% p %]">[% title %]</a></h6>
+[% END %]
+[% textBriefLinked %]
+<ul class="meta nav_h">   
+  <li><a href="/[% location %]/[% p %]">#[% p %]</a></li>
+  [% FOREACH tag IN tags %]
+    [% tag.listItem %]
+  [% END %]
+</ul>

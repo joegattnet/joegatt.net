@@ -4,4 +4,13 @@ User-agent: Fasterfox
 Disallow: /
 
 User-agent: *
-Disallow: _
+Disallow: /_
+
+User-agent: *
+Disallow: /errors
+
+User-agent: *
+Disallow: /twitter
+
+User-agent: *
+Disallow: /google

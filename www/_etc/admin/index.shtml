@@ -1,0 +1,21 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/admin/settings.shtml" -->
+
+<!--#set var="page" value="admin" -->
+<!--#set var="page_file" value="index.shtml" -->
+
+<!--#set var="title" value="admin@${server}" -->
+<!--#set var="title.url" value="/_etc/admin/" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
+<!--#set var="content" value="/_etc/includes/admin/iframe.shtml" -->
+
+<!--#set var="rowname" value="results" -->
+<!--#set var="rowname2" value="results2" -->
+
+<!--#set var="toolbar" value="/_etc/includes/admin/nav.shtml" -->
+
+<!--#set var="follow" value="false" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->
