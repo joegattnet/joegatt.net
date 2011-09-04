@@ -38,12 +38,18 @@ $sql1 = qq~
         ~;
 
 $sql2 = qq~
-         SELECT CONCAT(?,name_simple) AS loc,
-         DATE_FORMAT(NOW(), '%Y-%m-%d') AS lastmod,
-         ? AS changefreq,
-         ? AS priority 
-         FROM tags
-         WHERE NOT tags.name_simple LIKE '\\_%'
+          SELECT CONCAT(?,name_simple) AS loc,
+           DATE_FORMAT(NOW(), '%Y-%m-%d') AS lastmod,
+           ? AS changefreq,
+           ? AS priority 
+          FROM tags,notes,_lookup 
+          WHERE latest=1 
+          AND NOT name LIKE '\\_%' 
+          AND notes.publish >= 2
+          AND notes.deleted <> 1
+          AND notes.type > 0
+          AND check1=notes.e_guid 
+          AND check2=tags.e_guid 
         ~;
 
 $sql3 = qq~
@@ -108,10 +114,11 @@ my @currentMap = <SITEMAP>;
 $output = "@currentMap";
 close (SITEMAP);
 
-$output =~ s/\<urlset\>/\<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9"\>/;
-
 open (SITEMAP, ">$mapFile") or die print "Can't open sitemap.xml (out)...\n";
-print SITEMAP "$output";
+foreach $line (@currentMap) {
+  $line =~ s/<urlset>/<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/;
+  print SITEMAP "$line";
+}
 close (SITEMAP);
 
 # ******************************************************************************
