@@ -15,6 +15,12 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
 RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 
+#Scope
+#RewriteRule ^(.*)-scope/(.*)$ $1?scope=$2 [QSA]
+
+#Code
+RewriteRule ^/?code/www(.*)$ http://github.com/joegattnet/joegatt.net/blob/master/www$1 [R=302]
+
 #Only prevent running scripts & sub-pages & hotlinking (?)
 #RewriteCond %{HTTP_REFERER} !joegatt
 #RewriteCond %{HTTP_HOST} joegatt [NC]

@@ -10,6 +10,22 @@
   <!--#set var="alt" value="$1" -->
 <!--#endif -->
 
+<!--#if expr="$QUERY_STRING = /version=([^&]+)/" -->
+  <!--#set var="version" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /dateIso=([^&]+)/" -->
+  <!--#set var="dateIso" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /date=([^&]+)/" -->
+  <!--#set var="date" value="$1" -->
+<!--#endif -->
+
 <div class="grid_12">
   <p><a href="<!--#echo var="url" -->"><img src="/_assets/images/cut/<!--#echo var="src" -->" alt="<!--#echo var="alt" -->"></a></p>
 </div>
+
+<aside class="meta grid_12" id="versions" style="display:none">
+    <p>Version <span class="version-source"><!--#echo var="version" --></span> (<time datetime="<!--#echo var="dateIso" -->" class="timeago" updated><!--#echo var="date" --></time>)</p>
+</aside>

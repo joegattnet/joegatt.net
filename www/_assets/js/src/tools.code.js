@@ -5,11 +5,12 @@ NB.Tools.code = function () {
      $('iframe, embed').hide();
      //Not good enough - doesn't work on start, need to set a class in body
      //Also, not necessary when code doesn't go over iframe
+     return false;
 	 } else {
 		 $('#code').fadeOut(NB.S.speed.normal);
      $('iframe, embed').show();
+     return false;
    }
-	 return false;
 }
 
 /******************************************************************************/

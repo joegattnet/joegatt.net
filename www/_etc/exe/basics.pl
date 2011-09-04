@@ -45,6 +45,7 @@ use CGI;
       $dsn = 'DBI:mysql:joegatt-net-production-v2:localhost';
       $githubBranch = 'master';
       $imageServer = 'http://a1.joegatt.org';
+      $serverName = 'joegatt.net';
     }
 	}
 
@@ -54,8 +55,12 @@ sub formRead {
 
   	my $whichMethod = $_[0];
     if ($whichMethod eq "get") {
-      $buffer = $ENV{'QUERY_STRING'};
-      $formMethod = "get";
+      if ($ARGV[0] ne '') {
+        $buffer = $ARGV[0];
+      } else {
+        $buffer = $ENV{'QUERY_STRING'};
+        $formMethod = "get";
+      }
     } else {
       read(STDIN, $buffer, $ENV{CONTENT_LENGTH});
       $formMethod = "post";

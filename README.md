@@ -32,8 +32,8 @@
 <p>On the back-end /etc/layouts/render.shtml uses the scope parameter to determine how much of the page should be returned. 
 </p>
 <p>Forward and back button clicks are detected by    
-  <a href="_etc/javascript/lib/jquery.ba-hashchange.js">jQUery.hashchange</a> and changes are passed on to    
-  <a href="_etc/javascript/src/nav.fetch.js">NB.Nav.fetch</a> as above. 
+  <a href="_assets/js/lib/jquery.ba-hashchange.js">jQUery.hashchange</a> and changes are passed on to    
+  <a href="_assets/js/src/nav.fetch.js">NB.Nav.fetch</a> as above. 
 </p>   
 <p>When new content is loaded, an event is trigerred to notify any page elements that might need updating. 
 </p><h3>Caching</h3>
@@ -49,7 +49,7 @@
 </ul>
 <p>All content has parameters and values incorporated into the file name and is set to expire after ten minutes. Assets have unique version numbers and expire after at least two months. In addition, cookies are only used client-side (except for registering/signing in, which is lazy-loaded into the page). Identical content is served to all users on all browsers. 
 </p><h3>Image server</h3>
-<p>Raw images are stored at /_etc/resources/raw. Images are requested from /_etc/resources/cut. A URL rewrite checks whether the image exists; if not it redirects to /_etc/images/serve.php. If /_etc/resources/templates contains an image cropped at the requested aspect ratio then an image with the requested dimensions is derived from it. If no such template exists then a new one is guessed from the raw image. 
+<p>Raw images are stored at /_assets/images/raw. Images are requested from /_assets/images/cut. A URL rewrite checks whether the image exists; if not it redirects to /_assets/images/static/serve.php. If /_assets/images/templates contains an image cropped at the requested aspect ratio then an image with the requested dimensions is derived from it. If no such template exists then a new one is guessed from the raw image. 
 </p>  <h3>Notes/Tags</h3>
 <p>Notes are currently imported from Evernote. Although it would be possible to use other capturing tools, Evernote offers a variety of methods for capturing notes, images, URLs and sounds - all dated, versioned, tagged and geo-tagged 
 </p>
