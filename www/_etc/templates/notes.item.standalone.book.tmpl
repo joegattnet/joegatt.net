@@ -11,7 +11,7 @@
     [% END %]
     <p class="isbn" itemprop="isbn">ISBN [% isbn %]</p>
     [% FOREACH resource IN resources %]
-        <img src="/_assets/images/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" itemprop="image">
+        <img src="[% imageServer %]/_assets/images/cut/[% resource.title %]-[% resource.rnd %]-3_4-wb-2-0-0-0.[% resource.ext %]" alt="[% authorSurname %]: [% bookTitle %] - book cover" itemprop="image">
     [% END %]
   </div>
   <ul>

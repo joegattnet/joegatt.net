@@ -44,6 +44,7 @@ use CGI;
     	$debug = 0;
       $dsn = 'DBI:mysql:joegatt-net-production-v2:localhost';
       $githubBranch = 'master';
+      $imageServer = 'http://a1.joegatt.org';
     }
 	}
 
