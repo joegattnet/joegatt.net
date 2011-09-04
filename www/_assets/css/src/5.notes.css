@@ -119,6 +119,9 @@ figcaption {
 .page-links-page #content .url {
   color:#75d42f;
 }
+.grid_6 span.mb_YTVPlayer {
+  margin-bottom:10px!important;
+}
 /* 
 IE9 does not support this
 Also, wrapping can leave widows/orphans
