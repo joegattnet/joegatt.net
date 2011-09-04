@@ -1,0 +1,10 @@
+<!--#set var="category" value="admin" -->
+<!--#set var="section" value="admin" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="/$section/" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="tool_help_default" value="false" -->
+<!--#set var="comments" value="false" -->
+<!--#set var="share" value="false" -->

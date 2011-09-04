@@ -1,0 +1,16 @@
+.section-colophon .grid {
+  height:40px;
+  background:transparent url(/_assets/images/static/12_col_2.gif) -10px -4px;
+}
+
+#ft_colophon li {
+  display:block;
+  overflow:hidden;
+  text-indent:-9999px;
+  background:transparent url(/_assets/images/static/12_col_2.gif) -9999px 0 no-repeat;
+  font-size:12px;
+}
+
+.fontstack {
+  margin-top:20px;
+}

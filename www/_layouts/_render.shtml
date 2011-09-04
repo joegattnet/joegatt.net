@@ -1,7 +1,0 @@
-<!--#if expr="${QUERY_STRING}=/scope\=page/" -->
-  <!--#include virtual="../_layouts/_page_${layout}.shtml"-->
-<!--#elif expr="${QUERY_STRING}=/scope\=section/" -->
-  <!--#include virtual="../_layouts/_section_${layout}.shtml"-->
-<!--#else -->
-  <!--#include virtual="../_layouts/_layout_${layout}.shtml"-->
-<!--#endif -->

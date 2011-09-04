@@ -1,0 +1,30 @@
+<div class="grid_5 alpha">
+  <ul>
+    <li><a href="/wutz/rc">Jean Paul: Schulmeisterlein Wutz 0.7 rc1</a></li>
+    <li><a href="/wutz/">Jean Paul: Schulmeisterlein Wutz</a></li>
+  </ul>
+</div>
+<div class="grid_2">
+  <ul>
+    <li><a href="/notes/">Notes</a></li>
+    <li><a href="/tags/">Tags</a></li>
+  </ul>
+</div>
+<div class="grid_2">
+  <ul>
+    <li><a href="/links/">Links</a></li>
+    <li><a href="/topics/">Topics</a></li>
+  </ul>
+</div>
+<div class="grid_2">
+  <ul>
+    <li><a href="/bibliography/">Bibliography</a></li>
+    <li><a href="/code/">Code</a></li>
+  </ul>
+</div>
+<div class="grid_1 omega">
+  <ul>
+    <li><a href="/colophon/">Colophon</a></li>
+    <li><a href="mailto:info@joegatt.net">Contact</a></li>
+  </ul>
+</div>

@@ -1,0 +1,36 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/errors/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$page" -->
+
+<!--#set var="chunk" value="index" -->
+
+<!--#if expr="$REDIRECT_STATUS != 200"  -->
+  <!--#set var="title" value="$REDIRECT_STATUS error" -->
+  <!--#set var="title.window" value="$title" -->
+<!--#else -->
+  <!--#set var="title" value="Errors" -->
+  <!--#set var="title.window" value="$title" -->
+<!--#endif -->
+
+<!--#set var="request" value="$SERVER_NAME$REQUEST_URI" -->
+<!--#set var="p" value="$REDIRECT_STATUS" -->
+
+<!--#if expr="$p=403" -->
+  <!--#set var="title.sub" value="Access forbidden" -->
+<!--#elif expr="$p=404" -->
+  <!--#set var="title.sub" value="Page not found" -->
+<!--#elif expr="$p=500" -->
+  <!--#set var="title.sub" value="Server error" -->
+<!--#endif -->
+
+<!--#set var="comments" value="false" -->
+<!--#set var="notes" value="false" -->
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+
+<!--#set var="yield" value="yield_1024_12.shtml" -->
+<!--#set var="content" value="/_etc/content/${section}/page.shtml" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

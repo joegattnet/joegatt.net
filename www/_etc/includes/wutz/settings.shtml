@@ -1,0 +1,22 @@
+<!--#set var="category" value="projects" -->
+<!--#set var="section" value="wutz" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="$location" -->
+<!--#set var="share_url" value="$canonical" -->
+
+<!--#set var="keywords" value="anagram,Wutz,Oulipo,Walter Benjamin,Jean Paul" -->
+<!--#set var="subject" value="$keywords">
+
+<!--#set var="tool_help_default" value="true" -->
+<!--#set var="tool_colorize_default" value="false" -->
+
+<!--#set var="share" value="full" -->
+
+<!--#set var="b" value="1" -->
+<!--#set var="p_max" value="82" -->
+
+<!--#set var="notes" value="true" -->
+
+<!--#set var="tags" value="wutz" -->

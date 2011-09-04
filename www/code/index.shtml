@@ -1,0 +1,26 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/code/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$page" -->
+
+<!--#set var="share_id" value="${section}_note" -->
+<!--#set var="clip_id" value="${section}_note_${p}" -->
+<!--#set var="comments_id" value="${section}_${page}" -->
+
+<!--#set var="tags" value="$tags,_${section}_p$p" -->
+
+<!--#set var="chunk" value="index" -->
+
+<!--#set var="title.super.url" value="/$section/" -->
+
+<!--#set var="title" value="Code" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="yield" value="/_etc/includes/code/index.shtml" -->
+
+<!--#set var="content" value="/_etc/cache/php-common--file_get-eu=github-readme-${git_branch}&class=text&refresh=10.html" -->
+<!--#set var="content_middle" value="/_etc/cache/php-common--rss_show-eu=github-commits-master&title=github commits: master&refresh=10.html" -->
+<!--#set var="content_right" value="/_etc/cache/php-common--rss_show-eu=github-commits-dev&title=github commits: dev&refresh=10.html" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

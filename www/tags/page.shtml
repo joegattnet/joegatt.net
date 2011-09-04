@@ -1,0 +1,25 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/tags/settings.shtml" -->
+
+<!--#set var="page" value="page" -->
+<!--#set var="share_id" value="${section}_${p}" -->
+<!--#set var="comments" value="false" -->
+
+<!--#set var="chunk" value="tag" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path$p" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="title.super" value="Tags" -->
+<!--#set var="title.super.url" value="$path" -->
+<!--#set var="title" value="$p" -->
+<!--#set var="title.window" value="Tags: $p" -->
+
+<!--#include virtual="/_etc/cache/head--tags-p=${p}.shtml" -->
+
+<!--#set var="content" value="/_etc/cache/notes--list-tags=${p}&template=compact&limit=99.html" -->
+
+<!--#set var="content_right" value="/_etc/cache/tags--list-template=cloud&min=1.shtml" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

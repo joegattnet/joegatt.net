@@ -1,0 +1,9 @@
+[% IF vimeoId %]
+  <iframe class="vimeo-player" src="" data-url="http://player.vimeo.com/video/[% vimeoId %]" width="[% vimeoWidth %]" height="[% vimeoHeight %]"></iframe>
+[% END %]
+[% IF youtubeId %]
+  <a href="http://www.youtube.com/watch?v=[% youtubeId %]" style="width:[% youtubeWidth %]px;height:[% youtubeHeight %]px" class="video-yt {opacity:1, ratio:'4/3', isBgndMovie:false, width:[% youtubeWidth %]}">[% title %]</a>
+[% END %]
+[% IF dailymotionId %]
+  <iframe class="dailymotion-player" width="[% dailymotionWidth %]" height="[% dailymotionHeight %]" data-url="http://www.dailymotion.com/embed/video/[% dailymotionId %]"></iframe>
+[% END %]

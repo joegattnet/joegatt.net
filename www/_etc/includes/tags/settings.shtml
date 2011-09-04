@@ -1,0 +1,7 @@
+<!--#set var="category" value="apparatus" -->
+<!--#set var="section" value="tags" -->
+
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+
+<!--#set var="path" value="/$section/" -->

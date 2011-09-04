@@ -1,7 +1,0 @@
-How the Wutz anagram is calculated/updated.
-
-1. The MySQL table character_count is populated. The Source text shows negative counts for each letter and sequence '0'.
-
-2. 
-
-NB.W.anagram.flush recalculates anagram, recounting all letters in paragraph. This is used when text is pasted in, etc. 

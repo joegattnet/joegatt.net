@@ -2,9 +2,10 @@ AddDefaultCharset UTF-8
 
 DirectorySlash Off
 
-#ERRORS
-#ErrorDocument 404 /error/404
-#ErrorDocument 500 /info/error/500
+#Errors
+ErrorDocument 403 /errors/403
+ErrorDocument 404 /errors/404
+ErrorDocument 500 /errors/500
 
 RewriteEngine On
 
@@ -14,49 +15,166 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www.joegatt.net$ [NC]
 RewriteRule ^(.*)$ http://joegatt.net/$1 [R=301]
 
-#RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http://[^\/]*joegatt.*$
-#RewriteCond %{HTTP_HOST} ^joegatt.net$ [NC]
+#Only prevent running scripts & sub-pages & hotlinking (?)
+#RewriteCond %{HTTP_REFERER} !joegatt
+#RewriteCond %{HTTP_HOST} joegatt [NC]
+#RewriteCond %{REQUEST_URI} !resources/cut
 #RewriteCond %{REQUEST_URI} !admin
-#RewriteCond %{REQUEST_URI} !concordance
-#RewriteCond %{REQUEST_URI} !redirect
+#RewriteCond %{THE_REQUEST} !^/p/
+#RewriteCond %{THE_REQUEST} !^/c/
 #RewriteCond %{THE_REQUEST} _
 #RewriteRule ^.* - [F,NS,L]
 
-#MINIFY
-RewriteRule ^/_min/([a-z]=.*)  /_min/index.php?$1  [L,NE]
-  
-#CACHE
-#RewriteCond %{REQUEST_URI} ^.*/_cache/.*$
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^(.*)_cache\/(.*_cc)\-(.*)\.html$ $1_cgi/$2.cgi?$3 [T=application/x-httpd-cgi,L]
+#Confirmations
+#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_etc/special/signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+RewriteRule ^(.*)/?p/([0-9]+)/([0-9a-z]+)/?$ $1/_etc/exe/users/signupin_redirect_full.pl?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
+RewriteRule ^(.*)/?c/([0-9]+)/([0-9A-Z]+)/?$ $1/_etc/exe/users/signupin_redirect_full.pl?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
 
-#CONFIRMATIONS
-#RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_special/_signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-#RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_special/_signupin_redirect.shtml?sent_url=/$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
-RewriteRule ^(.*)/p/([0-9]+)/([0-9a-z]+)/?$ /_cgi/_common/_user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_password=$3&mode=signingin [L]
-RewriteRule ^(.*)/c/([0-9]+)/([0-9A-Z]+)/?$ /_cgi/_common/_user_signupin_redirect_full.cgi?sent_url=$1&sent_user_id=$2&sent_confirmation_code=$3&mode=confirming [L]
+#Admin interface
+RewriteRule ^/?admin/?$ /_etc/admin/index.shtml [L]
 
-#Promo referrers
+#Redirect javascript errors
+RewriteRule ^(.*)/NaN/?$ $1/1
+RewriteRule ^(.*)/undefined/?$ $1/1
+
+#Minify
+RewriteRule ^(.*)_(assets|etc)/min/([a-z]=.*)  $1_etc/min/index.php?$3  [L,NE]
+
+#Image-server
+RewriteCond %{REQUEST_URI} ^.*/_assets/images/.*$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^_assets/images/cut/([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)\.([^-]*)$ /_etc/exe\/images\/serve.php?img=$1&rnd=$2&aspect=$3&platform=$4&columns=$5&border=$6&processing=$7&psettings=$8&ext=$9 [T=application/x-httpd-cgi,PT,L]
+
+#Cache
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/php.*$
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)_etc\/cache\/php\-([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/exe/$2/$3.php?$4 [T=application/x-httpd-php,L]
+
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/exe/$2/$3.pl?$4$7 [T=application/x-httpd-cgi,L]
+
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*scope.*$
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)(\&?)scope=([a-z]*)(.*?)\.s?html$ $1_etc/cache/$2--$3-$4$7.shtml [L]
+
+RewriteCond %{REQUEST_URI} ^.*_etc/cache/.*$
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_etc/exe/$2/$3.pl?$4 [T=application/x-httpd-cgi,L]
+
+
+#Promos
 RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
 
-#RewriteRule ^/?$  /home/
-RewriteRule ^/?([a-z]+)$  /$1/ [L,R]
-RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
+#Genericise these rules (And don't use page but rely on iteration - remove [L])
+RewriteRule ^/?tags/([_:a-zA-Z0-9]+)/?$ /tags/page.shtml?p=$1 [L,QSA]
+RewriteRule ^(.*)wutz/rc/?$ $1wutz/release.shtml?p=$1 [L,QSA]
+RewriteRule ^(.*)wutz/rc/([0-9]+)/?$ $1wutz/release.shtml?p=$2 [L,QSA]
+RewriteRule ^/?wutz/?$ /wutz/page.shtml?p=1 [L,QSA]
+RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
+RewriteRule ^/?([a-z0-9]+)/([a-z0-9]+)/?$ /$1/$2.shtml?p=1 [L,QSA]
+
+#URLs
+RewriteRule ^/?$  /home/ [L]
+RewriteRule ^/?([a-z]+)/?$  /$1/index.shtml [L]
+#RewriteRule ^/?(.*)([0-9]+)/$  /$1$2
+
+#RewriteCond %{REQUEST_URI} !^.*/c/.*$
+#RewriteCond %{REQUEST_URI} !^.*/p/.*$
+#RewriteRule ^/?(.*)/([a-z0-9]+)/?$ /$1/$2.shtml [L]
+#RewriteRule ^/?(.*)/v([0-9]+)/?$ /$1?v=$2 [QSA]
+
+#RewriteCond %{REQUEST_URI} !^.*/c/.*$
+#RewriteCond %{REQUEST_URI} !^.*/p/.*$
+#RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
+#RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/page.shtml?p=$2 [L,QSA]
 
 RewriteCond %{REQUEST_URI} !^.*/c/.*$
 RewriteCond %{REQUEST_URI} !^.*/p/.*$
 RewriteCond %{REQUEST_URI} ^(.*)/([0-9]+)/?$
-RewriteRule ^/?(.*)/([0-9]+)/?$ /$1/index.shtml?p=$2 [L,QSA]
+RewriteRule ^/?(.*)/([a-zA-Z0-9]+)/?(.*)/?$ /$1/$2.shtml?p=$3 [L,QSA]
 
-RewriteCond %{REQUEST_URI} !^.*_c.*$
-RewriteCond %{REQUEST_URI} !^.*/c/.*$
-RewriteCond %{REQUEST_URI} !^.*/p/.*$
-RewriteCond %{REQUEST_URI} !^(.*)([^0-9]+)/?$
-RewriteCond %{HTTP_COOKIE} p=([0-9]+) [NC]
-RewriteRule ^(.*)$ $1?p=%1 [NS,L,QSA]
+#RewriteCond %{REQUEST_URI} !-s
+#RewriteRule ^(.*)/([a-z]*)/?$ ${featuresMap:$2|/error/404} 
 
-ExpiresActive On
-ExpiresDefault "access plus 1 year"
-ExpiresByType text/html "access plus 10 minutes"
-ExpiresByType text/xml "access plus 10 minutes"
+# ******************************************************************************
+# Adapted from https://github.com/paulirish/html5-boilerplate/blob/master/.htaccess
+
+<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+AddType audio/ogg oga ogg
+
+AddType video/ogg ogv
+AddType video/mp4 mp4
+AddType video/webm webm
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+                                       
+AddType application/vnd.ms-fontobject eot
+AddType font/truetype ttf
+AddType font/opentype otf
+AddType application/x-font-woff woff
+
+AddType image/x-icon ico
+AddType image/webp webp
+AddType text/cache-manifest appcache manifest
+AddType text/x-component htc
+AddType application/x-chrome-extension crx
+AddType application/x-xpinstall xpi
+AddType application/octet-stream safariextz
+
+<IfModule mod_deflate.c>
+  <IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    </IfModule>
+  </IfModule>
+  <IfModule filter_module>
+    FilterDeclare COMPRESS
+    FilterProvider COMPRESS DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
+    FilterProvider COMPRESS DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
+    FilterChain COMPRESS
+    FilterProtocol COMPRESS change=yes;byteranges=no
+  </IfModule>
+  <IfModule !mod_filter.c>
+    # Legacy versions of Apache
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+  </IfModule>
+  <FilesMatch "\.(ttf|otf|eot|svg)$" >
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresDefault "access plus 1 year"
+ 
+  ExpiresByType text/cache-manifest "access plus 10 minutes"
+  ExpiresByType text/html "access plus 10 minutes"
+  ExpiresByType text/xml "access plus 10 minutes"
+ 
+  ExpiresByType application/xml "access plus 10 minutes"
+  ExpiresByType application/json "access plus 10 minutes"
+  ExpiresByType application/rss+xml "access plus 10 minutes"
+ 
+  #Favicon (cannot be renamed)
+  ExpiresByType image/x-icon "access plus 1 month"
+  
+  <IfModule mod_headers.c>
+    Header append Cache-Control "public"
+  </IfModule>
+</IfModule>
+
+FileETag None
+
+#<Location />
+#  AddOutputFilterByType SUBSTITUTE text/html
+#  Substitute s/\n//
+#</Location>

@@ -1,0 +1,9 @@
+<a href="/[% location %]/[% p %]" class="link">[% title %]</a>
+<ul class="meta nav_h">   
+  [% FOREACH tag IN tags %]
+    [% tag.listItem %]
+  [% END %]
+  [% IF sourceUrl %]
+    <li><a href="[% sourceUrl %]" title="[% sourceUrl %]">[% sourceUrlDomain %]</a></li>
+  [% END %]
+</ul>

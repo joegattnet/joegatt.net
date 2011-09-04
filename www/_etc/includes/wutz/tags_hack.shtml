@@ -1,0 +1,7 @@
+<!--#if expr="$QUERY_STRING = /p=([_a-zA-Z0-9]+)/" -->
+  <!--#set var="p" value="$1" -->
+<!--#endif -->
+
+<!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
+
+<!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->

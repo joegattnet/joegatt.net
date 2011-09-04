@@ -1,0 +1,87 @@
+<div class="grid_2 alpha">
+  <h4>Server-side</h4>
+  <ul>
+    <li><a href="http://www.ubuntu.com/server/">Ubuntu Server Edition</a></li>
+    <li><a href="http://www.mysql.com/">MySQL</a></li>
+    <li><a href="http://www.perl.org/">Perl</a></li>
+    <li><a href="http://www.php.net/">PHP</a></li>
+    <li><a href="http://httpd.apache.org/">Apache HTTP Server</a></li>
+    <li><a href="https://www.varnish-cache.org/">Varnish Cache</a></li>
+    <li><a href="http://munin-monitoring.org/">Munin</a></li>
+  </ul>
+</div>
+<div class="grid_2">
+  <h4>Client-side</h4>
+  <ul>
+    <li><a href="http://www.w3.org/TR/html5/">HTML5</a>
+    <li><a href="http://960.gs/">960 Grid System</a></li>
+    <li><a href="http://www.modernizr.com/">Modernizr</a></li>
+    <li><a href="http://jdbartlett.com/innershiv/">innerShiv</a></li>
+    <li><a href="http://jquery.com/">jQuery</a></li>
+    <li><a href="http://jqueryui.com/">jQuery UI</a></li>
+    <li><a href="http://plugins.jquery.com/plugin-tags/caret">jQuery Caret</a></li>
+    <li><a href="http://code.google.com/p/jquery-rich-array/">jQuery Rich Array</a></li>
+    <li><a href="http://plugins.jquery.com/project/hashchange/">jQuery Hashchange</a></li>
+    <li><a href="http://timeago.yarp.com/">jQuery Timeago</a></li>
+    <li><a href="https://github.com/pupunzi/jquery.mb.YTPlayer">jQuery mb.YTPlayer</a></li>
+    <li><a href="http://www.addthis.com/help/client-api">AddThis Client API</a></li>
+    <li><a href="http://developers.facebook.com/docs/reference/javascript/">Facebook JS SDK</a></li>
+    <li><a href="http://dev.twitter.com/doc">Twitter Anywhere</a></li>
+    <li><a href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps JS API</a></li>
+    <li><a href="http://nicedit.com/">NicEdit</a></li>
+  </ul>
+</div>
+<div class="grid_2">
+  <h4>Other</h4>
+  <ul>
+    <li><a href="http://git-scm.com/">Git</a></li>
+    <li><a href="http://github.com/">Github.com</a></li>
+    <li><a href="http://duplicity.nongnu.org/">Duplicity</a></li>
+    <li><a href="http://rsync.net/">RSync.net</a></li>
+    <li><a href="http://www.phpmyadmin.net/">phpMyAdmin</a></li>
+    <li><a href="http://www.evernote.com/">Evernote</a></li>
+  </ul>
+</div>
+<div class="grid_5 prefix_1 omega">
+    <h4>Fonts</h4>
+    <ul>
+      <li>
+        <p class="KleistFrakturRegular">Kleist Fraktur</p>
+        <p>By <a href="http://www.steffmann.de/">Dieter Steffman</a> via <a href="http://moorstation.org/typoasis/designers/steffmann/samples/k/kleist.htm">Typoasis</a> and <a href="http://www.fontsquirrel.com/fontface/generator">Font Squirrel</a></p>
+      </li>
+      <li>
+        <p class="DejaVuSansCondensed">Deja Vu Sans Condensed</p>
+        <p class="DejaVuSansCondensedBold">Deja Vu Sans Condensed Bold</p>
+        <p>By <a href="http://dejavu-fonts.org/">DejaVu Fonts</a> via <a href="http://www.fontsquirrel.com/fonts/DejaVu-Sans-Mono">Font Squirrel</a></p>
+      </li>
+      <li class="fontstack">
+        <p>Body font stack is <a href="http://en.wikipedia.org/wiki/Georgia_(typeface)">Georgia</a>, <a href="http://en.wikipedia.org/wiki/Palatino">Palatino Linotype</a>, serif.</p>
+        <p>Default font stack is <a href="http://en.wikipedia.org/wiki/Tahoma_(typeface)">Tahoma</a>, <a href="http://en.wikipedia.org/wiki/Geneva_(typeface)">Geneva</a>, sans-serif.</p>
+        <p>Monospace font stack is <a href="http://en.wikipedia.org/wiki/Menlo_(typeface)">Menlo</a>, <a href="http://en.wikipedia.org/wiki/Consolas">Consolas</a>, monospace.
+      </li>
+    </ul>
+</div>
+<section class="grid_12">
+  <h4>Grid</h4>
+  <div class="grid_12 grid">
+    <!--#include virtual="/_etc/cache/notes--fragment-tags=_colophon_grid.html" -->
+  </div>
+</section>
+<section class="grid_12 palette">
+  <h4>Palette</h4>
+  <div class="grid_1 alpha"><p>333333</p></div>
+  <div class="grid_1"><p>999999</p></div>
+  <div class="grid_1"><p>d5d5d5</p></div>
+  <div class="grid_1"><p>D3120F</p></div>
+  <div class="grid_1"><p>f74b23</p></div>
+  <div class="grid_1"><p>f3f129</p></div>
+  <div class="grid_1"><p>75d42f</p></div>
+  <div class="grid_1"><p>86853a</p></div>
+  <div class="grid_1"><p>22aecc</p></div>
+  <div class="grid_1"><p>362fd4</p></div>
+  <div class="grid_1"><p>336699</p></div>
+  <div class="grid_1 omega"><p>b32fd4</p></div>
+</section>
+<aside class="meta grid_12" id="versions">
+    <p>Version <span class="version-source">0.4</span> (<time datetime="2011-06-30T00:26:14Z" class="timeago" updated>30 Jun 2011 at 00:26 UTC</time>)</p>
+</aside>

@@ -1,0 +1,25 @@
+<div class="grid_5 alpha">
+    <div class="text">
+      <blockquote cite="[% sourceUrl %]">
+        [% text %]
+      </blockquote>
+    </div>
+  <p><a href="[% sourceUrl %]" title="[% title %]">[% title %]</a> (<span class="domain">[% sourceUrlDomain %]</span>)</p>
+  [% FOREACH resource IN resources %]
+      <p class="details">Accessed: <time class="timeago" datetime="[% resource.date_iso8601 %]">[% resource.date_full %]</time>.</p>
+      <p class="clearfix screenshot"><a href="[% sourceUrl %]"><img src="[% imageServer %]/_assets/images/cut/[% resource.title %]-[% resource.rnd %]-1_2-wb-3-1-0-0.[% resource.ext %]" alt="Screenshot from [% sourceUrlDomain %]" title="[% sourceUrl %]"></a></p>
+  [% END %]
+  <aside id="versions" class="meta">
+    <p>Version <span class="version-source">[% version %]</span> (<time class="updated timeago" datetime="[% date_iso8601 %]" pubdate>[% date_full %]</time>)</p>
+  </aside>
+</div>
+<div class="grid_5 prefix_1 suffix_1 omega">
+  <div class="apparatus">
+    <div id="tags">
+      <!--#include virtual="../../_etc/cache/tags--tags-tags=[% tagsUrl %].html" -->
+    </div>
+    <div id="notes" class="grid_5 alpha omega">
+      <!--#include virtual="../../_etc/cache/notes--list-tags=[% tagsUrl %]&exclude=[% p %].html" -->
+    </div>
+  </div>
+</div>

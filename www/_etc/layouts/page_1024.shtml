@@ -1,0 +1,35 @@
+<!--#include virtual="/_etc/includes/initialise.shtml" -->
+<section class="section-<!--#echo encoding="none" var="section" --> page-<!--#echo encoding="none" var="section" -->-<!--#echo encoding="none" var="page" -->">
+  <!--#if expr="${title.static}=true" -->
+    <header>
+      <hgroup id="title">
+          <h1 class="entry-title">
+            <!--#if expr="${title.url}" -->
+              <a href="<!--#echo encoding="none" var="title.url" -->"><!--#echo encoding="none" var="title" --></a>
+            <!--#else -->
+              <!--#echo encoding="none" var="title" -->
+            <!--#endif -->
+            <span class="version"><!--#echo encoding="none" var="version"--></span>
+          </h1>
+          <!--#if expr="${title.super}" -->
+            <h2><a href="<!--#echo encoding="none" var="title.super.url" -->" class="title-super-a"><!--#echo encoding="none" var="title.super" --></a></h2>
+          <!--#endif -->
+          <!--#if expr="${title.sub}" -->
+            <h3><!--#echo encoding="none" var="title.sub" --></h3>
+          <!--#endif -->
+      </hgroup>
+    </header>
+  <!--#endif -->
+  <article class="entry" id="yield" role="main" data-url="<!--#echo encoding="none" var="yield" -->">
+    <!--#include virtual="$yield"-->
+  </article>
+  <!--#if expr="$help" -->
+    <aside id="help_main" class="padded clearfix" style="display:none;">
+      <p class="close tool"><a class="tool_help_extra" href="javascript:;" rel="help">close</a></p>
+      <!--#include virtual="$help" -->
+    </aside>
+  <!--#endif -->
+  <nav id="hd">
+    <!--#include virtual="/_etc/includes/nav_top.shtml" -->
+  </nav>
+</section>

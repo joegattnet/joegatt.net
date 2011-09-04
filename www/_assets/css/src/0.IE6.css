@@ -1,0 +1,36 @@
+.nav_h li {
+float:left;
+display:block;
+}
+#toolbar .navigator {
+margin-top:0;
+margin-bottom:5px;
+}
+#toolbar .nav-li {
+width:27px;
+}
+.al_right .nav_h, #follow a#twitter-follow, .al_right .nav_h {
+float:right;
+}
+#total_change p {
+float:left;
+}
+#total, #change, .navigator a, #version_info a.button {
+display:block;
+}
+#change {
+margin-top:1.75em;
+}
+#version_info li {
+margin-left:5px;
+}
+.navigator .goto {
+top:-9px;
+}
+#anagramometer td, #anagramometer th {
+background-color:#DDEEEE;
+border-bottom:1px solid #FFFFFF;
+}
+#anagramometer .even td, #anagramometer .even th {
+background-color:#CCEEEE;
+}

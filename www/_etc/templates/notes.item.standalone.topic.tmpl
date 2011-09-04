@@ -1,0 +1,34 @@
+<div class="grid_5 alpha">
+  [% IF text %]
+    <div class="text">
+      <blockquote cite="[% sourceUrl %]">
+        [% text %]
+      </blockquote>
+    </div>
+  [% END %]
+  <p><a href="[% sourceUrl %]">Wikipedia: [% title %]</a></p>  
+  <aside id="versions" class="meta">
+    <p>Version <span class="version-source">[% version %]</span> (<time class="updated timeago" datetime="[% date_iso8601 %]" pubdate>[% date_full %]</time>)</p>
+  </aside>
+  <div class="apparatus">
+    <!--#include virtual="../../_etc/layouts/apparatus_left.shtml" -->
+  </div>
+</div>
+<div class="grid_6 prefix_1 omega">
+  [% FOREACH resource IN resources %]
+     <a href="[% imageServer %]/_assets/images/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-12-0-0-0.[% resource.ext %]">
+      <img src="[% imageServer %]/_assets/images/cut/[% resource.title %]-[% resource.rnd %]-16_9-wb-6-0-0-0.[% resource.ext %]" alt="[% IF caption %][% caption %][% ELSIF title %][% title %][% ELSE %][% textBriefClean %][% END %]">
+     </a>
+  [% END %]
+  [% IF caption %]
+    <p class="caption">[% caption %]</p>
+  [% END %]
+  <div class="apparatus">
+    <div id="tags">
+      <!--#include virtual="../../_etc/cache/tags--tags-tags=[% tagsUrl %].html" -->
+    </div>
+    <div id="notes" class="grid_5 alpha omega">
+      <!--#include virtual="../../_etc/cache/notes--list-tags=[% tagsUrl %]&exclude=[% p %].html" -->
+    </div>
+  </div>
+</div>

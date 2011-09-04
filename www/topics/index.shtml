@@ -1,0 +1,20 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/topics/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$section" -->
+<!--#set var="comments" value="false" -->
+
+<!--#set var="chunk" value="index" -->
+
+<!--#set var="title" value="Topics" -->
+<!--#set var="title.window" value="$title" -->
+
+<!--#set var="yield" value="yield_1024_12_a.shtml" -->
+<!--#set var="content" value="/_etc/cache/notes--list-template=compact&header=no&alphabetical=true&latest=true&limit=999&cols=6&limit=999&view=topics.html" -->
+
+<!--#set var="clip" value="false" -->
+<!--#set var="tags" value="false" -->
+<!--#set var="notes" value="false" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

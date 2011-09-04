@@ -1,0 +1,21 @@
+<!--#set var="description" value="[% textBriefClean %]" -->
+<!--#set var="OriginalPublicationDate" value="[% date_iso8601 %]" -->
+<!--#set var="tags" value="[% tagsUrl %]" -->
+<!--#set var="canonical" value="/[% location %]/[% p %]" -->
+<!--#set var="nav_up" value="/[% location %]/" -->
+<!--#set var="nav_up_title" value="[% section %]" -->
+[% IF resources %]
+  <!--#set var="shareicon" value="[% imageServer %]/_assets/images/cut/[% resources.0.title %]-[% resources.0.rnd %]-0-sq-100-0-0-0.[% resources.0.ext %]" -->
+[% END %]
+[% IF showMaps %]
+  [% IF latitude %]
+    <!--#set var="latitude1" value="[% latitude %]" -->
+    <!--#set var="longitude1" value="[% longitude %]" -->
+  [% END %]
+  [% FOREACH resource IN resources %]
+    [% IF resource.latitude %]
+        <!--#set var="latitude2" value="[% resource.latitude %]" -->
+        <!--#set var="longitude2" value="[% resource.longitude %]" -->
+    [% END %]
+  [% END %]
+[% END %]

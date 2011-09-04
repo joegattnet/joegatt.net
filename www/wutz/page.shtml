@@ -1,0 +1,41 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/wutz/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$section" -->
+<!--#set var="clip_id" value="${section}_${p}" -->
+<!--#set var="comments_id" value="${section}_$page" -->
+<!--#set var="scholia_id" value="${section}_$page" -->
+
+<!--#set var="page_app" value="enface" -->
+<!--#set var="chunk" value="paragraph" -->
+
+<!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="${path}${p}" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="title" value="Jean Paul: Schulmeisterlein Wutz" -->
+<!--#set var="title.window" value="$title" -->
+<!--#set var="title.url" value="/wutz/" -->
+
+<!--#include virtual="/_etc/cache/head--enface-page=${page}&b=${b}&p=${p}&p_max=${p_max}.shtml" -->
+
+<!--#set var="notranslate" value="true" -->
+
+<!--#set var="version" value="v0.7x" -->
+
+<!--#set var="help" value="/_etc/content/${section}/help_${page}.shtml" -->
+<!--#set var="toolbar_pinnable" value="true" -->
+
+<!--#set var="nav_end" value="true" -->
+
+<!--#set var="tags_hack" value="true" -->
+
+<!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
+<!--#set var="direct_content" value="true" -->
+<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}.html" -->
+<!--#set var="toolbar" value="/_etc/includes/${section}/toolbar.shtml" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

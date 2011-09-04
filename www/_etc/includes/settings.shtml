@@ -1,0 +1,119 @@
+<!--#if expr="$QUERY_STRING = /scope=([a-zA-Z0-9]+)/" --><!--#set var="scope" value="$1" --><!--#else --><!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--#endif -->
+
+<!--#if expr="$server = /([a-zA-Z0-9]+)\.joegatt/" -->
+  <!--#set var="subdomain" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /p=([_a-zA-Z0-9]+)/" -->
+  <!--#set var="p" value="$1" -->
+<!--#else -->
+  <!--#set var="p" value="1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /b=([0-9]+)/" -->
+  <!--#set var="b" value="$1" -->
+<!--#else -->
+  <!--#set var="b" value="0" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /u=([a-zA-Z0-9]+)/" -->
+  <!--#set var="u" value="$1" -->
+<!--#endif -->
+
+<!--#config timefmt="%H%M%S" -->
+<!--#set var="randomiser" value="$REMOTE_ADDR$DATE_LOCAL" -->
+
+<!--#set var="server" value="$SERVER_NAME" -->
+<!--#set var="root" value="/" -->
+
+<!--#set var="path" value="/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#if expr="$server=joegatt.net" -->
+  <!--#set var="google_tracking_code" value="UA-16898823-1" -->
+  <!--#set var="debug" value="false" -->
+  <!--#set var="js_url" value="http://a1.joegatt.org" -->
+  <!--#set var="css_url" value="http://a1.joegatt.org" -->
+  <!--#set var="images_url" value="http://a1.joegatt.org" -->
+  <!--#set var="git_branch" value="master" -->
+<!--#else -->
+  <!--#set var="google_tracking_code" value="UA-1346274-1" -->
+  <!--#set var="debug" value="true" -->
+  <!--#set var="js_url" value="" -->
+  <!--#set var="css_url" value="" -->
+  <!--#set var="images_url" value="" -->
+  <!--#set var="git_branch" value="dev" -->
+<!--#endif -->
+
+<!--#set var="readability_tracking_code" value="GYUCgpCnFASq7wVJqrgJYMSytz6ApjL4GD66STfG" -->
+
+<!--#set var="favicon" value="$images_url/favicon.ico" -->
+<!--#set var="iphoneicon" value="$images_url/apple-touch-icon.png" -->
+<!--#set var="shareicon" value="$images_url/logo.png" -->
+
+<!--#set var="scripts_discrete" value="false" -->
+<!--#set var="styles_discrete" value="false" -->
+
+<!--#set var="jquery_version" value="1.6.2" -->
+<!--#set var="jquery_ui_version" value="1.8.12" -->
+
+<!--#set var="js_version" value="1-3" -->
+<!--#set var="css_version" value="1-1" -->
+<!--#set var="js_cachebuster" value="0.95" -->
+<!--#set var="css_cachebuster" value="0.63" -->
+
+<!--#if expr="$server = /^v(\d)\./" -->
+  <!--#set var="css_cachebuster" value="$css_cachebuster$1" -->
+  <!--#set var="js_cachebuster" value="$js_cachebuster$1" -->
+<!--#endif -->
+
+<!--#set var="author" value="Gatt, Joe" -->
+<!--#set var="author_last_first" value="Gatt, Joe" -->
+<!--#set var="sitename" value="joegatt.net" -->
+<!--#set var="publisher" value="$sitename" -->
+<!--#set var="fbadmins" value="" -->
+<!--#set var="generator" value="nembrot.org" -->
+<!--#set var="description" value="A long anagram." -->
+<!--#set var="keywords" value="anagram,oulipo" -->
+<!--#set var="copyright" value="Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported" -->
+<!--#set var="copyright_url" value="http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode" -->
+<!--#set var="subject" value="Translation" -->
+
+<!--#set var="api_key_facebook" value="142214389156795" -->
+<!--#set var="api_key_twitter" value="026ussCKYOuzzcZjSV7UQ" -->
+
+<!--#set var="external_facebook" value="true" -->
+<!--#set var="external_twitter" value="true" -->
+
+<!--#set var="follow_twitter" value="http://twitter.com/joegattnet" -->
+
+<!--#set var="rss_title" value="joegatt.net" -->
+<!--#set var="rss_url" value="joegatt-net.rss" -->
+
+<!--#set var="title.static" value="true" -->
+
+<!--#set var="version" value="" -->
+
+<!--#set var="comments" value="true" -->
+
+<!--#set var="b" value="0" -->
+<!--#set var="p_max" value="0" -->
+
+<!--#set var="apparatus" value="/_etc/layouts/apparatus_1024_05_01_06.shtml" -->
+
+<!--#set var="direct_content" value="false" -->
+
+<!--#set var="tags" value="false" -->
+<!--#set var="page_app" value="flat" -->
+
+<!--#set var="notes" value="false" -->
+<!--#set var="more" value="/_etc/includes/nav_more.shtml" -->
+
+<!--#set var="yield" value="yield_1024_05_01p_06_a.shtml" -->
+<!--#set var="layout" value="1024" -->
