@@ -4,4 +4,11 @@ NB.Nav.goto = function () {
 
 /******************************************************************************/
 
+$('#container').delegate('.goto', 'keydown', function (event) {
+  if (event.which === NB.keycodes.ENT) {
+    $(this).trigger('change');
+    return false;
+  }
+});
+
 $('#container').delegate('.goto', 'change', NB.Nav.goto);
