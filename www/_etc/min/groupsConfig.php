@@ -122,7 +122,7 @@ return array(
    ),
      'css1-1' => array(
    '//_assets/css/lib/1.style-reset-html5-boilerplate.css',
-   '//_assets/css/lib/2.960.css',
+   '//_assets/css/lib/2.960_12_col.css',
    '//_assets/css/src/1.site.css',
    '//_assets/css/src/3.colors.css',
    '//_assets/css/src/3.fonts.css',
