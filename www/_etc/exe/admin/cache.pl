@@ -40,4 +40,6 @@ if ($ARGV[0] eq '') {
     </html>
   ~;
 
+} else {
+          cache_refresh($q,1,($deleteOnly eq 'on'));
 }
