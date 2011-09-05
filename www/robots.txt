@@ -1,4 +1,4 @@
-sitemap: http://joegatt.net/sitemap.xml
+sitemap: http://joegatt.net/sitemap.txt
 
 User-agent: Fasterfox
 Disallow: /
