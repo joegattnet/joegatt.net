@@ -31,11 +31,10 @@ if (NB.Cookie.read('session_exit')) {
   });
 }
 
-if (NB.Cookie.read('promo')) {
-  var promo = NB.Cookie.read('promo');
-  NB.Cookie.remove('promo');
+if(location.hash.indexOf('pr-')!=-1){
   NB.loaded_scripts.add(false, function () {
-    NB.Nav.track(2, 'Promo - referrer', promo);
+    NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
+    location.hash='';
   });
 }
 
