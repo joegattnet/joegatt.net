@@ -1,9 +1,9 @@
-<!--#if expr="$p = '1'" -->   <!--#set var="tags" value="autodidacticism,library" -->
+<!--#if expr="$p = '1'" -->   <!--#set var="tags" value="library" -->
 <!--#elif expr="$p = '2'" --> <!--#set var="tags" value="cryptanalysis,esoteric translation,Pentecost" -->
-<!--#elif expr="$p = '3'" --> <!--#set var="tags" value="pareidolia,rorschach,tasseography" -->
-<!--#elif expr="$p = '4'" --> <!--#set var="tags" value="" -->
-<!--#elif expr="$p = '5'" --> <!--#set var="tags" value="" -->
-<!--#elif expr="$p = '6'" --> <!--#set var="tags" value="" -->
+<!--#elif expr="$p = '3'" --> <!--#set var="tags" value="pareidolia,Rorschach,tasseography" -->
+<!--#elif expr="$p = '4'" --> <!--#set var="tags" value="benjamin_1992" -->
+<!--#elif expr="$p = '5'" --> <!--#set var="tags" value="BorgesXXXCollected Fictions" -->
+<!--#elif expr="$p = '6'" --> <!--#set var="tags" value=Arbuthnot et al"" -->
 <!--#elif expr="$p = '7'" --> <!--#set var="tags" value="" -->
 <!--#elif expr="$p = '8'" --> <!--#set var="tags" value="" -->
 <!--#elif expr="$p = '9'" --> <!--#set var="tags" value="" -->

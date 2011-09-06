@@ -44,8 +44,8 @@ NB.Tools.colorize = {
     }
   }, 
   undo: function (e) {
+    NB.Nav.track(0, 'Tools.Colorize.undo');
     NB.Ui.caret.store();
-    NB.Nav.track(0, 'Tools.Colorize.undo', e);
     var j = $(e);
     j.text(j.text());
     j.removeClass('colorizer-ized');
