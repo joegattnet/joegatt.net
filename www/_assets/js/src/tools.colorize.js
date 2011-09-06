@@ -25,7 +25,7 @@ NB.Tools.colorize = {
      if (cached!=undefined) {
         j.html(cached.data);
     } else {
-    NB.Nav.track(0, 'COLORISING', e.attr('id'));
+    NB.Nav.track(0, 'Colorizing', e.attr('id'));
        var colorized = j.text().replace(/\w+ /g, function (match) {
         var score = NB.Enface.word_score(match);
         if (score<0) {
