@@ -18,13 +18,13 @@ use CGI;
   
   $db_pwfileloc = '/home/admin/_db_passwords/joegatt-net/live.txt';
   $saltfileloc = '/home/admin/_db_passwords/joegatt-net/salt.txt';
-  $twitter_pwfileloc = '/home/admin/_db_passwords/joegatt-net/twitter.txt';
   $facebooksecretloc = '/home/admin/_db_passwords/joegatt-net/facebook.txt';
   $twitter_consumersecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_consumersecret.txt';
   $twitter_accesstokensecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_accesstokensecret.txt';
   $protectedloc = '/home/admin/_db_passwords/joegatt-net/protected.txt';
   $localhost = 0;
   $notesThreshold = 2;
+
   if ($serverName eq 'test.joegatt.org') {
   	$debug = 1;
   	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
@@ -436,7 +436,7 @@ sub get_salt {
 
 sub get_password {
   my $fileloc = $_[0];
-  open (PASSWORD, untaint($fileloc)) or die warn "Can't open Twitter password file.";
+  open (PASSWORD, untaint($fileloc)) or die warn "Can't open '$fileloc' file: $!.";
   my @passwordfile = <PASSWORD>;
   $password = "@passwordfile";
   close (PASSWORD);
