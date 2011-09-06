@@ -6,6 +6,7 @@ NB.Anagram.letter = function (e, k) {
     NB.Nav.track(1, 'KEY...', k);
     NB.Enface.selectFlag = false;
     NB.Anagram.recalculate_paragraph(e);
+    return;
   }
   if (k  === NB.keycodes.ENT) {
     return false;
