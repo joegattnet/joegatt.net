@@ -23,15 +23,19 @@ if ($startup eq 'true') { # && $ustreset ne 'true') {
   $twuser = $query->cookie('twuser');
   $confirmed = $query->cookie('confirmed');
   $rememberme = $query->cookie('rememberme');
+
+  if($sent_user_id eq ''){
+    $sent_user_id = $query->cookie('user_id');
+  }
   
    if ($confirmed eq '0') {
        $mode='unconfirmed';
-       $sent_user_id = $query->cookie('user_id');
+#       $sent_user_id = $query->cookie('user_id');
 #      $('#signupin').removeClass('closed');
      } elsif ($rememberme eq '1') {
        $mode='signingin';
        $sent_rmcode = $query->cookie('rmcode');
-       $sent_user_id = $query->cookie('user_id');
+#       $sent_user_id = $query->cookie('user_id');
      } elsif ($confirmed eq '1' || $fbuser eq 'true' || $twuser eq 'true') {
        $mode='signin';
      } else {
