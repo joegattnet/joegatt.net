@@ -62,7 +62,7 @@ my $dbh = connectDB();
   
   $score_total = OOOcomma($score_total);
   
-  $text = "Wutz P$p improved by $score to $score_total: ".$text;
+  $text = "Wutz ¶$p improved by $score to $score_total: ".$text;
 
   #$text = "$username improved Wutz P$p by $score to $score_total: ".$text;
   #Get user's explicit permission in users/ before broadcasting their name
