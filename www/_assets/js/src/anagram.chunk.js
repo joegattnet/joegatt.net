@@ -1,16 +1,17 @@
 NB.Anagram.recalculate_paragraph = function (e) {
-//NB.Nav.track(1, 'Recalculate paragraph');
+  var j = $(e);
+  NB.Nav.track(1, 'Recalculate paragraph');
   var currentArray = NB.String.strip(e.innerHTML).toLowerCase().split('');
-	NB.alphanumArray.each(function (i) {
-	var origCount = NB.Anagram.origArray[e.data('p')].findAll(function (c) {
-					return c === item;
-			});
-			var currentCount = currentArray.findAll(function (c) {
-					return c === item;
-			});
-			NB.Anagram.anagram[i] = (NB.Anagram.anagram[i] - origCount.size()) + currentCount.size();
+	$.each(NB.alphanumArray, function (index, value) {
+      var origCount = $.richArray.filter(NB.Anagram.origArray[j.data('p')], function (c) {
+          return c === value;
+      });
+      var currentCount = $.richArray.filter(currentArray, function (c) {
+      		return c === value;
+      });
+			NB.Anagram.anagram[index] = (NB.Anagram.anagram[index] - origCount.length) + currentCount.length;
 	});
 	NB.Anagram.update();
-	NB.Anagram.origArray[e.data('p')] = currentArray;
-  $('#alert').html(NB.Enface.Paragraphs.check_text(e));
+	NB.Anagram.origArray[j.data('p')] = currentArray;
+  $('#alert').html(NB.Enface.check_text(e));
 }
