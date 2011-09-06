@@ -450,7 +450,7 @@ if ($mode eq 'signedin') {
 
   $jsstring .= "NB.Cookie.write('confirmed','1');";  
   $jsstring .= "NB.Cookie.write('user_id','$user_id');";
-  $jsstring .= "NB.Nav.track(2,'Signupin', 'Signed in', 'joegatt.net');";
+  $jsstring .= "NB.Nav.track(2,'Signupin', 'Logged in', 'joegatt.net');";
 
   #Rmcodes are alternated
   if($sent_rmcode eq $found_rmcode) {      
@@ -470,9 +470,9 @@ if ($mode eq 'signedin') {
   $headerstring = $found_username;
   $formstring .= qq~
      $signedinextramessage
-     <p>You are signed in.</p>
+     <p>You are logged in.</p>
      <p><a href="javascript:;" onclick="NB.User.password.change();">Change password</a></p>
-     <p><a href="javascript:;" onclick="NB.User.signout();">Sign out</a></p>
+     <p><a href="javascript:;" onclick="NB.User.signout();">Log out</a></p>
   ~;
   
 #  if ($found_user_id ne ''){
@@ -516,12 +516,14 @@ print qq~
           print qq~
             <p class="separator">You have previously used your Facebook account to log in.</p>
             $facebookbutton
+            <p><a href="javascript:;" onclick="NB.User.signout();">Forget me</a></p>
           ~;
 #         <p><a href="javascript:;" onclick="NB.User.signin();">Sign in normally</a></p>
     }elsif ($twuser eq 'true'){
           print qq~
             <p class="separator">You have previously used your Twitter account to log in.</p>
             $twitterbutton
+            <p><a href="javascript:;" onclick="NB.User.signout();">Forget me</a></p>
           ~;
 #         <p><a href="javascript:;" onclick="NB.User.signin();">Sign in normally</a></p>
       } else {

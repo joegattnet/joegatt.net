@@ -12,7 +12,7 @@ print ("Content-Type: text/plain\n\n");
 saveAnagram($b);
 
 $location = untaint("../../../_etc/cache/enface--anagram-b=$b.json");
-open (ANAGRAM, $location) or die print "Can't open $location";
+open (ANAGRAM, $location) or die warn "Can't open $location";
 my @lines = <ANAGRAM>;
 $load_anagram = "@lines";
 $load_anagram =~ s/\n//g;

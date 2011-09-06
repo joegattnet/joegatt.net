@@ -34,7 +34,7 @@ if (NB.Cookie.read('session_exit')) {
 if(location.hash.indexOf('pr-')!=-1){
   NB.loaded_scripts.add(false, function () {
     NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
-    location.hash='';
+    location.hash = '';
   });
 }
 
