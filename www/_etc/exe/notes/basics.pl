@@ -307,50 +307,53 @@ sub printNote {
 
 sub sanitiseText {
 
-  my $text = $_[0];
-  my $totally = $_[1];
-  $text =~ s/\&nbsp\;|\n/ /g;
-  $text =~ s/style=\"[^\"]*\"//g;
-  $text =~ s/  / /g;
-  if($totally){
-    use HTML::Strip;
-    my $hs = HTML::Strip->new();
-    $text = $hs->parse($text);
-    $hs->eof;  
-  } else {
-    #HTML::Strip does not allow exceptions
-    $text =~ s/<\/div>/<\/div>\n/g;
-    $text =~ s/<a /XXaXX/g;
-    $text =~ s/<\/a>/YYaYY/g;
-    $text =~ s/<ul/XXulXX/g;
-    $text =~ s/<\/ul>/YYulYY/g;
-    $text =~ s/<li/XXliXX/g;
-    $text =~ s/<\/li>/YYliYY/g;
-    $text =~ s/<h3/XXh3XX/g;
-    $text =~ s/<\/h3>/YYh3YY/g;
+  if($text && $text ne ''){
+    my $text = $_[0];
+    my $totally = $_[1];
+    $text =~ s/\&nbsp\;|\n/ /g;
+    $text =~ s/style=\"[^\"]*\"//g;
+    $text =~ s/  / /g;
+    if($totally){
+      use HTML::Strip;
+      my $hs = HTML::Strip->new();
+      $text = $hs->parse($text);
+      $hs->eof;  
+    } else {
+      #HTML::Strip does not allow exceptions
+      $text =~ s/<\/div>/<\/div>\n/g;
+      $text =~ s/<a /XXaXX/g;
+      $text =~ s/<\/a>/YYaYY/g;
+      $text =~ s/<ul/XXulXX/g;
+      $text =~ s/<\/ul>/YYulYY/g;
+      $text =~ s/<li/XXliXX/g;
+      $text =~ s/<\/li>/YYliYY/g;
+      $text =~ s/<h3/XXh3XX/g;
+      $text =~ s/<\/h3>/YYh3YY/g;
+    
+      use HTML::Strip;
+      my $hs = HTML::Strip->new();
+      $text = $hs->parse($text);
+      $hs->eof;  
+    
+      $text =~ s/XXaXX/<a /g;
+      $text =~ s/YYaYY/<\/a>/g;
+      $text =~ s/XXulXX/<ul/g;
+      $text =~ s/YYulYY/<\/ul>/g;
+      $text =~ s/XXliXX/<li/g;
+      $text =~ s/YYliYY/<\/li>/g;
+      $text =~ s/XXh3XX/<h3/g;
+      $text =~ s/YYh3YY/<\/h3>/g;
+    }
+
+    #$text =~ s/\n\n/ /g;
+    $text =~ s/  / /g;
+    $text =~ s/^\s+//;
+    $text =~ s/\s+$//;  
   
-    use HTML::Strip;
-    my $hs = HTML::Strip->new();
-    $text = $hs->parse($text);
-    $hs->eof;  
-  
-    $text =~ s/XXaXX/<a /g;
-    $text =~ s/YYaYY/<\/a>/g;
-    $text =~ s/XXulXX/<ul/g;
-    $text =~ s/YYulYY/<\/ul>/g;
-    $text =~ s/XXliXX/<li/g;
-    $text =~ s/YYliYY/<\/li>/g;
-    $text =~ s/XXh3XX/<h3/g;
-    $text =~ s/YYh3YY/<\/h3>/g;
+    $text =~ s/^\s+|\s+$//g;
+    #  $text =~ s/^\W+|\W+$//g; #This removes punctuation
   }
 
-  #$text =~ s/\n\n/ /g;
-  $text =~ s/  / /g;
-  $text =~ s/^\s+//;
-  $text =~ s/\s+$//;  
-
-  $text =~ s/^\s+|\s+$//g;
-#  $text =~ s/^\W+|\W+$//g; #This removes punctuation
   return $text;
 
 }
