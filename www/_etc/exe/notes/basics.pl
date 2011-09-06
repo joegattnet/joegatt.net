@@ -307,9 +307,10 @@ sub printNote {
 
 sub sanitiseText {
 
-  if($text && $text ne ''){
-    my $text = $_[0];
-    my $totally = $_[1];
+  my $text = $_[0];
+  my $totally = $_[1];
+
+  if($text ne ''){
     $text =~ s/\&nbsp\;|\n/ /g;
     $text =~ s/style=\"[^\"]*\"//g;
     $text =~ s/  / /g;
