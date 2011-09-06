@@ -53,7 +53,6 @@ NB.Versions = {
         $('body').trigger('minor.loaded');
     }, 
     get:function (q, current_version, direction) {
-    console.log('VERSION',current_version);
       var pq = 'p' + q;
       var p_element = NB.Enface.get_target(NB.p.current);
       var getVersion = current_version + direction;
