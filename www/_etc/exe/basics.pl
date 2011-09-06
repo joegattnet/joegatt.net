@@ -6,48 +6,47 @@ use CGI;
 
 # ******************************************************************************
 
+  #require 'config/common.pl';
+
 	$serverName = $ENV{"SERVER_NAME"};
 	$uri = $ENV{"REQUEST_URI"};
  	$root = '/';
  	$debug = 1;
-     	
-	if ($serverName =~ /joegatt-net/) {
-    $db_pwfileloc = 'D://Documents/Websites/_db_passwords/joegatt-net/dev.txt';
+  
+  $twitter_consumerkey = '026ussCKYOuzzcZjSV7UQ';
+  $twitter_accesstoken = '66855083-GSzTcum1aWOdkEBqQTQQYCusW89TgLrvbwtzDDlcj';
+  
+  $db_pwfileloc = '/home/admin/_db_passwords/joegatt-net/live.txt';
+  $saltfileloc = '/home/admin/_db_passwords/joegatt-net/salt.txt';
+  $twitter_pwfileloc = '/home/admin/_db_passwords/joegatt-net/twitter.txt';
+  $facebooksecretloc = '/home/admin/_db_passwords/joegatt-net/facebook.txt';
+  $twitter_consumersecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_consumersecret.txt';
+  $twitter_accesstokensecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_accesstokensecret.txt';
+  $protectedloc = '/home/admin/_db_passwords/joegatt-net/protected.txt';
+  $localhost = 0;
+  $notesThreshold = 2;
+  if ($serverName eq 'test.joegatt.org') {
+  	$debug = 1;
+  	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
     $githubBranch = 'dev';
-    $saltfileloc = 'D://Documents/Websites/_db_passwords/joegatt-net/salt.txt';
-    $twitter_pwfileloc = 'D://Documents/Websites/_db_passwords/joegatt-net/twitter.txt';
-    $facebooksecretloc = 'D://Documents/Websites/_db_passwords/joegatt-net/facebook.txt';
-    $twitter_apisecretloc = 'D://Documents/Websites/_db_passwords/joegatt-net/twitter_api.txt';
-    $protectedloc = 'D://Documents/Websites/_db_passwords/joegatt-net/protected.txt';
-		$localhost = 1;
-		$dsn = 'DBI:mysql:live:localhost';
+    $accessFile = "/var/log/apache2/access-test.log";
+    $errorFile = "/var/log/apache2/error-test.log";
+  }	elsif ($serverName =~ /joegatt\.org/) {
+  	$debug = 1;
+  	$dsn = 'DBI:mysql:joegatt-net-dev:localhost';
     $notesThreshold = 1;
+    $githubBranch = 'dev';
+    $accessFile = "/var/log/apache2/access-dropbox.log";
+    $errorFile = "/var/log/apache2/error-dropbox.log";
   } else {
-    $db_pwfileloc = '/home/admin/_db_passwords/joegatt-net/live.txt';
-    $saltfileloc = '/home/admin/_db_passwords/joegatt-net/salt.txt';
-    $twitter_pwfileloc = '/home/admin/_db_passwords/joegatt-net/twitter.txt';
-    $facebooksecretloc = '/home/admin/_db_passwords/joegatt-net/facebook.txt';
-    $twitter_apisecretloc = '/home/admin/_db_passwords/joegatt-net/twitter_api.txt';
-    $protectedloc = '/home/admin/_db_passwords/joegatt-net/protected.txt';
-		$localhost = 0;
-    $notesThreshold = 2;
-    if ($serverName eq 'test.joegatt.org') {
-    	$debug = 1;
-    	$dsn = 'DBI:mysql:joegatt-net-test:localhost';
-      $githubBranch = 'dev';
-    }	elsif ($serverName =~ /joegatt\.org/) {
-    	$debug = 1;
-    	$dsn = 'DBI:mysql:joegatt-net-dev:localhost';
-      $notesThreshold = 1;
-      $githubBranch = 'dev';
-    } else {
-    	$debug = 0;
-      $dsn = 'DBI:mysql:joegatt-net-production-v2:localhost';
-      $githubBranch = 'master';
-      $imageServer = 'http://a1.joegatt.org';
-      $serverName = 'joegatt.net';
-    }
-	}
+  	$debug = 0;
+    $dsn = 'DBI:mysql:joegatt-net-production-v2:localhost';
+    $githubBranch = 'master';
+    $imageServer = 'http://a1.joegatt.org';
+    $serverName = 'joegatt.net';
+    $accessFile = "/var/log/apache2/access.log";
+    $errorFile = "/var/log/apache2/error.log";
+  }
 
 # ******************************************************************************
 
@@ -81,7 +80,7 @@ sub formRead {
 # ******************************************************************************
 
 sub parseDBcredentials {
-  open (DBPASSWORDS, untaint($db_pwfileloc)) or die print "Can't open DB passwords  file.";
+  open (DBPASSWORDS, untaint($db_pwfileloc)) or die warn "Can't open DB passwords  file.";
     my @dbpwfile = <DBPASSWORDS>;
     $credentials = "@dbpwfile";
   close (DBPASSWORDS);
@@ -95,7 +94,7 @@ sub parseDBcredentials {
 sub connectDB {
   parseDBcredentials();
   use DBI;
-	my $dbh = DBI->connect("$dsn", $db_user_name, $db_password)or die print "<p class='error'>Can't connect to $dsn!</p>";#$DBI::errstr;
+	my $dbh = DBI->connect("$dsn", $db_user_name, $db_password)or die warn "<p class='error'>Can't connect to $dsn!</p>";#$DBI::errstr;
 	return $dbh;
 }
 
@@ -320,12 +319,12 @@ sub saveAnagram {
   $values_string = join(',', @jsarrayvalues);
 
   $location = untaint("../../../_etc/cache/enface--anagram-b=$b.json");
-  open ANAGRAM_TABLE,">$location" or die print "ERRROR: File not opened: $! $location";
+  open ANAGRAM_TABLE,">$location" or die warn "ERRROR: File not opened: $! $location";
   print ANAGRAM_TABLE "[$values_string]";
   close ANAGRAM_TABLE;
   
   $location = untaint("../../../_etc/cache/enface--anagram-b=$b.html");
-  open ANAGRAM_TABLE,">$location" or die print "ERRROR: File not opened: $! $location";
+  open ANAGRAM_TABLE,">$location" or die warn "ERRROR: File not opened: $! $location";
   print ANAGRAM_TABLE $anagram_table;
   print ANAGRAM_TABLE qq~
     <script type="text/javascript">
@@ -342,7 +341,7 @@ sub saveAnagram {
   #Remove - use client-side cloning
   #$version_number = eval ("1 - 0.$anagram_total");
   #$location = untaint("../../../_etc/cache/enface--version-b=$b.html");
-  #open VERSION_NUMBER,">$location" or die print "ERRROR: File not opened: $! $location";
+  #open VERSION_NUMBER,">$location" or die warn "ERRROR: File not opened: $! $location";
   #print VERSION_NUMBER " $version_number";
   #close VERSION_NUMBER;
 
@@ -425,7 +424,7 @@ sub debug_info {
 
 sub get_salt {
   if ($stored_salt eq '') {
-      open (SALT, untaint($saltfileloc)) or die print "Can't open Salt file.";
+      open (SALT, untaint($saltfileloc)) or die warn "Can't open Salt file.";
     my @saltfile = <SALT>;
     $stored_salt = "@saltfile";
     close (SALT);
@@ -437,7 +436,7 @@ sub get_salt {
 
 sub get_password {
   my $fileloc = $_[0];
-  open (PASSWORD, untaint($fileloc)) or die print "Can't open Twitter password file.";
+  open (PASSWORD, untaint($fileloc)) or die warn "Can't open Twitter password file.";
   my @passwordfile = <PASSWORD>;
   $password = "@passwordfile";
   close (PASSWORD);
@@ -513,7 +512,7 @@ sub cache_refresh {
   my $ua = new LWP::UserAgent;
   #do we need password to access cache directly?
   if($debug){
-    open (PASSWORDS, untaint($protectedloc)) or die print '<p class="error">Can\'t open passwords  file.';
+    open (PASSWORDS, untaint($protectedloc)) or die warn '<p class="error">Can\'t open passwords  file.';
       my @protectedloc = <PASSWORDS>;
       $credentials = "@protectedloc";
     close (PASSWORDS);
