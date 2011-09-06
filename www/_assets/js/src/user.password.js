@@ -4,7 +4,7 @@ NB.User.password = {
       'post', 
       NB.User._container, 
       NB.User._script, 
-      'mode=password' + '&is_alert=' + ($('#signupin').hasClass('alert')?'alert':''), 
+      'mode=password&sent_user_id=' + NB.User.id + '&is_alert=' + ($('#signupin').hasClass('alert')?'alert':''), 
       false
     );
   },
@@ -13,7 +13,7 @@ NB.User.password = {
       'post', 
       NB.User._container, 
       NB.User._script, 
-      'mode=changepassword' + '&is_alert=' + ($('#signupin').hasClass('alert')?'alert':''), 
+      'mode=changepassword&sent_user_id=' + NB.User.id + '&is_alert=' + ($('#signupin').hasClass('alert')?'alert':''), 
       false
     );
   }

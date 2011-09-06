@@ -65,8 +65,7 @@ NB.Url = {
       return (amp?'?':'&') + 'r=' + Math.random();
   }, 
   encode: function (u) {
-      var url = NB.Url.path(u);
-      return encodeURIComponent(url.replace(/\'/g, "’"));
+      return encodeURIComponent(u.replace(/\'/g, "’"));
   }, 
   paramsSimplify: function (u) {
       var url = NB.Url.path(u);

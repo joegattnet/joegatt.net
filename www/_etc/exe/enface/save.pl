@@ -20,6 +20,9 @@ my $dbh = connectDB();
   my $id = $dbh->last_insert_id(undef, undef, $_[2], ID);
   $sth->finish();
 
+  $date_iso8601 = date_string_iso();
+  $date_full = date_string_long();
+
   print qq~
   <script type="text/javascript">
   \$('#alert').text('Paragraph $p saved.');
@@ -30,10 +33,19 @@ my $dbh = connectDB();
   \$('\#$p_id').data('p_text',\$('$p_id').text());
   \$('\#$p_id').data('dirty',false);
   \$('\#$p_id').id = 'paragraph\_id\_$id';
-  NB.versions['p$id'] = [$u,"$username",$score,'a moment ago','You saved this paragraph in the current session.',$version,true];
+  NB.versions['p$id'] = {
+    userId: $u,
+    userName: '$username',
+    score: $score,
+    date_iso8601: '$date_iso8601',
+    date_full: '$date_full',
+    version: $version,
+    isLatest: true
+  }
   if (NB.p.current == $p) {
     NB.Versions.display('$id');
   }
+  //NB.Enface.reset(\$('\#p_$id'), false);
   //NB.Anagram.get();
   </script>
   ~;
