@@ -8,7 +8,7 @@
 
 <!--#set var="chunk" value="paragraph" -->
 
-<!--#set var="tags" value="$tags,_${section}_p$p" -->
+<!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
 
 <!--#set var="path" value="/$section/rc/" -->
 <!--#set var="location" value="${path}${p}" -->
