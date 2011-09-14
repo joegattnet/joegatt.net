@@ -1,0 +1,28 @@
+<table id="NB-datatable">
+  <thead>
+    <tr>
+    [% FOR head IN heads %]
+      <th>[% head %]</th>
+    [% END %]
+    </tr>
+  </thead>
+  <tbody>
+  [% FOR row IN rows %]
+    <tr>
+      [% FOR col IN row %]
+        <td>[% col %]</td>
+      [% END %]
+    </tr>
+  [% END %]
+  </tbody>
+</table>
+<script>
+  Modernizr.load({
+    test: NB.loaded.tablescharts,
+    nope: '/_assets/min/g=js-tablescharts',
+    complete: function(){
+      NB.Ui.charts.initialise();
+      NB.loaded.tablescharts = true;
+    }
+  });
+</script>
