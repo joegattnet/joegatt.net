@@ -27,8 +27,7 @@ strong, .b {
 .i {
 	font-style: italic;
 }
-/*
-input {
+/*input {
 	margin-top: 10px;
 }
 */
@@ -119,15 +118,15 @@ abbr[title], dfn[title] {
 	text-indent: 20px;
 }
 #content .text ul {
-  list-style-type:square;
-  margin-left:14px
+	list-style-type: square;
+	margin-left: 14px
 }
 #content .text ol {
-  list-style-type:decimal;
-  margin-left:14px
+	list-style-type: decimal;
+	margin-left: 14px
 }
 #content .text li {
-  padding-left:6px;
+	padding-left: 6px;
 }
 section a[href^="http"] {
 	padding-left: 15px;
@@ -143,10 +142,9 @@ section .notes-list a[href^="http"]:hover {
 	background-position: -504px -425px;
 }
 a[href*="joegatt.org"] {
-  background-image:none!important;
-  padding-left:0!important;
+	background-image: none!important;
+	padding-left: 0!important;
 }
-
 /******************/
 .al_right {
 	text-align: right;
@@ -192,7 +190,6 @@ span.pos {
 	margin-top: 210px;
 }
 /* scholia */
-
 /* miscellaneous **************************************************************/
 /*=> jg_post.animate.ajax_loading {
 	background: url(/_assets/images/static/ajax_small.gif) top right no-repeat;
@@ -223,13 +220,13 @@ span.pos {
 .ends_section div {
 	width: 140px;
 	height: 24px;
-	margin-bottom:6px;
+	margin-bottom: 6px;
 	background-position: -310px -229px;
 }
 .ends div {
 	width: 140px;
 	height: 57px;
-	margin-bottom:3px;
+	margin-bottom: 3px;
 	background-position: -310px -256px;
 }
 /* ajax ***********************************************************************/

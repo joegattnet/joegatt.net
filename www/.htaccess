@@ -1,3 +1,6 @@
+# In production, this file is included by the virtual host config file
+# This enables us to switch off includes to improve performance and security
+
 AddDefaultCharset UTF-8
 
 DirectorySlash Off

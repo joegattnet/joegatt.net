@@ -20,13 +20,13 @@ footer ul {
 	float: left
 }
 footer a[href^="http"] {
-  background-position: -504px -445px;
-  padding-left: 13px;
+	background-position: -504px -445px;
+	padding-left: 13px;
 	color: #666;
 }
 footer a[href^="http"]:hover {
 	background-position: -504px -425px;
-  color: #362fd4;
+	color: #362fd4;
 }
 .cc, .cc a {
 	width: 85px;
@@ -42,5 +42,5 @@ footer a[href^="http"]:hover {
 	text-align: right;
 }
 #qr_code {
-  display:none!important;
+	display: none!important;
 }

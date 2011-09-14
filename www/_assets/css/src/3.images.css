@@ -57,10 +57,9 @@ img[src*="4_3-wb-2-1"] {
 .map {
 	margin-bottom: 10px;
 }
-a[href*='resources/cut'] + p,
-a[href*='resources/cut'] + ul.meta {
-margin-top:10px;
+a[href*='resources/cut'] + p, a[href*='resources/cut'] + ul.meta {
+	margin-top: 10px;
 }
 a[href*='resources/cut'] + figcaption {
-margin-top:0;
+	margin-top: 0;
 }

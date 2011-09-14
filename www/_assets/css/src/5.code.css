@@ -1,5 +1,5 @@
 .issues, .page-code-index div.text {
-  margin-bottom:20px;
+	margin-bottom: 20px;
 }
 #container {
 	position: relative;
@@ -96,7 +96,7 @@ a#tool_code:hover, a#tool_code.on:hover, a#tool_code:before:hover, a#tool_code:a
 /*Syntax*/
 .syntax {
 	font-family: Menlo, Consolas, monospace;
-	line-height: 1.5em;
+	line-height: 20px;
 }
 .syntax .function {
 	color: #362fd4!important;
