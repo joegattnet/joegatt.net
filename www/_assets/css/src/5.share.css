@@ -1,33 +1,33 @@
 #share li {
-  margin-bottom:-3px;
+	margin-bottom: -3px;
 }
 h4 .soften {
-  font-weight:normal;
-  padding:0 2px;
+	font-weight: normal;
+	padding: 0 2px;
 }
 #n_share a, .addthis_bubble_style {
-  background:none!important;
+	background: none!important;
 }
 #share_count {
-display:inline-block!important;
+	display: inline-block!important;
 }
 .addthis_button_expanded {
-  font-weight:normal;
+	font-weight: normal;
 }
 .addthis_button_expanded:after {
-  content:")";
+	content: ")";
 }
-.addthis_button_expanded:before{
-  content:"(";
+.addthis_button_expanded:before {
+	content: "(";
 }
 .addthis_counter.addthis_bubble_style {
-  display: inline-block;
-  line-height:20px;
-  width:11px!important;
-  margin:0 3px 0 0;
+	display: inline-block;
+	line-height: 20px;
+	width: 11px!important;
+	margin: 0 3px 0 0;
 }
 .addthis_counter a.addthis_button_expanded {
-  cursor: default;
-  margin-left: 4px;
-  display: inline;
+	cursor: default;
+	margin-left: 4px;
+	display: inline;
 }

@@ -47,7 +47,7 @@ NB.Ui.image = {
 
 /******************************************************************************/
 
-$('.prefix_1 .notes-list img[src*="-wb-3-0-"], .prefix_1 .notes-list img[src*="-fw-220-0-"]').live('click', function (event) {
+$('.prefix_1 .notes-list img[src*="-wb-3-0-"], .suffix_1 .notes-list img[src*="-wb-3-0-"], .prefix_1 .notes-list img[src*="-fw-220-0-"]').live('click', function (event) {
   NB.Ui.image.open(event, '220px', '120px', '540px', '300px', 3, 7, 0, 0, '-80px', 0);
   return false;
 });

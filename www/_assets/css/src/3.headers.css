@@ -10,15 +10,15 @@ h3 {
 	font-size: 15px;
 }
 .text h3 {
-	font-family:Tahoma,Geneva,sans-serif;
+	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 13px;
-  font-weight: bold;
+	font-weight: bold;
 	letter-spacing: 0;
 	color: #666;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
 .text h3 ~ h3 {
-  margin-top:20px;
+	margin-top: 20px;
 }
 h4 {
 	font-weight: bold;
@@ -52,24 +52,23 @@ h6 a:hover {
 	color: #00c!important;
 }
 h1 {
-  font-size:32px;
-  top:65px;
+	font-size: 32px;
+	top: 65px;
 }
 h1 .version {
-  display:none;
+	display: none;
 }
-
 h2 {
-    top:40px;
+	top: 40px;
 }
 #title h2 a {
-  color:#999;
+	color: #999;
 }
 #title h2 a:hover {
-  color:#00c;
+	color: #00c;
 }
 #title h3 {
-  color:#757575;
-  font-weight:bold;
-  top:111px;
+	color: #757575;
+	font-weight: bold;
+	top: 111px;
 }

@@ -15,18 +15,16 @@
 	-webkit-border-radius: 3px;
 }
 .addthis_counter a.atc_c, .addthis_counter a.addthis_button_expanded {
-	display: block;
-	background: #f4f4f4;
-	border: 1px solid #d3d3d3;
-	height: 36px;
-	line-height: 36px;
-	cursor: pointer;
-	margin-bottom: 5px;
-	text-align: center;
-	text-decoration: none !important;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 16px;
-	color: #464646;
+  color:#999999;
+  font-size:11px;
+  font-family: Tahoma,Geneva,sans-serif!important;
+  cursor: pointer;
+  display: block;
+  font-weight: normal;
+  margin-bottom: 5px;
+  padding-left: 2px;
+  text-align: left;
+  text-decoration: none !important;
 }
 .addthis_counter.addthis_pill_style a.addthis_button_expanded:hover, .addthis_counter.addthis_pill_style a.addthis_button_compact:hover, .addthis_counter a.addthis_button_expanded:hover, .addthis_counter a.addthis_button_compact:hover {
 	text-decoration: none;

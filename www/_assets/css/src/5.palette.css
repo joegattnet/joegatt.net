@@ -1,20 +1,17 @@
 .palette {
-  margin-top:10px;
+	margin-top: 10px;
 }
-
 .palette div {
-  height:20px;
-  margin-bottom:40px;
+	height: 20px;
+	margin-bottom: 40px;
 }
-
 .palette div p {
- line-height:10px;
- font-size:9px;
- font-family: Menlo, Consolas, monospace;
- color:#666;
- text-transform:uppercase;
+	line-height: 10px;
+	font-size: 9px;
+	font-family: Menlo, Consolas, monospace;
+	color: #666;
+	text-transform: uppercase;
 }
-
 .palette div p:first-child {
-  margin-top:25px;
+	margin-top: 25px;
 }

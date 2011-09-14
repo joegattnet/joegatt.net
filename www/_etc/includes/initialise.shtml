@@ -35,5 +35,6 @@
       top: "<!--#echo var="p" -->",
       max: "<!--#echo var="p_max" -->"
   <!--#endif -->
-  }  
+  }
+  NB.jobs = {};
 </script>
