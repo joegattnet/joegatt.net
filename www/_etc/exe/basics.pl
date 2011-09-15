@@ -302,7 +302,7 @@ sub saveAnagram {
     $anagram_total += abs($count);
     
     if ($label eq 'b') {
-      $anagram_table .= "</tbody></table><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"middle\"><tbody>";
+      $anagram_table .= "</tbody></table><table class=\"middle\"><tbody>";
     } elsif ($label eq 'n') {
       $anagram_table .= "</tbody></table><table><tbody>"
     }

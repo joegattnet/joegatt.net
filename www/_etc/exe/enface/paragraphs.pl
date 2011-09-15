@@ -81,7 +81,7 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
       <div id="p\_$found_p" class="clearfix pair">
         <p class="extra extra_out">$found_p</p>
         <div class="grid_5 alpha text source">
-  					<p lang="de" sourceLength="$length" class="notranslate">$source</p>
+  					<p lang="de" class="notranslate">$source</p>
     	  </div>
         <div class="grid_5 omega text target">
   					<p id="paragraph\_id\_$target_id"$appClass data-p="$found_p" data-id="$target_id" data-sourcelength="$length">$target</p>
