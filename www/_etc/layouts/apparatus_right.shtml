@@ -1,27 +1,16 @@
-<!--#if expr="$tags_hack" -->
-
-    <div id="tags" class="refresh" data-url="/_etc/includes/tags_hack_tags.shtml?section=<!--#echo var="section" -->&p=<!--#echo var="p" -->">
-      <!--#if expr="$tags != false" -->
-        <!--#include virtual="/_etc/cache/tags--tags-tags=${tags}.html" -->
-      <!--#endif -->    
-    </div>
-    <div id="notes" class="refresh" data-url="/_etc/includes/tags_hack_notes.shtml?section=<!--#echo var="section" -->&p=<!--#echo var="p" -->">
-      <!--#if expr="$notes != false" -->
-        <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->
-      <!--#endif -->
-    </div>
-
-<!--#else -->
-  
-  <div id="tags" class="refresh" data-url="/_etc/cache/tags--tags-tags=<!--#echo var="tags" -->.html">
-    <!--#if expr="$tags != false" -->
+<div id="tags" class="refresh" data-url="/_etc/cache/tags--tags-tags=<!--#echo var="tags" -->.html">
+  <!--#if expr="$tags != false" -->
       <!--#include virtual="/_etc/cache/tags--tags-tags=${tags}.html" -->
-    <!--#endif -->    
-  </div>
-  <div id="notes" class="refresh" data-url="/_etc/cache/notes--list-tags=<!--#echo var="tags" -->.html">
-    <!--#if expr="$notes != false" -->
+  <!--#endif -->    
+</div>
+<div id="notes" class="refresh" data-url="/_etc/cache/notes--list-tags=<!--#echo var="tags" --><!--#if expr="$exclude" -->&exclude=<!--#echo var="exclude" --><!--#endif --><!--#if expr="$exclude_text" -->&exclude_text=<!--#echo var="exclude_text" --><!--#endif -->.html">
+  <!--#if expr="$notes != false" -->
+    <!--#if expr="$exclude" -->
+      <!--#include virtual="/_etc/cache/notes--list-tags=${tags}&exclude=${exclude}.html" -->
+    <!--#elif expr="$exclude_text" -->
+      <!--#include virtual="/_etc/cache/notes--list-tags=${tags}&exclude_text=${exclude_text}.html" -->
+    <!--#else -->    
       <!--#include virtual="/_etc/cache/notes--list-tags=${tags}.html" -->
     <!--#endif -->
-  </div>
-
-<!--#endif -->
+  <!--#endif -->
+</div>

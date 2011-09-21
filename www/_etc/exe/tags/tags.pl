@@ -4,11 +4,27 @@ require '../basics.pl';
 
 formRead("get");
 
+$dbh = connectDB();
+
+if ($from_alias ne ''){
+  my $sthTags = $dbh->prepare(qq{
+    SELECT tags.name_simple
+    FROM tags, notes, _lookup
+    WHERE textonly =  ?
+    AND NOT tags.name_simple LIKE '\\_%'
+    AND _lookup.type =0
+    AND _lookup.check1 = notes.e_guid
+    AND _lookup.check2 = tags.e_guid
+    ORDER BY tags.name_simple
+  });
+  $sthTags->execute($from_alias);
+  $tags = join(",", $sthTags->fetchrow_array(), $tags);
+}
+
 $tagsCond = $tags;
 $tagsCond =~ s/\,/' OR tags.name_simple = '/g;
 $tagsCond = "tags.name_simple = '$tagsCond'";
 
-$dbh = connectDB();
 my $sth = $dbh->prepare(qq{
   SELECT DISTINCT name, name_simple
   FROM tags, notes, _lookup

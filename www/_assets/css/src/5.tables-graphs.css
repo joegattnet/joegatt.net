@@ -1,6 +1,7 @@
 #container_top {
 	height: 280px;
-	margin-bottom: 20px
+	margin-bottom: 20px;
+	background: url(/_assets/images/static/ajax.gif) no-repeat center center;
 }
 #NB-datatable_wrapper {
 	position: relative;

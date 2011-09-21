@@ -30,9 +30,15 @@ sub printNote {
   my @tagsFetchLinks;
   my $tagsUrl;
   my $noteoutput;
+  my $isFragment;
+  my $isBook;
+  my $isLink;
+  my $location;
+  my $isTopic;
+  my $isAlias;
+  my $blurbLength = 250;
   my $templateType = 'default';
   my $location = 'notes';
-
   my $noteRef = hex(substr($note_e_guid,0,4));
 
   my $sthNote = $dbh->prepare(qq{
@@ -111,7 +117,9 @@ sub printNote {
       $location = 'topics';
     }
     case 5 {
-      $isFragment = 1;
+      $isAlias = 1;
+      $templateType = 'alias';
+      #$location = 'alias';
     }
   }
 
@@ -200,17 +208,39 @@ sub printNote {
       }
 
 
+  } elsif ($isAlias) {
+  
+    #This needs to be more flexible - to return description if book_id is null, etc. Also, to handle all url forms.
+    
+    ($section, $page, $p) = $text =~ /\[(.*?)\|(.*?)\|(.*?)\]/;
+    
+    my $sthAlias = $dbh->prepare(qq{
+      SELECT text, title
+      FROM pages, target_text
+      WHERE section = ?
+      AND p = ? 
+      AND version = 1
+      AND pages.book_id = target_text.book_id
+      LIMIT 1
+    });
+    $sthAlias->execute($section, $p);
+    ($text, $title) = $sthAlias->fetchrow_array();
+    
+    $location = $section;
+    $blurbLength = 120;
+    $noteRef = $p;
+  
   } elsif ($title && $title ne '' && $isTopic && $text eq '' && $quote eq '') {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();
     my $entry = $wiki->search($title);
     if($entry){
       $text .= $entry->text_basic();
-      $textBriefLinked = textTruncateLink($text, 200, false, "$source_url", 'More');
+      #$textBriefLinked = textTruncateLink($text, 250, false, "$source_url", 'More');
     }
   }
 
-  $textBriefClean = textTruncate(sanitiseText($text, 1), 350);
+  $textBriefClean = textTruncate(sanitiseText($text, 1), $blurbLength);
   $textBriefClean =~ s/\"/\'/g;
   $text =~ s/\n\n/\n/g;
   $text =~ s/\n/<\/p><p>/g;
@@ -218,7 +248,7 @@ sub printNote {
   if($text ne ''){
     $text = "<p>$text</p>";
   }
-  $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
+  $textBriefLinked = textTruncateLink($text, $blurbLength, false, "/$location/$noteRef", 'More');
 
   if($title ne '' && $text ne '' && $title !~ /(quote|cap|caption)\:/i && $title !~ /untitled|Note Title/i && $textBriefClean !~ /^($title)/i){
     $title =~ s/^\s+|\s+$//g;

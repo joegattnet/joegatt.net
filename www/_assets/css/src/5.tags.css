@@ -26,3 +26,9 @@
 #n_tags li:last-child a:after, .meta li:last-child a[href*="tags"]:after {
 	content: "";
 }
+.notes-list .para_ref:before {
+  content: "¶";
+  font-size:9px;
+  margin-right:2px;
+  vertical-align:top
+}

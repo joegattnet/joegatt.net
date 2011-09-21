@@ -83,10 +83,10 @@ figcaption {
 	font-size: 13px;
 	font-family: Georgia, "Palatino Linotype", serif;
 }
-.notestype-notes {
+.notestype-notes, .notestype-alias {
 	margin-bottom: 0;
 }
-.notestype-notes > li {
+.notestype-notes > li, .notestype-alias > li {
 	margin-bottom: 20px;
 }
 .notes-list > li p + p {
@@ -95,7 +95,7 @@ figcaption {
 .notes-list .meta {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 11px;
-	height: 20px;
+	/* height: 20px; */
 }
 .screenshot {
 	display: block;
