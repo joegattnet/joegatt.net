@@ -10,7 +10,9 @@
 <!--#set var="page_app" value="enface" -->
 <!--#set var="chunk" value="paragraph" -->
 
-<!--#include virtual="/_etc/includes/${section}/tags.shtml" -->
+<!--#set var="tags" value="_${section}_p${p}" -->
+<!--#set var="exclude_text" value="${section}|${page}|${p}" -->
+<!--#include virtual="/_etc/cache/tags--tags_from_alias-tags=${tags}&exclude_text=${exclude_text}.shtml" -->
 
 <!--#set var="path" value="/$section/" -->
 <!--#set var="location" value="${path}${p}" -->
@@ -30,8 +32,6 @@
 <!--#set var="toolbar_pinnable" value="true" -->
 
 <!--#set var="nav_end" value="true" -->
-
-<!--#set var="tags_hack" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02t_a.shtml" -->
 <!--#set var="direct_content" value="true" -->

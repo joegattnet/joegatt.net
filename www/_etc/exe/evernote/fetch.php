@@ -173,6 +173,9 @@ foreach ($notesFound as $note) {
         } else if($thisTagName == '__TOPIC'){
           $note_type = 4;
           $section = 'topics';
+        } else if($thisTagName == '__ALIAS'){
+          $note_type = 5;
+          #$section = 'alias';
         } else if($thisTagName == '__HOLD'){
           $latest = 0; //Hold publication - tags, etc are still updated
         }

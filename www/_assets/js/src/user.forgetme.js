@@ -1,4 +1,5 @@
-NB.User.signedin = function (this_user_id, username, level, mode) {
+/*
+  NB.User.signedin = function (this_user_id, username, level, mode) {
   NB.User.id = this_user_id;
   NB.User.name = username;
   NB.User.level = level || 0;
@@ -14,3 +15,4 @@ NB.User.signedin = function (this_user_id, username, level, mode) {
   NB.Cookie.write('user_id', this_user_id);
   NB.Nav.track(2, 'Signupin', 'Signed in', mode, 0);
 }
+*/

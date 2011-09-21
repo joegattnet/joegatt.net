@@ -520,14 +520,14 @@ print qq~
           print qq~
             <p class="separator">You have previously used your Facebook account to log in.</p>
             $facebookbutton
-            <p><a href="javascript:;" onclick="NB.User.signout();">Forget me</a></p>
+            <p><a href="javascript:;" onclick="NB.User.signout();">Forget this</a></p>
           ~;
 #         <p><a href="javascript:;" onclick="NB.User.signin();">Sign in normally</a></p>
     }elsif ($twuser eq 'true'){
           print qq~
             <p class="separator">You have previously used your Twitter account to log in.</p>
             $twitterbutton
-            <p><a href="javascript:;" onclick="NB.User.signout();">Forget me</a></p>
+            <p><a href="javascript:;" onclick="NB.User.signout();">Forget this</a></p>
           ~;
 #         <p><a href="javascript:;" onclick="NB.User.signin();">Sign in normally</a></p>
       } else {
