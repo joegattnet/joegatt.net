@@ -4,7 +4,7 @@ NB.Nav.refresh = function () {
   //To prevent loading after page has changed
   $('.page-' + NB.crumb.section + '-' + NB.crumb.page + ' .refresh').each(function () {
     url = $(this).data('url')
-    temp = '_b' + NB.book.id + '_p' + NB.p.current;
+    temp = '_tags_b' + NB.book.id + '_p' + NB.p.current;
     if (NB.cache[temp]) {
       NB.tags = NB.cache[temp].data;
     }
