@@ -73,7 +73,26 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
       isLatest: true
     }
 	~;  
-
+  
+  #Tags are cached in an array so that when user selects a new paragraph
+  #notes can be fetched
+  my $sthTags = $dbh->prepare(qq{
+    SELECT tags.name_simple
+    FROM tags, notes, _lookup
+    WHERE textonly =  ?
+    AND NOT tags.name_simple LIKE '\\_%'
+    AND _lookup.type =0
+    AND _lookup.check1 = notes.e_guid
+    AND _lookup.check2 = tags.e_guid
+    ORDER BY tags.name_simple
+  });
+  $sthTags->execute("wutz|index|$found_p");
+  $tags = join(",", $sthTags->fetchrow_array(), "_wutz_p${found_p}");
+  $tags_array .= qq~
+    NB.Cache.add('_b${b}_p${found_p}', "$tags");
+  ~;
+  $sthTags->finish();
+  
   $flattenedText = flattenText($source);
   $length = length($flattenedText);
 
@@ -100,25 +119,13 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
 
 # We need to get tags so that direct content works
 
-my $sthTags = $dbh->prepare(qq{
-  SELECT tags.name_simple
-  FROM tags, notes, _lookup
-  WHERE textonly =  ?
-  AND NOT tags.name_simple LIKE '\\_%'
-  AND _lookup.type =0
-  AND _lookup.check1 = notes.e_guid
-  AND _lookup.check2 = tags.e_guid
-  ORDER BY tags.name_simple
-});
-$sthTags->execute("wutz|index|$p");
-$tags = join(",", $sthTags->fetchrow_array(), "_wutz_p${p}");
-
 if(!$static){
   $output .= qq~
   <script type="text/javascript">
   //<![CDATA[
     NB.loaded_scripts.add(false, function(){
-      NB.tags = "$tags";
+      $tags_array
+      NB.tags = NB.cache['\_b${b}\_p${p}'];
       NB.Nav.track(0,'Loaded enface content - p$p');
       $versions_info
     });
@@ -128,7 +135,6 @@ if(!$static){
 }
 
 $sth->finish();
-$sthTags->finish();
 $dbh->disconnect();
 
 # ******************************************************************************
