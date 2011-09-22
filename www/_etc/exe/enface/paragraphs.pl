@@ -125,7 +125,7 @@ if(!$static){
   //<![CDATA[
     NB.loaded_scripts.add(false, function(){
       $tags_array
-      NB.tags = NB.cache['\_b${b}\_p${p}'];
+      NB.tags = NB.cache['\_b${b}\_p${p}'].data;
       NB.Nav.track(0,'Loaded enface content - p$p');
       $versions_info
     });
