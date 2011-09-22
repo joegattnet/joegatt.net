@@ -89,7 +89,7 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
   $sthTags->execute("wutz|index|$found_p");
   $tags = join(",", $sthTags->fetchrow_array(), "_wutz_p${found_p}");
   $tags_array .= qq~
-    NB.Cache.add('_b${b}_p${found_p}', "$tags");
+    NB.Cache.add('_tags_b${b}_p${found_p}', "$tags");
   ~;
   $sthTags->finish();
   
@@ -125,7 +125,7 @@ if(!$static){
   //<![CDATA[
     NB.loaded_scripts.add(false, function(){
       $tags_array
-      NB.tags = NB.cache['\_b${b}\_p${p}'].data;
+      NB.tags = NB.cache['\_tags\_b${b}\_p${p}'].data;
       NB.Nav.track(0,'Loaded enface content - p$p');
       $versions_info
     });
