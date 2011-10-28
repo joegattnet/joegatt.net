@@ -30,10 +30,19 @@ NB.SETTINGS = {
     normal: 600, 
     slow: 900, 
     slower: 1200
+  },
+  pantography: {
+    alphabetString: "0123456789.,;:_@!?/#()%'-+= abcdefghijklmnopqrstuvwxyz",
+    messageLength: 140,
+    frequency: 600, // Frequency of broadcasts in seconds
+    siderealYearInDays: 365.256363004,
+    dateFirstTx: "October 28, 2011 08:20:00",
+    username: 'pantography'
   }, 
   cron: {
     purge: 600000, 
-    prefetch: 10000
+    prefetch: 10000,
+    refresh: 60000
   }
 };
 

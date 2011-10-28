@@ -9,7 +9,6 @@ $dbh = connectDB();
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_username,$sent_email);
   my ($Id) = $sth->fetchrow_array();
-  $sth->finish();
 
   if ($Id) {
 		  $exists = 'true';

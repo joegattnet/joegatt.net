@@ -23,7 +23,7 @@ sub broadcast_transmit {
   $sth->execute();
 
   my ($text,$Id) = $sth->fetchrow_array();
-  $sth->finish();
+  
 
   if ($text ne '') {
     my $result = diffuse($text);
@@ -31,7 +31,7 @@ sub broadcast_transmit {
     $sth = $dbh->prepare("$sql");
     $sth->execute($Id);
   }
-  $sth->finish();
+  
   $dbh->disconnect();
   
   return $result;
@@ -99,7 +99,7 @@ sub log_message {
   $sql = "INSERT INTO log_broadcast (text,date_created,broadcast) VALUES (?,UTC_TIMESTAMP(),?);";
   $sth = $dbh->prepare("$sql");
   $sth->execute($message,$broadcast);
-  $sth->finish();
+  
 
   $dbh->disconnect();
 }
@@ -120,7 +120,7 @@ sub broadcast_throttle {
   $sth = $dbh->prepare("$sql");
   $sth->execute($throttle,$throttle);
   ($result) = $sth->fetchrow_array();
-  $sth->finish();
+  
 
   $dbh->disconnect();
 

@@ -23,8 +23,6 @@ while (my ($id2,$url) = $sth->fetchrow_array()) {
   push(@myarray,"$id2|$url");
 }
 
-$sth->finish();
-
 my $sth = $dbh->prepare(qq{
   SELECT id1,url 
   FROM crossrefs,urls 
@@ -38,8 +36,6 @@ print "<p>Done 1</p>";
 while (my ($id1,$url) = $sth->fetchrow_array()) {
   push(@myarray,"$id1|$url");
 }
-
-$sth->finish();
 
 print "<p>Done 2</p>";
 

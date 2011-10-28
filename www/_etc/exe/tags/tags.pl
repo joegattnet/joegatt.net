@@ -46,7 +46,6 @@ while (my ($tag, $tagLink) = $sth->fetchrow_array()) {
     $count++;
 }
 
-$sth->finish();
 $dbh->disconnect();
 
 #if($tagsCount > 0){

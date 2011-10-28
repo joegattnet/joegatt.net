@@ -66,9 +66,9 @@
 	color: #999;
 }
 /* HACK - genericise */
-.page-wutz-stats #content .text {
+.page-wutz-statistics #content .text {
 	text-align: left
 }
-.page-wutz-stats .apparatus {
+.page-wutz-statistics .apparatus {
 	margin-top: 20px
 }

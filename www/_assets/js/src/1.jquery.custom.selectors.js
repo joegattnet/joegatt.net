@@ -1,17 +1,19 @@
 jQuery.extend(
-  jQuery.expr[":"], 
+  jQuery.expr[':'], 
   {
     external: function (obj, index, meta, stack) {
-      return (/:\/\//).test($(obj).attr("href"));
+      return (/:\/\//).test($(obj).attr('href'));
     }, 
     internal: function (obj, index, meta, stack) {
-      return !((/\:\/\/|www\/code|\.jpg$|\.png$|\.gif$|\.zip$|\.pdf$|mailto\:|javascript\:|\#/).test($(obj).attr("href")) || $(obj).attr("target"));
+      return !((/\:\/\/|www\/code|\.jpg$|\.png$|\.gif$|\.zip$|\.pdf$|mailto\:|javascript\:|\#/).test($(obj).attr('href')) || 
+        $(obj).attr('target') || 
+        $(obj).hasClass('set_p'));
     }, 
     document: function (obj, index, meta, stack) {
-      return (/\.pdf$/).test($(obj).attr("href"));
+      return (/\.pdf$/).test($(obj).attr('href'));
     }, 
     download: function (obj, index, meta, stack) {
-      return (/\.zip$|\.pdf$/).test($(obj).attr("href"));
+      return (/\.zip$|\.pdf$/).test($(obj).attr('href'));
     }, 
     unfilled: function (obj, index, meta, stack) {
       return $(obj).val() === '';

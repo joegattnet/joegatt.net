@@ -1,0 +1,14 @@
+[% jsoncallback %](
+  {
+    [% IF exists == 'true' %]
+      "exists": [% exists %],
+      "statusId": "[% status.0.2 %]",
+      "username": "[% status.0.3 %]",
+      "realname": "[% status.0.4 %]",
+      "time": "[% status.0.0 %]",
+      "timeFormatted": "[% status.0.1 %]"
+    [% ELSE %]
+      "exists": [% exists %]
+    [% END %]
+  }
+)

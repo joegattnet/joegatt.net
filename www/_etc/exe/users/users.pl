@@ -21,5 +21,4 @@ while (my ($username,$score,$edits,$id,$oined) = $sth->fetchrow_array()) {
 
 print "</table>";
 
-$sth->finish();
 $dbh->disconnect();

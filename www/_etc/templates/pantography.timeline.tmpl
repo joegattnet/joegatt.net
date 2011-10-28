@@ -1,0 +1,20 @@
+<div class="rss">
+  <h4>
+    <a href="http://twitter.com/pantography">@pantography + followers, mentions, links</a>
+  </h4>
+  <ul>
+  [% FOREACH status IN statuses %]
+    <li id="status-[% status.3 %]">
+      <p><a href="/pantography/pantographs/[% status.0 | uri %]" class="set_p">[% status.0 %]</a></p>
+      <p class="details">
+        [% IF status.4 != pantographyUsername %]
+          <a href="http://twitter.com/[% status.4 %]">[% status.5 %]</a>,
+        [% END %]
+        <a href="http://twitter.com/[% status.4 %]/status/[% status.3 %]">
+          <time datetime="[% status.1 %]" class="timeago" title="[% status.2 %]">[% status.2 %]</time>
+        </a>
+      </p>
+    </li>
+  [% END %]
+  </ul>
+</div>

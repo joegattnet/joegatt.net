@@ -24,7 +24,7 @@ $dbh = connectDB();
   while (my $text = $sth->fetchrow_array()) {
     $source_text .= "$text";
   }
-  $sth->finish();
+  
   
   $source_text = DEnormalize($source_text);
   $source_text = "\L$source_text\E";
@@ -52,7 +52,7 @@ $dbh = connectDB();
   while (my $text = $sth->fetchrow_array()) {
     $target_text .= "$text";
   }
-  $sth->finish();
+  
   
   $target_text = DEnormalize($target_text);
   $target_text = "\L$target_text\E";
@@ -92,6 +92,7 @@ while (my ($letter, $percentage) = $sth->fetchrow_array()) {
   push( @{$rows[$count] }, @row);
   $count++;
 }
+
 
 $sth->finish();
 $dbh->disconnect();

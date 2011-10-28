@@ -202,12 +202,12 @@ a.radio {
 .ui-slider {
 	height: 10px;
 	margin-bottom: 10px;
-	background-position: 0 -333px;
+	background-position: 0 -460px;
 	background-repeat: repeat-x;
 }
 .ui-slider-handle {
 	position: absolute;
-	width: 9px;
+	width: 9px!important;
 	height: 12px;
 	display: block;
 	background-position: -29px -320px;
@@ -305,7 +305,7 @@ a.radio {
 #toolbar .navigator {
 	margin-top: 10px;
 }
-#toolbar .nav-li {
+#toolbar_nav li {
 	width: 25px;
 	margin-left: 0;
 }
@@ -399,6 +399,7 @@ a.radio {
 #comments p.details {
 	color: #666;
 	margin-top: 0;
+	font-size: 11px;
 }
 #comments_list li {
 	position: relative;

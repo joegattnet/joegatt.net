@@ -23,8 +23,6 @@ while (my ($aId,$url,$title,$dateCreated,$dateModified) = $sth->fetchrow_array()
       push(@myarray,"$aId|$url|$title|$dateCreated|$dateModified");
 }
 
-$sth->finish();
-
 my $sth = $dbh->prepare(qq{
     INSERT INTO evernote (aId,aType,url,title,dateCreated,dateModified) VALUES (?,?,?,?,?,?)
 });
@@ -36,7 +34,6 @@ foreach (@myarray) {
 
 print "<p>Done 2</p>";
 
-$sth->finish();
 $dbh->disconnect();
 
 print "<p>Done!</p>";

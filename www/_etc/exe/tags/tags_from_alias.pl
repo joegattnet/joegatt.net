@@ -19,7 +19,6 @@ my $sthTags = $dbh->prepare(qq{
 $sthTags->execute($exclude_text);
 $tags = join(",", $sthTags->fetchrow_array(), $tags);
 
-$sthTags->finish();
 $dbh->disconnect();
 
 $output = qq~

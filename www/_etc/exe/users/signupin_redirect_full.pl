@@ -26,7 +26,6 @@ if ($mode eq 'confirming') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_confirmation_code,$sent_user_id);
   ($found_result,$found_username) = $sth->fetchrow_array();
-  $sth->finish();
 
   if ($found_result eq '1') {
     
@@ -36,7 +35,6 @@ if ($mode eq 'confirming') {
     $sth = $dbh->prepare("$sql");
     $salt = get_salt();
     $sth->execute(sha256_hex("$rmcode$salt"),$sent_user_id);
-    $sth->finish();
 
     $sstring .= "NB_Cookie.write('user_id','$sent_user_id');";
     $sstring .= "NB_Cookie.write('rmcode','$rmcode');";  
@@ -60,7 +58,6 @@ if ($mode eq 'signingin') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_user_id,$sent_password);
   ($found_user_id) = $sth->fetchrow_array();
-  $sth->finish();
 
   if ($found_user_id) {
 
@@ -70,8 +67,7 @@ if ($mode eq 'signingin') {
     $sth = $dbh->prepare("$sql");
     $salt = get_salt();
     $sth->execute(sha256_hex("$rmcode$salt"),$sent_user_id);
-    $sth->finish();
-  
+
     $sstring .= "NB_Cookie.write('user_id','$sent_user_id');";
     $sstring .= "NB_Cookie.write('rmcode','$rmcode');";  
     $sstring .= "NB_Cookie.write('confirmed','1');";  

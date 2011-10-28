@@ -15,6 +15,13 @@ NB.Tools.code = function () {
 
 /******************************************************************************/
 
+/* Events */
+
+/* Tests */
+
+/* NB.Tools.code
+ ****************/  
+
 $('#container').delegate('#tool_code', 'click', NB.Tools.code);
 $('#container').delegate('.tool_code_extra', 'click', NB.Tools.code);
 

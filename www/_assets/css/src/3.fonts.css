@@ -19,6 +19,20 @@
 	font-weight: bold;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'DejaVuSansMono';
+	src: url('/_assets/fonts/dejavu/DejaVuSansMono-webfont.eot');
+	src: local('☺'), url('/_assets/fonts/dejavu/DejaVuSansMono-webfont.woff') format('woff'),   url('/_assets/fonts/dejavu/DejaVuSansMono-webfont.ttf') format('truetype'),   url('/_assets/fonts/dejavu/DejaVuSansMono-webfont.svg#webfontvelIGLyw') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'DejaVuSansMonoBold';
+	src: url('/_assets/fonts/dejavu/DejaVuSansMono-Bold-webfont.eot');
+	src: local('☺'), url('/_assets/fonts/dejavu/DejaVuSansMono-Bold-webfont.woff') format('woff'),   url('/_assets/fonts/dejavu/DejaVuSansMono-Bold-webfont.ttf') format('truetype'),   url('/_assets/fonts/dejavu/DejaVuSansMono-Bold-webfont.svg#webfontvelIGLyw') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
 /* Blackletter */
 .blackletter .source p, .KleistFrakturRegular {
 	font-family: "KleistFrakturRegular", Georgia, serif!important;

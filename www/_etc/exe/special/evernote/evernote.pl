@@ -20,8 +20,6 @@ while (my ($aId) = $sth->fetchrow_array()) {
   push(@myarray,$aId);
 }
 
-$sth->finish();
-
 my $sth = $dbh->prepare(qq{
     SELECT Id 
     FROM crossrefs

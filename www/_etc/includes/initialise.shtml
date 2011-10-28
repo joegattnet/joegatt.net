@@ -1,5 +1,4 @@
 <script>
-  NB.layout = "<!--#echo var="layout" -->";
   NB.crumb = {
     canonical: "<!--#echo var="canonical" -->",
     category: "<!--#echo var="category" -->",
@@ -9,32 +8,37 @@
     page_app: "<!--#echo var="page_app" -->",
     path: "<!--#echo var="path" -->"
   };
-  NB.tags = "<!--#echo encoding="none" var="tags" -->";
-  NB.title = "<!--#echo encoding="none" var="title" -->";
-  NB.title_window = "<!--#echo encoding="none" var="title.window" -->";
-  NB.description = "<!--#echo encoding="none" var="description" -->";
-  NB.chunk = "<!--#echo var="chunk" -->";
-  NB.image = "<!--#echo var="shareicon" -->";
-  <!--#if expr="$latitude1" -->
-    NB.latitude = "<!--#echo var="latitude1" -->";
-    NB.longitude = "<!--#echo var="longitude1" -->";
-  <!--#else -->
-    NB.latitude = "<!--#echo var="latitude2" -->";
-    NB.longitude = "<!--#echo var="longitude2" -->";
-  <!--#endif -->
+  NB.meta = {
+    layout: "<!--#echo var="layout" -->",
+    tags: "<!--#echo encoding="none" var="tags" -->",
+    title: "<!--#echo encoding="none" var="title" -->",
+    title_window: "<!--#echo encoding="none" var="title.window" -->",
+    description: "<!--#echo encoding="none" var="description" -->",
+    <!--#if expr="$latitude1" -->
+      latitude: "<!--#echo var="latitude1" -->",
+      longitude: "<!--#echo var="longitude1" -->",
+    <!--#elif expr="$latitude2" -->
+      latitude: "<!--#echo var="latitude2" -->",
+      longitude: "<!--#echo var="longitude2" -->",
+    <!--#endif -->
+    image: "<!--#echo var="shareicon" -->"
+  };
   NB.book = {
     id: <!--#echo var="b" -->
-  }
+  };
   NB.p = {
-  <!--#if expr="$p=/^[0-9]+$/" -->
+    chunk: "<!--#echo var="chunk" -->",
+    <!--#if expr="$p=/^[0-9]+$/ && $section != 'pantography' && $section != 'home'" -->
       current: <!--#echo var="p" -->,
       top: <!--#echo var="p" -->,
-      max: <!--#echo var="p_max" -->
-  <!--#else -->
+      max: <!--#echo var="p_max" -->,
+      furthest: <!--#echo var="p_furthest" -->
+    <!--#else -->
       current: "<!--#echo var="p" -->",
       top: "<!--#echo var="p" -->",
-      max: "<!--#echo var="p_max" -->"
-  <!--#endif -->
+      max: "<!--#echo var="p_max" -->",
+      furthest: "<!--#echo var="p_furthest" -->"
+    <!--#endif -->
   }
   NB.jobs = {};
 </script>

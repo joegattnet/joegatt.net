@@ -17,7 +17,7 @@ h3 {
 	color: #666;
 	margin-bottom: 10px;
 }
-.text h3 ~ h3 {
+.text p ~ h3, .text h3 ~ h3 {
 	margin-top: 20px;
 }
 h4 {

@@ -4,7 +4,7 @@
   </div>
 <!--#endif -->    
 <!--#if expr="$comments=true" -->
-  <div id="comments" class="refresh" data-url="/_etc/cache/common--comments-page_id=<!--#echo var="comments_id"-->.html">
+  <div id="comments" class="prime" data-url="/_etc/cache/common--comments-page_id=<!--#echo var="comments_id"-->.html">
     <!--#include virtual="/_etc/cache/common--comments-page_id=${comments_id}.html" -->
   </div>
 <!--#endif -->

@@ -21,7 +21,7 @@ while (my ($id2,$book,$pages) = $sth->fetchrow_array()) {
   push(@myarray,"$id2|$book|$pages");
 }
 
-$sth->finish();
+
 
 my $sth = $dbh->prepare(qq{
     SELECT id1,CONCAT(surname,': ',title),booksPages
@@ -37,7 +37,7 @@ while (my ($id1,$book,$pages) = $sth->fetchrow_array()) {
   push(@myarray,"$id1|$book|$pages");
 }
 
-$sth->finish();
+
 
 print "<p>Done 2</p>";
 

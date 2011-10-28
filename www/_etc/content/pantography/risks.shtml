@@ -1,0 +1,77 @@
+
+<div class="grid_12">
+
+
+<div id="container_top"><!-- --></div>
+
+        
+        <div class="dataTables_wrapper" id="NB-datatable_wrapper">
+          <div id="NB-datatable_length" class="dataTables_length">
+            <label>Show 
+              <select name="NB-datatable_length" size="1">
+                <option value="10">10
+                </option>
+                <option value="25">25
+                </option>
+                <option value="50" selected="selected">50
+                </option>
+                <option value="100">100
+                </option>
+                <option value="-1">All
+                </option>
+              </select> entries
+            </label>
+          </div>
+          <div class="dataTables_filter" id="NB-datatable_filter">
+            <label>Search: 
+              <input type="text">
+            </label>
+          </div>
+          <table id="NB-datatable" style="width: 940px;">  
+            <thead>    
+              <tr>
+                <th class="sorting_asc" rowspan="1" colspan="1" style="width: 80px;">Date
+                </th>
+                <th class="sorting" rowspan="1" colspan="1" style="width: 80px;">Risk
+                </th>
+                <th class="sorting" rowspan="1" colspan="1" style="width: 80px;">Severity
+                </th>
+                <th class="sorting" rowspan="1" colspan="1" style="width: 60px;">Mitigation
+                </th>
+              </tr>  
+            </thead>   
+            <tbody>
+              <tr>              
+                <td>a</td>              
+                <td>Fri, 20 Dec 2013 23:20:00 UTC</td>              
+                <td>First racial slur</td>              
+                <td>34</td>          
+              </tr>
+              <tr>              
+                <td>b</td>              
+                <td>Sun, 01 Sep 2075 10:30:00 UTC</td>              
+                <td>First obscene word appears.</td>              
+                <td>Social attitudes may have change.</td>          
+              </tr>
+              <tr>              
+                <td>c</td>              
+                <td>33</td>              
+                <td>09</td>              
+                <td>1</td>          
+              </tr>
+            </tbody>
+          </table>          
+        </div>
+
+
+</div>
+<script>
+  Modernizr.load({
+    test: NB.loaded.tablescharts,
+    nope: '/_assets/min/g=js-tablescharts',
+    complete: function(){
+      NB.Ui.charts.initialise();
+      NB.loaded.tablescharts = true;
+    }
+  });
+</script>

@@ -141,7 +141,7 @@ section .notes-list a[href^="http"] {
 section .notes-list a[href^="http"]:hover {
 	background-position: -504px -425px;
 }
-a[href*="joegatt.org"] {
+a[href*="joegatt.org"], a[href^="http://twitter.com/"] {
 	background-image: none!important;
 	padding-left: 0!important;
 }
@@ -230,6 +230,9 @@ span.pos {
 	background-position: -310px -256px;
 }
 /* ajax ***********************************************************************/
+.ajax_loading_large {
+	background: url(/_assets/images/static/ajax.gif) top right no-repeat;
+}
 .ajax_loading {
 	background: url(/_assets/images/static/ajax_small.gif) top right no-repeat;
 }

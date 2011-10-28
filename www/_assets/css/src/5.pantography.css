@@ -1,0 +1,67 @@
+.page-pantography-index .app {
+	/*border: 1px dotted #ccc;
+*/
+	width: 938px;
+	height: 160px;
+	line-height: 40px;
+	font-size: 32px;
+	font-family: DejaVuSansCondensed, Tahoma, Geneva, sans-serif;
+	word-wrap: break-word;
+	text-transform: lowercase;
+	color: #333333;
+	margin-top: -6px;
+	margin-bottom: 4px;
+	background-image: url(/_assets/images/static/bg_stripes_40-v4.png);
+	overflow: hidden;
+}
+.page-pantography-index .scheduled {
+	color: #999999;
+}
+.page-pantography-index .ui-slider {
+	top: 5px;
+	width: 873px;
+	position: relative;
+}
+.page-pantography-index .navigator li {
+	margin-left: 0;
+}
+.page-pantography-index .text {
+	margin: 20px 0;
+}
+.page-pantography-index #info, .page-pantography-index #info-percentage, .page-pantography-index #info-length {
+	color: #999;
+	margin-bottom: 10px;
+	font-size: 11px;
+}
+.page-pantography-index #info a {
+	background: none;
+	padding: 0;
+}
+.page-pantography-index .details li {
+	font-size: 9px;
+}
+.section-pantography .grid_6 .grid_4 {
+	padding-top: 20px;
+}
+.section-pantography .rss {
+	margin-top: 8px;
+}
+.section-pantography .rss span {
+	background-color: #eee;
+}
+.section-pantography .rss h4 a {
+	text-transform: lowercase;
+	color: #666!important;
+}
+.section-pantography .rss p.details {
+	font-size: 11px!important;
+}
+.section-pantography .rss a.set_p {
+	color: #666;
+}
+.section-pantography .rss li {
+	background-image: url(/_assets/images/static/bg_stripes_20-v4.png);
+}
+.section-pantography .rss a.set_p:hover {
+	color: #f74b23;
+}

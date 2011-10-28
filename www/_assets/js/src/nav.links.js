@@ -17,7 +17,8 @@ NB.Nav.links = {
     var href = $(element).closest('a').attr('href');
     var href_domain = NB.Url.domain(href);
     NB.Cookie.write_session('session_exit', href);
-	  NB.Nav.track(2, 'Exit', encodeURIComponent(href_domain), encodeURIComponent(href));
+	  NB.Nav.track(2, 'Exit', encodeURIComponent(href_domain), 
+      encodeURIComponent(href));
    return true;
   }, 
 	document: function (e) {

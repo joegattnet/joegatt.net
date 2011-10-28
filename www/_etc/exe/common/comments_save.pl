@@ -16,7 +16,7 @@ if($user_id ne '' && $user_id !=0){
       INSERT INTO comments (text, date_created, user_id, page_id, url, p, book_id, version) VALUES (?,UTC_TIMESTAMP(),?,?,?,?,?,?)
     });
     $sth->execute($text, $user_id, $page_id, $url, $p, $b, $version);
-    $sth->finish();
+    
     $dbh->disconnect();
   }
   
