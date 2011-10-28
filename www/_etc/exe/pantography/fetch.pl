@@ -36,7 +36,7 @@ $sthLatest->execute();
 if ($sthLatest->rows > 0) {
   my $text_id_latest = $sthLatest->fetchrow_array();
 } else {
-  my $text_id_latest = 0;
+  my $text_id_latest = 12345;
 }
 
 my $nt = twitterPantographyObject();    
