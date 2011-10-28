@@ -39,9 +39,7 @@ my $sthMetaContributorNoRealName = $dbh->prepare(qq{
 });
 
 $sthLatest->execute();
-if ($sthLatest->rows > 0) {
-  my $text_id_latest = $sthLatest->fetchrow_array();
-} 
+my $text_id_latest = $sthLatest->fetchrow_array();
 
 if ($text_id_latest eq '') {
   $text_id_latest = '12345'; # Arbitrary valid number
