@@ -33,7 +33,11 @@ my $sthMetaContributorNoRealName = $dbh->prepare(qq{
 });
 
 $sthLatest->execute();
-my $text_id_latest = $sthLatest->fetchrow_array();
+if ($sthLatest->rows > 0) {
+  my $text_id_latest = $sthLatest->fetchrow_array();
+} else {
+  my $text_id_latest = 0;
+}
 
 my $nt = twitterPantographyObject();    
 my $statuses = $nt->home_timeline({ 
