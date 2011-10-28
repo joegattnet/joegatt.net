@@ -548,7 +548,7 @@ sub cache_refresh {
     if(!$deleteOnly){
       $feedbackVerb = "Refresh";
       #Priming cache
-      $url = "http://$serverName/_etc/cache/$file";
+      $url = "http://" . $serverName . "/_etc/cache/$file";
       #$url =~ s/\&scope=[a-z]//;
       my $reqPurge = new HTTP::Request PURGE => $url;
       my $reqGet = new HTTP::Request GET => $url;
