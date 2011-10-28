@@ -36,7 +36,7 @@ NB.SETTINGS = {
     messageLength: 140,
     frequency: 600, // Frequency of broadcasts in seconds
     siderealYearInDays: 365.256363004,
-    dateFirstTx: "October 28, 2011 08:20:00",
+    dateFirstTx: "October 28, 2011 07:20:00",
     username: 'pantography'
   }, 
   cron: {
