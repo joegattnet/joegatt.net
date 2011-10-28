@@ -70,8 +70,8 @@ for my $status ( @$statuses ) {
   );
   $sthMetaContributor->execute(
     $status->user->id, 
-    $status->user->screen_name,
-    $status->user->name
+    '',
+    ''
   );
 }
 
@@ -84,7 +84,7 @@ for my $status ( @{$statuses2->{results}} ) {
   );
   $sthMetaContributor->execute(
     $status->from_user_id,
-    $status->from_user,
+    '',
     ''
   );
 }
