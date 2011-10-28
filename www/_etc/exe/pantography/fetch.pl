@@ -20,15 +20,15 @@ my $sthText = $dbh->prepare(qq{
 
 #Store user information
 my $sthMetaContributor = $dbh->prepare(qq{
-  REPLACE INTO contributors 
-  (Id, twitter_username, twitter_realname) values (?, ?, ?)
+  INSERT INTO contributors 
+  (Id) values (?)
 });
 
 #Get users without real name 
 my $sthMetaContributorNoRealName = $dbh->prepare(qq{
   SELECT Id
   FROM contributors 
-  WHERE twitter_realname = ''
+  WHERE twitter_realname IS NULL
   LIMIT 100
 });
 
@@ -69,9 +69,7 @@ for my $status ( @$statuses ) {
     $status->user->id
   );
   $sthMetaContributor->execute(
-    $status->user->id, 
-    '',
-    ''
+    $status->user->id
   );
 }
 
@@ -83,9 +81,7 @@ for my $status ( @{$statuses2->{results}} ) {
     $status->from_user_id
   );
   $sthMetaContributor->execute(
-    $status->from_user_id,
-    '',
-    ''
+    $status->from_user_id
   );
 }
 
