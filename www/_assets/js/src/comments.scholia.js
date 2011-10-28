@@ -1,6 +1,6 @@
 NB.Comments.scholia = {
 	get: function (p) {
-     var paragraph_id = ($('#p_' + p).length?NB.Enface.get_target(NB.p.current).data('id'):false), 
+     var paragraph_id = ($('#p_' + p).length?NB.App.get_target(NB.p.current).data('id'):false), 
      editable = NB.User.id != 0 && $.assArray.join(NB.versions, '').indexOf('=' + NB.User.id + ', ')!=-1, 
      editability, 
      params;
@@ -32,7 +32,7 @@ NB.Comments.scholia = {
     var note = $('textarea', '#scholia').val(), 
     pending;
     $('#scholia_form').hide('blind');
-     $('#scholia form [name=paragraph_id]').val(NB.Enface.get_target(NB.p.current).data('id'));
+     $('#scholia form [name=paragraph_id]').val(NB.App.get_target(NB.p.current).data('id'));
 		 if (NB.User.id!=0 && note!='' && note!=NB.TEXT.prompt.add_scholia) {
 		   //Form is not shown if user is not logged in so pending is superfluous 
   		 //pending = "var form = $('#scholia form');";

@@ -1,5 +1,5 @@
 <!--#if expr="$scripts_discrete=false||$server=/joegatt.net/||$server=test.joegatt.org" -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/<!--#echo var="jquery_version" -->/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/<!--#echo var="jquery_version" -->/jquery.min.js"></script>
   <script src="<!--#echo var="js_url" -->/_assets/min/g=js<!--#echo var="js_version" -->&amp;<!--#echo var="js_cachebuster" -->"></script>
 <!--#else -->
   <!--#include virtual="/_etc/exe/common/discrete_scripts.pl"-->

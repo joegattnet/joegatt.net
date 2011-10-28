@@ -1,0 +1,47 @@
+<div id="message" class="grid_12 editor app"><!--#echo var="p_furthest" --></div>
+<div class="grid_12">
+  <div class="grid_10 alpha">
+    <p id="info">&nbsp;</p>
+  </div>
+  <div class="grid_1">
+    <p id="info-percentage">&nbsp;</p>
+  </div>
+  <div class="grid_1 omega">
+    <p id="info-length">&nbsp;</p>
+  </div>
+</div>
+<div class="navigator by-<!--#echo var="chunk" --> clearfix">
+  <ul class="nav_h">
+  	 <li><a href="/pantography/pantographs/1" rel="first" class="first" title="First message">First message</a></li>
+  	 <li><a href="/pantography/pantographs/${previous}" rel="prev" class="previous" title="Previous message">Previous message</a></li>
+     <li id="paragraphs_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+       <a href="#" class="ui-slider-handle ui-state-default ui-corner-all"></a>
+     </li>
+     <li class="al_right"><a href="/pantography/pantographs/${next}" class="next" title="Next message">Next message</a></li>
+  	 <li class="al_right"><a href="/pantography/pantographs/${p_max}" rel="last" class="last" title="Last message">Last message</a></li>
+  </ul>
+</div>
+<div class="grid_12">
+  <div id="content" class="grid_5 suffix_1 alpha">
+    <article class="text">
+      <!--#include virtual="/_etc/cache/notes--fragment-tags=_pantography_introduction.html" -->
+    </article>
+    <div class="apparatus">
+      <!--#include virtual="/_etc/layouts/apparatus_left.shtml" -->
+    </div>
+  </div>
+  <div class="grid_6 omega">
+    <div class="grid_4 alpha">
+      <span id="twitter-follow-pantography"></span>
+      <div class="refresh li-incremental" data-url="/_etc/cache/pantography--timeline-.html">
+        <!--#include virtual="/_etc/cache/pantography--timeline-.html" -->
+      </div>
+    </div>  
+    <div class="grid_2 omega" style="margin-left:10px; margin-top:20px;">
+      <!--#include virtual="/_etc/cache/notes--fragment-tags=_pantography_instructions&wrapper=instructions.html" -->
+    </div>  
+    <div class="grid_5 suffix_1 alpha omega apparatus">
+        <!--#include virtual="/_etc/layouts/apparatus_right.shtml" -->
+    </div>
+  </div>
+</div>

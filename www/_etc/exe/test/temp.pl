@@ -32,10 +32,10 @@ eval {
       #since ... date
       #since_id ... id
       
-      my $statuses = $nt->friends_timeline({ since_id => 31391872962273280, trim_user => 'joegattnet', count => 100 });
+      my $statuses = $nt->friends_timeline({ since_id => 31391872962273280, count => 800 });
           print "<table><tr><td>status</td><td>$status->{created_at}</td><td>$status->{user}{screen_name}</td><td>$status->{text}</td></tr>";
       for my $status ( @$statuses ) {
-          print "<tr><td>$status->{id}</td><td>$status->{created_at}</td><td>$status->{user}{screen_name}</td><td>$status->{text}</td></tr>";
+          print "<tr><td>$status->{id}</td><td>$status->{created_at}</td><td>$status->{user}{name}</td><td>$status->{user}{screen_name}</td><td>$status->{text}</td></tr>";
       }
           print "</table>";
   };

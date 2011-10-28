@@ -27,7 +27,7 @@
       <li><a href="javascript:;" id="tool_blackletter">Blackletter</a></li>
     </ul>
   </div>
-  <div id="scholia" class="navmodules panel refresh" data-url="/_etc/cache/common--scholia-b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
+  <div id="scholia" class="navmodules panel prime" data-url="/_etc/cache/common--scholia-b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
     <!--#include virtual="/_etc/cache/common--scholia-b=${b}&p=${p}&page_id=${scholia_id}.html" -->
   </div>
 </div>

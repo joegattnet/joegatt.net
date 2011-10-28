@@ -248,7 +248,7 @@ sub saveAnagramParagraph {
     $sql = "SELECT text FROM target_text WHERE p=? AND book_id=? ORDER BY date_created DESC LIMIT 1;";
     my $sth = $dbh->prepare("$sql");
     $sth->execute($p,$b);
-    $sth->finish();
+    
     
     my $text = $sth->fetchrow_array();
     my $target_text = "$text";
@@ -275,7 +275,7 @@ sub saveAnagramParagraph {
   
   my $sth = $dbh->prepare("$sql");
   $sth->execute();
-	$sth->finish();
+	
 	
   $dbh->disconnect();
   saveAnagram($b);
@@ -309,7 +309,7 @@ sub saveAnagram {
 
   }
 
-	$sth->finish();
+	
 	$dbh->disconnect();
 
   $anagram_table .= "</tbody></table>";
@@ -384,7 +384,7 @@ sub show_username {
   my $sth = $dbh->prepare("$sql");
   $sth->execute($user_id);
   my $showname = $sth->fetchrow_array();
-	$sth->finish();
+	
 	$dbh->disconnect();
 	
 	return $showname;

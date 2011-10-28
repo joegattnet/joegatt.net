@@ -20,12 +20,25 @@ my $sth = $dbh->prepare("$sql");
 $sth->execute($b,$p);
 
 my ($collate) = $sth->fetchrow_array();
-$sth->finish();
 
-if($mode eq 'oldest'){
-  $sql = "SELECT min(date_created) FROM target_text WHERE p>=? AND book_id=? GROUP BY p LIMIT ?";
-}else{
-  $sql = "SELECT MAX(date_created) FROM target_text WHERE p>=? AND book_id=? GROUP BY p LIMIT ?";
+
+if ($mode eq 'oldest') {
+  $sql = qq{
+    SELECT min(date_created) 
+    FROM target_text 
+    WHERE p>=? 
+    AND book_id=? 
+    GROUP BY p LIMIT ?
+  };
+} else {
+  $sql = qq{
+    SELECT MAX(date_created) 
+    FROM target_text 
+    WHERE p >= ? 
+    AND book_id = ? 
+    GROUP BY p 
+    LIMIT ?
+    };
 }
 my $sth = $dbh->prepare("$sql");
 $sth->execute($p, $b, ($collate * $multipage));
@@ -48,7 +61,12 @@ my $sth = $dbh->prepare(qq{
   users.Id,
   username 
   FROM source_text,target_text,users 
-  WHERE users.Id=target_text.user_id AND target_text.date_created IN ($allDates) AND source_text.p>=? AND source_text.book_id=? AND target_text.book_id=? AND source_text.p=target_text.p 
+  WHERE users.Id=target_text.user_id 
+    AND target_text.date_created IN ($allDates) 
+    AND source_text.p>=? 
+    AND source_text.book_id=? 
+    AND target_text.book_id=? 
+    AND source_text.p=target_text.p 
   GROUP BY p 
   ORDER BY p 
   LIMIT $collate
@@ -88,10 +106,12 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
   });
   $sthTags->execute("wutz|index|$found_p");
   $tags = join(",", $sthTags->fetchrow_array(), "_wutz_p${found_p}");
+  #We accumulate an array for static page
+  push(@allTags, $sthTags->fetchrow_array());
+  push(@allTags, "_wutz_p${found_p}");
   $tags_array .= qq~
     NB.Cache.add('_tags_b${b}_p${found_p}', "$tags");
   ~;
-  $sthTags->finish();
   
   $flattenedText = flattenText($source);
   $length = length($flattenedText);
@@ -117,19 +137,22 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
     
 }
 
-# We need to get tags so that direct content works
-
 if(!$static){
   $output .= qq~
-  <script type="text/javascript">
-  //<![CDATA[
+  <script>
     NB.loaded_scripts.add(false, function(){
       $tags_array
-      NB.tags = NB.cache['\_tags\_b${b}\_p${p}'].data;
+      NB.meta.tags = NB.cache['\_tags\_b${b}\_p${p}'].data;
       NB.Nav.track(0,'Loaded enface content - p$p');
       $versions_info
     });
-  //]]>
+  </script>
+  ~;
+} else {
+  $allTagsString = join(",", @allTags);
+  $output .= qq~
+  <script>
+    NB.meta.tags = "$allTagsString";
   </script>
   ~;
 }

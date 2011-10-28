@@ -32,7 +32,7 @@ while (my ($target,$date_iso8601,$date_full,$target_id,$score,$u,$user_name) = $
       version: $version,
       isLatest: false
     }
-    var target_element = NB.Enface.get_target($p);
+    var target_element = NB.App.get_target($p);
     \$(target_element).text("$target");
     NB.Versions.display('$target_id');
     \$(target_element).animate({color: NB.S.color.version_loaded},500);

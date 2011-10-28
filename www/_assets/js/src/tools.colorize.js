@@ -1,6 +1,6 @@
 NB.Tools.colorize = {
   toggle: function () {
-   var e = NB.Enface.get_target(NB.p.current);
+   var e = NB.App.get_target(NB.p.current);
    NB.Tools.toggle('colorize') ? NB.Tools.colorize.colorize(e) : NB.Tools.colorize.undo(e);
   }, 
   on: function () {
@@ -27,7 +27,7 @@ NB.Tools.colorize = {
     } else {
     NB.Nav.track(0, 'Colorizing', e.attr('id'));
        var colorized = j.text().replace(/\w+ /g, function (match) {
-        var score = NB.Enface.word_score(match);
+        var score = NB.App.word_score(match);
         if (score<0) {
           return '<span class="neg neg' + score + '" title="&#x25bc;' + (score*-1) + '"> ' + match + '</span> ';
         } else if (score> 0) {

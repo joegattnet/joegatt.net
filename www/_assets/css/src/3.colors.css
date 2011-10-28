@@ -1,16 +1,19 @@
 /*  #333333 - Grey, dark  #999999 - Grey  #d5d5d5 - Grey, light  #D3120F - Red  #f74b23 - Orange  #f3f129 - Yellow  #75d42f - Green  #86853a - Green, dark  #29cff3 - Cyan  #362fd4 - Blue  #336699 - Blue, dark  #b32fd4 - Purple*/
+h1, .text h3 {
+	color: #999999;
+}
 .section-wutz h1, .section-wutz h1 a, .section-wutz .text h3 {
 	color: #D3120F;
+}
+.section-code h1, .section-code h1 a, .section-code .text h3 {
+	color: #22aecc;
 }
 .section-bibliography h1, .section-bibliography .text h3 {
 /* Darker than palette */
 	color: #dfdd13;
 }
-.section-code h1, .section-code .text h3 {
-	color: #22aecc;
-}
-.section-colophon h1, .section-colophon .text h3 {
-	color: #999999;
+.section-pantography h1, .section-pantography h1 a, .section-pantography .text h3 {
+	color: #b32fd4;
 }
 .section-links h1, .section-links .text h3 {
 	color: #75d42f;

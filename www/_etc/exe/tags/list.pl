@@ -47,7 +47,7 @@ while (my ($name, $link, $score) = $sth->fetchrow_array()) {
   push(@tags, [$name, $link, $score, $scale]);
 };
 
-$sth->finish();
+
 $dbh->disconnect();
 
 $ulTag = "<ul id=\"tag_list\" class=\"$template\">";

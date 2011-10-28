@@ -3,6 +3,8 @@
 require '../basics.pl';
 require '../notes/basics.pl';
 
+$wrapper = 'text';
+
 formRead("get");
 
 $dbh = connectDB();
@@ -25,7 +27,7 @@ my ($note_e_guid) = $sth->fetchrow_array();
 if($note_e_guid eq ''){
   $output = "<p class=\"debug-info error\">FRAGMENT NOT FOUND: $tags</p>";
 }else{
-  $output = printNote($note_e_guid,'fragment');
+  $output = printNote($note_e_guid, 'fragment', $wrapper);
 }
 
 $sth->finish();

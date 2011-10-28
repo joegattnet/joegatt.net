@@ -69,7 +69,7 @@ $output .= "http://joegatt.net/wutz/\n";
 $output .= getLinks($sql1, "http://joegatt.net/wutz/", 1);
 $output .= "http://joegatt.net/wutz/rc\n";
 $output .= getLinks($sql1, "http://joegatt.net/wutz/rc/", 1);
-$output .= "http://joegatt.net/wutz/stats\n";
+$output .= "http://joegatt.net/wutz/statistics\n";
 
 $output .= "http://joegatt.net/code/\n";
 $output .= "http://joegatt.net/colophon/";

@@ -18,7 +18,7 @@ my $dbh = connectDB();
   });
   $sth->execute($text,$p,$u,$score,$score_total,$b,$version,$base_id);
   my $id = $dbh->last_insert_id(undef, undef, $_[2], ID);
-  $sth->finish();
+  
 
   $date_iso8601 = date_string_iso();
   $date_full = date_string_long();
@@ -42,15 +42,16 @@ my $dbh = connectDB();
     version: $version,
     isLatest: true
   }
-  if (NB.p.current == $p) {
+  if (NB.p.current === $p) {
     NB.Versions.display('$id');
   }
-  //NB.Enface.reset(\$('\#p_$id'), false);
+  //NB.App.reset(\$('\#p_$id'), false);
   //NB.Anagram.get();
   </script>
   ~;
   #IF WE WANT TO UPDATE THIS WE NEED TO BRING IT FROM BASICS
   
+  $sth->finish();
   $dbh->disconnect();
   saveAnagramParagraph($b,$p,$text);
   
@@ -81,7 +82,7 @@ my $dbh = connectDB();
 #  });
 #  $sth->execute($user_level,$u);
 #  ($matches) = $sth->fetchrow_array();
-#  $sth->finish();
+#  
 
 #if ($matches!=1) {
 

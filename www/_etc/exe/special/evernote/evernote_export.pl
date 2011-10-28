@@ -91,5 +91,5 @@ CLOSE export;
 
 print "<h1>Done!</h1>";
 
-$sth->finish();
+
 $dbh->disconnect();

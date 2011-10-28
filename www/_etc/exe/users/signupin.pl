@@ -78,7 +78,6 @@ if ($mode eq 'confirming') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_confirmation_code);
   ($found_result,$found_username,$found_user_id,$found_level) = $sth->fetchrow_array();
-  $sth->finish();
 
   if ($found_result eq '1') {
 
@@ -88,7 +87,6 @@ if ($mode eq 'confirming') {
     $sth = $dbh->prepare("$sql");
     $salt = get_salt();
     $sth->execute(sha256_hex("$rmcode$salt"),$found_user_id);
-    $sth->finish();
 
     $mode = 'signedin';
     $rememberme = '1';   
@@ -121,7 +119,7 @@ if ($mode eq 'signingup') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_username,$sent_email,$sent_password,$confirmation_code_write,$sent_signup_url);
   $found_user_id = $dbh->last_insert_id(undef, undef, $sent__[2], ID);
-  $sth->finish();
+  
   email_confirm_registration($sent_email,$sent_username,$found_user_id,$confirmation_code,$sent_signup_url);
   $jsstring .= "NB.Cookie.remove('confirmed');";
   $jsstring .= "NB.Cookie.write('user_id','$found_user_id');";
@@ -136,7 +134,6 @@ if ($mode eq 'resend') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_user_id);
   ($found_result,$found_email,$found_username,$found_signup_url) = $sth->fetchrow_array();
-  $sth->finish();
 
   if ($found_result eq '1') {
   
@@ -147,7 +144,7 @@ if ($mode eq 'resend') {
     $sql = "UPDATE users SET confirmation_code=? WHERE Id=?;";
     $sth = $dbh->prepare($sql);
     $sth->execute($confirmation_code_write,$sent_user_id);
-    $sth->finish();
+    
     email_confirm_registration($found_email,$found_username,$sent_user_id,$confirmation_code,$found_signup_url);
     $jsstring .= "NB.Cookie.remove('confirmed','0');";
     $jsstring .= "NB.Cookie.write('user_id','$found_user_id');";
@@ -204,7 +201,7 @@ if ($mode eq 'signingin') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_username,$sent_password,$sent_username,$sent_password,$sent_user_id,$sent_rmcode,$sent_rmcode,$sent_rmcode);#,$sent_user_id,$sent_password);
   ($found_user_id,$confirmed,$found_username,$found_level,$found_rmcode,$found_rmcode2) = $sth->fetchrow_array();
-  $sth->finish();
+  
 
   if ($found_user_id && ($confirmed==1)) {
 
@@ -223,7 +220,7 @@ if ($mode eq 'signingin') {
         $sth = $dbh->prepare("$sql");
         $sth->execute($sent_username,$sent_username);
         ($found_exists) = $sth->fetchrow_array();
-        $sth->finish();
+        
               
         if ($found_exists) {
            $signinmessage = '<p class="error">Wrong password.</p>';
@@ -281,7 +278,7 @@ if ($mode eq 'resettingpassword') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_email);
   ($found_username,$found_user_id) = $sth->fetchrow_array();
-  $sth->finish();
+  
     
     if ($found_username) {
 
@@ -292,7 +289,7 @@ if ($mode eq 'resettingpassword') {
       $sql = "UPDATE users SET password=? WHERE Id=?;";
       $sth = $dbh->prepare($sql);
       $sth->execute($newpassword_write,$found_user_id);
-      $sth->finish();
+      
       
       #set showname to user's preference 
       
@@ -326,14 +323,14 @@ if ($mode eq 'changingpassword') {
   $sth = $dbh->prepare("$sql");
   $sth->execute($sent_user_id,$sent_old_password);
   ($found_username) = $sth->fetchrow_array();
-  $sth->finish();
+  
 
     if ($found_username) {
 
       $sql = "UPDATE users SET password=?,rmcode=0 WHERE Id=?;";
       $sth = $dbh->prepare($sql);
       $sth->execute($sent_new_password,$sent_user_id);
-      $sth->finish();
+      
 
       $jsstring .= "NB.Cookie.remove('rememberme');";
  
@@ -468,7 +465,7 @@ if ($mode eq 'signedin') {
   
   $salt = get_salt();
   $sth->execute(sha256_hex("$rmcode$salt"),$user_id);
-  $sth->finish();
+  
   
   $is_alert = '';
   $headerstring = $found_username;

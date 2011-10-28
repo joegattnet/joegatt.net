@@ -6,6 +6,7 @@ sub printNote {
 
   my $note_e_guid = $_[0];
   my $template = $_[1];
+  my $wrapper = $_[2];
   my $images;
   my $video;
   my $caption;
@@ -255,10 +256,6 @@ sub printNote {
   } elsif (!$isTopic && !$isLink && !$isBook) {
     $title = '';
   }
-    
-  $sthNote->finish();
-  $sthResources->finish();
-  $sthTags->finish();
 
   $version = "0.$version";
 
@@ -320,7 +317,8 @@ sub printNote {
         resources => \@resources,
         tags => \@tags,
         tagsUrl => $tagsUrl,
-        imageServer => $imageServer
+        imageServer => $imageServer,
+        wrapper => $wrapper
     };
     
     my $TTinput = "notes.item.$template.$templateType.tmpl";
@@ -351,6 +349,8 @@ sub sanitiseText {
       $hs->eof;  
     } else {
       #HTML::Strip does not allow exceptions
+      $text =~ s/<div><b>/<h3>/g;
+      $text =~ s/<\/b><\/div>/<\/h3>/g;
       $text =~ s/<\/div>/<\/div>\n/g;
       $text =~ s/<a /XXaXX/g;
       $text =~ s/<\/a>/YYaYY/g;
@@ -374,6 +374,9 @@ sub sanitiseText {
       $text =~ s/YYliYY/<\/li>/g;
       $text =~ s/XXh3XX/<h3/g;
       $text =~ s/YYh3YY/<\/h3>/g;
+      $text =~ s/<p><\/p>//g;
+      $text =~ s/<p><h3>/<h3>/g;
+      $text =~ s/<\/h3><\/p>/<\/h3>/g;
     }
 
     #$text =~ s/\n\n/ /g;

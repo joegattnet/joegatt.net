@@ -1,0 +1,27 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/code/settings.shtml" -->
+
+<!--#set var="page" value="index" -->
+<!--#set var="share_id" value="$page" -->
+
+<!--#set var="share_id" value="${section}_test" -->
+<!--#set var="clip_id" value="${section}_test" -->
+<!--#set var="comments_id" value="${section}_${page}" -->
+
+<!--#set var="tags" value="$tags,_${section}_p$p" -->
+
+<!--#set var="chunk" value="page" -->
+
+<!--#set var="title" value="Unit Tests" -->
+<!--#set var="title.window" value="Code: $title" -->
+
+<!--#set var="title.super" value="Code" -->
+<!--#set var="title.super.url" value="/$section/" -->
+
+<!--#set var="yield" value="yield_1024_05_01s_03_03_a.shtml" -->
+
+<!--#set var="content" value="/_etc/includes/code/test.shtml" -->
+<!--#set var="content_middle" value="/_etc/cache/php-common--rss_show-eu=github-commits-dev&title=github.com:joegatt.net:dev&refresh=10m.html" -->
+<!--#set var="content_right" value="/_etc/cache/php-common--rss_show-eu=github-commits-master&title=github.com:joegatt.net:master&refresh=10m.html" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

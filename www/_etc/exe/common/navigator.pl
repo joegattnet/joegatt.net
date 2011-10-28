@@ -34,16 +34,16 @@ my $output = qq~
   <div$idString class="navigator by-$pChunk clearfix">
     <div>
   			<ul class="nav_h">
-    			 <li class="nav-li"><a href="${path}1" rel="first" class="first" title="First $pChunk">First $pChunk</a></li>
-    			 <li class="nav-li"><a href="${path}$previous" rel="prev" class="previous" title="Previous $pChunk">Previous $pChunk</a></li>
+    			 <li><a href="${path}1" rel="first" class="first" title="First $pChunk">First $pChunk</a></li>
+    			 <li><a href="${path}$previous" rel="prev" class="previous" title="Previous $pChunk">Previous $pChunk</a></li>
            ~;
            if($goto ne 'false'){
              $output .= qq~
-              <li class="nav-li li-info"><form><input type="text" class="goto" value="$p" name="p"/></form></li>
+              <li class="li-info"><form><input type="text" class="goto" value="$p" name="p"/></form></li>
     			   ~;
            }
            $output .= qq~
-              <li class="nav-li al_right"><a href="${path}$next" class="next" title="Next $pChunk">Next $pChunk</a></li>
+              <li class="al_right"><a href="${path}$next" class="next" title="Next $pChunk">Next $pChunk</a></li>
            ~;
            if($pagefull ne 'false'){
              $output .= qq~

@@ -49,7 +49,7 @@ while (my ($target) = $sth->fetchrow_array()) {
   $textENstring .= $target;
 }
 
-$sth->finish();
+
 $dbh->disconnect();
 
 # ******************************************************************************

@@ -21,8 +21,6 @@ while (my ($id2,$nickname) = $sth->fetchrow_array()) {
   push(@myarray,"$id2|$nickname");
 }
 
-$sth->finish();
-
 my $sth = $dbh->prepare(qq{
     SELECT id1,nickname 
     FROM crossrefs,projects
@@ -36,8 +34,6 @@ print "<p>Done 1</p>";
 while (my ($id1,$nickname) = $sth->fetchrow_array()) {
   push(@myarray,"$id1|$nickname");
 }
-
-$sth->finish();
 
 print "<p>Done 2</p>";
 

@@ -27,7 +27,6 @@ if ($authenticated == 1){
   $sth = $dbh->prepare("$sql");
   $sth->execute($id_twitter);
   ($found_user_id) = $sth->fetchrow_array();
-  $sth->finish();
   
   if ($found_user_id) {
     $sql = "UPDATE users SET visits=visits+1,date_last_visit=UTC_TIMESTAMP(),username=?,tw_full_name=?,tw_screen_name=? WHERE id_twitter=?;";
@@ -41,7 +40,6 @@ if ($authenticated == 1){
     $follow = 1;
   }
   
-  $sth->finish();
   $dbh->disconnect();
 
 # Automatically start following user

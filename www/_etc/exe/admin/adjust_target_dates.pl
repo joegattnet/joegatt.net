@@ -20,7 +20,7 @@ $sql = "UPDATE target_text SET date_created=DATE_ADD(date_created,INTERVAL Id*-1
 my $sth = $dbh->prepare($sql);
 $sth->execute($b) or die print "<p class=\"neg\">Can't execute SQL.</p><p class=\"neg\">$sql</p>";
 my $rows = $sth->rows;
-$sth->finish();
+
 $dbh->disconnect();
 
 print qq~

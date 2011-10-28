@@ -69,7 +69,7 @@ while (my @cols = $sth->fetchrow_array()) {
 print "</table></body></html>";
 }
 
-$sth->finish();
+
 $dbh->disconnect();
 
 }
