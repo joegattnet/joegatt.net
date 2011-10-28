@@ -18,10 +18,16 @@ my $sthText = $dbh->prepare(qq{
   (text, date_created, text_id, contributor_id) values (?, ?, ?, ?)
 });
 
-#Store user information
+#Store user id
 my $sthMetaContributor = $dbh->prepare(qq{
   INSERT INTO contributors 
   (Id) values (?)
+});
+
+#Store user information
+my $sthMetaContributorFull = $dbh->prepare(qq{
+  REPLACE INTO contributors 
+  (Id, twitter_username, twitter_realname) values (?, ?, ?)
 });
 
 #Get users without real name 
@@ -97,7 +103,7 @@ if ($sthMetaContributorNoRealName->rows){
     user_id => \@user_ids
   });
   for my $user ( @$users ) {
-    $sthMetaContributor->execute(
+    $sthMetaContributorFull->execute(
       $user->id, 
       $user->screen_name,
       $user->name
@@ -109,6 +115,7 @@ $newStatuses = $sthText->rows;
 $sthLatest->finish();
 $sthText->finish();
 $sthMetaContributor->finish();
+$sthMetaContributorFull->finish();
 $sthMetaContributorNoRealName->finish();
 $dbh->disconnect();
 
