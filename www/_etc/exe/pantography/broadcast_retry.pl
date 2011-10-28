@@ -16,13 +16,12 @@ my $sth = $dbh->prepare(qq{
   LIMIT 1 
 });
 $sth->execute();
+$text = $sth->fetchrow_array();
 
 if ($sth->rows > 0) {
-  $text = $sth->fetchrow_array();
   diffuse_twitter_pantography($text);
+  cache_refresh('pantography--timeline');
 }
 
 $sth->finish();
 $dbh->disconnect();
-
-cache_refresh('pantography--timeline');
