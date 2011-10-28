@@ -20,7 +20,7 @@ my $sthText = $dbh->prepare(qq{
 
 #Store user id
 my $sthMetaContributor = $dbh->prepare(qq{
-  INSERT INTO contributors 
+  INSERT IGNORE INTO contributors 
   (Id) values (?)
 });
 
