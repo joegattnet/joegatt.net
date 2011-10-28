@@ -8,8 +8,11 @@ $dbh = connectDBpantography();
 # Get latest 
 # SELECT DATE_FORMAT(date_created, '%a %b %d %T +0000 %Y')
 my $sthLatest = $dbh->prepare(qq{
-  SELECT MAX(text_id)
+  SELECT text_id
   FROM text 
+  ORDER BY text_id DESC
+  LIMIT 1 
+  OFFSET 10
 });
 
 #Store texts
