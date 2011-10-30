@@ -141,7 +141,8 @@ section .notes-list a[href^="http"] {
 section .notes-list a[href^="http"]:hover {
 	background-position: -504px -425px;
 }
-#content a[href*="joegatt."], #content a[href^="http://twitter.com/"] {
+#content a[href*="joegatt."], #content a[href^="http://twitter.com/"],
+.instructions a[href*="joegatt."], .instructions a[href^="http://twitter.com/"] {
 	background-image: none!important;
 	padding-left: 0!important;
 }
