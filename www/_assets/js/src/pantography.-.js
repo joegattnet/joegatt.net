@@ -313,6 +313,7 @@ $('#container').delegate('.set_p', 'click', function (event) {
 
 NB.loaded_scripts.add(true, function () {
   $('body').bind('content.loaded', function () {
+    $('#twitter-follow-pantography').html('');
     twttr.anywhere(function (T) {
       T('#twitter-follow-pantography').followButton('pantography');
     });
