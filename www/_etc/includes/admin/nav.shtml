@@ -21,6 +21,7 @@
 		<li><a href="/_etc/exe/admin/cache.pl" target="<!--#echo var="rowname" -->">Cache</a></li>
 		<li><a href="/_etc/exe/evernote/fetch.php" target="<!--#echo var="rowname" -->">Evernote</a></li>
 		<li><a href="/_etc/exe/admin/cron_sitemap-txt.pl" target="<!--#echo var="rowname" -->">Sitemap</a></li>
+		<li><a href="/_etc/exe/evernote/addbook.php" target="<!--#echo var="rowname" -->">Add book</a></li>
 		<li><a href="/_etc/exe/crop/index.php" target="<!--#echo var="rowname" -->">Images</a></li>
 		<li><a href="/_etc/exe/admin/error_log.pl" target="<!--#echo var="rowname" -->">Error log</a></li>
 </ul>
