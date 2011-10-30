@@ -124,13 +124,12 @@ NB.Pantography.prototype.wordToNum = function (phrase) {
     position = 0,
     decimal = 0;
   for(i=phrase.length -1; i >= 0;i--) {
-    decimal += this.alphabet.indexOf(phrase.charAt(i)) 
-      * Math.pow(radix, position);  
+    decimal += this.alphabet.indexOf(phrase.charAt(i))+1 
+      * Math.pow(radix, position);
     position++;
   }
   return decimal;
 };
-
 
 NB.Pantography.prototype.percentageToWord = function (percentage) {
   var word;
@@ -313,7 +312,9 @@ $('#container').delegate('.set_p', 'click', function (event) {
 });
 
 NB.loaded_scripts.add(true, function () {
-  twttr.anywhere(function (T) {
-    T('#twitter-follow-pantography').followButton('pantography');
+  $('body').bind('content.loaded', function () {
+    twttr.anywhere(function (T) {
+      T('#twitter-follow-pantography').followButton('pantography');
+    });
   });
 });

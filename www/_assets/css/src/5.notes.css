@@ -36,9 +36,10 @@ p.caption {
 	margin-bottom: 10px;
 }
 blockquote {
-	color: #666;
+/*	color: #666; */
 	font-style: italic;
 	font-size: 12px;
+	font-family: Georgia, "Palatino Linotype", serif;
 	/*margin-bottom: 10px;
 */
 	/*font-family: Tahoma, Geneva, sans-serif;

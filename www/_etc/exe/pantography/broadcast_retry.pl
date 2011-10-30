@@ -11,9 +11,9 @@ $dbh = connectDBpantography();
 my $sth = $dbh->prepare(qq{
   SELECT text 
   FROM `text` 
-  WHERE text_id IS NULL
-  ORDER BY date_created
-  LIMIT 1 
+  WHERE text_id IS NULL 
+  ORDER BY date_created 
+  LIMIT 1
 });
 $sth->execute();
 $text = $sth->fetchrow_array();
