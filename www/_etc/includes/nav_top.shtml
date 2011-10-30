@@ -19,7 +19,7 @@
 <div id="nav_top_right" class="grid_2 suffix_2 omega">
   <!--#if expr="$follow!=false" -->
     <ul id="follow" class="nav_h">
-      <li><a href="<!--#echo encoding="none" var="follow_twitter" -->" id="twitter-follow" title="Follow @joegattnet on Twitter">Follow @joegattnet on Twitter</a></li>  
+      <li><a href="<!--#echo encoding="none" var="follow_twitter" -->" id="twitter-follow-joegattnet" title="Follow @joegattnet on Twitter">Follow @joegattnet on Twitter</a></li>  
     </ul>
   <!--#endif -->
 </div>
