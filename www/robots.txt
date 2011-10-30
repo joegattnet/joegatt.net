@@ -14,3 +14,6 @@ Disallow: /twitter
 
 User-agent: *
 Disallow: /google
+
+User-agent: *
+Disallow: /sitemap
