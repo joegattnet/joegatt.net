@@ -121,5 +121,5 @@ $sthMetaContributorNoRealName->finish();
 $dbh->disconnect();
 
 if ($newStatuses != 0){
-  cache_refresh('pantography--timeline');
+  pantographyTimeline();
 }
