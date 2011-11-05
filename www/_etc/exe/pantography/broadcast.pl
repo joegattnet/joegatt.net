@@ -30,7 +30,7 @@ my $sth = $dbh->prepare(qq{
   (text, date_created) values (?, UTC_TIMESTAMP())
 });
 $sth->execute($nextText);
-
+$sth->finish();
 $dbh->disconnect();
 
 #Tweet text
@@ -40,4 +40,4 @@ diffuse_twitter_pantography($nextText);
 $output = qq{<!--#set var="p_furthest" value="$nextText" -->};
 cache_output("../../cache/pantography--furthest-.shtml", $output);
 
-cache_refresh('pantography--timeline');
+pantographyTimeline();
