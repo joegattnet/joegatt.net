@@ -126,6 +126,9 @@ figcaption {
 .grid_6 span.mb_YTVPlayer {
 	margin-bottom: 10px!important;
 }
+.book {
+  font-size: 12px;
+}
 /* IE9 does not support thisAlso, wrapping can leave widows/orphans.page-notes-index #content, .page-bibliography-index #content, .page-links-index #content, .page-topics-index #content {
 	-moz-column-gap: 20px;
 	-webkit-column-gap: 20px;
