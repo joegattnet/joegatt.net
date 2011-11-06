@@ -289,6 +289,7 @@ NB.Pantography.prototype.initialize = function (p) {
       clearInterval(NB.App.textInfoInterval);
     }
   }, 1000);
+  this.followButton();
   this.setP(p);
 };
 
@@ -300,6 +301,15 @@ NB.Pantography.prototype.desanitize = function (q) {
   return q.replace(/\|/g, '#');
 };
 
+NB.Pantography.prototype.followButton = function () {
+  NB.loaded_scripts.add(true, function () {
+    $('#twitter-follow-pantography').html('');
+    twttr.anywhere(function (T) {
+      T('#twitter-follow-pantography').followButton('pantography');
+    });
+  });
+};
+
 /******************************************************************************/
 
 $('#container').delegate('.app', 'keyup.app', function (event) {
@@ -309,13 +319,4 @@ $('#container').delegate('.app', 'keyup.app', function (event) {
 $('#container').delegate('.set_p', 'click', function (event) {
   NB.App.setP($(event.target).text());
   return false;
-});
-
-NB.loaded_scripts.add(true, function () {
-  $('body').bind('content.loaded', function () {
-    $('#twitter-follow-pantography').html('');
-    twttr.anywhere(function (T) {
-      T('#twitter-follow-pantography').followButton('pantography');
-    });
-  });
 });
