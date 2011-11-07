@@ -63,8 +63,8 @@ $('.page-notes-index .notes-list img[src*="-wb-3-0-"]').live('click', function (
   return false;
 });
 
-$('.section-notes img[src*="-wb-6-0-"], .section-topics img[src*="-wb-6-0-"]').live('click', function (event) {
-  NB.Ui.image.open(event, '460px', '260px', '940px', '530px', 6, 12, 0, '10px', '-480px', '10px', '#content .text', {marginTop:0}, {marginTop:'540px'});
+$('.section-notes img[src*="-wb-5-0-"], .section-topics img[src*="-wb-6-0-"]').live('click', function (event) {
+  NB.Ui.image.open(event, '380px', '210px', '940px', '530px', 5, 12, 0, '10px', 0, 0, '#tags', {marginTop:0}, {marginTop:'540px'});
   return false;
 });
 
