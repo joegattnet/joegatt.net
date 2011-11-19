@@ -142,7 +142,7 @@ if (length($string) > $displaychrs) {
 $string = substr($string,0,($displaychrs-3));
 $string =~ s/ \w*$//;
 $string =~ s/\W$//g;
-$string .= "<a href=\"$href\" title=\"$title\">...</a>";
+$string .= "<a href=\"$href\" title=\"$title\" class=\"ellipses\">...</a>";
 }
 return $string;
 }

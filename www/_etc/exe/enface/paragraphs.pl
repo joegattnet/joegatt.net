@@ -105,9 +105,10 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
     ORDER BY tags.name_simple
   });
   $sthTags->execute("wutz|index|$found_p");
-  $tags = join(",", $sthTags->fetchrow_array(), "_wutz_p${found_p}");
+  $tagsRow = $sthTags->fetchrow_array();
+  $tags = join(",", $tagsRow, "_wutz_p${found_p}");
   #We accumulate an array for static page
-  push(@allTags, $sthTags->fetchrow_array());
+  push(@allTags, $tagsRow);
   push(@allTags, "_wutz_p${found_p}");
   $tags_array .= qq~
     NB.Cache.add('_tags_b${b}_p${found_p}', "$tags");
@@ -132,9 +133,8 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
           <div class="grid_2 prefix_4 suffix_4 alpha omega ends"><div><!-- --></div></div>
         ~;
       }
-  
   $output .= qq~</div>~;
-    
+  $sthTags->finish();    
 }
 
 if(!$static){

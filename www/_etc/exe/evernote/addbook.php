@@ -46,6 +46,8 @@ if ($isbnQuery != '' && $evernote != 'true') {
   print "<input name='titleLong' value='$titleLong'> (long title)<br>";
   print "<input name='authorFirstname' value='$authorFirstname'> (author first name)<br>";
   print "<input name='authorSurname' value='$authorSurname'> (author surname)<br>";
+  print "<input name='translatorFirstname' value='$translatorFirstname'> (translator first name)<br>";
+  print "<input name='translatorSurname' value='$translatorSurname'> (translator surname)<br>";
   print "<input name='publisher' value='$publisher'> (publisher)<br>";
   print "<input name='city' value='$city'> (city)<br>";
   print "<input name='year' value='$year'> (year)<br>";
@@ -66,6 +68,8 @@ if ($isbnQuery != '' && $evernote != 'true') {
   $titleLong = $_GET['titleLong'];
   $authorFirstname = $_GET['authorFirstname'];
   $authorSurname = $_GET['authorSurname'];
+  $translatorFirstname = $_GET['translatorFirstname'];
+  $translatorSurname = $_GET['translatorSurname'];
   $publisher = $_GET['publisher'];
   $year = $_GET['year'];
   $yearOriginal = $_GET['yearOriginal'];
@@ -91,7 +95,13 @@ if ($isbnQuery != '' && $evernote != 'true') {
     
     $body = "$authorSurname, $authorFirstname: $titleFull ($publisher, $city, $yearOriginal/$year) ISBN $isbn";
     
-    $tags = array("_exp", "_books", "__PREVIEW", "__AUTO", "$authorSurname $yearOriginal: $title");
+    if ($translatorFirstname != ''){
+      $body .= "\\ntr:$translatorSurname, $translatorFirstname";
+    }
+    
+    // Ideally we would add a '__PREVIEW' tag, but merely changing tag 
+    // information does not dirty the note
+    $tags = array("_exp", "_books", "__PUBLISH", "__AUTO", "$authorSurname $yearOriginal: $title");
 
     $user = $authResult->user;
     $authToken = $authResult->authenticationToken;
