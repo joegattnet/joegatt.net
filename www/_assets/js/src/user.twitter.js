@@ -12,14 +12,18 @@ NB.User.twitter = {
   }, 
   signout: function () {
     //Twitter.signout throws an error
-    twttr.anywhere.signOut();
+    NB.loaded_scripts.add(true, function () {
+        twttr.anywhere.signOut();
+    });
     // try // Cookie.write('twuser', false);
     // try // location.reload();
   }, 
   button: function () {
     if (NB.external.twitter) {
-      twttr.anywhere(function (T) {
-        T("#twitter-button:empty").connectButton({size:'small'});
+      NB.loaded_scripts.add(true, function () {
+        twttr.anywhere(function (T) {
+          T("#twitter-button:empty").connectButton({size:'small'});
+        });
       });
     }
   }
