@@ -5,12 +5,11 @@ require '../basics_pantography.pl';
 
 my $nt = twitterPantographyObject();
 
-my $followers = $nt->followers_ids({});
-my $friends = $nt->friends_ids({});
+@followers = @{$nt->followers_ids()->{ids}};
+@friends = @{$nt->friends_ids()->{ids}};
 
-my %notfolloweds;
-@notfolloweds{ @$followers } = @$followers;
-delete @notfolloweds{ @$friends };
+@notfolloweds{ @followers } = @followers;
+delete @notfolloweds{ @friends };
 
 my $followingNew = 0;
 for $notfollowed (keys %notfolloweds) {
