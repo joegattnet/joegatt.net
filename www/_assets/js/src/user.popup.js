@@ -11,10 +11,12 @@ NB.User.popup = function (message) {
   $('#signupin').addClass('alert');
   $('#signupin').removeClass('panel_closed');
   if (NB.external.twitter) {
-    twttr.anywhere(function (T) {
-      T("#twitter-button:empty").connectButton({size:'small'});
+    NB.loaded_scripts.add(true, function () {
+      twttr.anywhere(function (T) {
+        T("#twitter-button:empty").connectButton({size:'small'});
+      });
+      //Hack - twitter hides buttons for some reason
+      $("#twitter-button iframe").css({display:'inline'});
     });
-    //Hack - twitter hides buttons for some reason
-    $("#twitter-button iframe").css({display:'inline'});
   }
 }
