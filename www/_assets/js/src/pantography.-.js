@@ -1,14 +1,13 @@
 NB.Pantography = function (p) {
-  this.alphabetString = NB.SETTINGS.pantography.alphabetString;
+  this.alphabetString = NB.S.pantography.alphabetString;
   this.alphabet = this.alphabetString.split('');
-  this.alphabetNoSpaceString = 
-    NB.SETTINGS.pantography.alphabetString.replace(' ', '');
+  this.alphabetNoSpaceString = this.alphabetString.replace(' ', '');
   this.alphabetNoSpace = this.alphabetNoSpaceString.split('');
-  this.messageLength = NB.SETTINGS.pantography.messageLength;
-  this.frequency = NB.SETTINGS.pantography.frequency;
-  this.siderealYearInDays = NB.SETTINGS.pantography.siderealYearInDays;
-  this.dateFirstTx = NB.SETTINGS.pantography.dateFirstTx;
-  this.username = NB.SETTINGS.pantography.username;
+  this.messageLength = NB.S.pantography.messageLength;
+  this.frequency = NB.S.pantography.frequency;
+  this.siderealYearInDays = NB.S.pantography.siderealYearInDays;
+  this.dateFirstTx = NB.S.pantography.dateFirstTx;
+  this.username = NB.S.pantography.username;
   this.firstLetter = this.alphabet[0];
   this.lastLetter = this.alphabet[this.alphabet.length - 1];
   this.firstMessage = this.firstLetter;
@@ -122,10 +121,16 @@ NB.Pantography.prototype.numToWord = function (sNumber) {
 NB.Pantography.prototype.wordToNum = function (phrase) {
   var radix = this.alphabet.length,
     position = 0,
-    decimal = 0;
-  for(i=phrase.length -1; i >= 0;i--) {
-    decimal += this.alphabet.indexOf(phrase.charAt(i))+1 
-      * Math.pow(radix, position);
+    decimal = 0,
+    useRadix = radix;
+  for(i = phrase.length -1; i >= 0; i--) {
+    if(position === 0 || position === phrase.length -1){
+     useRadix = radix - 1;
+    } else {
+     useRadix = radix;
+    }
+    decimal += (this.alphabetString.indexOf(phrase.charAt(i)) + 1 )  
+      * Math.pow(useRadix, position);
     position++;
   }
   return decimal;
@@ -303,10 +308,12 @@ NB.Pantography.prototype.desanitize = function (q) {
 
 //NB.Pantography.prototype.followButton = function () {
   NB.loaded_scripts.add(true, function () {
-    $('#twitter-follow-pantography').html('');
-    twttr.anywhere(function (T) {
-      T('#twitter-follow-pantography').followButton('pantography');
-    });
+    $('body').bind('minor.loaded', function () {
+      $('#twitter-follow-pantography').html('');
+      twttr.anywhere(function (T) {
+        T('#twitter-follow-pantography').followButton('pantography');
+      });
+     });
   });
 //};
 
