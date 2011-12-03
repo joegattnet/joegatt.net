@@ -42,5 +42,9 @@ if(location.hash.indexOf('pr-')!=-1){
 
 $('body').bind('content.loaded', function () {
   //NB.Cookie.write('v_' + NB.crumb.page_id, true, NB.crumb.path, 7*24*60);
+  $('.refresh').each(function() {
+    NB.Nav.track(0, 'Populating...');
+    var j = $(this);
+    j.load(j.data('url')).removeClass('populate');
+  });
 });
-
