@@ -33,8 +33,21 @@
   <div class="grid_6 omega">
     <div class="grid_4 alpha">
       <span id="twitter-follow-pantography"></span>
-      <div class="refresh li-incremental" data-url="/_etc/cache/pantography--timeline-.html">
-        <!--#include virtual="/_etc/cache/pantography--timeline-.html" -->
+      <div class="refresh li-incremental populate" data-url="/_etc/cache/pantography--timeline-.html">
+
+        <div class="rss">
+          <h4>
+            <a href="http://twitter.com/pantography">@pantography + followers, mentions, links</a>
+          </h4>
+          <ul>
+            <li><br><br></li>
+            <li><br><br></li>
+            <li><br><br></li>
+            <li><br><br></li>
+            <li><br><br></li>
+          </ul>
+        </div>
+
       </div>
     </div>  
     <div class="grid_2 omega" style="margin-left:10px; margin-top:20px;">

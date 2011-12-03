@@ -124,12 +124,10 @@ NB.Pantography.prototype.wordToNum = function (phrase) {
     decimal = 0,
     useRadix = radix;
   for(i = phrase.length -1; i >= 0; i--) {
-    
     // This is to eliminate all instances of duplicate spaces
     // Duplicate spaces appear every 1 + base^1 + base^2 + base^3
     // Reducing the radix by 1 (seems) equivalent
-     useRadix = radix - 1;
-
+    useRadix = radix - 1;
     decimal += (this.alphabetString.indexOf(phrase.charAt(i)) + 1 )  
       * Math.pow(useRadix, position);
     position++;
