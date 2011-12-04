@@ -87,6 +87,10 @@ NB.Pantography.prototype.slide = function (value) {
   this.showMessage(this.percentageToWord(value), true);
 };
 
+NB.Pantography.prototype.focus = function () {
+  $('.app').focus();
+};
+
 NB.Pantography.prototype.getTotalToTweet = function () {
   return Math.pow(this.alphabet.length, this.messageLength) - 1;
 };
@@ -307,7 +311,7 @@ NB.Pantography.prototype.desanitize = function (q) {
 
 //NB.Pantography.prototype.followButton = function () {
   NB.loaded_scripts.add(true, function () {
-    $('body').bind('minor.loaded', function () {
+    $('body').bind('content.loaded', function () {
       $('#twitter-follow-pantography').html('');
       twttr.anywhere(function (T) {
         T('#twitter-follow-pantography').followButton('pantography');
