@@ -23,7 +23,7 @@
 <!--#endif -->
 
 <div class="grid_12">
-  <p><a href="<!--#echo var="url" -->"><img src="/_assets/images/cut/<!--#echo var="src" -->" alt="<!--#echo var="alt" -->"></a></p>
+  <p><a href="<!--#echo var="url" -->"><img src="<!--#echo var="images_url" -->/_assets/images/cut/<!--#echo var="src" -->" alt="<!--#echo var="alt" -->"></a></p>
 </div>
 
 <aside class="meta grid_12" id="versions" style="display:none">
