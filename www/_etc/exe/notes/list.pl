@@ -4,7 +4,7 @@ require '../basics.pl';
 require '../notes/basics.pl';
 
 $template = 'list';
-$limit = 20;
+$limit = 99;
 $offset = 0;
 
 formRead("get");
@@ -84,28 +84,26 @@ if ($latest eq 'true'){
 }
 
 if ($type eq '') {
-  $output = getNotes(5, 'alias', $latest);
-  $output .= getNotes(1, 'notes', $latest);
-  $output .= getNotes(2, 'bibliography', $latest);
-  $output .= getNotes(3, 'links', $latest);
-  $output .= getNotes(4, 'topics', $latest);
+  $output = getNotes(5, 'alias', $latest, $limit, $offset);
+  $output .= getNotes(1, 'notes', $latest, $limit, $offset);
+  $output .= getNotes(2, 'bibliography', $latest, $limit, $offset);
+  $output .= getNotes(3, 'links', $latest, $limit, $offset);
+  $output .= getNotes(4, 'topics', $latest, $limit, $offset);
 } else {
-  $output = getNotes($type, $view, $latest);
+  $output = getNotes($type, $view, $latest, $limit, $offset);
 }
 
 sub getNotes {
   my $type = $_[0];
   my $view = $_[1]; 
   my $latest = $_[2];
+  my $limit = $_[3];
+  my $offset = $_[4];
   my $output = '';
 
   my $viewTitle = "\U$view";
   
-  if ($latest eq 'true') {
-    $sth->execute($notesThreshold, $type, $limit, $offset);
-  } else {
-    $sth->execute($notesThreshold, $type, $limit, $offset);
-  }
+  $sth->execute($notesThreshold, $type, $limit, $offset);
 
   $notesCount = 0;
   $notesFound = $sth->rows + 1;
