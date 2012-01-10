@@ -23,6 +23,7 @@ my ($note_e_guid) = $sth->fetchrow_array();
 $output = printNote($note_e_guid,'head');
 
 
+$sth->finish();
 $dbh->disconnect();
 
 # ******************************************************************************

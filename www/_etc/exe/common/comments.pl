@@ -72,7 +72,7 @@ $output .= qq~
   <div id="comments_form" class="focusable">
     <form action="/_etc/exe/common/comments_save.pl" method="post">
       <fieldset>
-        <textarea name="text" class="focus_handle prompt_add_comment" id="new_comment">Add your comment here</textarea>
+        <textarea name="text" class="focus_handle prompt_add_comment" id="new_comment" placeholder="Add your comment here"></textarea>
     		<input type="hidden" name="page_id" value="$page_id">
     		<input type="hidden" name="url">
     		<input type="hidden" name="b">

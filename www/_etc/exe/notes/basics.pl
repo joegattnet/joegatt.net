@@ -211,7 +211,8 @@ sub printNote {
 
   } elsif ($isAlias) {
   
-    #This needs to be more flexible - to return description if book_id is null, etc. Also, to handle all url forms.
+    #This needs to be more flexible - to return description if book_id is null, etc. 
+    #Also, to handle all url forms.
     
     ($section, $page, $p) = $text =~ /\[(.*?)\|(.*?)\|(.*?)\]/;
     
