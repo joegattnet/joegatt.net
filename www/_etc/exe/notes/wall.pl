@@ -49,7 +49,7 @@ $output .= qq~
   </ul>
   ~;
 
-
+$sth->finish();
 $dbh->disconnect();
 
 

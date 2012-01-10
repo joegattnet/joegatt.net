@@ -10,9 +10,9 @@ if ($from_alias ne ''){
   my $sthTags = $dbh->prepare(qq{
     SELECT tags.name_simple
     FROM tags, notes, _lookup
-    WHERE textonly =  ?
+    WHERE textonly = ?
     AND NOT tags.name_simple LIKE '\\_%'
-    AND _lookup.type =0
+    AND _lookup.type = 0
     AND _lookup.check1 = notes.e_guid
     AND _lookup.check2 = tags.e_guid
     ORDER BY tags.name_simple
@@ -46,6 +46,7 @@ while (my ($tag, $tagLink) = $sth->fetchrow_array()) {
     $count++;
 }
 
+$sth->finish();
 $dbh->disconnect();
 
 #if($tagsCount > 0){
