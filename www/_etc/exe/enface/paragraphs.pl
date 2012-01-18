@@ -20,6 +20,7 @@ my $sth = $dbh->prepare("$sql");
 $sth->execute($b,$p);
 
 my ($collate) = $sth->fetchrow_array();
+$sth->finish();
 
 
 if ($mode eq 'oldest') {
@@ -46,6 +47,7 @@ $sth->execute($p, $b, ($collate * $multipage));
 while (my ($latest) = $sth->fetchrow_array()) {
 	 push(@dates,"'$latest'");
 }
+$sth->finish();
 
 $allDates = join(",", @dates);
 
@@ -136,6 +138,7 @@ while (my ($source,$target,$found_p,$version,$date_iso8601,$date_full,$target_id
   $output .= qq~</div>~;
   $sthTags->finish();    
 }
+$sth->finish();
 
 if(!$static){
   $output .= qq~
@@ -157,7 +160,6 @@ if(!$static){
   ~;
 }
 
-$sth->finish();
 $dbh->disconnect();
 
 # ******************************************************************************
