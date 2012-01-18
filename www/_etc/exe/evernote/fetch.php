@@ -42,11 +42,11 @@ while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     //echo "Latest:$latest_unix\n";
 }
 
-$query = "SELECT e_guid,update_sequence FROM `notes` WHERE latest=1";
-$result = mysql_query($query);
-while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-  $update_sequence_lookup[$row['e_guid']] = $row['update_sequence'];
-}
+//$query = "SELECT e_guid,update_sequence FROM `notes` WHERE latest=1";
+//$result = mysql_query($query);
+//while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+//  $update_sequence_lookup[$row['e_guid']] = $row['update_sequence'];
+//}
 
 //echo $update_sequence_lookup['aaf8cfb3-5ca0-46ca-8741-86ecd5102ff1'];
 
@@ -89,8 +89,8 @@ foreach ($notesFound as $note) {
 
 //if(1==1){
 //    if($update_sequence_lookup[$note_guid] != $update_sequence){    
-//  if($date_modified > $latest_unix || $date_created > $latest_unix){
-  if($update_sequence>$latest_update_sequence){
+  if($date_modified > $latest_unix || $date_created > $latest_unix){
+//  if($update_sequence>$latest_update_sequence){
     
     $noteEdam=$noteStore->getNote($authToken, $note_guid, 1,1,0,0);
   
