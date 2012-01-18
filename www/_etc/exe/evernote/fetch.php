@@ -25,8 +25,6 @@ foreach ($notebooks as $notebook) {
   }
 }
 
-//echo $notebook_update_sequence.'\n\n\n';
-
 $con = connect_db();
 
 $query = "SELECT MAX(update_sequence) AS update_sequence, unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
