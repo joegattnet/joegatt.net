@@ -25,17 +25,22 @@ foreach ($notebooks as $notebook) {
   }
 }
 
+//echo $notebook_update_sequence.'\n\n\n';
+
 $con = connect_db();
 
-$query = "SELECT MAX(update_sequence) AS update_sequence, unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes";
+$query = "DELETE notes WHERE fetch_successful = 0";
+mysql_query($query);
+
+$query = "SELECT MAX(update_sequence) AS update_sequence, unix_timestamp(MAX(date_modified)) AS latest_unix,DATE_FORMAT(MAX(date_modified),'%Y%m%dT%H%i%S') AS latest,unix_timestamp(MAX(date_deleted)) AS latest_unix_deleted FROM notes WHERE fetch_successful = 1";
 //$query = "SELECT MAX(update_sequence) FROM notes";
 
 $result = mysql_query($query);
 while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $latest_update_sequence = $row['update_sequence'];
-    $latest_unix = $row['latest_unix']*1000;
+    $latest_unix = $row['latest_unix']; //*1000;
     $latest = $row['latest'];
-    $latest_unix_deleted = $row['latest_unix_deleted']*1000;
+    $latest_unix_deleted = $row['latest_unix_deleted']; //1000;
     //echo "Latest:$latest\n";//hhh
     //echo "Latest:$latest_unix\n";
 }
@@ -52,10 +57,10 @@ $search = new edam_notestore_NoteFilter();
 
 $resultSpec = new edam_notestore_NotesMetadataResultSpec();
 $resultSpec->includeTitle =	false;	
-$resultSpec->includeContentLength =	true;	
+$resultSpec->includeContentLength =	false;	
 $resultSpec->includeCreated	= true;	
-$resultSpec->includeUpdated	= false;	
-$resultSpec->includeUpdateSequenceNum =	true;	
+$resultSpec->includeUpdated	= true;	
+$resultSpec->includeUpdateSequenceNum =	false;	
 $resultSpec->includeNotebookGuid =	false;	
 $resultSpec->includeTagGuids =	false;	
 $resultSpec->includeAttributes =	false;	
@@ -63,22 +68,32 @@ $resultSpec->includeLargestResourceMime =	false;
 $resultSpec->includeLargestResourceSize =	false;	
 
 $search->notebookGuid = $notebookGuid;
+$search->order = 2; // updated
+
 //$search->words = 'updated:20110101 -updated:20110701';
 $search->ascending = false;
 //$search->timeZone = "Europe/London";
 $result = $noteStore->findNotesMetadata($authToken, $search, 0, 500, $resultSpec);
+//$result = $noteStore->findNotes($authToken, $search, 0, 500);
 $notesFound = $result->notes;
 
-//////echo var_export($result,1);
+//echo var_export($result,1);
+//$f = fopen("__file.txt", "w"); 
+//fwrite($f, var_export($result,1)); 
+//fclose($f); 
 
 $cache_queue = array();
 $url_queue = array();
 
 foreach ($notesFound as $note) {
+  $title=$note->title;
   $note_guid=$note->guid;
   $date_modified=$note->updated;
   $date_created=$note->created;
   $update_sequence=$note->updateSequenceNum;
+
+$date_modified = $date_modified /1000;
+$date_created = $date_created / 1000;
 
 //print "$update_sequence > $latest_update_sequence ? /n";
 //print "($date_modified > $latest_unix || $date_created > $latest_unix)\n";
@@ -87,6 +102,10 @@ foreach ($notesFound as $note) {
 
 //if(1==1){
 //    if($update_sequence_lookup[$note_guid] != $update_sequence){    
+
+
+//echo "$title\nLatest: $latest|" . date("Y-m-d H:i:s", $latest_unix) . " - created: " . date("Y-m-d H:i:s", $date_created) . " - updated: " . date("Y-m-d H:i:s", $date_modified) . "\n\n";
+
   if($date_modified > $latest_unix || $date_created > $latest_unix){
 //  if($update_sequence>$latest_update_sequence){
     
@@ -306,7 +325,7 @@ foreach ($notesFound as $note) {
     $content_textonly = preg_replace('/^\W+|\W+$/', '', $content_textonly);
     
     //mysql_query($query);
-    $query = sprintf("REPLACE INTO notes (e_guid,title,text,textonly,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest) VALUES ('%s','%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s)",
+    $query = sprintf("REPLACE INTO notes (e_guid,title,text,textonly,date_created,date_modified,update_sequence,content_hash,subject_date,latitude,longitude,altitude,author,source,source_url,source_application,deleted,date_deleted,publish,type,latest,fetch_successful) VALUES ('%s','%s','%s','%s','%s','%s', %s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', 0, NULL, %s, %s, %s, %s)",
         $note_guid,
         mysql_real_escape_string($note_title),
         mysql_real_escape_string($content),
@@ -325,9 +344,13 @@ foreach ($notesFound as $note) {
         mysql_real_escape_string($source_application),
         $note_publish,
         $note_type,
-        $latest
+        $latest,
+        0
     );
     mysql_query($query);
+    
+    //fetch_successful is being used to mean that an update is successful
+    //i.e. that individual noteGets have worked
     
     if ($note_publish > 1 && $latest == 1){
       $eguid_dec = hexdec(substr($note_guid,0,4));
@@ -343,6 +366,9 @@ foreach ($notesFound as $note) {
     
   }
 }
+
+$query = "UPDATE notes SET fetch_successful = 1 WHERE fetch_successful = 0";
+mysql_query($query);
 
 // Getting deleted notes *******************************************************
 // We also need to delete notes if they are moved to another notebook
