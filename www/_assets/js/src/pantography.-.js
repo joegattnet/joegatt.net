@@ -3,15 +3,15 @@ NB.Pantography = function (p) {
   this.alphabet = this.alphabetString.split('');
   this.alphabetNoSpaceString = this.alphabetString.replace(' ', '');
   this.alphabetNoSpace = this.alphabetNoSpaceString.split('');
-  this.messageLength = NB.S.pantography.messageLength;
+  this.phraseLength = NB.S.pantography.phraseLength;
   this.frequency = NB.S.pantography.frequency;
   this.siderealYearInDays = NB.S.pantography.siderealYearInDays;
   this.dateFirstTx = NB.S.pantography.dateFirstTx;
   this.username = NB.S.pantography.username;
   this.firstLetter = this.alphabet[0];
   this.lastLetter = this.alphabet[this.alphabet.length - 1];
-  this.firstMessage = this.firstLetter;
-  this.lastMessage = this.getLastMessage();
+  this.firstPhrase = this.firstLetter;
+  this.lastPhrase = this.getLastPhrase();
   this.totalToTweet = this.getTotalToTweet();
   this.timeToTweetYears = this.getTimeToTweetYears();
   this.percentage = 0;
@@ -21,9 +21,9 @@ NB.Pantography = function (p) {
   this.initialize(p);
 };
 
-NB.Pantography.prototype.getLastMessage = function () {
+NB.Pantography.prototype.getLastPhrase = function () {
   var i, p = '';
-  for (i = 0; i < this.messageLength; i++) {
+  for (i = 0; i < this.phraseLength; i++) {
     p = p + this.lastLetter;
   }
   return p;
@@ -56,13 +56,13 @@ NB.Pantography.prototype.next = function () {
 };
 
 NB.Pantography.prototype.first = function () {
-  var p = this.firstMessage;
+  var p = this.firstPhrase;
   this.setP(p);
   return false;    
 };
 
 NB.Pantography.prototype.last = function () {
-  var p = this.lastMessage;
+  var p = this.lastPhrase;
   this.setP(p);
   return false;    
 };
@@ -79,12 +79,12 @@ NB.Pantography.prototype.goto = function (value) {
 // slider should be a new object: this.slider = new Nav.Slider
 //then pick up den here:
   this.percentage = value;
-  this.setP(this.percentageToWord(value), value);
+  this.setP(this.percentageToPhrase(value), value);
 };
 
 NB.Pantography.prototype.slide = function (value) {
   this.percentage = value;
-  this.showMessage(this.percentageToWord(value), true);
+  this.showPhrase(this.percentageToPhrase(value), true);
 };
 
 NB.Pantography.prototype.focus = function () {
@@ -92,14 +92,14 @@ NB.Pantography.prototype.focus = function () {
 };
 
 NB.Pantography.prototype.getTotalToTweet = function () {
-  return Math.pow(this.alphabet.length, this.messageLength) - 1;
+  return Math.pow(this.alphabet.length, this.phraseLength) - 1;
 };
 
 NB.Pantography.prototype.getTimeToTweetYears = function () {
   return (this.totalToTweet / (((60 * 60) / this.frequency)  * 24 * this.siderealYearInDays));
 };
 
-NB.Pantography.prototype.numToWord = function (sNumber) {
+NB.Pantography.prototype.numToPhrase = function (sNumber) {
   var pw3 = this.alphabet.length,
     tag = 0,
     drust = '',
@@ -117,12 +117,12 @@ NB.Pantography.prototype.numToWord = function (sNumber) {
     tow4 = tow4 - 1;
   }
   drust = drust + sumleft;
-  drust = drust.substring(0, this.messageLength);
+  drust = drust.substring(0, this.phraseLength);
   return drust;
 };
 
 // Separate class!!!
-NB.Pantography.prototype.wordToNum = function (phrase) {
+NB.Pantography.prototype.phraseToNum = function (phrase) {
   var radix = this.alphabet.length,
     position = 0,
     decimal = 0,
@@ -139,49 +139,49 @@ NB.Pantography.prototype.wordToNum = function (phrase) {
   return decimal;
 };
 
-NB.Pantography.prototype.percentageToWord = function (percentage) {
-  var word;
+NB.Pantography.prototype.percentageToPhrase = function (percentage) {
+  var phrase;
    if(percentage === 100) {
-    word = this.lastMessage;
+    phrase = this.lastPhrase;
    } else {
-    word = (percentage * this.wordToNum(this.lastMessage)) / 100;
+    phrase = (percentage * this.phraseToNum(this.lastPhrase)) / 100;
    }
-   return this.numToWord(word);
+   return this.numToPhrase(phrase);
 };
 
-NB.Pantography.prototype.wordToPercentage = function (phrase) {
-   //var percentage = (this.wordToNum(phrase) * 100) / this.totalToTweet;
-   var percentage = (this.wordToNum(phrase) * 100) / this.wordToNum(this.lastMessage);
-    console.log('PERCENTAGE: ', percentage);
+NB.Pantography.prototype.phraseToPercentage = function (phrase) {
+   //var percentage = (this.phraseToNum(phrase) * 100) / this.totalToTweet;
+   var percentage = (this.phraseToNum(phrase) * 100) / this.phraseToNum(this.lastPhrase);
+    //console.log('PERCENTAGE: ', percentage);
     return percentage;
 };
 
-NB.Pantography.prototype.showMessage = function (message, noInfo) {
+NB.Pantography.prototype.showPhrase = function (phrase, noInfo) {
   var schedule;
-  if ($('#message').text().toLowerCase() !== message.toLowerCase()) {
-    $('#message').text(message);
+  if ($('#phrase').text().toLowerCase() !== phrase.toLowerCase()) {
+    $('#phrase').text(phrase);
   }
-  if (this.phraseGreater(message, NB.p.furthest)) {
-   $('#message').addClass('scheduled');
+  if (this.phraseGreater(phrase, NB.p.furthest)) {
+   $('#phrase').addClass('scheduled');
   } else {
-   $('#message').removeClass('scheduled');
+   $('#phrase').removeClass('scheduled');
   }
-  schedule = 'Scheduled for ' + this.scheduledDate(message);
+  schedule = 'Scheduled for ' + this.scheduledDate(phrase);
   $('#info').html(schedule);   
   $('#info-percentage').text(this.percentage.toFixed(2) + '%');   
   $('#info-percentage').attr('title', this.percentage + '%');   
-  $('#info-length').text(message.length + '/140 ch');
+  $('#info-length').text(phrase.length + '/140 ch');
   if(!noInfo) {
     this.textInfoBuffer = {
-        message: message, 
+        phrase: phrase, 
         schedule: schedule
       };
   }  
 };
 
-NB.Pantography.prototype.textInfo = function (message, forSchedule) {
+NB.Pantography.prototype.textInfo = function (phrase, forSchedule) {
   var info, username = this.username;
-  $.getJSON(NB.root + '_etc/exe/pantography/textinfo.pl?q=' + this.sanitize(message) + 
+  $.getJSON(NB.root + '_etc/exe/pantography/textinfo.pl?q=' + this.sanitize(phrase) + 
     '&jsoncallback=?', function(data) {
     if (data.exists) {
   		info = $('#info').html();
@@ -196,7 +196,7 @@ NB.Pantography.prototype.textInfo = function (message, forSchedule) {
           '" class="timeago" title="' + data.timeFormatted + '">' + 
           data.timeFormatted + '</time></a>)';
         $('#info').html(info);
-        $('#message').removeClass('scheduled');
+        $('#phrase').removeClass('scheduled');
         $('body').trigger('minor.loaded');
       }
   	}
@@ -259,11 +259,11 @@ NB.Pantography.prototype.previousPhrase = function (phrase) {
 
 NB.Pantography.prototype.phraseGreater = function (phraseA, phraseB) {
   return ((phraseA.length > phraseB.length) || 
-    (this.wordToNum(phraseA) > this.wordToNum(phraseB)));
+    (this.phraseToNum(phraseA) > this.phraseToNum(phraseB)));
 };
 
-NB.Pantography.prototype.scheduledDate = function (message) {
-  var sequence = this.wordToNum(message);
+NB.Pantography.prototype.scheduledDate = function (phrase) {
+  var sequence = this.phraseToNum(phrase);
   var expectedDate = new Date(this.dateFirstTx);
   expectedDate.setTime(expectedDate.getTime() + this.frequency * 1000 * sequence);
   expectedDate = expectedDate.toUTCString();
@@ -277,11 +277,11 @@ NB.Pantography.prototype.scheduledDate = function (message) {
 };
 
 NB.Pantography.prototype.setP = function (p, percentage) {
-  this.percentage = percentage || this.wordToPercentage(p);
+  this.percentage = percentage || this.phraseToPercentage(p);
   NB.p.current = p;
   NB.Nav.arrows(p);
   NB.Nav.crumb.load('/pantography/pantographs/' + encodeURIComponent(this.sanitize(p)));
-  this.showMessage(p);
+  this.showPhrase(p);
   $('.ui-slider').slider('value', this.percentage * 10); //get this directly from slider variable den
   return false;
 };
@@ -290,7 +290,7 @@ NB.Pantography.prototype.initialize = function (p) {
   this.textInfoInterval = setInterval(function() {
     if(NB.crumb.page_app === 'pantography') {
       if(NB.App.textInfoBuffer != false) {
-        NB.App.textInfo(NB.App.textInfoBuffer.message, NB.App.textInfoBuffer.schedule);
+        NB.App.textInfo(NB.App.textInfoBuffer.phrase, NB.App.textInfoBuffer.schedule);
         NB.App.textInfoBuffer = false;
       }
     } else {
