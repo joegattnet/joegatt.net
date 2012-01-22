@@ -480,7 +480,7 @@ function get_content($url){
     //Purge Varnish
     $chPurge = curl_init();
     curl_setopt($chPurge, CURLOPT_URL, $url);
-    curl_setopt($chPurge, CURLOPT_CUSTOMREQUEST, "PURGE");
+    curl_setopt($chPurge, CURLOPT_CUSTOMREQUEST, "GET");
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -494,6 +494,8 @@ function get_content($url){
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
       curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
       curl_setopt($ch, CURLOPT_USERPWD, JGORG_CONNECT);
+    } else {
+        curl_setopt($chPurge, CURLOPT_CUSTOMREQUEST, "PURGE");
     }
     ob_start();
     curl_exec($chPurge);

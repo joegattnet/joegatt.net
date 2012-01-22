@@ -237,6 +237,7 @@ class edam_type_UserAttributes {
   public $referralProof = null;
   public $educationalDiscount = null;
   public $businessAddress = null;
+  public $hideSponsorBilling = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -361,6 +362,10 @@ class edam_type_UserAttributes {
           'var' => 'businessAddress',
           'type' => TType::STRING,
           ),
+        31 => array(
+          'var' => 'hideSponsorBilling',
+          'type' => TType::BOOL,
+          ),
         );
     }
     if (is_array($vals)) {
@@ -447,6 +452,9 @@ class edam_type_UserAttributes {
       }
       if (isset($vals['businessAddress'])) {
         $this->businessAddress = $vals['businessAddress'];
+      }
+      if (isset($vals['hideSponsorBilling'])) {
+        $this->hideSponsorBilling = $vals['hideSponsorBilling'];
       }
     }
   }
@@ -686,6 +694,13 @@ class edam_type_UserAttributes {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 31:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->hideSponsorBilling);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -861,6 +876,11 @@ class edam_type_UserAttributes {
     if ($this->businessAddress !== null) {
       $xfer += $output->writeFieldBegin('businessAddress', TType::STRING, 30);
       $xfer += $output->writeString($this->businessAddress);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->hideSponsorBilling !== null) {
+      $xfer += $output->writeFieldBegin('hideSponsorBilling', TType::BOOL, 31);
+      $xfer += $output->writeBool($this->hideSponsorBilling);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -1736,6 +1756,158 @@ class edam_type_Tag {
 
 }
 
+class edam_type_LazyMap {
+  static $_TSPEC;
+
+  public $keysOnly = null;
+  public $fullMap = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'keysOnly',
+          'type' => TType::SET,
+          'etype' => TType::STRING,
+          'elem' => array(
+            'type' => TType::STRING,
+            ),
+          ),
+        2 => array(
+          'var' => 'fullMap',
+          'type' => TType::MAP,
+          'ktype' => TType::STRING,
+          'vtype' => TType::STRING,
+          'key' => array(
+            'type' => TType::STRING,
+          ),
+          'val' => array(
+            'type' => TType::STRING,
+            ),
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['keysOnly'])) {
+        $this->keysOnly = $vals['keysOnly'];
+      }
+      if (isset($vals['fullMap'])) {
+        $this->fullMap = $vals['fullMap'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'LazyMap';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::SET) {
+            $this->keysOnly = array();
+            $_size14 = 0;
+            $_etype17 = 0;
+            $xfer += $input->readSetBegin($_etype17, $_size14);
+            for ($_i18 = 0; $_i18 < $_size14; ++$_i18)
+            {
+              $elem19 = null;
+              $xfer += $input->readString($elem19);
+              $this->keysOnly[$elem19] = true;
+            }
+            $xfer += $input->readSetEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::MAP) {
+            $this->fullMap = array();
+            $_size20 = 0;
+            $_ktype21 = 0;
+            $_vtype22 = 0;
+            $xfer += $input->readMapBegin($_ktype21, $_vtype22, $_size20);
+            for ($_i24 = 0; $_i24 < $_size20; ++$_i24)
+            {
+              $key25 = '';
+              $val26 = '';
+              $xfer += $input->readString($key25);
+              $xfer += $input->readString($val26);
+              $this->fullMap[$key25] = $val26;
+            }
+            $xfer += $input->readMapEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('LazyMap');
+    if ($this->keysOnly !== null) {
+      if (!is_array($this->keysOnly)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('keysOnly', TType::SET, 1);
+      {
+        $output->writeSetBegin(TType::STRING, count($this->keysOnly));
+        {
+          foreach ($this->keysOnly as $iter27 => $true)
+          {
+            $xfer += $output->writeString($iter27);
+          }
+        }
+        $output->writeSetEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->fullMap !== null) {
+      if (!is_array($this->fullMap)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('fullMap', TType::MAP, 2);
+      {
+        $output->writeMapBegin(TType::STRING, TType::STRING, count($this->fullMap));
+        {
+          foreach ($this->fullMap as $kiter28 => $viter29)
+          {
+            $xfer += $output->writeString($kiter28);
+            $xfer += $output->writeString($viter29);
+          }
+        }
+        $output->writeMapEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class edam_type_ResourceAttributes {
   static $_TSPEC;
 
@@ -1750,6 +1922,7 @@ class edam_type_ResourceAttributes {
   public $recoType = null;
   public $fileName = null;
   public $attachment = null;
+  public $applicationData = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -1798,6 +1971,11 @@ class edam_type_ResourceAttributes {
           'var' => 'attachment',
           'type' => TType::BOOL,
           ),
+        12 => array(
+          'var' => 'applicationData',
+          'type' => TType::STRUCT,
+          'class' => 'edam_type_LazyMap',
+          ),
         );
     }
     if (is_array($vals)) {
@@ -1833,6 +2011,9 @@ class edam_type_ResourceAttributes {
       }
       if (isset($vals['attachment'])) {
         $this->attachment = $vals['attachment'];
+      }
+      if (isset($vals['applicationData'])) {
+        $this->applicationData = $vals['applicationData'];
       }
     }
   }
@@ -1933,6 +2114,14 @@ class edam_type_ResourceAttributes {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 12:
+          if ($ftype == TType::STRUCT) {
+            $this->applicationData = new edam_type_LazyMap();
+            $xfer += $this->applicationData->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -1999,6 +2188,14 @@ class edam_type_ResourceAttributes {
     if ($this->attachment !== null) {
       $xfer += $output->writeFieldBegin('attachment', TType::BOOL, 11);
       $xfer += $output->writeBool($this->attachment);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->applicationData !== null) {
+      if (!is_object($this->applicationData)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('applicationData', TType::STRUCT, 12);
+      $xfer += $this->applicationData->write($output);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -2332,6 +2529,9 @@ class edam_type_NoteAttributes {
   public $sourceURL = null;
   public $sourceApplication = null;
   public $shareDate = null;
+  public $placeName = null;
+  public $contentClass = null;
+  public $applicationData = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -2372,6 +2572,19 @@ class edam_type_NoteAttributes {
           'var' => 'shareDate',
           'type' => TType::I64,
           ),
+        21 => array(
+          'var' => 'placeName',
+          'type' => TType::STRING,
+          ),
+        22 => array(
+          'var' => 'contentClass',
+          'type' => TType::STRING,
+          ),
+        23 => array(
+          'var' => 'applicationData',
+          'type' => TType::STRUCT,
+          'class' => 'edam_type_LazyMap',
+          ),
         );
     }
     if (is_array($vals)) {
@@ -2401,6 +2614,15 @@ class edam_type_NoteAttributes {
       }
       if (isset($vals['shareDate'])) {
         $this->shareDate = $vals['shareDate'];
+      }
+      if (isset($vals['placeName'])) {
+        $this->placeName = $vals['placeName'];
+      }
+      if (isset($vals['contentClass'])) {
+        $this->contentClass = $vals['contentClass'];
+      }
+      if (isset($vals['applicationData'])) {
+        $this->applicationData = $vals['applicationData'];
       }
     }
   }
@@ -2487,6 +2709,28 @@ class edam_type_NoteAttributes {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 21:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->placeName);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 22:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->contentClass);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 23:
+          if ($ftype == TType::STRUCT) {
+            $this->applicationData = new edam_type_LazyMap();
+            $xfer += $this->applicationData->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -2543,6 +2787,24 @@ class edam_type_NoteAttributes {
     if ($this->shareDate !== null) {
       $xfer += $output->writeFieldBegin('shareDate', TType::I64, 17);
       $xfer += $output->writeI64($this->shareDate);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->placeName !== null) {
+      $xfer += $output->writeFieldBegin('placeName', TType::STRING, 21);
+      $xfer += $output->writeString($this->placeName);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->contentClass !== null) {
+      $xfer += $output->writeFieldBegin('contentClass', TType::STRING, 22);
+      $xfer += $output->writeString($this->contentClass);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->applicationData !== null) {
+      if (!is_object($this->applicationData)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('applicationData', TType::STRUCT, 23);
+      $xfer += $this->applicationData->write($output);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -2798,14 +3060,14 @@ class edam_type_Note {
         case 12:
           if ($ftype == TType::LST) {
             $this->tagGuids = array();
-            $_size14 = 0;
-            $_etype17 = 0;
-            $xfer += $input->readListBegin($_etype17, $_size14);
-            for ($_i18 = 0; $_i18 < $_size14; ++$_i18)
+            $_size30 = 0;
+            $_etype33 = 0;
+            $xfer += $input->readListBegin($_etype33, $_size30);
+            for ($_i34 = 0; $_i34 < $_size30; ++$_i34)
             {
-              $elem19 = null;
-              $xfer += $input->readString($elem19);
-              $this->tagGuids []= $elem19;
+              $elem35 = null;
+              $xfer += $input->readString($elem35);
+              $this->tagGuids []= $elem35;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -2815,15 +3077,15 @@ class edam_type_Note {
         case 13:
           if ($ftype == TType::LST) {
             $this->resources = array();
-            $_size20 = 0;
-            $_etype23 = 0;
-            $xfer += $input->readListBegin($_etype23, $_size20);
-            for ($_i24 = 0; $_i24 < $_size20; ++$_i24)
+            $_size36 = 0;
+            $_etype39 = 0;
+            $xfer += $input->readListBegin($_etype39, $_size36);
+            for ($_i40 = 0; $_i40 < $_size36; ++$_i40)
             {
-              $elem25 = null;
-              $elem25 = new edam_type_Resource();
-              $xfer += $elem25->read($input);
-              $this->resources []= $elem25;
+              $elem41 = null;
+              $elem41 = new edam_type_Resource();
+              $xfer += $elem41->read($input);
+              $this->resources []= $elem41;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -2841,14 +3103,14 @@ class edam_type_Note {
         case 15:
           if ($ftype == TType::LST) {
             $this->tagNames = array();
-            $_size26 = 0;
-            $_etype29 = 0;
-            $xfer += $input->readListBegin($_etype29, $_size26);
-            for ($_i30 = 0; $_i30 < $_size26; ++$_i30)
+            $_size42 = 0;
+            $_etype45 = 0;
+            $xfer += $input->readListBegin($_etype45, $_size42);
+            for ($_i46 = 0; $_i46 < $_size42; ++$_i46)
             {
-              $elem31 = null;
-              $xfer += $input->readString($elem31);
-              $this->tagNames []= $elem31;
+              $elem47 = null;
+              $xfer += $input->readString($elem47);
+              $this->tagNames []= $elem47;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -2931,9 +3193,9 @@ class edam_type_Note {
       {
         $output->writeListBegin(TType::STRING, count($this->tagGuids));
         {
-          foreach ($this->tagGuids as $iter32)
+          foreach ($this->tagGuids as $iter48)
           {
-            $xfer += $output->writeString($iter32);
+            $xfer += $output->writeString($iter48);
           }
         }
         $output->writeListEnd();
@@ -2948,9 +3210,9 @@ class edam_type_Note {
       {
         $output->writeListBegin(TType::STRUCT, count($this->resources));
         {
-          foreach ($this->resources as $iter33)
+          foreach ($this->resources as $iter49)
           {
-            $xfer += $iter33->write($output);
+            $xfer += $iter49->write($output);
           }
         }
         $output->writeListEnd();
@@ -2973,9 +3235,9 @@ class edam_type_Note {
       {
         $output->writeListBegin(TType::STRING, count($this->tagNames));
         {
-          foreach ($this->tagNames as $iter34)
+          foreach ($this->tagNames as $iter50)
           {
-            $xfer += $output->writeString($iter34);
+            $xfer += $output->writeString($iter50);
           }
         }
         $output->writeListEnd();
@@ -3305,14 +3567,14 @@ class edam_type_Notebook {
         case 13:
           if ($ftype == TType::LST) {
             $this->sharedNotebookIds = array();
-            $_size35 = 0;
-            $_etype38 = 0;
-            $xfer += $input->readListBegin($_etype38, $_size35);
-            for ($_i39 = 0; $_i39 < $_size35; ++$_i39)
+            $_size51 = 0;
+            $_etype54 = 0;
+            $xfer += $input->readListBegin($_etype54, $_size51);
+            for ($_i55 = 0; $_i55 < $_size51; ++$_i55)
             {
-              $elem40 = null;
-              $xfer += $input->readI64($elem40);
-              $this->sharedNotebookIds []= $elem40;
+              $elem56 = null;
+              $xfer += $input->readI64($elem56);
+              $this->sharedNotebookIds []= $elem56;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -3388,9 +3650,9 @@ class edam_type_Notebook {
       {
         $output->writeListBegin(TType::I64, count($this->sharedNotebookIds));
         {
-          foreach ($this->sharedNotebookIds as $iter41)
+          foreach ($this->sharedNotebookIds as $iter57)
           {
-            $xfer += $output->writeI64($iter41);
+            $xfer += $output->writeI64($iter57);
           }
         }
         $output->writeListEnd();

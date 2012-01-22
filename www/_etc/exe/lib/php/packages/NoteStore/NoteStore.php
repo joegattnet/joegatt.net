@@ -11,6 +11,7 @@ include_once $GLOBALS['THRIFT_ROOT'].'/packages/NoteStore/NoteStore_types.php';
 interface NoteStoreIf {
   public function getSyncState($authenticationToken);
   public function getSyncChunk($authenticationToken, $afterUSN, $maxEntries, $fullSyncOnly);
+  public function getFilteredSyncChunk($authenticationToken, $afterUSN, $maxEntries, $filter);
   public function getLinkedNotebookSyncState($authenticationToken, $linkedNotebook);
   public function getLinkedNotebookSyncChunk($authenticationToken, $linkedNotebook, $afterUSN, $maxEntries, $fullSyncOnly);
   public function listNotebooks($authenticationToken);
@@ -36,6 +37,10 @@ interface NoteStoreIf {
   public function findNotesMetadata($authenticationToken, $filter, $offset, $maxNotes, $resultSpec);
   public function findNoteCounts($authenticationToken, $filter, $withTrash);
   public function getNote($authenticationToken, $guid, $withContent, $withResourcesData, $withResourcesRecognition, $withResourcesAlternateData);
+  public function getNoteApplicationData($authenticationToken, $guid);
+  public function getNoteApplicationDataEntry($authenticationToken, $guid, $key);
+  public function setNoteApplicationDataEntry($authenticationToken, $guid, $key, $value);
+  public function unsetNoteApplicationDataEntry($authenticationToken, $guid, $key);
   public function getNoteContent($authenticationToken, $guid);
   public function getNoteSearchText($authenticationToken, $guid, $noteOnly, $tokenizeForIndexing);
   public function getResourceSearchText($authenticationToken, $guid);
@@ -50,6 +55,10 @@ interface NoteStoreIf {
   public function listNoteVersions($authenticationToken, $noteGuid);
   public function getNoteVersion($authenticationToken, $noteGuid, $updateSequenceNum, $withResourcesData, $withResourcesRecognition, $withResourcesAlternateData);
   public function getResource($authenticationToken, $guid, $withData, $withRecognition, $withAttributes, $withAlternateData);
+  public function getResourceApplicationData($authenticationToken, $guid);
+  public function getResourceApplicationDataEntry($authenticationToken, $guid, $key);
+  public function setResourceApplicationDataEntry($authenticationToken, $guid, $key, $value);
+  public function unsetResourceApplicationDataEntry($authenticationToken, $guid, $key);
   public function updateResource($authenticationToken, $resource);
   public function getResourceData($authenticationToken, $guid);
   public function getResourceByHash($authenticationToken, $noteGuid, $contentHash, $withData, $withRecognition, $withAlternateData);
@@ -61,6 +70,7 @@ interface NoteStoreIf {
   public function getRandomAd($authenticationToken, $adParameters);
   public function getPublicNotebook($userId, $publicUri);
   public function createSharedNotebook($authenticationToken, $sharedNotebook);
+  public function sendMessageToSharedNotebookMembers($authenticationToken, $notebookGuid, $messageText, $recipients);
   public function listSharedNotebooks($authenticationToken);
   public function expungeSharedNotebooks($authenticationToken, $sharedNotebookIds);
   public function createLinkedNotebook($authenticationToken, $linkedNotebook);
@@ -201,6 +211,66 @@ class NoteStoreClient implements NoteStoreIf {
       throw $result->systemException;
     }
     throw new Exception("getSyncChunk failed: unknown result");
+  }
+
+  public function getFilteredSyncChunk($authenticationToken, $afterUSN, $maxEntries, $filter)
+  {
+    $this->send_getFilteredSyncChunk($authenticationToken, $afterUSN, $maxEntries, $filter);
+    return $this->recv_getFilteredSyncChunk();
+  }
+
+  public function send_getFilteredSyncChunk($authenticationToken, $afterUSN, $maxEntries, $filter)
+  {
+    $args = new edam_notestore_NoteStore_getFilteredSyncChunk_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->afterUSN = $afterUSN;
+    $args->maxEntries = $maxEntries;
+    $args->filter = $filter;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'getFilteredSyncChunk', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('getFilteredSyncChunk', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_getFilteredSyncChunk()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_getFilteredSyncChunk_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_getFilteredSyncChunk_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    throw new Exception("getFilteredSyncChunk failed: unknown result");
   }
 
   public function getLinkedNotebookSyncState($authenticationToken, $linkedNotebook)
@@ -1717,6 +1787,254 @@ class NoteStoreClient implements NoteStoreIf {
     throw new Exception("getNote failed: unknown result");
   }
 
+  public function getNoteApplicationData($authenticationToken, $guid)
+  {
+    $this->send_getNoteApplicationData($authenticationToken, $guid);
+    return $this->recv_getNoteApplicationData();
+  }
+
+  public function send_getNoteApplicationData($authenticationToken, $guid)
+  {
+    $args = new edam_notestore_NoteStore_getNoteApplicationData_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'getNoteApplicationData', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('getNoteApplicationData', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_getNoteApplicationData()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_getNoteApplicationData_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_getNoteApplicationData_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("getNoteApplicationData failed: unknown result");
+  }
+
+  public function getNoteApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $this->send_getNoteApplicationDataEntry($authenticationToken, $guid, $key);
+    return $this->recv_getNoteApplicationDataEntry();
+  }
+
+  public function send_getNoteApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $args = new edam_notestore_NoteStore_getNoteApplicationDataEntry_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $args->key = $key;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'getNoteApplicationDataEntry', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('getNoteApplicationDataEntry', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_getNoteApplicationDataEntry()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_getNoteApplicationDataEntry_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_getNoteApplicationDataEntry_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("getNoteApplicationDataEntry failed: unknown result");
+  }
+
+  public function setNoteApplicationDataEntry($authenticationToken, $guid, $key, $value)
+  {
+    $this->send_setNoteApplicationDataEntry($authenticationToken, $guid, $key, $value);
+    return $this->recv_setNoteApplicationDataEntry();
+  }
+
+  public function send_setNoteApplicationDataEntry($authenticationToken, $guid, $key, $value)
+  {
+    $args = new edam_notestore_NoteStore_setNoteApplicationDataEntry_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $args->key = $key;
+    $args->value = $value;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'setNoteApplicationDataEntry', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('setNoteApplicationDataEntry', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_setNoteApplicationDataEntry()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_setNoteApplicationDataEntry_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_setNoteApplicationDataEntry_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("setNoteApplicationDataEntry failed: unknown result");
+  }
+
+  public function unsetNoteApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $this->send_unsetNoteApplicationDataEntry($authenticationToken, $guid, $key);
+    return $this->recv_unsetNoteApplicationDataEntry();
+  }
+
+  public function send_unsetNoteApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $args = new edam_notestore_NoteStore_unsetNoteApplicationDataEntry_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $args->key = $key;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'unsetNoteApplicationDataEntry', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('unsetNoteApplicationDataEntry', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_unsetNoteApplicationDataEntry()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_unsetNoteApplicationDataEntry_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_unsetNoteApplicationDataEntry_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("unsetNoteApplicationDataEntry failed: unknown result");
+  }
+
   public function getNoteContent($authenticationToken, $guid)
   {
     $this->send_getNoteContent($authenticationToken, $guid);
@@ -2578,6 +2896,254 @@ class NoteStoreClient implements NoteStoreIf {
     throw new Exception("getResource failed: unknown result");
   }
 
+  public function getResourceApplicationData($authenticationToken, $guid)
+  {
+    $this->send_getResourceApplicationData($authenticationToken, $guid);
+    return $this->recv_getResourceApplicationData();
+  }
+
+  public function send_getResourceApplicationData($authenticationToken, $guid)
+  {
+    $args = new edam_notestore_NoteStore_getResourceApplicationData_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'getResourceApplicationData', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('getResourceApplicationData', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_getResourceApplicationData()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_getResourceApplicationData_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_getResourceApplicationData_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("getResourceApplicationData failed: unknown result");
+  }
+
+  public function getResourceApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $this->send_getResourceApplicationDataEntry($authenticationToken, $guid, $key);
+    return $this->recv_getResourceApplicationDataEntry();
+  }
+
+  public function send_getResourceApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $args = new edam_notestore_NoteStore_getResourceApplicationDataEntry_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $args->key = $key;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'getResourceApplicationDataEntry', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('getResourceApplicationDataEntry', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_getResourceApplicationDataEntry()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_getResourceApplicationDataEntry_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_getResourceApplicationDataEntry_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("getResourceApplicationDataEntry failed: unknown result");
+  }
+
+  public function setResourceApplicationDataEntry($authenticationToken, $guid, $key, $value)
+  {
+    $this->send_setResourceApplicationDataEntry($authenticationToken, $guid, $key, $value);
+    return $this->recv_setResourceApplicationDataEntry();
+  }
+
+  public function send_setResourceApplicationDataEntry($authenticationToken, $guid, $key, $value)
+  {
+    $args = new edam_notestore_NoteStore_setResourceApplicationDataEntry_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $args->key = $key;
+    $args->value = $value;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'setResourceApplicationDataEntry', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('setResourceApplicationDataEntry', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_setResourceApplicationDataEntry()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_setResourceApplicationDataEntry_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_setResourceApplicationDataEntry_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("setResourceApplicationDataEntry failed: unknown result");
+  }
+
+  public function unsetResourceApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $this->send_unsetResourceApplicationDataEntry($authenticationToken, $guid, $key);
+    return $this->recv_unsetResourceApplicationDataEntry();
+  }
+
+  public function send_unsetResourceApplicationDataEntry($authenticationToken, $guid, $key)
+  {
+    $args = new edam_notestore_NoteStore_unsetResourceApplicationDataEntry_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->guid = $guid;
+    $args->key = $key;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'unsetResourceApplicationDataEntry', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('unsetResourceApplicationDataEntry', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_unsetResourceApplicationDataEntry()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_unsetResourceApplicationDataEntry_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_unsetResourceApplicationDataEntry_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    throw new Exception("unsetResourceApplicationDataEntry failed: unknown result");
+  }
+
   public function updateResource($authenticationToken, $resource)
   {
     $this->send_updateResource($authenticationToken, $resource);
@@ -3238,6 +3804,69 @@ class NoteStoreClient implements NoteStoreIf {
       throw $result->systemException;
     }
     throw new Exception("createSharedNotebook failed: unknown result");
+  }
+
+  public function sendMessageToSharedNotebookMembers($authenticationToken, $notebookGuid, $messageText, $recipients)
+  {
+    $this->send_sendMessageToSharedNotebookMembers($authenticationToken, $notebookGuid, $messageText, $recipients);
+    return $this->recv_sendMessageToSharedNotebookMembers();
+  }
+
+  public function send_sendMessageToSharedNotebookMembers($authenticationToken, $notebookGuid, $messageText, $recipients)
+  {
+    $args = new edam_notestore_NoteStore_sendMessageToSharedNotebookMembers_args();
+    $args->authenticationToken = $authenticationToken;
+    $args->notebookGuid = $notebookGuid;
+    $args->messageText = $messageText;
+    $args->recipients = $recipients;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'sendMessageToSharedNotebookMembers', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('sendMessageToSharedNotebookMembers', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_sendMessageToSharedNotebookMembers()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_notestore_NoteStore_sendMessageToSharedNotebookMembers_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_notestore_NoteStore_sendMessageToSharedNotebookMembers_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->notFoundException !== null) {
+      throw $result->notFoundException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    throw new Exception("sendMessageToSharedNotebookMembers failed: unknown result");
   }
 
   public function listSharedNotebooks($authenticationToken)
@@ -4388,6 +5017,264 @@ class edam_notestore_NoteStore_getSyncChunk_result {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('NoteStore_getSyncChunk_result');
+    if ($this->success !== null) {
+      if (!is_object($this->success)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('success', TType::STRUCT, 0);
+      $xfer += $this->success->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getFilteredSyncChunk_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $afterUSN = null;
+  public $maxEntries = null;
+  public $filter = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'afterUSN',
+          'type' => TType::I32,
+          ),
+        3 => array(
+          'var' => 'maxEntries',
+          'type' => TType::I32,
+          ),
+        4 => array(
+          'var' => 'filter',
+          'type' => TType::STRUCT,
+          'class' => 'edam_notestore_SyncChunkFilter',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['afterUSN'])) {
+        $this->afterUSN = $vals['afterUSN'];
+      }
+      if (isset($vals['maxEntries'])) {
+        $this->maxEntries = $vals['maxEntries'];
+      }
+      if (isset($vals['filter'])) {
+        $this->filter = $vals['filter'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getFilteredSyncChunk_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->afterUSN);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->maxEntries);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 4:
+          if ($ftype == TType::STRUCT) {
+            $this->filter = new edam_notestore_SyncChunkFilter();
+            $xfer += $this->filter->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getFilteredSyncChunk_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->afterUSN !== null) {
+      $xfer += $output->writeFieldBegin('afterUSN', TType::I32, 2);
+      $xfer += $output->writeI32($this->afterUSN);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->maxEntries !== null) {
+      $xfer += $output->writeFieldBegin('maxEntries', TType::I32, 3);
+      $xfer += $output->writeI32($this->maxEntries);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->filter !== null) {
+      if (!is_object($this->filter)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('filter', TType::STRUCT, 4);
+      $xfer += $this->filter->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getFilteredSyncChunk_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::STRUCT,
+          'class' => 'edam_notestore_SyncChunk',
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getFilteredSyncChunk_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::STRUCT) {
+            $this->success = new edam_notestore_SyncChunk();
+            $xfer += $this->success->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getFilteredSyncChunk_result');
     if ($this->success !== null) {
       if (!is_object($this->success)) {
         throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
@@ -10453,6 +11340,1011 @@ class edam_notestore_NoteStore_getNote_result {
 
 }
 
+class edam_notestore_NoteStore_getNoteApplicationData_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getNoteApplicationData_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getNoteApplicationData_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getNoteApplicationData_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::STRUCT,
+          'class' => 'edam_type_LazyMap',
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getNoteApplicationData_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::STRUCT) {
+            $this->success = new edam_type_LazyMap();
+            $xfer += $this->success->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getNoteApplicationData_result');
+    if ($this->success !== null) {
+      if (!is_object($this->success)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('success', TType::STRUCT, 0);
+      $xfer += $this->success->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getNoteApplicationDataEntry_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+  public $key = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'key',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['key'])) {
+        $this->key = $vals['key'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getNoteApplicationDataEntry_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->key);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getNoteApplicationDataEntry_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->key !== null) {
+      $xfer += $output->writeFieldBegin('key', TType::STRING, 3);
+      $xfer += $output->writeString($this->key);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getNoteApplicationDataEntry_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::STRING,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getNoteApplicationDataEntry_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getNoteApplicationDataEntry_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::STRING, 0);
+      $xfer += $output->writeString($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_setNoteApplicationDataEntry_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+  public $key = null;
+  public $value = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'key',
+          'type' => TType::STRING,
+          ),
+        4 => array(
+          'var' => 'value',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['key'])) {
+        $this->key = $vals['key'];
+      }
+      if (isset($vals['value'])) {
+        $this->value = $vals['value'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_setNoteApplicationDataEntry_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->key);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 4:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->value);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_setNoteApplicationDataEntry_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->key !== null) {
+      $xfer += $output->writeFieldBegin('key', TType::STRING, 3);
+      $xfer += $output->writeString($this->key);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->value !== null) {
+      $xfer += $output->writeFieldBegin('value', TType::STRING, 4);
+      $xfer += $output->writeString($this->value);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_setNoteApplicationDataEntry_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::I32,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_setNoteApplicationDataEntry_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_setNoteApplicationDataEntry_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::I32, 0);
+      $xfer += $output->writeI32($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_unsetNoteApplicationDataEntry_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+  public $key = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'key',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['key'])) {
+        $this->key = $vals['key'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_unsetNoteApplicationDataEntry_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->key);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_unsetNoteApplicationDataEntry_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->key !== null) {
+      $xfer += $output->writeFieldBegin('key', TType::STRING, 3);
+      $xfer += $output->writeString($this->key);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_unsetNoteApplicationDataEntry_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::I32,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_unsetNoteApplicationDataEntry_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_unsetNoteApplicationDataEntry_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::I32, 0);
+      $xfer += $output->writeI32($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class edam_notestore_NoteStore_getNoteContent_args {
   static $_TSPEC;
 
@@ -13966,6 +15858,1011 @@ class edam_notestore_NoteStore_getResource_result {
 
 }
 
+class edam_notestore_NoteStore_getResourceApplicationData_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getResourceApplicationData_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getResourceApplicationData_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getResourceApplicationData_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::STRUCT,
+          'class' => 'edam_type_LazyMap',
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getResourceApplicationData_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::STRUCT) {
+            $this->success = new edam_type_LazyMap();
+            $xfer += $this->success->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getResourceApplicationData_result');
+    if ($this->success !== null) {
+      if (!is_object($this->success)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('success', TType::STRUCT, 0);
+      $xfer += $this->success->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getResourceApplicationDataEntry_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+  public $key = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'key',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['key'])) {
+        $this->key = $vals['key'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getResourceApplicationDataEntry_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->key);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getResourceApplicationDataEntry_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->key !== null) {
+      $xfer += $output->writeFieldBegin('key', TType::STRING, 3);
+      $xfer += $output->writeString($this->key);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_getResourceApplicationDataEntry_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::STRING,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_getResourceApplicationDataEntry_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_getResourceApplicationDataEntry_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::STRING, 0);
+      $xfer += $output->writeString($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_setResourceApplicationDataEntry_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+  public $key = null;
+  public $value = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'key',
+          'type' => TType::STRING,
+          ),
+        4 => array(
+          'var' => 'value',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['key'])) {
+        $this->key = $vals['key'];
+      }
+      if (isset($vals['value'])) {
+        $this->value = $vals['value'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_setResourceApplicationDataEntry_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->key);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 4:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->value);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_setResourceApplicationDataEntry_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->key !== null) {
+      $xfer += $output->writeFieldBegin('key', TType::STRING, 3);
+      $xfer += $output->writeString($this->key);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->value !== null) {
+      $xfer += $output->writeFieldBegin('value', TType::STRING, 4);
+      $xfer += $output->writeString($this->value);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_setResourceApplicationDataEntry_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::I32,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_setResourceApplicationDataEntry_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_setResourceApplicationDataEntry_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::I32, 0);
+      $xfer += $output->writeI32($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_unsetResourceApplicationDataEntry_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $guid = null;
+  public $key = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'guid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'key',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['guid'])) {
+        $this->guid = $vals['guid'];
+      }
+      if (isset($vals['key'])) {
+        $this->key = $vals['key'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_unsetResourceApplicationDataEntry_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->guid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->key);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_unsetResourceApplicationDataEntry_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->guid !== null) {
+      $xfer += $output->writeFieldBegin('guid', TType::STRING, 2);
+      $xfer += $output->writeString($this->guid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->key !== null) {
+      $xfer += $output->writeFieldBegin('key', TType::STRING, 3);
+      $xfer += $output->writeString($this->key);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_unsetResourceApplicationDataEntry_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+  public $notFoundException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::I32,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        3 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_unsetResourceApplicationDataEntry_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_unsetResourceApplicationDataEntry_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::I32, 0);
+      $xfer += $output->writeI32($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 3);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class edam_notestore_NoteStore_updateResource_args {
   static $_TSPEC;
 
@@ -16541,6 +19438,302 @@ class edam_notestore_NoteStore_createSharedNotebook_result {
 
 }
 
+class edam_notestore_NoteStore_sendMessageToSharedNotebookMembers_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+  public $notebookGuid = null;
+  public $messageText = null;
+  public $recipients = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        2 => array(
+          'var' => 'notebookGuid',
+          'type' => TType::STRING,
+          ),
+        3 => array(
+          'var' => 'messageText',
+          'type' => TType::STRING,
+          ),
+        4 => array(
+          'var' => 'recipients',
+          'type' => TType::LST,
+          'etype' => TType::STRING,
+          'elem' => array(
+            'type' => TType::STRING,
+            ),
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+      if (isset($vals['notebookGuid'])) {
+        $this->notebookGuid = $vals['notebookGuid'];
+      }
+      if (isset($vals['messageText'])) {
+        $this->messageText = $vals['messageText'];
+      }
+      if (isset($vals['recipients'])) {
+        $this->recipients = $vals['recipients'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_sendMessageToSharedNotebookMembers_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->notebookGuid);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->messageText);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 4:
+          if ($ftype == TType::LST) {
+            $this->recipients = array();
+            $_size237 = 0;
+            $_etype240 = 0;
+            $xfer += $input->readListBegin($_etype240, $_size237);
+            for ($_i241 = 0; $_i241 < $_size237; ++$_i241)
+            {
+              $elem242 = null;
+              $xfer += $input->readString($elem242);
+              $this->recipients []= $elem242;
+            }
+            $xfer += $input->readListEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_sendMessageToSharedNotebookMembers_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notebookGuid !== null) {
+      $xfer += $output->writeFieldBegin('notebookGuid', TType::STRING, 2);
+      $xfer += $output->writeString($this->notebookGuid);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->messageText !== null) {
+      $xfer += $output->writeFieldBegin('messageText', TType::STRING, 3);
+      $xfer += $output->writeString($this->messageText);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->recipients !== null) {
+      if (!is_array($this->recipients)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('recipients', TType::LST, 4);
+      {
+        $output->writeListBegin(TType::STRING, count($this->recipients));
+        {
+          foreach ($this->recipients as $iter243)
+          {
+            $xfer += $output->writeString($iter243);
+          }
+        }
+        $output->writeListEnd();
+      }
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_notestore_NoteStore_sendMessageToSharedNotebookMembers_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $notFoundException = null;
+  public $systemException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::I32,
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'notFoundException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMNotFoundException',
+          ),
+        3 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['notFoundException'])) {
+        $this->notFoundException = $vals['notFoundException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'NoteStore_sendMessageToSharedNotebookMembers_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::I32) {
+            $xfer += $input->readI32($this->success);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->notFoundException = new edam_error_EDAMNotFoundException();
+            $xfer += $this->notFoundException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('NoteStore_sendMessageToSharedNotebookMembers_result');
+    if ($this->success !== null) {
+      $xfer += $output->writeFieldBegin('success', TType::I32, 0);
+      $xfer += $output->writeI32($this->success);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->notFoundException !== null) {
+      $xfer += $output->writeFieldBegin('notFoundException', TType::STRUCT, 2);
+      $xfer += $this->notFoundException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 3);
+      $xfer += $this->systemException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class edam_notestore_NoteStore_listSharedNotebooks_args {
   static $_TSPEC;
 
@@ -16688,15 +19881,15 @@ class edam_notestore_NoteStore_listSharedNotebooks_result {
         case 0:
           if ($ftype == TType::LST) {
             $this->success = array();
-            $_size237 = 0;
-            $_etype240 = 0;
-            $xfer += $input->readListBegin($_etype240, $_size237);
-            for ($_i241 = 0; $_i241 < $_size237; ++$_i241)
+            $_size244 = 0;
+            $_etype247 = 0;
+            $xfer += $input->readListBegin($_etype247, $_size244);
+            for ($_i248 = 0; $_i248 < $_size244; ++$_i248)
             {
-              $elem242 = null;
-              $elem242 = new edam_type_SharedNotebook();
-              $xfer += $elem242->read($input);
-              $this->success []= $elem242;
+              $elem249 = null;
+              $elem249 = new edam_type_SharedNotebook();
+              $xfer += $elem249->read($input);
+              $this->success []= $elem249;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -16748,9 +19941,9 @@ class edam_notestore_NoteStore_listSharedNotebooks_result {
       {
         $output->writeListBegin(TType::STRUCT, count($this->success));
         {
-          foreach ($this->success as $iter243)
+          foreach ($this->success as $iter250)
           {
-            $xfer += $iter243->write($output);
+            $xfer += $iter250->write($output);
           }
         }
         $output->writeListEnd();
@@ -16841,14 +20034,14 @@ class edam_notestore_NoteStore_expungeSharedNotebooks_args {
         case 2:
           if ($ftype == TType::LST) {
             $this->sharedNotebookIds = array();
-            $_size244 = 0;
-            $_etype247 = 0;
-            $xfer += $input->readListBegin($_etype247, $_size244);
-            for ($_i248 = 0; $_i248 < $_size244; ++$_i248)
+            $_size251 = 0;
+            $_etype254 = 0;
+            $xfer += $input->readListBegin($_etype254, $_size251);
+            for ($_i255 = 0; $_i255 < $_size251; ++$_i255)
             {
-              $elem249 = null;
-              $xfer += $input->readI64($elem249);
-              $this->sharedNotebookIds []= $elem249;
+              $elem256 = null;
+              $xfer += $input->readI64($elem256);
+              $this->sharedNotebookIds []= $elem256;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -16881,9 +20074,9 @@ class edam_notestore_NoteStore_expungeSharedNotebooks_args {
       {
         $output->writeListBegin(TType::I64, count($this->sharedNotebookIds));
         {
-          foreach ($this->sharedNotebookIds as $iter250)
+          foreach ($this->sharedNotebookIds as $iter257)
           {
-            $xfer += $output->writeI64($iter250);
+            $xfer += $output->writeI64($iter257);
           }
         }
         $output->writeListEnd();
@@ -17657,15 +20850,15 @@ class edam_notestore_NoteStore_listLinkedNotebooks_result {
         case 0:
           if ($ftype == TType::LST) {
             $this->success = array();
-            $_size251 = 0;
-            $_etype254 = 0;
-            $xfer += $input->readListBegin($_etype254, $_size251);
-            for ($_i255 = 0; $_i255 < $_size251; ++$_i255)
+            $_size258 = 0;
+            $_etype261 = 0;
+            $xfer += $input->readListBegin($_etype261, $_size258);
+            for ($_i262 = 0; $_i262 < $_size258; ++$_i262)
             {
-              $elem256 = null;
-              $elem256 = new edam_type_LinkedNotebook();
-              $xfer += $elem256->read($input);
-              $this->success []= $elem256;
+              $elem263 = null;
+              $elem263 = new edam_type_LinkedNotebook();
+              $xfer += $elem263->read($input);
+              $this->success []= $elem263;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -17717,9 +20910,9 @@ class edam_notestore_NoteStore_listLinkedNotebooks_result {
       {
         $output->writeListBegin(TType::STRUCT, count($this->success));
         {
-          foreach ($this->success as $iter257)
+          foreach ($this->success as $iter264)
           {
-            $xfer += $iter257->write($output);
+            $xfer += $iter264->write($output);
           }
         }
         $output->writeListEnd();
