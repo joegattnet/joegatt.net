@@ -23,7 +23,7 @@
 	position: relative;
 }
 
-/* Desperate webkit HACK */
+/* Desperate Webkit HACK */
 @media all and (-webkit-min-device-pixel-ratio: 1){
   .page-pantography-index .ui-slider {
   	top: 8px;
@@ -51,9 +51,14 @@
 .section-pantography .grid_6 .grid_4 {
 	padding-top: 20px;
 }
-.section-pantography .rss {
-	margin-top: 8px;
+.section-home h1 a[href*=pantography] {
+  background:url(/_assets/images/static/flashing-green.gif) 100% 5px no-repeat;
+padding-right:15px;
 }
+.section-pantography .rss {
+  background: url(/_assets/images/static/flashing-green.gif) 100% 5px no-repeat;
+  margin-top: 8px;
+}	
 .section-pantography .rss span {
 	background-color: #eee;
 }

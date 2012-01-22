@@ -32,7 +32,9 @@
   </div>
   <div class="grid_6 omega">
     <div class="grid_4 alpha">
-      <span id="twitter-follow-pantography"></span>
+      <span id="twitter-follow-pantography">
+        <a href="http://twitter.com/pantography/" id="twitter-pantography-placeholder">Follow @pantography on Twitter</a>
+      </span>
       <div class="refresh li-incremental populate" data-url="/_etc/cache/pantography--timeline-.html">
 
         <div class="rss">
