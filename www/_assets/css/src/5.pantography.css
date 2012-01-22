@@ -19,9 +19,17 @@
 }
 .page-pantography-index .ui-slider {
 	top: 5px;
-	width: 873px;
+	width: 872px;
 	position: relative;
 }
+
+/* Desperate webkit HACK */
+@media all and (-webkit-min-device-pixel-ratio: 1){
+  .page-pantography-index .ui-slider {
+  	top: 8px;
+  }
+}
+
 .page-pantography-index .navigator li {
 	margin-left: 0;
 }
@@ -64,4 +72,12 @@
 }
 .section-pantography .rss a.set_p:hover {
 	color: #f74b23;
+}
+#twitter-pantography-placeholder {
+  text-indent: -9999px;
+  display: block;
+  width: 218px;
+  height: 24px;
+  background-position: 0 -407px;
+  cursor: default;
 }
