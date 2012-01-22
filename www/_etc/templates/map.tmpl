@@ -1,5 +1,5 @@
 [% IF showMaps %]
-  <div id="map[% p %]" class="map"><!-- --></div>
+  <div id="map[% p %]" class="map"><img width="300" height="170" src="http://maps.googleapis.com/maps/api/staticmap?zoom=16&size=300x170&maptype=roadmap&markers=color:Red%7Clabel:Note%[% latitude %],[% longitude %][% IF resource.latitude %]&markers=color:Blue%7Clabel:Note%[% resource.latitude %], [% resource.longitude %][% END %]&sensor=false"></div>
   <script>
     NB.jobs.map[% p %] = function() {
        var markers = 0;
