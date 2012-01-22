@@ -1,4 +1,4 @@
-<div id="phrase" class="grid_12 editor app"><!--#echo var="p_furthest" --></div>
+<div id="message" class="grid_12 editor app"><!--#echo var="p_furthest" --></div>
 <div class="grid_12">
   <div class="grid_10 alpha">
     <p id="info">&nbsp;</p>
@@ -12,13 +12,13 @@
 </div>
 <div class="navigator by-<!--#echo var="chunk" --> clearfix">
   <ul class="nav_h">
-  	 <li><a href="/pantography/pantographs/1" rel="first" class="first" title="First phrase">First phrase</a></li>
-  	 <li><a href="/pantography/pantographs/${previous}" rel="prev" class="previous" title="Previous phrase">Previous phrase</a></li>
+  	 <li><a href="/pantography/pantographs/1" rel="first" class="first" title="First message">First message</a></li>
+  	 <li><a href="/pantography/pantographs/${previous}" rel="prev" class="previous" title="Previous message">Previous message</a></li>
      <li id="paragraphs_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
        <a href="#" class="ui-slider-handle ui-state-default ui-corner-all"></a>
      </li>
-     <li class="al_right"><a href="/pantography/pantographs/${next}" class="next" title="Next phrase">Next phrase</a></li>
-  	 <li class="al_right"><a href="/pantography/pantographs/${p_max}" rel="last" class="last" title="Last phrase">Last phrase</a></li>
+     <li class="al_right"><a href="/pantography/pantographs/${next}" class="next" title="Next message">Next message</a></li>
+  	 <li class="al_right"><a href="/pantography/pantographs/${p_max}" rel="last" class="last" title="Last message">Last message</a></li>
   </ul>
 </div>
 <div class="grid_12">
