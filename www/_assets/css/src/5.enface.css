@@ -134,9 +134,10 @@ a#version_latest.button:hover {
 a#version_latest.disabled, a#version_latest.disabled:hover {
 	background-position: -13px -293px;
 }
-.page-wutz-rc h1 .version {
-	display: inline-block;
+.section-wutz h1 a[href*='/wutz/rc'] + .version {
+  display:inline-block;
 }
+
 ins {
 	color: #0000ff;
 }
