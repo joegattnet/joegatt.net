@@ -9,7 +9,9 @@
 <!--#set var="page_app" value="pantography" -->
 <!--#set var="chunk" value="percentage" -->
 
-<!--#set var="tags" value="pantography" -->
+<!--#set var="tags" value="_${section}_p${p}" -->
+<!--#set var="exclude_text" value="${section}|${page}|${p}" -->
+<!--#include virtual="/_etc/cache/tags--tags_from_alias-tags=${tags}&exclude_text=${exclude_text}.shtml" -->
 
 <!--#set var="path" value="/$section/pantographs/" -->
 <!--#set var="location" value="${path}${p}" -->
