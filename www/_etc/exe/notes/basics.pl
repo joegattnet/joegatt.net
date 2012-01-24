@@ -214,20 +214,40 @@ sub printNote {
     #This needs to be more flexible - to return description if book_id is null, etc. 
     #Also, to handle all url forms.
     
+    #chunk_paragraph
+    
     ($section, $page, $p) = $text =~ /\[(.*?)\|(.*?)\|(.*?)\]/;
     
+    #It would be better to do the condition in MySQL but couldn't get it to work
     my $sthAlias = $dbh->prepare(qq{
-      SELECT text, title
-      FROM pages, target_text
-      WHERE section = ?
-      AND p = ? 
-      AND version = 1
-      AND pages.book_id = target_text.book_id
-      LIMIT 1
+		SELECT chunk FROM pages WHERE section = ?
     });
-    $sthAlias->execute($section, $p);
-    ($text, $title) = $sthAlias->fetchrow_array();
+    $sthAlias->execute($section);
+    ($chunk) = $sthAlias->fetchrow_array();
     
+    if($chunk){
+	    my $sthAlias = $dbh->prepare(qq{
+    	  SELECT text, title
+    	  FROM pages, target_text
+     	  WHERE section = ?
+      	  AND p = ? 
+          AND version = 1
+          AND pages.book_id = target_text.book_id
+          LIMIT 1
+    	});
+    	$sthAlias->execute($section, $p);
+    	($text, $title) = $sthAlias->fetchrow_array();   
+    } else {
+    	my $sthAlias = $dbh->prepare(qq{
+      	  SELECT description, title
+      	  FROM pages
+      	  WHERE section = ?
+      	  LIMIT 1
+    	});
+    	$sthAlias->execute($section);
+    	($text, $title) = $sthAlias->fetchrow_array();    
+    }
+        
     $location = $section;
     $blurbLength = 120;
     $noteRef = $p;
@@ -254,7 +274,7 @@ sub printNote {
 
   if($title ne '' && $text ne '' && $title !~ /(quote|cap|caption)\:/i && $title !~ /untitled|Note Title/i && $textBriefClean !~ /^($title)/i){
     $title =~ s/^\s+|\s+$//g;
-  } elsif (!$isTopic && !$isLink && !$isBook) {
+  } elsif (!$isTopic && !$isLink && !$isBook && !$isAlias) {
     $title = '';
   }
 
@@ -281,6 +301,7 @@ sub printNote {
         title => $title,
         location => $location,
         section => $section,
+        chunk => $chunk,
 
         text => $text,
         textBriefClean => $textBriefClean,

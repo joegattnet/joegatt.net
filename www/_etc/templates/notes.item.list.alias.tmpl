@@ -1,6 +1,12 @@
 [% textBriefLinked %]
 <ul class="meta nav_h">   
-  <li><a href="/[% location %]/[% p %]">[% title %] <span class="para_ref">[% p %]</span></a></li>
+  <li>
+  	[% IF chunk == 0 %]
+  		<a href="/[% location %]/">[% title %]</a>
+  	[% ELSE %]
+  		<a href="/[% location %]/[% p %]">[% title %] <span class="para_ref">[% p %]</span></a>
+  	[% END %]
+  </li>
   [% FOREACH tag IN tags %]
     [% tag.listItem %]
   [% END %]
