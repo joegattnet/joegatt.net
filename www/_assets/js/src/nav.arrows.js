@@ -46,33 +46,33 @@ NB.Nav.arrows = function (p) {
 
 $('body').bind('content.loaded', function () {
   NB.Nav.arrows(NB.p.current);
-  
+});
+
+$('#container').delegate('.navigator .previous','click',function(){
   if (NB.App.previous) {
-    $('.navigator .previous').click(function () {
       NB.App.previous();
       return false;
-    });
   }
+});
 
+
+$('#container').delegate('.navigator .previous','click',function(){
   if (NB.App.next) {
-    $('.navigator .next').click(function () {
       NB.App.next();
       return false;
-    });
   }
+});
 
+$('#container').delegate('.navigator .previous','click',function(){
   if (NB.App.first) {
-    $('.navigator .first').click(function () {
       NB.App.first();
       return false;
-    });
   }
+});
 
+$('#container').delegate('.navigator .previous','click',function(){
   if (NB.App.last) {
-    $('.navigator .last').click(function () {
       NB.App.last();
       return false;
-    });
   }
-  
 });
