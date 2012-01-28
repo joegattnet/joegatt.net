@@ -58,11 +58,17 @@ h2, .DejaVuSansCondensedBold {
 	font-style: normal;
 	line-height: normal;
 }
+.DejaVuSansMono {
+	font-family: 'DejaVuSansMono', Tahoma, Geneva, sans-serif!important;
+	font-weight: normal;
+	font-style: normal;
+	line-height: normal;
+}
 .section-colophon #content p.KleistFrakturRegular {
 	font-size: 40px;
 	line-height: 40px;
 }
-.section-colophon #content p.DejaVuSansCondensed, .section-colophon #content p.DejaVuSansCondensedBold {
+.section-colophon #content p.DejaVuSansCondensed, .section-colophon #content p.DejaVuSansCondensedBold, .section-colophon #content p.DejaVuSansMono {
 	font-size: 24px;
 	line-height: 40px;
 }
