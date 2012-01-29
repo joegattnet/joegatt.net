@@ -378,6 +378,8 @@ sub sanitiseText {
       $text =~ s/<\/a>/YYaYY/g;
       $text =~ s/<ul/XXulXX/g;
       $text =~ s/<\/ul>/YYulYY/g;
+      $text =~ s/<ol/XXolXX/g;
+      $text =~ s/<\/ol>/YYolYY/g;
       $text =~ s/<li/XXliXX/g;
       $text =~ s/<\/li>/YYliYY/g;
       $text =~ s/<h3/XXh3XX/g;
@@ -392,6 +394,8 @@ sub sanitiseText {
       $text =~ s/YYaYY/<\/a>/g;
       $text =~ s/XXulXX/<ul/g;
       $text =~ s/YYulYY/<\/ul>/g;
+      $text =~ s/XXolXX/<li/g;
+      $text =~ s/YYolYY/<\/li>/g;
       $text =~ s/XXliXX/<li/g;
       $text =~ s/YYliYY/<\/li>/g;
       $text =~ s/XXh3XX/<h3/g;
@@ -407,6 +411,9 @@ sub sanitiseText {
     $text =~ s/\s+$//;  
   
     $text =~ s/^\s+|\s+$//g;
+    
+    #convert exponents
+    $text =~ s/\^([\d]*)/<sup>$1<\/sup>/g;
     #  $text =~ s/^\W+|\W+$//g; #This removes punctuation
   }
 
