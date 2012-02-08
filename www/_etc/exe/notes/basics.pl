@@ -170,7 +170,7 @@ sub printNote {
     $attribution = $1;
   }
 
-  if ($text =~ s/quote\: *(.*?)$//i) {
+  if ($text =~ s/quote\: *\{ *(.*?) *\} *$//i || $text =~ s/quote\: *(.*?)$//i) {
       $quote = $1;
       $quoteBriefLinked = textTruncateLink($quote, 350, false, "/$location/$noteRef", 'More');;
   }
@@ -394,8 +394,8 @@ sub sanitiseText {
       $text =~ s/YYaYY/<\/a>/g;
       $text =~ s/XXulXX/<ul/g;
       $text =~ s/YYulYY/<\/ul>/g;
-      $text =~ s/XXolXX/<li/g;
-      $text =~ s/YYolYY/<\/li>/g;
+      $text =~ s/XXolXX/<ol/g;
+      $text =~ s/YYolYY/<\/ol>/g;
       $text =~ s/XXliXX/<li/g;
       $text =~ s/YYliYY/<\/li>/g;
       $text =~ s/XXh3XX/<h3/g;
