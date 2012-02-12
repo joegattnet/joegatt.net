@@ -24,7 +24,6 @@ $('body').bind('content.loaded', function () {
   } else if (NB.crumb.page_app === 'pantography') {
     NB.App = new NB.Pantography(NB.p.current);
   } else {
-  // NB.Enface.invoked = false;
     NB.App = new NB.Idling();
   }
   $('.app', '#content').bind('focus', function (event) {

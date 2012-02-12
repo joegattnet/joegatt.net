@@ -491,7 +491,7 @@ sub cache_output {
   # mod_rewrite > mod_include > mod_deflate bug).
 
   if($cache_only ne 'true'){
-    print ("Content-Type: text/html; charset=UTF-8\n\n");
+    print ("Content-Type: text/html; charset=UTF-8\n\n"); #//no-gzip dont-vary
     # This would be required when the above issue is resolved
     # then we would need to distinguish between running inside a cached page and
     # a cron-job. As it is, it litters cron emails with output.

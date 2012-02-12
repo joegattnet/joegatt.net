@@ -11,7 +11,11 @@ return array(
    'js1-3' => array(
      '//_assets/js/lib/jquery-ui-1.8.13.custom.js',
      '//_assets/js/lib/jquery.ass-array.js',
-     '//_assets/js/lib/jquery.ba-hashchange.js',
+//     '//_assets/js/lib/jquery.ba-hashchange.js',
+//     '//_assets/js/lib/jquery.history.js',
+     '//_assets/js/lib/history.js/scripts/uncompressed/history.js',
+     '//_assets/js/lib/history.js/scripts/uncompressed/history.html4.js',
+     '//_assets/js/lib/history.js/scripts/uncompressed/history.adapter.jquery.js',
      '//_assets/js/lib/jquery.rich-array.js',
      '//_assets/js/lib/jquery.rich-array2-extra.js',
      '//_assets/js/lib/jquery.timeago.js',
