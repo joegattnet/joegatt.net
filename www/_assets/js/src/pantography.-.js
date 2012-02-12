@@ -36,11 +36,10 @@ NB.Pantography.prototype.keyup = function (event) {
       (this.alphabetString.indexOf(String.fromCharCode(event.which)) === -1 && 
       event.which !== NB.keycodes.BAK && event.which !== NB.keycodes.DEL &&
       event.which < 37 && event.which > 40)) {
-    return false;
   } else {
     this.setP(p);
-    return true;
   }
+    return false;
 };
 
 NB.Pantography.prototype.previous = function () {

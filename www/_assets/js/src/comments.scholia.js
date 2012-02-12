@@ -1,6 +1,6 @@
 NB.Comments.scholia = {
 	get: function (p) {
-     var paragraph_id = ($('#p_' + p).length?NB.App.get_target(NB.p.current).data('id'):false), 
+     var paragraph_id = ($('#p_' + p).length?NB.App.getTarget(NB.p.current).data('id'):false), 
      editable = NB.User.id != 0 && $.assArray.join(NB.versions, '').indexOf('=' + NB.User.id + ', ')!=-1, 
      editability, 
      params;
@@ -32,8 +32,8 @@ NB.Comments.scholia = {
     var note = $('textarea', '#scholia').val(), 
     pending;
     $('#scholia_form').hide('blind');
-     $('#scholia form [name=paragraph_id]').val(NB.App.get_target(NB.p.current).data('id'));
-		 if (NB.User.id!=0 && note!='' && note!=NB.TEXT.prompt.add_scholia) {
+     $('#scholia form [name=paragraph_id]').val(NB.App.getTarget(NB.p.current).data('id'));
+		 if (NB.User.id !== 0 && note !== '') {
 		   //Form is not shown if user is not logged in so pending is superfluous 
   		 //pending = "var form = $('#scholia form');";
        //pending  += "NB.Ajax.html('post', '#scholia_list', form.attr('action'), form.serialize(), false, 'top', '#scholia', null, function () {NB.String.increment($('span', '#scholia_count'));$('#added_scholia').show('blind').show('highlight');});";
@@ -52,9 +52,7 @@ NB.Comments.scholia = {
           $('#added_scholia').show('blind').show('highlight');
           }
         );
-  		} else if (note === '') {
-        $('textarea', '#scholia').val(NB.TEXT.prompt.add_scholia);
-      }
+  		}
 	}
 }
 
