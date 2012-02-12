@@ -125,7 +125,7 @@ NB.Enface.prototype.focus = function (event) {
   return e;
 };
 
-NB.Enface.prototype.get_target = function (p) {
+NB.Enface.prototype.getTarget = function (p) {
   return $('.app', '#p_' + p);
 };
 
