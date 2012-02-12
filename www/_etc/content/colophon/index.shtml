@@ -21,10 +21,10 @@
     <li><a href="http://jqueryui.com/">jQuery UI</a></li>
     <li><a href="http://plugins.jquery.com/plugin-tags/caret">jQuery Caret</a></li>
     <li><a href="http://code.google.com/p/jquery-rich-array/">jQuery Rich Array</a></li>
-    <li><a href="http://plugins.jquery.com/project/hashchange/">jQuery Hashchange</a></li>
     <li><a href="http://timeago.yarp.com/">jQuery Timeago</a></li>
     <li><a href="https://github.com/pupunzi/jquery.mb.YTPlayer">jQuery mb.YTPlayer</a></li>
     <li><a href="http://www.oriontransfer.co.nz/projects/jquery-syntax/index.en">jQuery.Syntax</a></li>
+    <li><a href="http://github.com/balupton/history.js">History.js</a></li>
     <li><a href="http://www.addthis.com/help/client-api">AddThis Client API</a></li>
     <li><a href="http://developers.facebook.com/docs/reference/javascript/">Facebook JS SDK</a></li>
     <li><a href="http://dev.twitter.com/doc">Twitter Anywhere</a></li>
