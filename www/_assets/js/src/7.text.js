@@ -1,7 +1,5 @@
 NB.TEXT = {
   prompt: {
-    add_comment: 'Add your comment here', 
-    add_scholia: 'Add a note about the paragraph you are editing', 
     sign_in_comment: 'add comments', 
     sign_in_note: 'add notes'
   }, 

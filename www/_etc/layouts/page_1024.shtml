@@ -2,7 +2,7 @@
 <section class="section-<!--#echo encoding="none" var="section" --> page-<!--#echo encoding="none" var="section" -->-<!--#echo encoding="none" var="page" -->">
   <!--#if expr="${title.static}=true" -->
     <header>
-      <hgroup id="title">
+      <hgroup id="title" class="clearfix">
           <h1 class="entry-title">
             <!--#if expr="${title.url}" -->
               <a href="<!--#echo encoding="none" var="title.url" -->"><!--#echo encoding="none" var="title" --></a>

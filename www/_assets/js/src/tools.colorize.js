@@ -1,6 +1,6 @@
 NB.Tools.colorize = {
   toggle: function () {
-   var e = NB.App.get_target(NB.p.current);
+   var e = NB.App.getTarget(NB.p.current);
    NB.Tools.toggle('colorize') ? NB.Tools.colorize.colorize(e) : NB.Tools.colorize.undo(e);
   }, 
   on: function () {
