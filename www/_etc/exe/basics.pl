@@ -385,6 +385,7 @@ sub show_username {
   $sth->execute($user_id);
   my $showname = $sth->fetchrow_array();
 	
+	$sth->finish();
 	$dbh->disconnect();
 	
 	return $showname;

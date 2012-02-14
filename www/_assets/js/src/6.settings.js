@@ -16,7 +16,8 @@ NB.SETTINGS = {
     stripe_even: '#cceeee'
   }, 
   form: {
-    min_length: 6
+    min_length: 6,
+    comments_action: '/_etc/exe/common/comments_save.pl'
   }, 
   expires: [
     ['anagram', 10], 
