@@ -7,7 +7,7 @@ formRead("post");
   
 print ("Content-Type: text/html; charset=UTF-8\n\n");
 
-if($user_id ne '' && $user_id !=0){
+if($user_id ne '' && $user_id !=0 && $p ne '' && $url ne ''){
 
   if ($text ne ''){
     $text = cleanText($text);
