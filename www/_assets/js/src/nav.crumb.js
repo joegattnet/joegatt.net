@@ -4,17 +4,17 @@ NB.Nav.crumb = {
 			path = NB.Url.path(url);
 		NB.crumb.lastloaded = NB.Url.path(url);
 		$('input[name=url]').val(url);
-		if (History.enabled) {
-			if (path !== location.pathname) {
+//		if (History.enabled) {
+//			if (path !== location.pathname) {
 				History.pushState(null, null, path);
-			}
-		} else {
-			if (path === location.pathname) {
-				location.hash = '';
-			} else {
-				location.hash = path;
-			}
-		}
+//			}
+//		} else {
+//			if (path === location.pathname) {
+//				location.hash = '';
+//			} else {
+//				location.hash = path;
+//			}
+//		}
 		var section_crumb = $('#crumbs_section');
 		if (NB.p.chunk === 'index') {
 			section_crumb.hide();

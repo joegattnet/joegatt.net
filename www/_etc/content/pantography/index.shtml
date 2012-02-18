@@ -26,6 +26,9 @@
     <article class="text">
       <!--#include virtual="/_etc/cache/notes--fragment-tags=_pantography_introduction.html" -->
     </article>
+    <nav>
+      <!--#include virtual="/_etc/cache/notes--collection-collection=pantography.html" -->
+    </nav>
     <div class="apparatus">
       <!--#include virtual="/_etc/layouts/apparatus_left.shtml" -->
     </div>
@@ -53,7 +56,7 @@
       </div>
     </div>  
     <div class="grid_2 omega" style="margin-left:10px; margin-top:20px;">
-      <!--#include virtual="/_etc/cache/notes--fragment-tags=_pantography_instructions&wrapper=instructions.html" -->
+      <!--#include virtual="/_etc/cache/notes--fragment-tags=_pantography_instructions&amp;wrapper=instructions.html" -->
     </div>  
     <div class="grid_5 suffix_1 alpha omega apparatus">
         <!--#include virtual="/_etc/layouts/apparatus_right.shtml" -->
