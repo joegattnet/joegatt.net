@@ -1,5 +1,5 @@
 NB.Nav.hash = function () {
-  var url;
+/*  var url;
   if ( History.enabled ) {
       url = NB.Url.path(location.href);
   } else {
@@ -13,6 +13,10 @@ NB.Nav.hash = function () {
     NB.Nav.track(1, 'Hash change detected.', url, NB.crumb.lastloaded);
     NB.Nav.fetch(url);
   }
+  */
+    url = NB.Url.path(location.href);
+    NB.Nav.fetch(url);
+  
 }
 
 /******************************************************************************/
