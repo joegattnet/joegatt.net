@@ -14,8 +14,8 @@ NB.Nav.hash = function () {
     NB.Nav.fetch(url);
   }
   */
-    url = NB.Url.path(location.href);
-    NB.Nav.fetch(url);
+  //  url = NB.Url.path(location.href);
+  //  NB.Nav.fetch(url);
   
 }
 
