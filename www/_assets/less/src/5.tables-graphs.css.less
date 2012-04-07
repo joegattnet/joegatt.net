@@ -1,0 +1,87 @@
+#container_top {
+	height:280px;
+	margin-bottom: @line-height;
+	background:url(/_assets/images/static/ajax.gif) no-repeat center center
+}
+
+#NB-datatable_wrapper {
+	position:relative;
+	padding-bottom: @line-height;
+}
+
+#NB-datatable {
+	td {
+		width:80px;
+		font-family:Menlo,Consolas,monospace
+	}
+	td:last-child {
+		width:60px
+	}
+	th,td:first-child {
+		text-align:left;
+		font-weight:700;
+		font-family: Tahoma, Geneva, sans-serif;
+	}
+	th.sorting_asc,th:hover {
+		background-position:-182px -275px
+	}
+	th.sorting_asc:hover {
+		background-position:-182px -295px
+	}
+	th.sorting_desc {
+		background-position:-182px -315px
+	}
+	th.sorting_desc:hover {
+		background-position:-182px -335px
+	}
+	tr:nth-child(even),thead tr th {
+		background-color:#eee
+	}
+	tr:nth-child(odd) {
+		background-color:#f5f5f5
+	}
+	tr:hover:nth-child(even),tr:hover {
+		background-color:#F3F129
+	}
+}
+
+#NB-datatable_filter,
+#NB-datatable_length {
+	height: @line-height;
+	padding:0;
+	margin:0;
+	position:absolute;
+	bottom:0;
+	right:0
+}
+
+#NB-datatable_filter {
+	label {
+		margin:0;
+		padding:0;
+		color:#999
+	}
+	input {
+		width:60px;
+		border:1px solid #ccc;
+		margin:0
+	}
+}
+#NB-datatable_length select {
+	border:1px solid #ccc
+}
+
+#NB-datatable_length,
+#NB-datatable_info {
+	left:0;
+	color:#999
+}
+
+/* HACK - genericise */
+.page-wutz-statistics #content .text {
+	text-align:left
+}
+
+.page-wutz-statistics .apparatus {
+	margin-top: @line-height;
+}

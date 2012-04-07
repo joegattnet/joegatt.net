@@ -1,0 +1,34 @@
+#tag_list.cloud {
+	margin-top: @line-height;
+}
+.page-notes-index #tag_list.cloud {
+	margin-top: -10px;
+}
+#tag_list.cloud li {
+	display: inline-block;
+	padding-right: 5px;
+	height: @line-height * 2;
+	font-size: @line-height * 2!important;
+}
+#n_tags a, .meta a {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11px;
+}
+#tags #n_tags a, #tags .meta a {
+	font-size: 13px;
+}
+.meta li {
+	margin-right: 5px;
+}
+#n_tags li a:after, .meta li a[href*="tags"]:after {
+	content: ", ";
+}
+#n_tags li:last-child a:after, .meta li:last-child a[href*="tags"]:after {
+	content: "";
+}
+.notes-list .para_ref:before {
+  content: "¶";
+  font-size:9px;
+  margin-right:2px;
+  vertical-align:top
+}

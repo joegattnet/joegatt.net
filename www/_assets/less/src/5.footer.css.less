@@ -1,0 +1,49 @@
+footer {
+	border-top: 1px dashed #999;
+	margin-top: @line-height;
+	color: #666;
+	padding-top: @line-height / 2;
+	a {
+		color: #666;
+		background-position: -231px 2px;
+		&:hover {
+			background-position: -451px -18px;
+			color: #00c;
+		}
+	}
+	ul {
+		margin-top: @line-height / 2;
+		width: 100%;
+	}
+	a[href^="http"] {
+		background-position: -504px -445px;
+		padding-left: 13px;
+		color: #666;
+		&:hover {
+			background-position: -504px -425px;
+			color: #362fd4;
+		}
+	}
+	nav ul {
+		.multiple-columns(4);
+	}
+}
+.cc, .cc a {
+	width: 85px;
+	height: 25px;
+	padding: 0;
+}
+.cc a {
+	text-indent: -9999px;
+	background-position: 0 -380px!important;
+	display: block;
+}
+#copyright li {
+	float: left
+}
+#institutional {
+	text-align: right;
+}
+#qr_code {
+	display: none!important;
+}
