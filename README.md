@@ -1,5 +1,5 @@
-<h3>Infrastructure</h3>
-<p>The site runs on an Apache server using a MySQL databse. Pages are pre-built using Perl and PHP into HTML or SHTML. No dynamic content is served except for registering/signing in. Additionally, Varnish caching sits in front of Apache. 
+<h3>Architecture</h3>
+<p>The site runs on an Apache server using a MySQL database. Pages are pre-built using Perl and PHP into HTML or SHTML. No dynamic content is served except for registering/signing in. Additionally, Varnish caching sits in front of Apache. 
 </p><h3>Directory structure</h3>
 <p>All directories that are paralleled in the site structure sit at the root - other directories are inside /_etc. 
 </p><h3>URL rewrites</h3>
