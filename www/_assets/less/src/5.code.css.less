@@ -10,7 +10,7 @@
 	-khtml-opacity: 0.9;
 	opacity: 0.9;
 	z-index: 100;
-	position: absolute;
+	position: absolute !important;
 	top: 0;
 	margin-top: 140px;
 	background-color: #d5d5d5;
@@ -19,6 +19,9 @@
 	color: #333;
 	line-height: 20px!important;
 	border-bottom: 1px dashed #999;
+	.close {
+		top: -13px;
+	}
 }
 #code .path {
 	background-color: #ffffff;
@@ -87,7 +90,8 @@ content: "{";
 #tool_code.on, #tool_code.on:before, #tool_code.on:after {
 	color: #666;
 }
-a#tool_code:hover, a#tool_code.on:hover, a#tool_code:before:hover, a#tool_code:after:hover, a#tool_code.on:before:hover, a#tool_code.on:after:hover {
+#tool_code:hover {
+//	, a#tool_code.on:hover, a#tool_code:before:hover, a#tool_code:after:hover, a#tool_code.on:before:hover, a#tool_code.on:after:hover {
 	color: #F74B23!important;
 }
 /*Syntax*/
