@@ -1,5 +1,5 @@
 <script>
-if (location.hash.indexOf('/')==1&&location.host+location.hash.substr(1)!=location.href){
+if (location.hash.indexOf('/') === 1 && location.host+location.hash.substr(1) !== location.href){
   location.replace(location.hash.substr(1));
 }
 </script>

@@ -5,10 +5,13 @@ NB.Nav.crumb = {
 		NB.crumb.lastloaded = NB.Url.path(url);
 		$('input[name=url]').val(url);
 //		if (History.enabled) {
-//			if (path !== location.pathname) {
+			if (path !== location.pathname) {
 				History.pushState(null, null, path);
-//			}
+			}
 //		} else {
+//		if (History.isInternetExplorer()) {
+//			//This should not be necessary since we're using History.js
+//			//But it doesn't work in IE9
 //			if (path === location.pathname) {
 //				location.hash = '';
 //			} else {
