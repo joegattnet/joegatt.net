@@ -773,6 +773,318 @@ class edam_notestore_SyncChunk {
 
 }
 
+class edam_notestore_SyncChunkFilter {
+  static $_TSPEC;
+
+  public $includeNotes = null;
+  public $includeNoteResources = null;
+  public $includeNoteAttributes = null;
+  public $includeNotebooks = null;
+  public $includeTags = null;
+  public $includeSearches = null;
+  public $includeResources = null;
+  public $includeLinkedNotebooks = null;
+  public $includeExpunged = null;
+  public $includeNoteApplicationDataFullMap = null;
+  public $includeResourceApplicationDataFullMap = null;
+  public $includeNoteResourceApplicationDataFullMap = null;
+  public $requireNoteContentClass = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'includeNotes',
+          'type' => TType::BOOL,
+          ),
+        2 => array(
+          'var' => 'includeNoteResources',
+          'type' => TType::BOOL,
+          ),
+        3 => array(
+          'var' => 'includeNoteAttributes',
+          'type' => TType::BOOL,
+          ),
+        4 => array(
+          'var' => 'includeNotebooks',
+          'type' => TType::BOOL,
+          ),
+        5 => array(
+          'var' => 'includeTags',
+          'type' => TType::BOOL,
+          ),
+        6 => array(
+          'var' => 'includeSearches',
+          'type' => TType::BOOL,
+          ),
+        7 => array(
+          'var' => 'includeResources',
+          'type' => TType::BOOL,
+          ),
+        8 => array(
+          'var' => 'includeLinkedNotebooks',
+          'type' => TType::BOOL,
+          ),
+        9 => array(
+          'var' => 'includeExpunged',
+          'type' => TType::BOOL,
+          ),
+        10 => array(
+          'var' => 'includeNoteApplicationDataFullMap',
+          'type' => TType::BOOL,
+          ),
+        12 => array(
+          'var' => 'includeResourceApplicationDataFullMap',
+          'type' => TType::BOOL,
+          ),
+        13 => array(
+          'var' => 'includeNoteResourceApplicationDataFullMap',
+          'type' => TType::BOOL,
+          ),
+        11 => array(
+          'var' => 'requireNoteContentClass',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['includeNotes'])) {
+        $this->includeNotes = $vals['includeNotes'];
+      }
+      if (isset($vals['includeNoteResources'])) {
+        $this->includeNoteResources = $vals['includeNoteResources'];
+      }
+      if (isset($vals['includeNoteAttributes'])) {
+        $this->includeNoteAttributes = $vals['includeNoteAttributes'];
+      }
+      if (isset($vals['includeNotebooks'])) {
+        $this->includeNotebooks = $vals['includeNotebooks'];
+      }
+      if (isset($vals['includeTags'])) {
+        $this->includeTags = $vals['includeTags'];
+      }
+      if (isset($vals['includeSearches'])) {
+        $this->includeSearches = $vals['includeSearches'];
+      }
+      if (isset($vals['includeResources'])) {
+        $this->includeResources = $vals['includeResources'];
+      }
+      if (isset($vals['includeLinkedNotebooks'])) {
+        $this->includeLinkedNotebooks = $vals['includeLinkedNotebooks'];
+      }
+      if (isset($vals['includeExpunged'])) {
+        $this->includeExpunged = $vals['includeExpunged'];
+      }
+      if (isset($vals['includeNoteApplicationDataFullMap'])) {
+        $this->includeNoteApplicationDataFullMap = $vals['includeNoteApplicationDataFullMap'];
+      }
+      if (isset($vals['includeResourceApplicationDataFullMap'])) {
+        $this->includeResourceApplicationDataFullMap = $vals['includeResourceApplicationDataFullMap'];
+      }
+      if (isset($vals['includeNoteResourceApplicationDataFullMap'])) {
+        $this->includeNoteResourceApplicationDataFullMap = $vals['includeNoteResourceApplicationDataFullMap'];
+      }
+      if (isset($vals['requireNoteContentClass'])) {
+        $this->requireNoteContentClass = $vals['requireNoteContentClass'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'SyncChunkFilter';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNotes);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNoteResources);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 3:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNoteAttributes);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 4:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNotebooks);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 5:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeTags);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 6:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeSearches);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 7:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeResources);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 8:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeLinkedNotebooks);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 9:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeExpunged);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 10:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNoteApplicationDataFullMap);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 12:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeResourceApplicationDataFullMap);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 13:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->includeNoteResourceApplicationDataFullMap);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 11:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->requireNoteContentClass);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('SyncChunkFilter');
+    if ($this->includeNotes !== null) {
+      $xfer += $output->writeFieldBegin('includeNotes', TType::BOOL, 1);
+      $xfer += $output->writeBool($this->includeNotes);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeNoteResources !== null) {
+      $xfer += $output->writeFieldBegin('includeNoteResources', TType::BOOL, 2);
+      $xfer += $output->writeBool($this->includeNoteResources);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeNoteAttributes !== null) {
+      $xfer += $output->writeFieldBegin('includeNoteAttributes', TType::BOOL, 3);
+      $xfer += $output->writeBool($this->includeNoteAttributes);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeNotebooks !== null) {
+      $xfer += $output->writeFieldBegin('includeNotebooks', TType::BOOL, 4);
+      $xfer += $output->writeBool($this->includeNotebooks);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeTags !== null) {
+      $xfer += $output->writeFieldBegin('includeTags', TType::BOOL, 5);
+      $xfer += $output->writeBool($this->includeTags);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeSearches !== null) {
+      $xfer += $output->writeFieldBegin('includeSearches', TType::BOOL, 6);
+      $xfer += $output->writeBool($this->includeSearches);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeResources !== null) {
+      $xfer += $output->writeFieldBegin('includeResources', TType::BOOL, 7);
+      $xfer += $output->writeBool($this->includeResources);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeLinkedNotebooks !== null) {
+      $xfer += $output->writeFieldBegin('includeLinkedNotebooks', TType::BOOL, 8);
+      $xfer += $output->writeBool($this->includeLinkedNotebooks);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeExpunged !== null) {
+      $xfer += $output->writeFieldBegin('includeExpunged', TType::BOOL, 9);
+      $xfer += $output->writeBool($this->includeExpunged);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeNoteApplicationDataFullMap !== null) {
+      $xfer += $output->writeFieldBegin('includeNoteApplicationDataFullMap', TType::BOOL, 10);
+      $xfer += $output->writeBool($this->includeNoteApplicationDataFullMap);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->requireNoteContentClass !== null) {
+      $xfer += $output->writeFieldBegin('requireNoteContentClass', TType::STRING, 11);
+      $xfer += $output->writeString($this->requireNoteContentClass);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeResourceApplicationDataFullMap !== null) {
+      $xfer += $output->writeFieldBegin('includeResourceApplicationDataFullMap', TType::BOOL, 12);
+      $xfer += $output->writeBool($this->includeResourceApplicationDataFullMap);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->includeNoteResourceApplicationDataFullMap !== null) {
+      $xfer += $output->writeFieldBegin('includeNoteResourceApplicationDataFullMap', TType::BOOL, 13);
+      $xfer += $output->writeBool($this->includeNoteResourceApplicationDataFullMap);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class edam_notestore_NoteFilter {
   static $_TSPEC;
 

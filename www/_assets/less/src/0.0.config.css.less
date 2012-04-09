@@ -1,0 +1,44 @@
+@line-height: 20px;
+
+@total-width: 100%;
+
+@max-width: 1000px;
+
+@color-text-body: #000000;
+
+@color-text-secondary: #000000;
+
+@color-text-extra: #999999;
+
+@color-text-link: #362fd4;
+
+@color-border: #999999;
+
+@gap: 60px;
+@gutter-width: 100px; 
+@column-width: 100px; 
+@width: 33%;
+
+.multiple-columns (@count, @gap: @gutter-width, @width: @column-width) {
+  -moz-column-count: @count;
+  -moz-column-gap: @gap;
+  -moz-column-width: @width;
+  -webkit-column-count: @count;
+  -webkit-column-gap: @gap;
+  -webkit-column-width: @width;
+  column-count: @count;
+  column-gap: @gap;
+  column-width: @width;
+}
+
+.hyphens {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+// Transitional Hacks (while going from 960 to semantic)
+
+.container_12 .grid_12 {
+  margin: 0;
+}

@@ -23,7 +23,7 @@ if ($authenticated == 1){
   $sth = $dbh->prepare("$sql");
   $sth->execute($fbuid);
   ($found_user_id) = $sth->fetchrow_array();
-  $sth->finish();
+  
   
   if ($found_user_id) {
     $sql = "UPDATE users SET visits=visits+1,date_last_visit=UTC_TIMESTAMP(),username=?,fb_first_name=?,fb_last_name=?,fb_link=? WHERE Id=?;";
@@ -36,7 +36,7 @@ if ($authenticated == 1){
     $found_user_id = $dbh->last_insert_id(undef, undef, $_[2], ID);
   }
   
-  $sth->finish();
+  
   $dbh->disconnect();
   
   # ****************************************************************************

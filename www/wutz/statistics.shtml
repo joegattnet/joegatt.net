@@ -1,0 +1,37 @@
+<!--#include virtual="/_etc/includes/settings.shtml" -->
+<!--#include virtual="/_etc/includes/wutz/settings.shtml" -->
+
+<!--#set var="page" value="statistics" -->
+<!--#set var="share_id" value="${section}_statistics" -->
+<!--#set var="comments_id" value="${section}_statistics" -->
+
+<!--#set var="share" value="short" -->
+
+<!--#set var="chunk" value="paragraph" -->
+
+<!--#set var="path" value="/$section/rc/" -->
+<!--#set var="location" value="${path}${p}" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="tags" value="frequency" -->
+
+<!--#set var="title" value="The Statistical Wutz" -->
+<!--#set var="title.super" value="Wutz" -->
+<!--#set var="title.super.url" value="/wutz/" -->
+<!--#set var="title.sub" value="Frequency deviation" -->
+<!--#set var="title.window" value="$title" -->
+<!--#set var="title.url" value="/wutz/statistics" -->
+
+<!--#set var="version" value="v0.1" -->
+
+<!--#set var="nav_end" value="false" -->
+
+<!--#set var="yield" value="yield_1024_12_6_4_2_a.shtml" -->
+
+<!--#set var="content" value="/_etc/cache/notes--fragment-tags=_wutz_stats_frequency.html" -->
+<!--#set var="content_centre" value="/_etc/cache/enface--stats_character_counts-b=1.html" -->
+<!--#set var="content_right" value="/_etc/includes/${section}/toolbar_stats.shtml" -->
+
+<!--#set var="direct_content" value="false" -->
+
+<!--#include virtual="/_etc/layouts/render.shtml" -->

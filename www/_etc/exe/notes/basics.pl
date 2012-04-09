@@ -6,6 +6,7 @@ sub printNote {
 
   my $note_e_guid = $_[0];
   my $template = $_[1];
+  my $wrapper = $_[2];
   my $images;
   my $video;
   my $caption;
@@ -30,9 +31,15 @@ sub printNote {
   my @tagsFetchLinks;
   my $tagsUrl;
   my $noteoutput;
+  my $isFragment;
+  my $isBook;
+  my $isLink;
+  my $location;
+  my $isTopic;
+  my $isAlias;
+  my $blurbLength = 250;
   my $templateType = 'default';
   my $location = 'notes';
-
   my $noteRef = hex(substr($note_e_guid,0,4));
 
   my $sthNote = $dbh->prepare(qq{
@@ -111,7 +118,9 @@ sub printNote {
       $location = 'topics';
     }
     case 5 {
-      $isFragment = 1;
+      $isAlias = 1;
+      $templateType = 'alias';
+      #$location = 'alias';
     }
   }
 
@@ -161,7 +170,7 @@ sub printNote {
     $attribution = $1;
   }
 
-  if ($text =~ s/quote\: *(.*?)$//i) {
+  if ($text =~ s/quote\: *\{ *(.*?) *\} *$//i || $text =~ s/quote\: *(.*?)$//i) {
       $quote = $1;
       $quoteBriefLinked = textTruncateLink($quote, 350, false, "/$location/$noteRef", 'More');;
   }
@@ -200,17 +209,60 @@ sub printNote {
       }
 
 
+  } elsif ($isAlias) {
+  
+    #This needs to be more flexible - to return description if book_id is null, etc. 
+    #Also, to handle all url forms.
+    
+    #chunk_paragraph
+    
+    ($section, $page, $p) = $text =~ /\[(.*?)\|(.*?)\|(.*?)\]/;
+    
+    #It would be better to do the condition in MySQL but couldn't get it to work
+    my $sthAlias = $dbh->prepare(qq{
+		SELECT chunk FROM pages WHERE section = ?
+    });
+    $sthAlias->execute($section);
+    ($chunk) = $sthAlias->fetchrow_array();
+    
+    if($chunk){
+	    my $sthAlias = $dbh->prepare(qq{
+    	  SELECT text, title
+    	  FROM pages, target_text
+     	  WHERE section = ?
+      	  AND p = ? 
+          AND version = 1
+          AND pages.book_id = target_text.book_id
+          LIMIT 1
+    	});
+    	$sthAlias->execute($section, $p);
+    	($text, $title) = $sthAlias->fetchrow_array();   
+    } else {
+    	my $sthAlias = $dbh->prepare(qq{
+      	  SELECT description, title
+      	  FROM pages
+      	  WHERE section = ?
+      	  LIMIT 1
+    	});
+    	$sthAlias->execute($section);
+    	($text, $title) = $sthAlias->fetchrow_array();    
+    }
+        
+    $location = $section;
+    $blurbLength = 120;
+    $noteRef = $p;
+  
   } elsif ($title && $title ne '' && $isTopic && $text eq '' && $quote eq '') {
     use WWW::Wikipedia;
     my $wiki = WWW::Wikipedia->new();
     my $entry = $wiki->search($title);
     if($entry){
       $text .= $entry->text_basic();
-      $textBriefLinked = textTruncateLink($text, 200, false, "$source_url", 'More');
+      #$textBriefLinked = textTruncateLink($text, 250, false, "$source_url", 'More');
     }
   }
 
-  $textBriefClean = textTruncate(sanitiseText($text, 1), 350);
+  $textBriefClean = textTruncate(sanitiseText($text, 1), $blurbLength);
   $textBriefClean =~ s/\"/\'/g;
   $text =~ s/\n\n/\n/g;
   $text =~ s/\n/<\/p><p>/g;
@@ -218,17 +270,13 @@ sub printNote {
   if($text ne ''){
     $text = "<p>$text</p>";
   }
-  $textBriefLinked = textTruncateLink($text, 350, false, "/$location/$noteRef", 'More');
+  $textBriefLinked = textTruncateLink($text, $blurbLength, false, "/$location/$noteRef", 'More');
 
   if($title ne '' && $text ne '' && $title !~ /(quote|cap|caption)\:/i && $title !~ /untitled|Note Title/i && $textBriefClean !~ /^($title)/i){
     $title =~ s/^\s+|\s+$//g;
-  } elsif (!$isTopic && !$isLink && !$isBook) {
+  } elsif (!$isTopic && !$isLink && !$isBook && !$isAlias) {
     $title = '';
   }
-    
-  $sthNote->finish();
-  $sthResources->finish();
-  $sthTags->finish();
 
   $version = "0.$version";
 
@@ -253,6 +301,7 @@ sub printNote {
         title => $title,
         location => $location,
         section => $section,
+        chunk => $chunk,
 
         text => $text,
         textBriefClean => $textBriefClean,
@@ -290,7 +339,8 @@ sub printNote {
         resources => \@resources,
         tags => \@tags,
         tagsUrl => $tagsUrl,
-        imageServer => $imageServer
+        imageServer => $imageServer,
+        wrapper => $wrapper
     };
     
     my $TTinput = "notes.item.$template.$templateType.tmpl";
@@ -309,48 +359,64 @@ sub sanitiseText {
 
   my $text = $_[0];
   my $totally = $_[1];
-  $text =~ s/\&nbsp\;|\n/ /g;
-  $text =~ s/style=\"[^\"]*\"//g;
-  $text =~ s/  / /g;
-  if($totally){
-    use HTML::Strip;
-    my $hs = HTML::Strip->new();
-    $text = $hs->parse($text);
-    $hs->eof;  
-  } else {
-    #HTML::Strip does not allow exceptions
-    $text =~ s/<\/div>/<\/div>\n/g;
-    $text =~ s/<a /XXaXX/g;
-    $text =~ s/<\/a>/YYaYY/g;
-    $text =~ s/<ul/XXulXX/g;
-    $text =~ s/<\/ul>/YYulYY/g;
-    $text =~ s/<li/XXliXX/g;
-    $text =~ s/<\/li>/YYliYY/g;
-    $text =~ s/<h3/XXh3XX/g;
-    $text =~ s/<\/h3>/YYh3YY/g;
+
+  if($text ne ''){
+    $text =~ s/\&nbsp\;|\n/ /g;
+    $text =~ s/style=\"[^\"]*\"//g;
+    $text =~ s/  / /g;
+    if($totally){
+      use HTML::Strip;
+      my $hs = HTML::Strip->new();
+      $text = $hs->parse($text);
+      $hs->eof;  
+    } else {
+      #HTML::Strip does not allow exceptions
+      $text =~ s/<div><b>/<h3>/g;
+      $text =~ s/<\/b><\/div>/<\/h3>/g;
+      $text =~ s/<\/div>/<\/div>\n/g;
+      $text =~ s/<a /XXaXX/g;
+      $text =~ s/<\/a>/YYaYY/g;
+      $text =~ s/<ul/XXulXX/g;
+      $text =~ s/<\/ul>/YYulYY/g;
+      $text =~ s/<ol/XXolXX/g;
+      $text =~ s/<\/ol>/YYolYY/g;
+      $text =~ s/<li/XXliXX/g;
+      $text =~ s/<\/li>/YYliYY/g;
+      $text =~ s/<h3/XXh3XX/g;
+      $text =~ s/<\/h3>/YYh3YY/g;
+    
+      use HTML::Strip;
+      my $hs = HTML::Strip->new();
+      $text = $hs->parse($text);
+      $hs->eof;  
+    
+      $text =~ s/XXaXX/<a /g;
+      $text =~ s/YYaYY/<\/a>/g;
+      $text =~ s/XXulXX/<ul/g;
+      $text =~ s/YYulYY/<\/ul>/g;
+      $text =~ s/XXolXX/<ol/g;
+      $text =~ s/YYolYY/<\/ol>/g;
+      $text =~ s/XXliXX/<li/g;
+      $text =~ s/YYliYY/<\/li>/g;
+      $text =~ s/XXh3XX/<h3/g;
+      $text =~ s/YYh3YY/<\/h3>/g;
+      $text =~ s/<p><\/p>//g;
+      $text =~ s/<p><h3>/<h3>/g;
+      $text =~ s/<\/h3><\/p>/<\/h3>/g;
+    }
+
+    #$text =~ s/\n\n/ /g;
+    $text =~ s/  / /g;
+    $text =~ s/^\s+//;
+    $text =~ s/\s+$//;  
   
-    use HTML::Strip;
-    my $hs = HTML::Strip->new();
-    $text = $hs->parse($text);
-    $hs->eof;  
-  
-    $text =~ s/XXaXX/<a /g;
-    $text =~ s/YYaYY/<\/a>/g;
-    $text =~ s/XXulXX/<ul/g;
-    $text =~ s/YYulYY/<\/ul>/g;
-    $text =~ s/XXliXX/<li/g;
-    $text =~ s/YYliYY/<\/li>/g;
-    $text =~ s/XXh3XX/<h3/g;
-    $text =~ s/YYh3YY/<\/h3>/g;
+    $text =~ s/^\s+|\s+$//g;
+    
+    #convert exponents
+    $text =~ s/\^([\d]*)/<sup>$1<\/sup>/g;
+    #  $text =~ s/^\W+|\W+$//g; #This removes punctuation
   }
 
-  #$text =~ s/\n\n/ /g;
-  $text =~ s/  / /g;
-  $text =~ s/^\s+//;
-  $text =~ s/\s+$//;  
-
-  $text =~ s/^\s+|\s+$//g;
-#  $text =~ s/^\W+|\W+$//g; #This removes punctuation
   return $text;
 
 }

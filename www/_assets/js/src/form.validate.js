@@ -19,7 +19,7 @@ NB.Form.validate = function(e,reqLength) {
     } else if (check.indexOf('username')>=0&&(!/^[A-Z0-9]+$/i.test(value))) {
       warning.text(NB.TEXT.error.not_valid);
     } else if (check.indexOf('email')>=0||check.indexOf('username')>=0) {
-      $.getJSON(NB.root+'_etc/exe/users/check_exists.pl?'+check+'='+value+'&jsoncallback=?', function(data) {
+      $.getJSON(NB.root + '_etc/exe/users/check_exists.pl?'+check+'='+value+'&jsoncallback=?', function(data) {
         if (data.exists) {
   				 warning.text(NB.TEXT.error.already_exists);
   			} else {

@@ -1,8 +1,5 @@
 <script>
-if(location.hash.indexOf('pr-')!=-1){
-  NB.Nav.track(2,'Promo - referrer', location.hash.substr(4));
-  location.hash='';
-} else if (location.hash.indexOf('/')==1&&location.host+location.hash.substr(1)!=location.href){
+if (location.hash.indexOf('/') === 1 && location.host+location.hash.substr(1) !== location.href){
   location.replace(location.hash.substr(1));
 }
 </script>
@@ -96,11 +93,18 @@ if(location.hash.indexOf('pr-')!=-1){
 <!--#if expr="1=0" -->
   <link id="rss" rel="alternate" type="application/rss+xml" title="<!--#echo encoding="none" var="rss_title" -->" href="<!--#echo encoding="none" var="rss_url" -->">
 <!--#endif -->
+
 <!--#if expr="$styles_discrete=false||$server=/joegatt.net/||$server=test.joegatt.org" -->
-  <link rel="stylesheet" href="<!--#echo encoding="none" var="css_url" -->/_assets/min/g=css<!--#echo encoding="none" var="css_version" -->&amp;<!--#echo encoding="none" var="css_cachebuster" -->">
+  <link rel="stylesheet" href="<!--#echo encoding="none" var="css_url" -->/_etc/cache/styles-<!--#echo encoding="none" var="css_cachebuster" -->.css">
 <!--#else -->
-  <!--#include virtual="/_etc/exe/common/discrete_styles.pl"-->  
+  <script>
+    localStorage.clear();
+  </script>
+  <link href="/_assets/less/index.css.less" rel="stylesheet/less" type="text/css">
+  <script src="/_assets/js/lib/less-1.2.1.min.js" type="text/javascript"></script>
 <!--#endif -->
+
+
 
 <!--[if lt IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_assets/min/f=/_assets/css/src/0.IE6.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
 <!--[if IE 7 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_assets/min/f=/_assets/css/src/0.IE7.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
@@ -108,10 +112,10 @@ if(location.hash.indexOf('pr-')!=-1){
 
 <!--#if expr="$server != /joegatt.net/" -->
   <style type="text/css">
-    <!--#include virtual="/_assets/css/src/0.Debug.css"-->  
+    <!--#include virtual="/_assets/less/src/0.Debug.css.less"-->  
   </style>
 <!--#endif -->
-<script src="<!--#echo encoding="none" var="js_url" -->/_assets/min/f=/_assets/js/lib/modernizr.custom.53524.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
+<script src="<!--#echo encoding="none" var="js_url" -->/_assets/min/f=/_assets/js/lib/modernizr.custom.shim.load.cssclasses.js&amp;<!--#echo encoding="none" var="js_cachebuster" -->"></script>
 <script>
 var NB = {
   root: '<!--#echo encoding="none" var="root" -->',

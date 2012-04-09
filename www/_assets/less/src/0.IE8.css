@@ -1,0 +1,6 @@
+#n_tags li a:after, .meta li a[href*="tags"]:after {
+	content: " ";
+}
+.ajax_large {
+	background-image: none;
+}

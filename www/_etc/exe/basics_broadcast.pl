@@ -1,7 +1,5 @@
 #!/usr/bin/perl -T
 
-use WWW::TarPipe;
-
 sub broadcast_log {
   my $text = $_[0];
   my $url = $_[1];
@@ -25,7 +23,6 @@ sub broadcast_transmit {
   $sth->execute();
 
   my ($text,$Id) = $sth->fetchrow_array();
-  $sth->finish();
 
   if ($text ne '') {
     my $result = diffuse($text);
@@ -33,6 +30,7 @@ sub broadcast_transmit {
     $sth = $dbh->prepare("$sql");
     $sth->execute($Id);
   }
+  
   $sth->finish();
   $dbh->disconnect();
   
@@ -92,7 +90,6 @@ sub trim_message {
 
 }
 
-
 sub log_message {
   my $message = $_[0];
   my $broadcast = $_[1];
@@ -102,11 +99,10 @@ sub log_message {
   $sql = "INSERT INTO log_broadcast (text,date_created,broadcast) VALUES (?,UTC_TIMESTAMP(),?);";
   $sth = $dbh->prepare("$sql");
   $sth->execute($message,$broadcast);
+  
   $sth->finish();
-
   $dbh->disconnect();
 }
-
 
 sub broadcast_throttle {
   $throttle = $_[0] + int(rand($_[0])); #prevents users second-guessing
@@ -115,17 +111,17 @@ sub broadcast_throttle {
   #check log_broadcast and any non-logged events
   #comments are not logged so as not to duplicate entries too much
   $sql = qq~
-  SELECT 
-  (SELECT TIMESTAMPDIFF(minUTE, date_created,UTC_TIMESTAMP())>? FROM log_broadcast WHERE broadcast=1 ORDER BY date_created DESC LIMIT 1) 
-  AND 
-  (SELECT TIMESTAMPDIFF(minUTE, date_created,UTC_TIMESTAMP())>? FROM comments WHERE type=0 ORDER BY date_created DESC LIMIT 1);
+    SELECT 
+      (SELECT TIMESTAMPDIFF(minUTE, date_created,UTC_TIMESTAMP())>? FROM log_broadcast WHERE broadcast=1 ORDER BY date_created DESC LIMIT 1) 
+    AND 
+      (SELECT TIMESTAMPDIFF(minUTE, date_created,UTC_TIMESTAMP())>? FROM comments WHERE type=0 ORDER BY date_created DESC LIMIT 1);
   ~;
   
   $sth = $dbh->prepare("$sql");
   $sth->execute($throttle,$throttle);
   ($result) = $sth->fetchrow_array();
+  
   $sth->finish();
-
   $dbh->disconnect();
 
   return $result;
@@ -140,47 +136,27 @@ sub diffuse {
 sub diffuse_twitter {
   my $message = $_[0];
   
-  my $password = get_password($twitter_pwfileloc);
-  #This needs to catch the error if the connection fails
+  my $twitter_consumersecret = get_password($twitter_consumersecretloc);
+  my $twitter_accesstokensecret = get_password($twitter_accesstokensecretloc);
   
-    use Net::Twitter;
-    use Scalar::Util 'blessed';
+  use Net::Twitter;
+  use Scalar::Util 'blessed';
   
-    my $nt = Net::Twitter->new(
-        traits   => [qw/API::REST/],
-        username => 'joegattnet',
-        password => $password
-    );
-  
-    if($message !~ /errorMessage/){
-      my $result = $nt->update($message);
-    }
-    return $result;
-}
+  my $nt = Net::Twitter->new(
+      traits              => [qw/API::REST OAuth/],
+      consumer_key        => $twitter_consumerkey,
+      consumer_secret     => $twitter_consumersecret,
+      access_token        => $twitter_accesstoken,
+      access_token_secret => $twitter_accesstokensecret
+  );
 
-sub diffuse_tarpipe {
-  my $message = $_[0];
+  if($message !~ /errorMessage/){
+    my $result = eval { $nt->update($message) };
+  }
   
-  my $password = get_password($twitter_pwfileloc);
-  #This needs to catch the error if the connection fails
+  warn "$@\n" if $@;
   
-#Not sure the tarpipe server is reliable
-#    if ($serverName ne 'joegatt.net') {
-#      $key = ''; # Dev
-#    } elsif ($broadcast){
-#      $key = ''; # All
-#    } else {
-#      $key = ''; # Throttled
-#    }
-    
-#    my $tp = WWW::TarPipe->new( 
-#      key => $key
-#    );
-    
-#    $tp->upload(
-#      title => $message
-#    );
-  
+  return $result;
 }
 
 1;

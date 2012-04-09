@@ -48,7 +48,7 @@ while (my ($users) = $sth->fetchrow_array()) {
 
 print "<hr/><h4>Wutz</h4>";
 
-$sth->finish();
+
 $dbh->disconnect();
 
 print qq~

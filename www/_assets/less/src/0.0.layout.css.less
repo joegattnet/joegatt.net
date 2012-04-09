@@ -1,0 +1,59 @@
+#container {
+	max-width: @max-width;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#container > nav,
+article > header,
+#container > footer, {
+	.column(12);
+}
+
+#app {
+	.column(12);
+}
+
+#content {
+	.column(5);
+	.pull(1);
+}
+
+aside {
+	.column(5);
+	.pull(1);
+}
+
+#enface {
+	.left, .right {
+		.column(5);
+	}
+	.tools {
+		.column(2);
+	}
+}
+
+.section-bibliography ul {
+	.multiple-columns(3);
+}
+
+.section-topics ul {
+	.multiple-columns(6);
+}
+
+body {
+	line-height: @line-height;
+}
+
+@media screen and (max-width:1000px) {
+	#content,
+	aside {
+		.column(12);
+	}
+}
+
+
+
+footer {
+	.column(12);
+}

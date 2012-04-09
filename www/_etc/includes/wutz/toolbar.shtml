@@ -3,7 +3,7 @@
   <div id="anagramometer" class="separator clearfix stripe">
     <!--#include virtual="/_etc/cache/enface--anagram-b=${b}.html?r=${randomiser}"-->      
   </div>
-  <!--#include virtual="/_etc/cache/common--navigator-id=toolbar&goto=true&pagefull=false&section=${section}&page=${page}&p_max=${p_max}&p=${p}.html" -->      
+  <!--#include virtual="/_etc/cache/common--navigator-id=toolbar_nav&goto=true&pagefull=false&section=${section}&page=${page}&p_max=${p_max}&p=${p}.html" -->      
   <div class="separator">
     <div id="paragraphs_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
       <a href="#" class="ui-slider-handle ui-state-default ui-corner-all"></a>
@@ -27,7 +27,7 @@
       <li><a href="javascript:;" id="tool_blackletter">Blackletter</a></li>
     </ul>
   </div>
-  <div id="scholia" class="navmodules panel refresh" data-url="/_etc/cache/common--scholia-b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
+  <div id="scholia" class="navmodules panel prime" data-url="/_etc/cache/common--scholia-b=<!--#echo var="b" -->&p=<!--#echo var="p" -->&page_id=<!--#echo var="section" -->_<!--#echo var="scholia_id" -->.html">
     <!--#include virtual="/_etc/cache/common--scholia-b=${b}&p=${p}&page_id=${scholia_id}.html" -->
   </div>
 </div>

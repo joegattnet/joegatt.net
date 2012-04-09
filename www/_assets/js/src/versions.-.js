@@ -53,14 +53,13 @@ NB.Versions = {
         $('body').trigger('minor.loaded');
     }, 
     get:function (q, current_version, direction) {
-    console.log('VERSION',current_version);
       var pq = 'p' + q;
-      var p_element = NB.Enface.get_target(NB.p.current);
+      var p_element = NB.App.getTarget(NB.p.current);
       var getVersion = current_version + direction;
       if (direction === 0) {
         getVersion = 1;
       }
-      if (direction!=2 && (getVersion != NB.versions['p' + $(NB.Enface.get_target(NB.p.current)).data('id')].version)) {
+      if (direction!=2 && (getVersion != NB.versions['p' + $(NB.App.getTarget(NB.p.current)).data('id')].version)) {
          p_element.addClass('version');
          NB.Editors.remove(p_element);
  			 	 $(p_element).animate({color:NB.S.color.version_loading}, 'fast');

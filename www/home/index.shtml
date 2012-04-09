@@ -6,8 +6,11 @@
 
 <!--#set var="chunk" value="index" -->
 
-<!--#set var="title" value="joegatt.net" -->
-<!--#set var="title.window" value="$title" -->
+<!--#include virtual="/_etc/cache/pantography--furthest-.shtml" -->
+
+<!--#set var="title" value="$p_furthest" -->
+<!--#set var="title.url" value="/pantography/" -->
+<!--#set var="title.window" value="joegatt.net" -->
 
 <!--#set var="comments" value="false" -->
 <!--#set var="notes" value="false" -->

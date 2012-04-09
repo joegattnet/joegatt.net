@@ -29,7 +29,7 @@ if ($mode eq 'all' or $mode eq 'source') {
   while (my $text = $sth->fetchrow_array()) {
     $source_text .= "$text";
   }
-  $sth->finish();
+  
   
   $source_text = DEnormalize($source_text);
   $source_text =~ s/\W//g;
@@ -51,7 +51,7 @@ if ($mode eq 'all' or $mode eq 'source') {
   
   my $sth = $dbh->prepare("$sql");
   $sth->execute();
-  $sth->finish();
+  
 
   print "<p>Source text (id $b) counted.</p>";
 
@@ -98,7 +98,7 @@ $sql = "SELECT target_text.text AS target,target_text.p FROM source_text,target_
     }
 		
   }
-  $sth->finish();
+  
   
   $values_string = join(',', @values);
   
@@ -106,7 +106,7 @@ $sql = "SELECT target_text.text AS target,target_text.p FROM source_text,target_
   
   my $sth = $dbh->prepare("$sql");
   $sth->execute();
-	$sth->finish();
+	
   
   print "<p>Target text (id $b) counted.</p><body></html>";
 

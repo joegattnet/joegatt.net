@@ -14,6 +14,7 @@ interface UserStoreIf {
   public function refreshAuthentication($authenticationToken);
   public function getUser($authenticationToken);
   public function getPublicUserInfo($username);
+  public function getPremiumInfo($authenticationToken);
 }
 
 class UserStoreClient implements UserStoreIf {
@@ -314,6 +315,63 @@ class UserStoreClient implements UserStoreIf {
     throw new Exception("getPublicUserInfo failed: unknown result");
   }
 
+  public function getPremiumInfo($authenticationToken)
+  {
+    $this->send_getPremiumInfo($authenticationToken);
+    return $this->recv_getPremiumInfo();
+  }
+
+  public function send_getPremiumInfo($authenticationToken)
+  {
+    $args = new edam_userstore_UserStore_getPremiumInfo_args();
+    $args->authenticationToken = $authenticationToken;
+    $bin_accel = ($this->output_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'getPremiumInfo', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('getPremiumInfo', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_getPremiumInfo()
+  {
+    $bin_accel = ($this->input_ instanceof TProtocol::$TBINARYPROTOCOLACCELERATED) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, 'edam_userstore_UserStore_getPremiumInfo_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new edam_userstore_UserStore_getPremiumInfo_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    if ($result->userException !== null) {
+      throw $result->userException;
+    }
+    if ($result->systemException !== null) {
+      throw $result->systemException;
+    }
+    throw new Exception("getPremiumInfo failed: unknown result");
+  }
+
 }
 
 // HELPER FUNCTIONS AND STRUCTURES
@@ -323,7 +381,7 @@ class edam_userstore_UserStore_checkVersion_args {
 
   public $clientName = null;
   public $edamVersionMajor = 1;
-  public $edamVersionMinor = 19;
+  public $edamVersionMinor = 20;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -1347,6 +1405,199 @@ class edam_userstore_UserStore_getPublicUserInfo_result {
     if ($this->userException !== null) {
       $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 3);
       $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_userstore_UserStore_getPremiumInfo_args {
+  static $_TSPEC;
+
+  public $authenticationToken = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        1 => array(
+          'var' => 'authenticationToken',
+          'type' => TType::STRING,
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['authenticationToken'])) {
+        $this->authenticationToken = $vals['authenticationToken'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'UserStore_getPremiumInfo_args';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->authenticationToken);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('UserStore_getPremiumInfo_args');
+    if ($this->authenticationToken !== null) {
+      $xfer += $output->writeFieldBegin('authenticationToken', TType::STRING, 1);
+      $xfer += $output->writeString($this->authenticationToken);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
+class edam_userstore_UserStore_getPremiumInfo_result {
+  static $_TSPEC;
+
+  public $success = null;
+  public $userException = null;
+  public $systemException = null;
+
+  public function __construct($vals=null) {
+    if (!isset(self::$_TSPEC)) {
+      self::$_TSPEC = array(
+        0 => array(
+          'var' => 'success',
+          'type' => TType::STRUCT,
+          'class' => 'edam_userstore_PremiumInfo',
+          ),
+        1 => array(
+          'var' => 'userException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMUserException',
+          ),
+        2 => array(
+          'var' => 'systemException',
+          'type' => TType::STRUCT,
+          'class' => 'edam_error_EDAMSystemException',
+          ),
+        );
+    }
+    if (is_array($vals)) {
+      if (isset($vals['success'])) {
+        $this->success = $vals['success'];
+      }
+      if (isset($vals['userException'])) {
+        $this->userException = $vals['userException'];
+      }
+      if (isset($vals['systemException'])) {
+        $this->systemException = $vals['systemException'];
+      }
+    }
+  }
+
+  public function getName() {
+    return 'UserStore_getPremiumInfo_result';
+  }
+
+  public function read($input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == TType::STOP) {
+        break;
+      }
+      switch ($fid)
+      {
+        case 0:
+          if ($ftype == TType::STRUCT) {
+            $this->success = new edam_userstore_PremiumInfo();
+            $xfer += $this->success->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->userException = new edam_error_EDAMUserException();
+            $xfer += $this->userException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == TType::STRUCT) {
+            $this->systemException = new edam_error_EDAMSystemException();
+            $xfer += $this->systemException->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write($output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('UserStore_getPremiumInfo_result');
+    if ($this->success !== null) {
+      if (!is_object($this->success)) {
+        throw new TProtocolException('Bad type in structure.', TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('success', TType::STRUCT, 0);
+      $xfer += $this->success->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->userException !== null) {
+      $xfer += $output->writeFieldBegin('userException', TType::STRUCT, 1);
+      $xfer += $this->userException->write($output);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->systemException !== null) {
+      $xfer += $output->writeFieldBegin('systemException', TType::STRUCT, 2);
+      $xfer += $this->systemException->write($output);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

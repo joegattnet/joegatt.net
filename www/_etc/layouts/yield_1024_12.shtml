@@ -1,4 +1,4 @@
-<article id="content" class="grid_12<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
+<article class="grid_12<!--#if expr="$direct_content=true" --> direct<!--#endif -->" data-url="<!--#echo var="content" -->">
   <!--#include virtual="$content" -->
 </article>
 <!--#include virtual="/_etc/includes/footer.shtml" -->           

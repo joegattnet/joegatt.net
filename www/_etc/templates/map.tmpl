@@ -1,7 +1,7 @@
 [% IF showMaps %]
-  <div id="map[% p %]" class="map"><!-- --></div>
+  <div id="map[% p %]" class="map"><img width="300" height="170" src="http://maps.googleapis.com/maps/api/staticmap?zoom=16&size=300x170&maptype=roadmap&markers=color:Red%7Clabel:Note%[% latitude %],[% longitude %][% IF resource.latitude %]&markers=color:Blue%7Clabel:Note%[% resource.latitude %], [% resource.longitude %][% END %]&sensor=false"></div>
   <script>
-    NB.loaded_scripts.add(true, function(){
+    NB.jobs.map[% p %] = function() {
        var markers = 0;
       [% FOREACH resource IN resources %]
         [% IF resource.latitude %]
@@ -48,7 +48,17 @@
           bounds.extend(note_latlng);
           map.fitBounds(bounds);
       }
-    });
+    }
+    if (!NB.loaded.maps){
+      Modernizr.load({
+        load: 'http://maps.google.com/maps/api/js?sensor=false&callback=NB.jobs.map[% p %]',
+        complete: function(){
+            NB.loaded.maps = true;
+        }
+        });
+    } else {
+      NB.jobs.map[% p %]();
+    }
   </script>
   [% IF latitude %]
     <div class="geo">

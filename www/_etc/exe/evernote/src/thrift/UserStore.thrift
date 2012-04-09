@@ -54,8 +54,17 @@ const i16 EDAM_VERSION_MAJOR = 1
  * Clients pass this to the service using UserStore.checkVersion at the
  * beginning of a session to confirm that they are not out of date.
  */
-const i16 EDAM_VERSION_MINOR = 19
+const i16 EDAM_VERSION_MINOR = 20
 
+//============================= Enumerations ==================================
+/**
+ * Enumeration of Sponsored Group Roles
+ */
+enum SponsoredGroupRole {
+  GROUP_MEMBER = 1,
+  GROUP_ADMIN = 2,
+  GROUP_OWNER = 3
+}
 
 /**
  * This structure is used to provide publicly-available user information
@@ -86,6 +95,65 @@ struct PublicUserInfo {
   4:  optional  string username
 }
 
+/**
+ * This structure is used to provide information about a user's Premium account.
+ *<dl>
+ * <dt>currentTime:</dt>
+ *   <dd>
+ *   The server-side date and time when this data was generated.
+ *   </dd>
+ * <dt>premium:</dt>
+ *   <dd>
+ *	 True if the user's account is Premium.
+ *   </dd>
+ * <dt>premiumRecurring</dt>
+ *   <dd>
+ *   True if the user's account is Premium and has a recurring payment method.
+ *   </dd>
+ * <dt>premiumExpirationDate:</dt>
+ *   <dd>
+ *   The date when the user's Premium account expires, or the date when the user's
+ *   account will be charged if it has a recurring payment method.
+ *   </dd>
+ * <dt>premiumExtendable:</dt>
+ *   <dd>
+ *   True if the user is eligible for purchasing Premium account extensions. 
+ *   </dd>
+ * <dt>premiumPending:</dt>
+ *   <dd>
+ *   True if the user's Premium account is pending payment confirmation 
+ *   </dd>
+ * <dt>premiumCancellationPending:</dt>
+ *   <dd>
+ *   True if the user has requested that no further charges to be made; the Premium
+ *   account will remain active until it expires.
+ *   </dd>
+ * <dt>canPurchaseUploadAllowance:</dt>
+ *   <dd>
+ *   True if the user is eligible for purchasing additional upload allowance.
+ *   </dd>
+ * <dt>sponsoredGroupName:</dt>
+ *   <dd>
+ *   The name of the sponsored group that the user is part of.
+ *   </dd>
+ * <dt>sponsoredGroupRole:</dt>
+ *   <dd>
+ *   The role of the user within a sponsored group.
+ *   </dd>
+ * </dl> 
+ */
+struct PremiumInfo {
+  1: required Types.Timestamp currentTime,
+  2: required bool premium,
+  3: required bool premiumRecurring,
+  4: optional Types.Timestamp premiumExpirationDate,
+  5: required bool premiumExtendable,
+  6: required bool premiumPending,
+  7: required bool premiumCancellationPending,
+  8: required bool canPurchaseUploadAllowance;
+  9: optional string sponsoredGroupName;
+  10:optional SponsoredGroupRole sponsoredGroupRole;
+ }
 
 /**
  * When an authentication (or re-authentication) is performed, this structure
@@ -255,7 +323,6 @@ service UserStore {
   Types.User getUser(1: string authenticationToken)
     throws (1: Errors.EDAMUserException userException,
             2: Errors.EDAMSystemException systemException),
-
   /**
    * Asks the UserStore about the publicly available location information for
    * a particular username.
@@ -267,6 +334,14 @@ service UserStore {
   PublicUserInfo getPublicUserInfo(1: string username)
     throws (1: Errors.EDAMNotFoundException notFoundException,
     	    2: Errors.EDAMSystemException systemException,
-    	    3: Errors.EDAMUserException userException)
+    	    3: Errors.EDAMUserException userException),
+
+  /**
+   * Returns information regarding a user's Premium account corresponding to the provided authentication token,
+   * or throws an exception if this token is not valid.
+   */
+  PremiumInfo getPremiumInfo(1: string authenticationToken)
+    throws (1: Errors.EDAMUserException userException,
+            2: Errors.EDAMSystemException systemException)  
 
 }

@@ -42,7 +42,7 @@ NB.Highlighter = {
     if (file.match(/\~[a-z]*$/)) {
       div = '#source';
       script = '/_etc/cache/code--files-file=';
-      file.replace(/\$\{?layout\}?/g, NB.layout);
+      file.replace(/\$\{?layout\}?/g, NB.meta.layout);
       file.replace(/\$\{?page_app\}?/g, NB.page_app);
       if (!nofollow && file.match(/index\~shtml$/)) {
         file.replace(/\$\{?section\}?/g, filesection);

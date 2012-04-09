@@ -1,0 +1,105 @@
+<style>
+  .unit p, .unit li {
+    text-indent: 0;
+  }
+  .unit ol#qunit-tests ol:last-child:after {
+    content: '.'
+  }
+  .unit ol li.fail, .fail strong  {
+    color:#d3120f;
+  }
+  .unit strong, .unit .test-name, .unit th {
+    font-family: Tahoma, Arial, sans-serif;
+  }
+</style>
+<script>
+  NB.loadAsyncScript('<!--#echo var="js_url" -->/_assets/min/f=/_assets/js/lib/qunit-Skip.js&amp;<!--#echo var="js_cachebuster" -->');
+
+  //Load qunit script asynchronously
+  //Add tests after each function, then run them here
+  //Limit some to pages or sections so that then they can be run via the code panel
+
+  NB.loaded_scripts.add(true, function(){
+
+    module('NB.User');
+    test('<a href="/code/www/_assets/js/src/user.js">NB.User()</a>', function() {  
+        equals(typeof(NB.User.id), 'number', 'NB.User.id is defined'); 
+    });
+
+    module('NB.Url');
+    test('NB.Url.complete()', function() {  
+        equals(NB.Url.complete('/example/test'), 'http://' + location.host + '/example/test', 'Url completed'); 
+    });
+    test('NB.Url.p()', function() {  
+        equals(NB.Url.p('/example/test/21'), 21, 'p retrieved'); 
+    });
+    test('<a href="/code/www/_assets/js/src/url.js">NB.Url.isDoc()</a>', function() {  
+        ok(NB.Url.isDoc('/example/test.doc'), 'File test.doc is a document'); 
+        ok(NB.Url.isDoc('/example/test.odt'), 'File test.odt is a document'); 
+        ok(NB.Url.isDoc('/example/test.pdf'), 'File test.pdf is a document'); 
+        ok(NB.Url.isDoc('/example/test.zip'), 'File test.zip is a document'); 
+        ok(!NB.Url.isDoc('/example/test'), 'Path /example/test is not a document'); 
+        ok(!NB.Url.isDoc('/example/test/'), 'Path /example/test/ is not a document'); 
+        ok(NB.Url.isDocUnzipped('/example/test.doc'), 'File test.doc is an unzipped document'); 
+        ok(NB.Url.isDocUnzipped('/example/test.odt'), 'File test.doc is an unzipped document'); 
+        ok(NB.Url.isDocUnzipped('/example/test.pdf'), 'File test.pdf is an unzipped document'); 
+        ok(!NB.Url.isDocUnzipped('/example/test.zip'), 'File test.zip is an zipped document'); 
+        ok(
+          !NB.Url.isDocUnzipped('/example/test'), 
+          'Path /example/test is not an unzipped document'
+        ); 
+        ok(!NB.Url.isDocUnzipped('/example/test/'), 'Path /example/test/ is not an unzipped document'); 
+    });
+
+    module('NB.Enface');
+    test('NB.Enface()', function() {  
+        if(NB.crumb.page_app === 'enface'){
+          ok(true, 'Running'); 
+        }
+    });
+    
+    module('NB.Anagram.total');
+    test('NB.Anagram.total_version()', function() {  
+        equals(NB.Anagram.total_version(12340), '0.87660', 'Anagram total version');
+    });
+  });
+</script>
+<div class="unit qunit text">
+  <div id="qunit-testrunner-toolbar"></div>  
+  <div id="qunit-header"></div>
+  <h4 id="qunit-userAgent"></h4>  
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-test-result"></div>
+</div>
+
+<p>Also include [Perl, PHP, - Does that make sense? JS and XSSI make sense to test on page. ] XSSI; use same formatting as qunit.</p>
+
+<strong>Report any errors to Google Analytics.</strong>
+
+<div class="unit text">
+<h4>XSSI</h4>
+  <ol>
+    <!--#if expr="$title" -->
+      <li class="pass">$title is defined ("<!--#echo var="title" -->")</li>
+    <!--#else -->
+      <li class="fail">$title is undefined</li>
+    <!--#endif -->
+  
+    <!--#if expr="$location" -->
+      <li class="pass">$location is defined ("<!--#echo var="location" -->")</li>
+    <!--#else -->
+      <li class="fail">$location is undefined</li>
+    <!--#endif -->
+  
+    <!--#if expr="$path" -->
+      <li class="pass">$ehe is defined ("<!--#echo var="ehe" -->")</li>
+    <!--#else -->
+      <li class="fail">$ehe is undefined</li>
+    <!--#endif -->
+  
+  </ol>
+</div>
+
+<pre>
+  <!--#printenv -->
+</pre>

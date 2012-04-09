@@ -23,6 +23,7 @@ if ($ARGV[0] eq '') {
       <h3>$timestamp</h3>
         <form>
           <input name="q" value="$q">
+          <input type="hidden" name="t" value="$timestamp">
           <p><input type="checkbox" name="deleteOnly"> Delete only</p>
           <input type="Submit">
         </form>
@@ -30,7 +31,7 @@ if ($ARGV[0] eq '') {
         
         if($q ne ''){
           print qq~
-            Refreshing '$q' from cache...
+            $t: Refreshing '$q' from cache...
           ~;
           cache_refresh($q,1,($deleteOnly eq 'on'));
         }
@@ -40,4 +41,6 @@ if ($ARGV[0] eq '') {
     </html>
   ~;
 
+} else {
+          cache_refresh($q,1,($deleteOnly eq 'on'));
 }

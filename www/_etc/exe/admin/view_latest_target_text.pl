@@ -21,7 +21,7 @@ my $sth = $dbh->prepare("$sql");
 $sth->execute($b,$p);
 
 my ($collate) = $sth->fetchrow_array();
-$sth->finish();
+
 
 # MySQL 4.0 (as used by FutureQuest) does not support subqueries so we have to do two queries
 #$sql = "SELECT source_text.text AS source,target_text.text AS target,target_text.p,date_created,target_text.Id FROM (SELECT MAX(date_created) AS latest,p FROM target_text GROUP BY p) X LEFT JOIN target_text ON date_created=latest AND x.p=target_text.p,source_text WHERE source_text.p>=$p AND source_text.book_id=$b AND target_text.book_id=$b AND source_text.p=target_text.p GROUP BY p ORDER BY p LIMIT $collate";
@@ -66,5 +66,5 @@ while (my ($target) = $sth->fetchrow_array()) {
 
 print qq~</textarea>~;
 
-$sth->finish();
+
 $dbh->disconnect();

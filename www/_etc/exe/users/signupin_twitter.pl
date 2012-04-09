@@ -13,7 +13,7 @@ $query = new CGI;
 $useridsig = $query->cookie('twitter_anywhere_identity');
 ($id_twitter,$sig) = split(/:/,$useridsig);
 
-my $secret = get_password($twitter_apisecretloc);
+my $secret = get_password($twitter_consumersecretloc);
 
 my $authenticated = (sha1_hex("$id_twitter$secret") eq $sig);
 
@@ -27,7 +27,6 @@ if ($authenticated == 1){
   $sth = $dbh->prepare("$sql");
   $sth->execute($id_twitter);
   ($found_user_id) = $sth->fetchrow_array();
-  $sth->finish();
   
   if ($found_user_id) {
     $sql = "UPDATE users SET visits=visits+1,date_last_visit=UTC_TIMESTAMP(),username=?,tw_full_name=?,tw_screen_name=? WHERE id_twitter=?;";
@@ -41,7 +40,6 @@ if ($authenticated == 1){
     $follow = 1;
   }
   
-  $sth->finish();
   $dbh->disconnect();
 
 # Automatically start following user
@@ -90,15 +88,18 @@ print qq~
 ~;
 
 if ($follow == 1){
-  my $password = get_password($twitter_pwfileloc);
-  
   use Net::Twitter;
 
+  my $twitter_consumersecret = get_password($twitter_consumersecretloc);
+  my $twitter_accesstokensecret = get_password($twitter_accesstokensecretloc);
+  
   my $nt = Net::Twitter->new(
-      traits   => [qw/API::REST/],
-      username => 'joegattnet',
-      password => $password
+      traits              => [qw/API::REST OAuth/],
+      consumer_key        => $twitter_consumerkey,
+      consumer_secret     => $twitter_consumersecret,
+      access_token        => $twitter_accesstoken,
+      access_token_secret => $twitter_accesstokensecret
   );
-
+  
   my $result = $nt->follow_new($id_twitter);
 }

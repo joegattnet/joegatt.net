@@ -30,8 +30,9 @@ formRead("get");
   });
   $sth->execute($p);
   ($description,$page_last_modified) = $sth->fetchrow_array();
-  $sth->finish();
+  
   $description = textTruncate($description,500);
+  $sth->finish();
 	$dbh->disconnect();
 
   $prevParagraph = $p - 1;

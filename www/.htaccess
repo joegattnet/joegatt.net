@@ -1,3 +1,6 @@
+# In production, this file is included by the virtual host config file
+# This enables us to switch off includes to improve performance and security
+
 AddDefaultCharset UTF-8
 
 DirectorySlash Off
@@ -44,6 +47,11 @@ RewriteRule ^/?admin/?$ /_etc/admin/index.shtml [L]
 RewriteRule ^(.*)/NaN/?$ $1/1
 RewriteRule ^(.*)/undefined/?$ $1/1
 
+#CSS/LESS
+RewriteCond %{REQUEST_URI} ^.*/_etc/cache/styles-[0-9]*.css
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)_etc/cache/styles-([0-9]*).css  $1_etc/exe/less/makecss.php?r=$2 [T=application/x-httpd-php,L]
+
 #Minify
 RewriteRule ^(.*)_(assets|etc)/min/([a-z]=.*)  $1_etc/min/index.php?$3  [L,NE]
 
@@ -73,6 +81,8 @@ RewriteRule ^(.*)_etc\/cache\/([_0-9a-z]+?)\-\-([_0-9a-z]+?)\-(.*?)\.s?html$ $1_
 RewriteRule ^/?(.*)/pr/(.*)$ /$1 [L,R,CO=promo:$2:%{HTTP_HOST}:60:/]
 
 #Genericise these rules (And don't use page but rely on iteration - remove [L])
+RewriteRule ^/?pantography/pantographs/?$ /pantography/
+RewriteRule ^/?pantography/pantographs/(.+)$ /pantography/page.shtml?p=$1 [L,QSA]
 RewriteRule ^/?tags/([_:a-zA-Z0-9]+)/?$ /tags/page.shtml?p=$1 [L,QSA]
 RewriteRule ^(.*)wutz/rc/?$ $1wutz/release.shtml?p=$1 [L,QSA]
 RewriteRule ^(.*)wutz/rc/([0-9]+)/?$ $1wutz/release.shtml?p=$2 [L,QSA]

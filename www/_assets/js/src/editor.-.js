@@ -51,3 +51,9 @@ if ('contentEditable' in document.body) {
   NB.Editor = new nicEditor();
 
 }
+
+/***/
+
+$('body').bind('content.loaded', function () {
+     NB.Editors.add_all();
+});

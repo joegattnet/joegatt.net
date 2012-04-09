@@ -1,6 +1,6 @@
 NB.Tools.colorize = {
   toggle: function () {
-   var e = NB.Enface.get_target(NB.p.current);
+   var e = NB.App.getTarget(NB.p.current);
    NB.Tools.toggle('colorize') ? NB.Tools.colorize.colorize(e) : NB.Tools.colorize.undo(e);
   }, 
   on: function () {
@@ -25,9 +25,9 @@ NB.Tools.colorize = {
      if (cached!=undefined) {
         j.html(cached.data);
     } else {
-    NB.Nav.track(0, 'COLORISING', e.attr('id'));
+    NB.Nav.track(0, 'Colorizing', e.attr('id'));
        var colorized = j.text().replace(/\w+ /g, function (match) {
-        var score = NB.Enface.word_score(match);
+        var score = NB.App.word_score(match);
         if (score<0) {
           return '<span class="neg neg' + score + '" title="&#x25bc;' + (score*-1) + '"> ' + match + '</span> ';
         } else if (score> 0) {
@@ -44,8 +44,8 @@ NB.Tools.colorize = {
     }
   }, 
   undo: function (e) {
+    NB.Nav.track(0, 'Tools.Colorize.undo');
     NB.Ui.caret.store();
-    NB.Nav.track(0, 'Tools.Colorize.undo', e);
     var j = $(e);
     j.text(j.text());
     j.removeClass('colorizer-ized');

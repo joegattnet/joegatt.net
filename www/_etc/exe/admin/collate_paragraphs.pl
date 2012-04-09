@@ -47,7 +47,7 @@ while (my ($Id,$length) = $sth->fetchrow_array()) {
 						$i++;
 			}			
 
-$sth->finish();
+
 $dbh->disconnect();
 
 print qq~

@@ -4,7 +4,7 @@ NB.Comments = {
     var comment = $('#comments textarea').val();
     $('#comments form input[name=p]').val(NB.p.top);
     $('#comments form input[name=b]').val(NB.book.id);
-		 if (comment === ''||comment === NB.TEXT.prompt.add_comment) {
+		 if (comment === '') {
         alert(NB.TEXT.error.add_comment);
 		    NB.Nav.track(1, 'User Error', 'Add comment');
      } else {
@@ -20,7 +20,7 @@ NB.Comments = {
   post:function () {
     $('#comments_form').hide('blind');
     var form = $('#comments form');
-    NB.Ajax.html('post', '#comments_list', form.attr('action'), form.serialize(), false, 'top', '#comments', null, function () {
+    NB.Ajax.html('post', '#comments_list', NB.S.form.comments_action, form.serialize(), false, 'top', '#comments', null, function () {
         NB.String.increment($('span', '#comments_count'));
         $('#added_comment').show('blind').show('highlight');
     });

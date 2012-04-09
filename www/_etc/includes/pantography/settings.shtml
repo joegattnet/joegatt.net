@@ -1,0 +1,9 @@
+<!--#set var="category" value="projects" -->
+<!--#set var="section" value="pantography" -->
+
+<!--#set var="path" value="/$section/" -->
+<!--#set var="location" value="$path" -->
+<!--#set var="canonical" value="$location" -->
+
+<!--#set var="b" value="2" -->
+

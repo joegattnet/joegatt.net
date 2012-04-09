@@ -15,7 +15,7 @@ if ($text ne '' && $user_id ne ''){
     INSERT INTO comments (text,date_created,user_id,book_id,paragraph_id,p,type,page_id) VALUES (?,UTC_TIMESTAMP(),?,?,?,?,1,?)
   });
   $sth->execute($text, $user_id, $book_id, $paragraph_id, $p, $page_id);
-  $sth->finish();
+  
   $dbh->disconnect();
 }
 

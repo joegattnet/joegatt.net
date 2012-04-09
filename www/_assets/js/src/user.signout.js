@@ -6,6 +6,8 @@ NB.User.signout = function (fbuser, twuser) {
   NB.Cookie.remove('rememberme');
   NB.Cookie.remove('user_id');
   NB.Cookie.remove('rmcode');
+  NB.Cookie.remove('twuser');
+  NB.Cookie.remove('fbuser');
   NB.Ajax.html(
     'get', 
     NB.User._container, 

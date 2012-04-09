@@ -1,0 +1,98 @@
+/*
+ * jquery.mb.components
+ * Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+ * email: mbicocchi@open-lab.com
+ * site: http://pupunzi.com
+ *
+ * Licences: MIT, GPL
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ */
+
+/*
+* jQuery.mb.components: mb.YTVPlayer
+* © 2001 - 2010 Matteo Bicocchi (pupunzi), Open Lab
+*
+*/
+
+/* Modified by jg */
+
+@charset"UTF-8";
+
+.mb_YTVPlayer :focus {
+	outline: 0;
+}
+.video-yt, .mb_YTVPlayer{
+  background-color:#000;
+  display:block;
+  position:relative;
+  overflow:hidden;
+  background: none!important;
+  padding:0!important;
+  margin:0!important;
+  /*
+  -moz-box-shadow:#000 1px 1px 5px;
+  -webkit-box-shadow:#000 1px 1px 5px;
+  */
+}
+
+/*CONTROL BAR*/
+.mb_YTVPlayer .mb_YTVPBar{
+  display:block;
+  width:100%;
+  height:10px;
+  padding:5px;
+  background:#000;
+  position:absolute;
+  bottom:0;
+  left:0;
+  -moz-box-sizing:padding-box;
+  -webkit-box-sizing:border-box;
+  text-align:left;
+  opacity:.7
+}
+.mb_YTVPlayer .mb_YTVPBar span{
+  display:inline-block;
+  height:0;
+  background:transparent;
+  font:12px/14px Calibri;
+  color:#ffffff;
+  position:relative;
+  padding:10px;
+  top:-40px;
+}
+.mb_YTVPlayer .mb_YTVPPlaypause,.mb_YTVPlayer .mb_YTVPPlaypause img{
+  cursor:pointer;
+}
+.mb_YTVPlayer .mb_YTVPMuteUnmute{
+  cursor:pointer;
+}
+
+/*PROGRESS BAR*/
+.mb_YTVPlayer .mb_YTVPProgress{
+  height:10px;
+  width:100%;
+  background:#333;
+  bottom:0;
+  left:0;
+  opacity:.9
+}
+.mb_YTVPlayer .mb_YTVPLoaded{
+  height:10px;
+  width:0;
+  background:#ccc;
+  left:0;
+  opacity:.9
+}
+.mb_YTVPlayer .mb_YTVTime{
+  height:6px;
+  width:0;
+  background:#ff0;
+  bottom:2px;
+  left:0;
+  opacity:.9
+  /*-moz-box-shadow:#666666 1px 1px 3px;
+  -webkit-box-shadow:#666666 1px 1px 3px;
+  */
+}
+

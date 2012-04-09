@@ -13,7 +13,7 @@ $sql = "SELECT username,SUM(score),COUNT(score),target_text.user_id,$date_format
 my $sth = $dbh->prepare("$sql");
 $sth->execute();
 
-print "||$user_id||<table cellpadding=\"5\" border=\"1\"><th><td>username</td><td>score</td><td>edits</td><td>joined</td></th>";
+print "||$user_id||<table border=\"1\"><th><td>username</td><td>score</td><td>edits</td><td>joined</td></th>";
 
 while (my ($username,$score,$edits,$id,$oined) = $sth->fetchrow_array()) {
   print "<tr><td><a href=\"user.pl?id=$id\">$username</a></td><td>$score</td><td>$edits</td><td>$joined</td></tr>";
@@ -21,5 +21,4 @@ while (my ($username,$score,$edits,$id,$oined) = $sth->fetchrow_array()) {
 
 print "</table>";
 
-$sth->finish();
 $dbh->disconnect();

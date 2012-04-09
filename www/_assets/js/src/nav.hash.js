@@ -1,15 +1,22 @@
 NB.Nav.hash = function () {
-  if (location.hash === ''||location.hash === '#') {
-    var url = NB.Url.path(location.href.replace('#', ''));
+  var url;
+  if ( History.isInternetExplorer() ) {
+    if (location.hash === '' || location.hash === '#') {
+      //Inserting this hash should not be necessary
+      url = NB.Url.path(location.href.replace('#', '/'));
+    } else {
+      url = location.hash.replace('#', '/');
+    }
   } else {
-    var url = location.hash.replace('#', '');
+      url = NB.Url.path(location.href);
   }
-  NB.Nav.track(1, 'Hash change detected.', url, NB.crumb.lastloaded);
-  if (url!=NB.crumb.lastloaded) {
+  if (decodeURIComponent(url) !== decodeURIComponent(NB.crumb.lastloaded)) {
+    NB.Nav.track(1, 'Hash change detected.', url, NB.crumb.lastloaded);
     NB.Nav.fetch(url);
   }
+  //  url = NB.Url.path(location.href);
+  //  NB.Nav.fetch(url); 
 }
 
-/******************************************************************************/
 
-$(window).hashchange(NB.Nav.hash);
+History.Adapter.bind(window, 'statechange', NB.Nav.hash);

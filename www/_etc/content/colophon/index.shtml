@@ -21,14 +21,17 @@
     <li><a href="http://jqueryui.com/">jQuery UI</a></li>
     <li><a href="http://plugins.jquery.com/plugin-tags/caret">jQuery Caret</a></li>
     <li><a href="http://code.google.com/p/jquery-rich-array/">jQuery Rich Array</a></li>
-    <li><a href="http://plugins.jquery.com/project/hashchange/">jQuery Hashchange</a></li>
     <li><a href="http://timeago.yarp.com/">jQuery Timeago</a></li>
     <li><a href="https://github.com/pupunzi/jquery.mb.YTPlayer">jQuery mb.YTPlayer</a></li>
+    <li><a href="http://www.oriontransfer.co.nz/projects/jquery-syntax/index.en">jQuery.Syntax</a></li>
+    <li><a href="http://github.com/balupton/history.js">History.js</a></li>
     <li><a href="http://www.addthis.com/help/client-api">AddThis Client API</a></li>
     <li><a href="http://developers.facebook.com/docs/reference/javascript/">Facebook JS SDK</a></li>
     <li><a href="http://dev.twitter.com/doc">Twitter Anywhere</a></li>
     <li><a href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps JS API</a></li>
     <li><a href="http://nicedit.com/">NicEdit</a></li>
+    <li><a href="http://www.highcharts.com/">Highcharts JS</a></li>
+    <li><a href="http://datatables.net/">DataTables</a></li>
   </ul>
 </div>
 <div class="grid_2">
@@ -52,6 +55,7 @@
       <li>
         <p class="DejaVuSansCondensed">Deja Vu Sans Condensed</p>
         <p class="DejaVuSansCondensedBold">Deja Vu Sans Condensed Bold</p>
+        <p class="DejaVuSansMono">Deja Vu Sans Mono</p>
         <p>By <a href="http://dejavu-fonts.org/">DejaVu Fonts</a> via <a href="http://www.fontsquirrel.com/fonts/DejaVu-Sans-Mono">Font Squirrel</a></p>
       </li>
       <li class="fontstack">

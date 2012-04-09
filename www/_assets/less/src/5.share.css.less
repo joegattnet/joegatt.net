@@ -1,0 +1,36 @@
+#share li {
+	margin-bottom: -3px;
+}
+h4 .soften {
+	font-weight: normal;
+	padding: 0 2px;
+}
+#n_share a,
+.addthis_bubble_style {
+	background: none!important;
+}
+#share_count {
+	display: inline-block!important;
+}
+.addthis_button_expanded {
+	font-weight: normal;
+	&:after {
+		content: ")";
+	}
+	&:before {
+		content: "(";
+	}
+}
+.addthis_counter {
+	&.addthis_bubble_style {
+		display: inline-block;
+		line-height: @line-height;
+		width: 11px!important;
+		margin: 0 3px 0 0;
+	}
+	a.addthis_button_expanded {
+		cursor: default;
+		margin-left: 4px;
+		display: inline;
+	}
+}

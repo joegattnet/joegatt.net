@@ -38,15 +38,11 @@ $output .= qq~
 
 # ******************************************************************************
 
-if ($text eq '') {
-  $text = "Add a note about the paragraph you are editing";
-}
-
 $output .= qq~
 	<div class="focusable$focused" id="scholia_form">
     <form action="${root}_etc/exe/common/scholia_save.pl" method="post">
       <fieldset>
-        <textarea name="text" class="focus_handle prompt_add_comment" id="new_scholia">$text</textarea>
+        <textarea name="text" class="focus_handle prompt_add_comment" id="new_scholia" placeholder="Add a note about the paragraph you are editing">$text</textarea>
     		<input type="hidden" name="p" value="$p" />
     		<input type="hidden" name="book_id" value="$b" />
     		<input type="hidden" name="page_id" value="$page_id" />
@@ -91,7 +87,7 @@ $output .= qq~
    </div>
 ~;
 
-$sth->finish();
+
 $dbh->disconnect();
 
 # ******************************************************************************

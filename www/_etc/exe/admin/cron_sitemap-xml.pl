@@ -39,7 +39,7 @@ $sql1 = qq~
 
 $sql2 = qq~
           SELECT CONCAT(?,name_simple) AS loc,
-           DATE_FORMAT(NOW(), '%Y-%m-%d') AS lastmod,
+           DATE_FORMAT(UTC_TIMESTAMP(), '%Y-%m-%d') AS lastmod,
            ? AS changefreq,
            ? AS priority 
           FROM tags,notes,_lookup 
@@ -66,7 +66,7 @@ $sql3 = qq~
 
 $sql4 = qq~
          SELECT ? AS loc,
-         DATE_FORMAT(NOW(), '%Y-%m-%d') AS lastmod,
+         DATE_FORMAT(UTC_TIMESTAMP(), '%Y-%m-%d') AS lastmod,
          ? AS changefreq,
          ? AS priority 
         ~;

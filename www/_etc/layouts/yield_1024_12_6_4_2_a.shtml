@@ -1,0 +1,26 @@
+<div id="container_top" class="grid_12 clearfix">
+  <!--#if expr="$content_top" -->
+    <!--#include virtual="$content_top" -->
+  <!--#endif -->
+</div>
+<div class="grid_12">
+  <section id="content" class="grid_5 suffix_1 alpha" data-url="<!--#echo var="content_right" -->">
+    <!--#include virtual="$content" -->
+    <div class="apparatus">
+      <!--#include virtual="../../_etc/layouts/apparatus_left.shtml" -->
+    </div>
+  </section>
+  <div class="grid_6 omega">
+    <div class="grid_4 alpha">
+      <!--#include virtual="$content_centre" -->
+    </div>
+    <nav class="grid_2 omega">
+      <!--#include virtual="$content_right" -->
+    </nav>
+    <div class="apparatus grid_5 suffix_1 alpha omega">
+      <!--#include virtual="../../_etc/layouts/apparatus_right.shtml" -->
+    </div>
+  </div>
+</div>
+<!--#include virtual="/_etc/includes/footer.shtml" -->           
+

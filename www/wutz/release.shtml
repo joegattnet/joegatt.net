@@ -1,14 +1,16 @@
 <!--#include virtual="/_etc/includes/settings.shtml" -->
 <!--#include virtual="/_etc/includes/wutz/settings.shtml" -->
 
-<!--#set var="page" value="rc" -->
+<!--#set var="page" value="index" -->
 <!--#set var="share_id" value="${section}_rc" -->
 <!--#set var="clip_id" value="${section}_rc_${p}" -->
 <!--#set var="comments_id" value="${section}_index" -->
 
 <!--#set var="chunk" value="paragraph" -->
 
-<!--#set var="tags" value="$tags,_${section}_p$p" -->
+<!--#set var="tags" value="_${section}_p${p}" -->
+<!--#set var="exclude_text" value="${section}|index|${p}" -->
+<!--#include virtual="/_etc/cache/tags--tags_from_alias-tags=${tags}&exclude_text=${exclude_text}.shtml" -->
 
 <!--#set var="path" value="/$section/rc/" -->
 <!--#set var="location" value="${path}${p}" -->
@@ -25,8 +27,6 @@
 <!--#set var="version" value="v0.7rc1" -->
 
 <!--#set var="nav_end" value="true" -->
-
-<!--#set var="tags_hack" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
 <!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&multipage=3&mode=oldest.html" -->
