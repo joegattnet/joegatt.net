@@ -95,6 +95,7 @@ NB.Pantography.prototype.getTotalToTweet = function () {
 };
 
 NB.Pantography.prototype.getTimeToTweetYears = function () {
+  //This needs to take the initial phase into consideration
   return (this.totalToTweet / (((60 * 60) / this.frequency)  * 24 * this.siderealYearInDays));
 };
 

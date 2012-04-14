@@ -35,7 +35,9 @@ NB.SETTINGS = {
   pantography: {
     alphabetString: "0123456789.,;:_@!?/#()%'-+= abcdefghijklmnopqrstuvwxyz",
     messageLength: 140,
-    frequency: 600, // Frequency of broadcasts in seconds
+    frequency: 3600, // Frequency of broadcasts in seconds
+    seedingFrequency: 600, // Initial, faster phase
+    seedingMessagesTweeted: 22898, // Number of messages tweeted at this rate
     siderealYearInDays: 365.256363004,
     dateFirstTx: "October 28, 2011 08:20:00 GMT",
     username: 'pantography'
