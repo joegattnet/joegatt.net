@@ -58,7 +58,7 @@
 <!--#set var="shareicon" value="$images_url/logo.png" -->
 
 <!--#set var="scripts_discrete" value="false" -->
-<!--#set var="styles_discrete" value="false" -->
+<!--#set var="styles_discrete" value="true" -->
 
 <!--#set var="jquery_version" value="1.6.4" -->
 <!--#set var="jquery_ui_version" value="1.8.16" -->
@@ -66,7 +66,7 @@
 <!--#set var="js_version" value="1-3" -->
 <!--#set var="css_version" value="1-1" -->
 <!--#set var="js_cachebuster" value="34" -->
-<!--#set var="css_cachebuster" value="43" -->
+<!--#set var="css_cachebuster" value="44" -->
 
 <!--#if expr="$server = /^v(\d)\./" -->
   <!--#set var="css_cachebuster" value="$css_cachebuster$1" -->
