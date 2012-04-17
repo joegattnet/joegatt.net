@@ -7,4 +7,5 @@
   <div id="comments" class="prime" data-url="/_etc/cache/common--comments-page_id=<!--#echo var="comments_id"-->.html">
     <!--#include virtual="/_etc/cache/common--comments-page_id=${comments_id}.html" -->
   </div>
+  <!--#include virtual="/_etc/includes/wutz/adsense.shtml" -->
 <!--#endif -->

@@ -35,6 +35,8 @@
 <!--#set var="location" value="$path" -->
 <!--#set var="canonical" value="$location" -->
 
+<!--#set var="google_adsense_code" value="ca-pub-2235185827481669" -->
+
 <!--#if expr="$server=joegatt.net" -->
   <!--#set var="google_tracking_code" value="UA-16898823-1" -->
   <!--#set var="debug" value="false" -->
@@ -58,7 +60,7 @@
 <!--#set var="shareicon" value="$images_url/logo.png" -->
 
 <!--#set var="scripts_discrete" value="false" -->
-<!--#set var="styles_discrete" value="false" -->
+<!--#set var="styles_discrete" value="true" -->
 
 <!--#set var="jquery_version" value="1.6.4" -->
 <!--#set var="jquery_ui_version" value="1.8.16" -->
