@@ -39,7 +39,8 @@ my $TTconfig = {
 my $TTtemplate = Template->new($TTconfig);
   
 my $TTvars = {
-  collection => $collectionList
+  collection => $collectionList,
+  start => $start
 };
   
 my $TTinput = "collection.tmpl";

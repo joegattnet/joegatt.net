@@ -38,7 +38,7 @@ p.caption {
 blockquote {
 /*	color: #666; */
 	font-style: italic;
-	font-size: 12px;
+	font-size: @font-size-content;
 	font-family: Georgia, "Palatino Linotype", serif;
 	/*margin-bottom: 10px;
 */
@@ -59,14 +59,14 @@ figcaption {
 	text-indent: 0;
 }
 .details {
-	font-size: 11px;
+	font-size: @font-size-default;
 }
 .notes-list .book, .notes-list .link, .notes-list .topic, .notes-list .more {
 	font-family: Tahoma, Geneva, sans-serif;
 }
 .notes-list .more {
 	color: #999999;
-	font-size: 11px;
+	font-size: @font-size-default;
 }
 .notes-list .author {
 	font-weight: bold;
@@ -81,7 +81,7 @@ figcaption {
 }
 .notes-list > li {
 	margin-bottom: 0;
-	font-size: 13px;
+	font-size: @font-size-content;
 	font-family: Georgia, "Palatino Linotype", serif;
 }
 .notestype-notes, .notestype-alias {
@@ -95,7 +95,7 @@ figcaption {
 }
 .notes-list .meta {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 11px;
+	font-size: @font-size-default;
 	/* height: 20px; */
 }
 .screenshot {
@@ -127,7 +127,7 @@ figcaption {
 	margin-bottom: 10px!important;
 }
 .book {
-  font-size: 12px;
+  font-size: @font-size-default;
 }
 /* IE9 does not support thisAlso, wrapping can leave widows/orphans.page-notes-index #content, .page-bibliography-index #content, .page-links-index #content, .page-topics-index #content {
 	-moz-column-gap: 20px;
@@ -150,4 +150,18 @@ figcaption {
 }
 .book p[itemprop="author"] {
 	font-weight: bold;
+}
+/* Hide or remove */
+.notestype-topics .meta,
+.notestype-links .meta,
+.notestype-bibliography .meta {
+	display: none;
+}
+
+ol.collection {
+	margin-bottom: @line-height;
+	li {
+		list-style: decimal inside none;
+		font-family: Tahoma, Geneva, sans-serif;
+	}
 }

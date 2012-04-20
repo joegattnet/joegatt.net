@@ -27,7 +27,7 @@
       <!--#include virtual="/_etc/cache/notes--fragment-tags=_pantography_introduction.html" -->
     </article>
     <nav>
-      <!--#include virtual="/_etc/cache/notes--collection-collection=pantography.html" -->
+      <!--#include virtual="/_etc/cache/notes--collection-collection=pantography&start=2.html" -->
     </nav>
     <div class="apparatus">
       <!--#include virtual="/_etc/layouts/apparatus_left.shtml" -->
