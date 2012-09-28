@@ -54,9 +54,9 @@
 
 <!--#set var="readability_tracking_code" value="GYUCgpCnFASq7wVJqrgJYMSytz6ApjL4GD66STfG" -->
 
-<!--#set var="favicon" value="$images_url/favicon.ico" -->
-<!--#set var="iphoneicon" value="$images_url/apple-touch-icon.png" -->
-<!--#set var="shareicon" value="$images_url/logo.png" -->
+<!--#set var="favicon" value="/favicon.ico" -->
+<!--#set var="iphoneicon" value="/apple-touch-icon.png" -->
+<!--#set var="shareicon" value="/logo.png" -->
 
 <!--#set var="scripts_discrete" value="false" -->
 <!--#set var="styles_discrete" value="true" -->

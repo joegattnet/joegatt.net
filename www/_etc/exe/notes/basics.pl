@@ -37,7 +37,7 @@ sub printNote {
   my $location;
   my $isTopic;
   my $isAlias;
-  my $blurbLength = 250;
+  my $blurbLength = 160;
   my $templateType = 'default';
   my $location = 'notes';
   my $noteRef = hex(substr($note_e_guid,0,4));
@@ -172,7 +172,7 @@ sub printNote {
 
   if ($text =~ s/quote\: *\{ *(.*?) *\} *$//i || $text =~ s/quote\: *(.*?)$//i) {
       $quote = $1;
-      $quoteBriefLinked = textTruncateLink($quote, 350, false, "/$location/$noteRef", 'More');;
+      $quoteBriefLinked = textTruncateLink($quote, $blurbLength, false, "/$location/$noteRef", 'More');;
   }
 
   $text =~ s/\&nbsp\;/ /g;

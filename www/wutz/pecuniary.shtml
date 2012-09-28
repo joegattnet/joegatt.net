@@ -2,8 +2,8 @@
 <!--#include virtual="/_etc/includes/wutz/settings.shtml" -->
 
 <!--#set var="page" value="index" -->
-<!--#set var="share_id" value="${section}_rc" -->
-<!--#set var="clip_id" value="${section}_rc_${p}" -->
+<!--#set var="share_id" value="${section}_pecuniary" -->
+<!--#set var="clip_id" value="${section}_pecuniary_${p}" -->
 <!--#set var="comments_id" value="${section}_index" -->
 
 <!--#set var="chunk" value="paragraph" -->
@@ -12,7 +12,7 @@
 <!--#set var="exclude_text" value="${section}|index|${p}" -->
 <!--#include virtual="/_etc/cache/tags--tags_from_alias-tags=${tags}&exclude_text=${exclude_text}.shtml" -->
 
-<!--#set var="path" value="/$section/rc/" -->
+<!--#set var="path" value="/$section/pecuniary/" -->
 <!--#set var="location" value="${path}${p}" -->
 <!--#set var="canonical" value="$location" -->
 
@@ -29,7 +29,7 @@
 <!--#set var="nav_end" value="true" -->
 
 <!--#set var="yield" value="yield_1024_10_02_a.shtml" -->
-<!--#set var="content" value="/_etc/cache/enface--paragraphs-b=${b}&p=${p}&p_max=${p_max}&static=1&pecuniary=1&multipage=3&mode=oldest.html" -->
+<!--#set var="content" value="/_etc/cache/enface--paragraphs_pecuniary-b=${b}&p=${p}&p_max=${p_max}&static=1&pecuniary=1&multipage=3&mode=oldest.html" -->
 <!--#set var="direct_content" value="false" -->
 
 <!--#set var="content_right" value="/_etc/includes/${section}/toolbar_release.shtml" -->

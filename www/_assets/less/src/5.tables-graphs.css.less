@@ -6,13 +6,13 @@
 
 #NB-datatable_wrapper {
 	position:relative;
-	padding-bottom: @line-height;
+//	padding-bottom: @line-height;
 }
 
 #NB-datatable {
 	td {
 		width:80px;
-		font-family:Menlo,Consolas,monospace
+		font-family: Menlo,Consolas,monospace
 	}
 	td:last-child {
 		width:60px
@@ -66,6 +66,7 @@
 		border:1px solid #ccc;
 		margin:0
 	}
+	display: none;
 }
 #NB-datatable_length select {
 	border:1px solid #ccc
@@ -74,7 +75,11 @@
 #NB-datatable_length,
 #NB-datatable_info {
 	left:0;
-	color:#999
+	color:#999;
+	display: none;
+}
+#NB-datatable_paginate {
+	display: none;
 }
 
 /* HACK - genericise */

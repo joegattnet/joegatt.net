@@ -55,8 +55,8 @@ if (location.hash.indexOf('/') === 1 && location.host+location.hash.substr(1) !=
 <meta name="readability-verification" content="<!--#echo encoding="none" var="readability_tracking_code" -->">
 
 <link rel="canonical" href="http://<!--#echo encoding="none" var="server" --><!--#echo encoding="none" var="canonical" -->">
-<link rel="shortcut icon" href="<!--#echo encoding="none" var="favicon" -->">
-<link rel="apple-touch-icon" href="<!--#echo encoding="none" var="iphoneicon" -->">
+<link rel="shortcut icon" href="<!--#echo encoding="none" var="images_url" --><!--#echo encoding="none" var="favicon" -->">
+<link rel="apple-touch-icon" href="<!--#echo encoding="none" var="images_url" --><!--#echo encoding="none" var="iphoneicon" -->">
 
 <!--#if expr="$copyright_url" -->
   <link rel="copyright" href="<!--#echo encoding="none" var="copyright_url" -->">
@@ -100,8 +100,8 @@ if (location.hash.indexOf('/') === 1 && location.host+location.hash.substr(1) !=
   <script>
     localStorage.clear();
   </script>
-  <link href="/_assets/less/index.css.less" rel="stylesheet/less" type="text/css">
-  <script src="/_assets/js/lib/less-1.2.1.min.js" type="text/javascript"></script>
+  <link href="/_assets/less/index.css.less" rel="stylesheet/less"url>
+  <script src="/_assets/js/lib/less-1.2.1.min.js"url></script>
 <!--#endif -->
 
 
@@ -111,7 +111,7 @@ if (location.hash.indexOf('/') === 1 && location.host+location.hash.substr(1) !=
 <!--[if IE 8 ]><link rel="stylesheet" href="<!--#echo var="css_url" -->/_assets/min/f=/_assets/css/src/0.IE8.css&amp;<!--#echo encoding="none" var="css_cachebuster" -->"><![endif]-->
 
 <!--#if expr="$server != /joegatt.net/" -->
-  <style type="text/css">
+  <styleurl>
     <!--#include virtual="/_assets/less/src/0.Debug.css.less"-->  
   </style>
 <!--#endif -->
